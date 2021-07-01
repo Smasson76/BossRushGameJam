@@ -324,6 +324,71 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1413902579
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4300655285361656130, guid: 24e60005668e8324ca604246877f205d, type: 3}
+      propertyPath: acceleration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4300655285361656130, guid: 24e60005668e8324ca604246877f205d, type: 3}
+      propertyPath: cameraMaxSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4300655285361656131, guid: 24e60005668e8324ca604246877f205d, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4300655285361656131, guid: 24e60005668e8324ca604246877f205d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 688
+      objectReference: {fileID: 0}
+    - target: {fileID: 4300655285361656131, guid: 24e60005668e8324ca604246877f205d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4300655285361656131, guid: 24e60005668e8324ca604246877f205d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 381
+      objectReference: {fileID: 0}
+    - target: {fileID: 4300655285361656131, guid: 24e60005668e8324ca604246877f205d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4300655285361656131, guid: 24e60005668e8324ca604246877f205d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4300655285361656131, guid: 24e60005668e8324ca604246877f205d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4300655285361656131, guid: 24e60005668e8324ca604246877f205d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4300655285361656131, guid: 24e60005668e8324ca604246877f205d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4300655285361656131, guid: 24e60005668e8324ca604246877f205d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4300655285361656131, guid: 24e60005668e8324ca604246877f205d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4300655285361656140, guid: 24e60005668e8324ca604246877f205d, type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 24e60005668e8324ca604246877f205d, type: 3}
 --- !u!1 &1586788290
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,5 +474,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss1concept
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5a03a7c8999b7a66c8a0ea5049288f12, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 5a03a7c8999b7a66c8a0ea5049288f12, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a03a7c8999b7a66c8a0ea5049288f12, type: 3}
+--- !u!1 &2143375471 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5a03a7c8999b7a66c8a0ea5049288f12, type: 3}
+  m_PrefabInstance: {fileID: 1744960944}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2143375472
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2143375471}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 107.24, y: 84.1, z: 91.23}
+  m_Center: {x: 0, y: 0, z: 0}

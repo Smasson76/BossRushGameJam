@@ -165,10 +165,10 @@ MonoBehaviour:
   cameraDistance: 20
   cameraMinTilt: -10
   cameraMaxTilt: 50
-  cameraMaxSpeed: 2
+  cameraMaxSpeed: 0.5
   cameraDeadZone: 100
   cameraGradientSize: 100
-  acceleration: 20
+  acceleration: 1
 --- !u!120 &4300655285361656129
 LineRenderer:
   m_ObjectHideFlags: 0
