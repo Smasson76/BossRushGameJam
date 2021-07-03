@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject player;
     [SerializeField] private Transform booster;
+    [SerializeField] private ParticleSystem boosterParticles;
     [SerializeField] private Transform splitSphere;
 
     [Header("Movement")]
@@ -32,10 +33,17 @@ public class PlayerController : MonoBehaviour
     private bool isBraking;
     private bool isBoosting;
     private SectionData [] sphereSections;
+    private SectionData grappleSection;
 
     private struct SectionData {
         public Transform transform;
         public Vector3 homeLocation;
+        public SectionStatus status;
+    }
+
+    private enum SectionStatus {
+        standby,
+        isGrappling
     }
 
     void Start() {
@@ -52,6 +60,7 @@ public class PlayerController : MonoBehaviour
             SectionData newSection = new SectionData();
             newSection.transform = splitSphere.GetChild(i);
             newSection.homeLocation = newSection.transform.localPosition.normalized;
+            newSection.status = SectionStatus.standby;
             sphereSections[i] = newSection;
         }
     }
@@ -86,10 +95,12 @@ public class PlayerController : MonoBehaviour
     void PlayerBoost() {
         if (playerInput.IsBoosting()) {
             isBoosting = true;
+            boosterParticles.Play();
             Vector2 dirInput = playerInput.GetPlayerMovement();
             if (dirInput.magnitude == 0) {
                 Vector3 forceDirection = playerRb.velocity.normalized;
                 playerRb.AddForce(forceDirection * boostAmount, ForceMode.Force);
+                goalBoostDirection = forceDirection;
             } else {
                 Vector3 forceDirection = (cameraController.GetCameraHorizontalFacing() * new Vector3(dirInput.x, 0, dirInput.y)).normalized;
                 playerRb.AddForce(forceDirection * boostAmount, ForceMode.Force);
@@ -97,11 +108,12 @@ public class PlayerController : MonoBehaviour
             }
         } else {
             isBoosting = false;
+            boosterParticles.Stop();
         }
     }
 
     void PlayerSlow() {
-        if (playerInput.IsSlowing()) {
+        if (playerInput.IsSlowing() && !isOnGround()) {
             isBraking = true;
             Vector3 force = -playerRb.velocity * slowAmount;
             playerRb.AddForce(force, ForceMode.Force);
@@ -120,12 +132,16 @@ public class PlayerController : MonoBehaviour
             
             grapplePoint = hit.point;
             grappleSpring = player.AddComponent<SpringJoint>();
+            grappleSection = GetClosestSection(grapplePoint - player.transform.position);
+            grappleSection.status = SectionStatus.isGrappling;
+            grappleSection.transform.gameObject.SetActive(false);
+            grappleSpring.anchor = grappleSection.homeLocation;
             grappleSpring.autoConfigureConnectedAnchor = false;
             grappleSpring.connectedAnchor = grapplePoint;
             float grappleDist = Vector3.Distance(player.transform.position, grapplePoint);
             grappleSpring.maxDistance = grappleDist;
             grappleSpring.minDistance = 0;
-            grappleSpring.spring = 10;
+            grappleSpring.spring = 5f;
             grappleSpring.damper = 5f;
 
             rope.enabled = true;
@@ -134,8 +150,23 @@ public class PlayerController : MonoBehaviour
 
     public void GrappleEnd() {
         isGrappling = false;
+        grappleSection.transform.gameObject.SetActive(true);
+        grappleSection.status = SectionStatus.standby;
         Destroy(grappleSpring);
         rope.enabled = false;
+    }
+
+    SectionData GetClosestSection(Vector3 dir) {
+        SectionData closest = sphereSections[0];
+        float smallestAngle = 180;
+        foreach(SectionData section in sphereSections) {
+            float angle = Vector3.Angle(dir, section.transform.parent.rotation * section.homeLocation);
+            if (angle < smallestAngle) {
+                closest = section;
+                smallestAngle = angle;
+            }
+        }
+        return closest;
     }
 
     void UpdateRope() {
@@ -144,7 +175,7 @@ public class PlayerController : MonoBehaviour
             grappleSpring.maxDistance = grapplelength;
         }
         rope.positionCount = 2;
-        rope.SetPosition(0, player.transform.position);
+        rope.SetPosition(0, grappleSection.transform.position);
         rope.SetPosition(1, grapplePoint);
     }
 
@@ -172,19 +203,18 @@ public class PlayerController : MonoBehaviour
                     section.transform.localRotation = Quaternion.Lerp(section.transform.localRotation, goalRot, Time.deltaTime * panelLerpSpeed);
                 }
             }
-        } else if (true) {
+        } else if (isBoosting) {
             foreach(SectionData section in sphereSections) {
-                //Vector3 boostDir = booster.transform.rotation.normalized * Vector3.forward;
-                //Vector3 boostDir = goalBoostDir;
-                Vector3 boostDir = Vector3.down;
+                Vector3 boostDir = goalBoostDirection;
                 Vector3 localPosNoRot = section.transform.parent.rotation * section.homeLocation;
                 float angle = Vector3.Angle(boostDir, localPosNoRot);
-                if (angle > 120) {
-                    Vector3 boostDirVectorComponent = boostDir.normalized * Vector3.Dot(section.homeLocation, boostDir);
-                    Vector3 perpToBoost = (section.homeLocation - boostDirVectorComponent);
-                    Debug.DrawLine(section.transform.position, section.transform.position + perpToBoost, Color.red);
-                    Vector3 goalPos = boostDirVectorComponent + perpToBoost.normalized * panelDistMin;
+                if (angle > 100) {
+                    Vector3 boostDirVectorComponent = boostDir.normalized * Vector3.Dot(localPosNoRot, boostDir);
+                    Vector3 perpToBoost = (localPosNoRot - boostDirVectorComponent);
+
+                    Vector3 goalPos = section.homeLocation * panelDistMax;
                     section.transform.localPosition = Vector3.Lerp(section.transform.localPosition, goalPos, Time.deltaTime * panelLerpSpeed);
+
                     Quaternion goalRot = Quaternion.FromToRotation(section.homeLocation, perpToBoost);
                     section.transform.rotation = Quaternion.Lerp(section.transform.rotation, goalRot, Time.deltaTime * panelLerpSpeed);
                 } else {
@@ -207,5 +237,19 @@ public class PlayerController : MonoBehaviour
     void UpdateBooster() {
         Quaternion goalDir = Quaternion.LookRotation(goalBoostDirection, Vector3.up);
         booster.transform.rotation = Quaternion.Lerp(booster.transform.rotation, goalDir, Time.deltaTime * boosterLerpSpeed);
+    }
+
+    public void Pop() {
+        foreach (SectionData section in sphereSections) {
+            section.transform.SetParent(null, true);
+            BoxCollider collider = section.transform.gameObject.AddComponent<BoxCollider>();
+            collider.size = section.transform.gameObject.GetComponent<MeshFilter>().mesh.bounds.extents;
+            Rigidbody rb = section.transform.gameObject.AddComponent<Rigidbody>();
+            rb.interpolation = RigidbodyInterpolation.Interpolate;
+            rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+            rb.velocity = playerRb.velocity;
+            rb.AddForce(section.homeLocation.normalized * 5);
+        }
+        sphereSections = new SectionData[0];
     }
 }

@@ -11,12 +11,12 @@ public class PlayerInput : MonoBehaviour {
         controls = new Control();
         controls.PlayerMovement.GrappleStart.performed += ctx => playerController.GrappleStart();
         controls.PlayerMovement.GrappleEnd.performed += ctx => playerController.GrappleEnd();
+        controls.PlayerMovement.Pop.performed += ctx => playerController.Pop();
     }
     
     void Start() {
         playerController = this.GetComponent<PlayerController>();
     }
-
     void OnEnable() {
         controls.Enable();
         Cursor.lockState = CursorLockMode.Confined;
