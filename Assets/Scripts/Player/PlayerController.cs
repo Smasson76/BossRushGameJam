@@ -23,6 +23,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float panelLerpSpeed;
     [SerializeField] private float panelDistMin;
     [SerializeField] private float panelDistMax;
+
+    [Header("Audio Information")]
+    public AudioSource audioSource;
+    public AudioClip grappleFireSound;
+    public AudioClip grapplReelInSound;
     
     private Rigidbody playerRb;
     private PlayerInput playerInput;
@@ -164,6 +169,10 @@ public class PlayerController : MonoBehaviour
             grappleSpring.spring = 5f;
             grappleSpring.damper = 5f;
 
+            //Standard Audio - will be changed momentarily
+            audioSource.pitch = Random.Range(1f, 3f);
+            audioSource.PlayOneShot(grappleFireSound);
+
             rope.enabled = true;
         }   
     }
@@ -173,6 +182,7 @@ public class PlayerController : MonoBehaviour
         grappleSection.status = SectionStatus.standby;
         Destroy(grappleSpring);
         rope.enabled = false;
+        audioSource.PlayOneShot(grapplReelInSound);
     }
 
     SectionData GetClosestSection(Vector3 pos) {
