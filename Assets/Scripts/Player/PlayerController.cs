@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
         public Vector3 homeLocation;
         public Quaternion homeRotation;
         public SectionStatus status;
+        
     }
 
     private enum SectionStatus {
