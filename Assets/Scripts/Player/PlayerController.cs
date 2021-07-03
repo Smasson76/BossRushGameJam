@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DitzelGames.FastIK;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private Transform booster;
     [SerializeField] private ParticleSystem boosterParticles;
-    [SerializeField] private Transform splitSphere;
+    [SerializeField] private Transform[] sectionBones;
+    [SerializeField] private GameObject[] ikEnds;
 
     [Header("Movement")]
     [SerializeField] private float acceleration;
@@ -37,7 +39,10 @@ public class PlayerController : MonoBehaviour
 
     private struct SectionData {
         public Transform transform;
+        public GameObject ikEnd;
+        public Transform ikPole;
         public Vector3 homeLocation;
+        public Quaternion homeRotation;
         public SectionStatus status;
     }
 
@@ -55,11 +60,25 @@ public class PlayerController : MonoBehaviour
         rope = this.gameObject.GetComponent<LineRenderer>();
         rope.enabled = false;
 
-        sphereSections = new SectionData[splitSphere.childCount];
-        for(int i = 0; i < splitSphere.childCount; i++) {
+        sphereSections = new SectionData[sectionBones.Length];
+        Transform poleContainer = new GameObject("IKPole Container").transform;
+        poleContainer.SetParent(this.transform);
+        for(int i = 0; i < sectionBones.Length; i++) {
             SectionData newSection = new SectionData();
-            newSection.transform = splitSphere.GetChild(i);
+            newSection.transform = sectionBones[i];
             newSection.homeLocation = newSection.transform.localPosition.normalized;
+            newSection.homeRotation = newSection.transform.localRotation;
+
+            newSection.ikEnd = ikEnds[i];
+            Transform ikPole = new GameObject("IK Pole").transform;
+            ikPole.SetParent(poleContainer);
+            ikPole.localPosition = newSection.homeLocation * 2;
+            newSection.ikPole = ikPole;
+            FastIKFabric ikComponent = newSection.ikEnd.AddComponent<FastIKFabric>();
+            ikComponent.ChainLength = 4;
+            ikComponent.Target = newSection.transform;
+            ikComponent.Pole = ikPole;
+
             newSection.status = SectionStatus.standby;
             sphereSections[i] = newSection;
         }
@@ -132,9 +151,9 @@ public class PlayerController : MonoBehaviour
             
             grapplePoint = hit.point;
             grappleSpring = player.AddComponent<SpringJoint>();
-            grappleSection = GetClosestSection(grapplePoint - player.transform.position);
+            grappleSection = GetClosestSection(grapplePoint);
             grappleSection.status = SectionStatus.isGrappling;
-            grappleSection.transform.gameObject.SetActive(false);
+            grappleSection.transform.position = grapplePoint;
             grappleSpring.anchor = grappleSection.homeLocation;
             grappleSpring.autoConfigureConnectedAnchor = false;
             grappleSpring.connectedAnchor = grapplePoint;
@@ -150,20 +169,19 @@ public class PlayerController : MonoBehaviour
 
     public void GrappleEnd() {
         isGrappling = false;
-        grappleSection.transform.gameObject.SetActive(true);
         grappleSection.status = SectionStatus.standby;
         Destroy(grappleSpring);
         rope.enabled = false;
     }
 
-    SectionData GetClosestSection(Vector3 dir) {
+    SectionData GetClosestSection(Vector3 pos) {
         SectionData closest = sphereSections[0];
-        float smallestAngle = 180;
+        float smallestDistance = 180;
         foreach(SectionData section in sphereSections) {
-            float angle = Vector3.Angle(dir, section.transform.parent.rotation * section.homeLocation);
-            if (angle < smallestAngle) {
+            float dist = Vector3.Distance(pos, section.transform.position);
+            if (dist < smallestDistance) {
                 closest = section;
-                smallestAngle = angle;
+                smallestDistance = dist;
             }
         }
         return closest;
@@ -190,48 +208,53 @@ public class PlayerController : MonoBehaviour
     void UpdateSections() {
         if (isBraking) {
             foreach(SectionData section in sphereSections) {
-                float angle = Vector3.Angle(playerRb.velocity, section.transform.parent.rotation * section.homeLocation);
-                if (angle > 45 && angle < 100) {
-                    Vector3 goalPos = section.homeLocation * panelDistMax;
-                    section.transform.localPosition = Vector3.Lerp(section.transform.localPosition, goalPos, Time.deltaTime * panelLerpSpeed);
-                    Quaternion goalRot = Quaternion.FromToRotation(section.homeLocation, playerRb.velocity);
-                    section.transform.rotation = Quaternion.Lerp(section.transform.rotation, goalRot, Time.deltaTime * panelLerpSpeed);
-                } else {
-                    Vector3 goalPos = section.homeLocation * panelDistMin;
-                    section.transform.localPosition = Vector3.Lerp(section.transform.localPosition, goalPos, Time.deltaTime * panelLerpSpeed);
-                    Quaternion goalRot = Quaternion.LookRotation(Vector3.forward, Vector3.up);
-                    section.transform.localRotation = Quaternion.Lerp(section.transform.localRotation, goalRot, Time.deltaTime * panelLerpSpeed);
+                if (section.status == SectionStatus.standby) {
+                    float angle = Vector3.Angle(playerRb.velocity, section.transform.parent.rotation * section.homeLocation);
+                    if (angle < 100) {
+                        Vector3 goalPos = section.homeLocation * panelDistMax;
+                        section.transform.localPosition = Vector3.Lerp(section.transform.localPosition, goalPos, Time.deltaTime * panelLerpSpeed);
+                        //Quaternion goalRot = Quaternion.FromToRotation(section.homeLocation, playerRb.velocity);
+                        Quaternion goalRot = Quaternion.LookRotation(playerRb.velocity);
+                        section.transform.rotation = Quaternion.Lerp(section.transform.rotation, goalRot, Time.deltaTime * panelLerpSpeed);
+                    } else {
+                        LerpToHome(section);
+                    }
                 }
             }
         } else if (isBoosting) {
             foreach(SectionData section in sphereSections) {
-                Vector3 boostDir = goalBoostDirection;
-                Vector3 localPosNoRot = section.transform.parent.rotation * section.homeLocation;
-                float angle = Vector3.Angle(boostDir, localPosNoRot);
-                if (angle > 100) {
-                    Vector3 boostDirVectorComponent = boostDir.normalized * Vector3.Dot(localPosNoRot, boostDir);
-                    Vector3 perpToBoost = (localPosNoRot - boostDirVectorComponent);
+                if (section.status == SectionStatus.standby) {
+                    Vector3 boostDir = goalBoostDirection;
+                    Vector3 localPosNoRot = section.transform.parent.rotation * section.homeLocation;
+                    float angle = Vector3.Angle(boostDir, localPosNoRot);
+                    if (angle > 100) {
+                        Vector3 boostDirVectorComponent = boostDir.normalized * Vector3.Dot(localPosNoRot, boostDir);
+                        Vector3 perpToBoost = (localPosNoRot - boostDirVectorComponent);
 
-                    Vector3 goalPos = section.homeLocation * panelDistMax;
-                    section.transform.localPosition = Vector3.Lerp(section.transform.localPosition, goalPos, Time.deltaTime * panelLerpSpeed);
+                        Vector3 goalPos = section.homeLocation * panelDistMax;
+                        section.transform.localPosition = Vector3.Lerp(section.transform.localPosition, goalPos, Time.deltaTime * panelLerpSpeed);
 
-                    Quaternion goalRot = Quaternion.FromToRotation(section.homeLocation, perpToBoost);
-                    section.transform.rotation = Quaternion.Lerp(section.transform.rotation, goalRot, Time.deltaTime * panelLerpSpeed);
-                } else {
-                    Vector3 goalPos = section.homeLocation * panelDistMin;
-                    section.transform.localPosition = Vector3.Lerp(section.transform.localPosition, goalPos, Time.deltaTime * panelLerpSpeed);
-                    Quaternion goalRot = Quaternion.LookRotation(Vector3.forward, Vector3.up);
-                    section.transform.localRotation = Quaternion.Lerp(section.transform.localRotation, goalRot, Time.deltaTime * panelLerpSpeed);
+                        Quaternion goalRot = Quaternion.FromToRotation(section.homeLocation, perpToBoost);
+                        section.transform.rotation = Quaternion.Lerp(section.transform.rotation, goalRot, Time.deltaTime * panelLerpSpeed);
+                    } else {
+                        LerpToHome(section);
+                    }
                 }
             }
         } else {
             foreach(SectionData section in sphereSections) {
-                Vector3 goalPos = section.homeLocation * panelDistMin;
-                section.transform.localPosition = Vector3.Lerp(section.transform.localPosition, goalPos, Time.deltaTime * panelLerpSpeed);
-                Quaternion goalRot = Quaternion.LookRotation(Vector3.forward, Vector3.up);
-                section.transform.localRotation = Quaternion.Lerp(section.transform.localRotation, goalRot, Time.deltaTime * panelLerpSpeed);
+                if (section.status == SectionStatus.standby) {
+                    LerpToHome(section);
+                }   
             }
         }
+    }
+
+    void LerpToHome (SectionData section) {
+        Vector3 goalPos = section.homeLocation * panelDistMin;
+        section.transform.localPosition = Vector3.Lerp(section.transform.localPosition, goalPos, Time.deltaTime * panelLerpSpeed);
+        Quaternion goalRot = section.homeRotation * Quaternion.LookRotation(Vector3.forward, Vector3.up);
+        section.transform.localRotation = Quaternion.Lerp(section.transform.localRotation, goalRot, Time.deltaTime * panelLerpSpeed);
     }
 
     void UpdateBooster() {
