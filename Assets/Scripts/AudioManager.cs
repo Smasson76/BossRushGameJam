@@ -27,7 +27,7 @@ public class AudioManager : MonoBehaviour {
     public float boosterVolume = 0.3f;
 
     [Header("Player Movement Sound Manager")]
-    public AudioClip[] movementAudioClips;
+    public AudioClip movementAudioClips;
     public int minMovementPitch = 1;
     public int maxMovementPitch = 3;
     public float movementVolume = 0.3f;
@@ -64,9 +64,17 @@ public class AudioManager : MonoBehaviour {
     }
 
     public void PlayerMovementSoundEffect() {
-        audioSource.clip = movementAudioClips[Random.Range(0, movementAudioClips.Length)];
+        StartCoroutine(PlayMovementSound());
+    }
+
+    IEnumerator PlayMovementSound() {
+        audioSource.clip = movementAudioClips;
         audioSource.pitch = Random.Range(minMovementPitch, maxMovementPitch);
         audioSource.volume = movementVolume;
-        audioSource.Play();
+
+        if (audioSource.isPlaying == false) {
+            audioSource.Play();
+            yield return new WaitForSeconds(movementAudioClips.length);
+        }
     }
 }

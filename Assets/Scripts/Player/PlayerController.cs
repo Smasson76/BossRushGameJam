@@ -44,11 +44,15 @@ public class PlayerController : MonoBehaviour
     void PlayerMove() {
         if (isOnGround()) {
             Vector2 val = playerInput.GetPlayerMovement();
+            AudioManager.instance.PlayerMovementSoundEffect(); //Plays the movement sound effect
             if (val.magnitude != 0) {
                 Vector3 forceDirection = (cameraController.GetCameraHorizontalFacing() * new Vector3(val.x, 0, val.y)).normalized;
                 playerRb.AddForce(forceDirection * acceleration, ForceMode.Force);
-                goalBoostDirection = forceDirection;
+                goalBoostDirection = forceDirection; 
             }
+        }
+        else {
+            AudioManager.instance.audioSource.Stop(); //Stops the sound when player is not grounded
         }
     }
 

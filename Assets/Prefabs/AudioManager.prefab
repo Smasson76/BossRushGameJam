@@ -166,7 +166,7 @@ MonoBehaviour:
   minBoosterPitch: 1
   maxBoosterPitch: 3
   boosterVolume: 0.3
-  movementAudioClips: []
+  movementAudioClips: {fileID: 8300000, guid: 57691e4332dedd1498d7b10f65b6fb4f, type: 3}
   minMovementPitch: 1
-  maxMovementPitch: 3
-  movementVolume: 0.3
+  maxMovementPitch: 1
+  movementVolume: 0.2
