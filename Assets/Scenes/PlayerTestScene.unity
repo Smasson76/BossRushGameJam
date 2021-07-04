@@ -1079,15 +1079,32 @@ MonoBehaviour:
   grappleLerpSpeed: 5
   panelDistMin: 0.5
   panelDistMax: 1
-  quality: 0
-  damper: 0
-  strength: 0
-  velocity: 0
-  waveCount: 0
-  waveHeight: 0
+  quality: 20
+  damper: 8
+  strength: 100
+  waveCount: 4
+  waveHeight: 2
   affectCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 7.641686
+      outSlope: 7.641686
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.023904383
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4

@@ -24,7 +24,6 @@ public class PlayerAnimator : MonoBehaviour {
     [SerializeField] int quality;
     [SerializeField] float damper;
     [SerializeField] float strength;
-    [SerializeField] float velocity;
     [SerializeField] float waveCount;
     [SerializeField] float waveHeight;
     [SerializeField] AnimationCurve affectCurve;
@@ -44,6 +43,8 @@ public class PlayerAnimator : MonoBehaviour {
         public Quaternion homeRotation;
         public SectionStatus status;
         public LineRenderer rope;
+        public float ropeSpringPos;
+        public float ropeSpringVelocity;
     }
 
     private enum SectionStatus {
@@ -130,18 +131,18 @@ public class PlayerAnimator : MonoBehaviour {
                 } else if (Vector3.Distance(section.transform.position, grapplePoint) < 1f) {
                     sphereSections[i].status = SectionStatus.grappled;
                 }
-                UpdateRope(section);
+                UpdateRope(i);
                 break;
             case SectionStatus.grappled:
                 if (isGrappling == false) {
                     sphereSections[i].status = SectionStatus.grappleReturning;
                 }
-                UpdateRope(section);
+                UpdateRope(i);
                 break;
             case SectionStatus.grappleReturning:
                 Vector3 goal = player.position + player.transform.rotation * section.homeLocation;
                 section.transform.position += GetDiffToTarget(section.transform.position, goal);
-                UpdateRope(section);
+                UpdateRope(i);
                 if (Vector3.Distance(section.transform.position, goal) < 1f) {
                     section.transform.SetParent(sectionParent, true);
                     sphereSections[i].status = SectionStatus.standby;
@@ -159,10 +160,19 @@ public class PlayerAnimator : MonoBehaviour {
         return (targetPos - currentPos).normalized * moveDist;
     }
 
-    void UpdateRope(SectionData section) {
-        section.rope.positionCount = 2;
-        section.rope.SetPosition(0, section.ikEnd.transform.position);
-        section.rope.SetPosition(1, section.transform.position);
+    void UpdateRope(int sectionIndex) {
+        float pos = sphereSections[sectionIndex].ropeSpringPos;
+        float velocity = sphereSections[sectionIndex].ropeSpringVelocity;
+        velocity += (-pos * strength - velocity * damper) * Time.deltaTime;
+        pos += velocity * Time.deltaTime;
+        sphereSections[sectionIndex].ropeSpringPos = pos;
+        sphereSections[sectionIndex].ropeSpringVelocity = velocity;
+        SectionData section = sphereSections[sectionIndex];
+        for (var i = 0; i < quality + 1; i++) {
+            var delta = i / (float) quality;
+            var offset = Vector3.up * waveHeight * Mathf.Sin(delta * waveCount * Mathf.PI) * pos * affectCurve.Evaluate(delta);
+            section.rope.SetPosition(i, Vector3.Lerp(section.ikEnd.transform.position, section.transform.position, delta) + offset);
+        }
     }
 
     void LerpToHome (SectionData section) {
@@ -192,7 +202,10 @@ public class PlayerAnimator : MonoBehaviour {
         LineRenderer rope = sectionTransform.gameObject.AddComponent<LineRenderer>();
         rope.startWidth = 0.1f;
         rope.material = ropeMaterial;
+        rope.positionCount = quality + 1;
         sphereSections[grappleSectionIndex].rope = rope;
+        sphereSections[grappleSectionIndex].ropeSpringPos = 1;
+        sphereSections[grappleSectionIndex].ropeSpringVelocity = 0;
         return sphereSections[grappleSectionIndex].homeLocation;
     }
 
