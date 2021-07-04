@@ -25,8 +25,8 @@ public class AudioManager : MonoBehaviour {
     [Header("Booster Sound Manager")]
     public AudioClip[] boosterAudioClips;
     public AudioClip[] boosterBurnAudioClips;
-    public int minBoosterPitch = 1;
-    public int maxBoosterPitch = 3;
+    //public int minBoosterPitch = 1;
+    //public int maxBoosterPitch = 3;
     public float boosterVolume = 0.3f;
 
     [Header("Player Movement Sound Manager")]
@@ -68,7 +68,7 @@ public class AudioManager : MonoBehaviour {
 
         if (audioSourceBooster.isPlaying == false) {
             audioSourceBooster.clip = boosterBurnAudioClips[Random.Range(0, boosterBurnAudioClips.Length)];
-            audioSourceBooster.pitch = Random.Range(minBoosterPitch, maxBoosterPitch);
+            //audioSourceBooster.pitch = Random.Range(minBoosterPitch, maxBoosterPitch);
             audioSourceBooster.Play();
             yield return new WaitForSeconds(boosterBurnAudioClips.Length);
         }
