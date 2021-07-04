@@ -53,7 +53,7 @@ public class AudioManager : MonoBehaviour {
     public void PlayBoosterSoundEffect() {
         //audioSource.clip = boosterAudioClips[Random.Range(0, boosterAudioClips.Length)];
         //audioSource.pitch = Random.Range(minBoosterPitch, maxBoosterPitch);
-        audioSource.PlayOneShot(boosterAudioClips, 1f);
+        audioSource.PlayOneShot(boosterAudioClips, 10f);
     }
 
     public void PlayerMovementSoundEffect() {
