@@ -52,17 +52,18 @@ public class PlayerController : MonoBehaviour
             }
         }
         else {
-            AudioManager.instance.audioSource.Stop(); //Stops the sound when player is not grounded
+            AudioManager.instance.audioSourceMovement.Stop(); //Stops the sound when player is not grounded
         }
     }
 
     public void BoostStarted() {
-        AudioManager.instance.PlayBoosterSoundEffect(); //Plays the booster sound effect
+        //AudioManager.instance.PlayBoosterSoundEffect(); //Plays the booster sound effect
     }
 
     void PlayerBoost() {
         if (playerInput.IsBoosting()) {
             playerAnimator.isBoosting = true;
+            AudioManager.instance.PlayBoosterSoundEffect(); //Plays the booster sound effect
             Vector2 dirInput = playerInput.GetPlayerMovement();
             if (dirInput.magnitude == 0) {
                 Vector3 forceDirection = playerRb.velocity.normalized;
@@ -75,6 +76,7 @@ public class PlayerController : MonoBehaviour
             }
         } else {
             playerAnimator.isBoosting = false;
+            AudioManager.instance.audioSourceBooster.Stop(); //Stops the sound when player is no longer boosting
         }
     }
 

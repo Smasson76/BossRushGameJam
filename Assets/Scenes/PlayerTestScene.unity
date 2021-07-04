@@ -6765,6 +6765,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 129395800956638972, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
+      propertyPath: boosterBurnAudioClips
+      value: 
+      objectReference: {fileID: 8300000, guid: 4c955d30997a81d4181696a2f35a15d3, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
 --- !u!4 &291574479620145153
