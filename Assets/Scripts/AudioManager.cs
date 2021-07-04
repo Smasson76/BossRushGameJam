@@ -59,5 +59,6 @@ public class AudioManager : MonoBehaviour {
     public void PlayerMovementSoundEffect() {
         audioSource.clip = movementAudioClips[Random.Range(0, movementAudioClips.Length)];
         audioSource.pitch = Random.Range(minMovementPitch, maxMovementPitch);
+        audioSource.Play();
     }
 }
