@@ -13,6 +13,8 @@ public class CameraController : MonoBehaviour {
     [SerializeField] private float lookTargetHeightMax;
     [SerializeField] private float cameraMinDistance;
     [SerializeField] private float cameraMaxDistance;
+    [SerializeField] private float minFOV;
+    [SerializeField] private float maxFOV;
     [SerializeField] private float cameraDistanceVelocityLimit;
     [SerializeField] private float cameraMinTilt;
     [SerializeField] private float cameraMaxTilt;
@@ -40,6 +42,8 @@ public class CameraController : MonoBehaviour {
     void LateUpdate() {
         PositionLookTarget();
         CameraMove();
+        float targetFOV = Mathf.Clamp(UtilityFunctions.Remap(playerRb.velocity.magnitude, 0, cameraDistanceVelocityLimit, minFOV, maxFOV), minFOV, maxFOV);
+        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetFOV, Time.deltaTime * cameraLerpSpeed);
     }
 
     void PositionLookTarget() {

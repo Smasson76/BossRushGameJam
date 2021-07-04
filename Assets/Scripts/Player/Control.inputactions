@@ -52,14 +52,6 @@
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": ""
-                },
-                {
-                    "name": "Pop",
-                    "type": "Value",
-                    "id": "e5d3f04d-76c9-4ab9-b065-566c1d35a32d",
-                    "expectedControlType": "Axis",
-                    "processors": "",
-                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -170,17 +162,6 @@
                     "processors": "",
                     "groups": "Keyboard and mouse",
                     "action": "Slow",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e14570c4-92e5-48de-bef3-c8bdcce9cf86",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and mouse",
-                    "action": "Pop",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
