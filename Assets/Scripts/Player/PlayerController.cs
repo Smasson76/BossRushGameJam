@@ -221,8 +221,7 @@ public class PlayerController : MonoBehaviour
                     if (angle < 100) {
                         Vector3 goalPos = section.homeLocation * panelDistMax;
                         section.transform.localPosition = Vector3.Lerp(section.transform.localPosition, goalPos, Time.deltaTime * panelLerpSpeed);
-                        //Quaternion goalRot = Quaternion.FromToRotation(section.homeLocation, playerRb.velocity);
-                        Quaternion goalRot = Quaternion.LookRotation(playerRb.velocity);
+                        Quaternion goalRot = Quaternion.LookRotation(playerRb.velocity, section.transform.localPosition);
                         section.transform.rotation = Quaternion.Lerp(section.transform.rotation, goalRot, Time.deltaTime * panelLerpSpeed);
                     } else {
                         LerpToHome(section);
@@ -235,14 +234,16 @@ public class PlayerController : MonoBehaviour
                     Vector3 boostDir = goalBoostDirection;
                     Vector3 localPosNoRot = section.transform.parent.rotation * section.homeLocation;
                     float angle = Vector3.Angle(boostDir, localPosNoRot);
-                    if (angle > 100) {
+                    if (angle > 110) {
                         Vector3 boostDirVectorComponent = boostDir.normalized * Vector3.Dot(localPosNoRot, boostDir);
                         Vector3 perpToBoost = (localPosNoRot - boostDirVectorComponent);
+                        Debug.DrawLine(section.transform.position, section.transform.position + boostDirVectorComponent, Color.blue);
+                        Debug.DrawLine(section.transform.position, section.transform.position + perpToBoost, Color.red);
 
-                        Vector3 goalPos = section.homeLocation * panelDistMax;
+                        Vector3 goalPos = section.homeLocation * UtilityFunctions.Remap(angle, 110, 180, panelDistMin, panelDistMax);
                         section.transform.localPosition = Vector3.Lerp(section.transform.localPosition, goalPos, Time.deltaTime * panelLerpSpeed);
 
-                        Quaternion goalRot = Quaternion.FromToRotation(section.homeLocation, perpToBoost);
+                        Quaternion goalRot = Quaternion.LookRotation(perpToBoost, localPosNoRot);
                         section.transform.rotation = Quaternion.Lerp(section.transform.rotation, goalRot, Time.deltaTime * panelLerpSpeed);
                     } else {
                         LerpToHome(section);
