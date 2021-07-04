@@ -12,6 +12,7 @@ public class PlayerInput : MonoBehaviour {
         controls.PlayerMovement.GrappleStart.performed += ctx => playerController.GrappleStart();
         controls.PlayerMovement.GrappleEnd.performed += ctx => playerController.GrappleEnd();
         controls.PlayerMovement.Pop.performed += ctx => playerController.Pop();
+        controls.PlayerMovement.Boost.performed += ctx => playerController.BoostStarted();
     }
     
     void Start() {
