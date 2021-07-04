@@ -23,6 +23,11 @@ public class AudioManager : MonoBehaviour {
     public int minBoosterPitch = 1;
     public int maxBoosterPitch = 3;
 
+    [Header("Player Movement Sound Manager")]
+    public AudioClip[] movementAudioClips;
+    public int minMovementPitch = 1;
+    public int maxMovementPitch = 3;
+
     void Awake() {
         if (instance == null) {
             DontDestroyOnLoad(gameObject);
@@ -49,5 +54,10 @@ public class AudioManager : MonoBehaviour {
         //audioSource.clip = boosterAudioClips[Random.Range(0, boosterAudioClips.Length)];
         //audioSource.pitch = Random.Range(minBoosterPitch, maxBoosterPitch);
         audioSource.PlayOneShot(boosterAudioClips, 1f);
+    }
+
+    public void PlayerMovementSoundEffect() {
+        audioSource.clip = movementAudioClips[Random.Range(0, movementAudioClips.Length)];
+        audioSource.pitch = Random.Range(minMovementPitch, maxMovementPitch);
     }
 }
