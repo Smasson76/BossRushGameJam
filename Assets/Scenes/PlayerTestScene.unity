@@ -6724,6 +6724,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 129395800956638972, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
+      propertyPath: grappleVolume
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 129395800956638972, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
+      propertyPath: maxBoosterPitch
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 129395800956638972, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
+      propertyPath: boosterAudioClips
+      value: 
+      objectReference: {fileID: 8300000, guid: b135d7c93d2217644ba61fd3f8c291ee, type: 3}
+    - target: {fileID: 129395800956638972, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
+      propertyPath: boosterAudioClips.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 129395800956638972, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
+      propertyPath: boosterAudioClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: b135d7c93d2217644ba61fd3f8c291ee, type: 3}
+    - target: {fileID: 129395800956638972, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
+      propertyPath: boosterAudioClips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4422bf78ee489f1438ea6becc2f0492a, type: 3}
+    - target: {fileID: 129395800956638972, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
+      propertyPath: boosterAudioClips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4422bf78ee489f1438ea6becc2f0492a, type: 3}
+    - target: {fileID: 129395800956638972, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
+      propertyPath: boosterAudioClips.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 73a2dcc86e9da8c48bcc3a4764c7aab8, type: 3}
+    - target: {fileID: 129395800956638973, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
+      propertyPath: m_Volume
+      value: 0.366
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
 --- !u!4 &291574479620145153

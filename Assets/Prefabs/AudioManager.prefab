@@ -44,7 +44,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3bff88e6bef74a44195e61b4db5b4838, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.366
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -149,6 +149,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fa75466ad105eb645a85906fd9b4e41f, type: 3}
   minGrapplePitch: 1
   maxGrapplePitch: 3
+  grappleVolume: 0.3
   reelReturnAudioClips:
   - {fileID: 8300000, guid: d2902e3a90ad69e4b99418783cef31c6, type: 3}
   - {fileID: 8300000, guid: 16dfadb17a874d44e8087da59081ca55, type: 3}
@@ -156,9 +157,16 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 48303dcf1ef85fe4da62ef661f17b27b, type: 3}
   minReelReturnPitch: 1
   maxReelReturnPitch: 3
-  boosterAudioClips: {fileID: 8300000, guid: 4c955d30997a81d4181696a2f35a15d3, type: 3}
+  reelReturnVolume: 0.3
+  boosterAudioClips:
+  - {fileID: 8300000, guid: b135d7c93d2217644ba61fd3f8c291ee, type: 3}
+  - {fileID: 8300000, guid: 4422bf78ee489f1438ea6becc2f0492a, type: 3}
+  - {fileID: 8300000, guid: 4422bf78ee489f1438ea6becc2f0492a, type: 3}
+  - {fileID: 8300000, guid: 73a2dcc86e9da8c48bcc3a4764c7aab8, type: 3}
   minBoosterPitch: 1
-  maxBoosterPitch: 1
+  maxBoosterPitch: 3
+  boosterVolume: 0.3
   movementAudioClips: []
   minMovementPitch: 1
   maxMovementPitch: 3
+  movementVolume: 0.3
