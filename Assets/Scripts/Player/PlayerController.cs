@@ -130,7 +130,7 @@ public class PlayerController : MonoBehaviour
         } else {
             isBoosting = false;
             boosterParticles.Stop();
-            AudioManager.instance.audioSource.Stop(); //Stops the booster sound effect
+            //AudioManager.instance.audioSource.Stop(); //Stops the booster sound effect
         }
     }
 
