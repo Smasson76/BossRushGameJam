@@ -1147,9 +1147,6 @@ MonoBehaviour:
   panelLerpSpeed: 8
   panelDistMin: 0.6
   panelDistMax: 1
-  audioSource: {fileID: 1563102416}
-  grappleFireSound: {fileID: 8300000, guid: 3bff88e6bef74a44195e61b4db5b4838, type: 3}
-  grapplReelInSound: {fileID: 8300000, guid: 16dfadb17a874d44e8087da59081ca55, type: 3}
 --- !u!114 &990568620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1525,7 +1522,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3bff88e6bef74a44195e61b4db5b4838, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1621,7 +1618,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bab147588eaafc445a252bffecc1f71d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sfxClips: {fileID: 0}
+  audioSource: {fileID: 1563102416}
+  grappleAudioClips:
+  - {fileID: 8300000, guid: 3bff88e6bef74a44195e61b4db5b4838, type: 3}
+  - {fileID: 8300000, guid: c3ce2fb5e7bf67346976590f4423781d, type: 3}
+  - {fileID: 8300000, guid: 54a8dce5c84d36d4699e5b192795ab1c, type: 3}
+  - {fileID: 8300000, guid: 6a95516c09c09fe4aa03c7fa3d01e55e, type: 3}
+  - {fileID: 8300000, guid: fa75466ad105eb645a85906fd9b4e41f, type: 3}
+  minGrapplePitch: 1
+  maxGrapplePitch: 3
+  reelReturnAudioClips:
+  - {fileID: 8300000, guid: d2902e3a90ad69e4b99418783cef31c6, type: 3}
+  - {fileID: 8300000, guid: 16dfadb17a874d44e8087da59081ca55, type: 3}
+  - {fileID: 8300000, guid: 8abc7e46f5719234bb66f4b643b4369f, type: 3}
+  - {fileID: 8300000, guid: 48303dcf1ef85fe4da62ef661f17b27b, type: 3}
+  minReelReturnPitch: 1
+  maxReelReturnPitch: 3
+  boosterAudioClips: {fileID: 8300000, guid: 4c955d30997a81d4181696a2f35a15d3, type: 3}
+  minBoosterPitch: 1
+  maxBoosterPitch: 1
 --- !u!1 &1619018884
 GameObject:
   m_ObjectHideFlags: 0

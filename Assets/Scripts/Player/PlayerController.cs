@@ -23,11 +23,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float panelLerpSpeed;
     [SerializeField] private float panelDistMin;
     [SerializeField] private float panelDistMax;
-
-    [Header("Audio Information")]
-    public AudioSource audioSource;
-    public AudioClip grappleFireSound;
-    public AudioClip grapplReelInSound;
     
     private Rigidbody playerRb;
     private PlayerInput playerInput;
@@ -121,6 +116,7 @@ public class PlayerController : MonoBehaviour
         if (playerInput.IsBoosting()) {
             isBoosting = true;
             boosterParticles.Play();
+            AudioManager.instance.PlayBoosterSoundEffect(); //Plays the booster sound effect
             Vector2 dirInput = playerInput.GetPlayerMovement();
             if (dirInput.magnitude == 0) {
                 Vector3 forceDirection = playerRb.velocity.normalized;
@@ -134,6 +130,7 @@ public class PlayerController : MonoBehaviour
         } else {
             isBoosting = false;
             boosterParticles.Stop();
+            AudioManager.instance.audioSource.Stop(); //Stops the booster sound effect
         }
     }
 
@@ -169,9 +166,7 @@ public class PlayerController : MonoBehaviour
             grappleSpring.spring = 5f;
             grappleSpring.damper = 5f;
 
-            //Standard Audio - will be changed momentarily
-            audioSource.pitch = Random.Range(1f, 3f);
-            audioSource.PlayOneShot(grappleFireSound);
+            AudioManager.instance.PlayGrappleSoundEffect(); //Plays the grapple fire sound effect
 
             rope.enabled = true;
         }   
@@ -182,7 +177,7 @@ public class PlayerController : MonoBehaviour
         grappleSection.status = SectionStatus.standby;
         Destroy(grappleSpring);
         rope.enabled = false;
-        audioSource.PlayOneShot(grapplReelInSound);
+        AudioManager.instance.PlayReelReturnSoundEffect(); //Plays the reel return sound effect
     }
 
     SectionData GetClosestSection(Vector3 pos) {
