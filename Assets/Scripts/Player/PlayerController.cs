@@ -56,14 +56,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //YOU CAN DELETE THIS METHOD WHEN YOU SEE THIS
     public void BoostStarted() {
         //AudioManager.instance.PlayBoosterSoundEffect(); //Plays the booster sound effect
     }
-
+    
     void PlayerBoost() {
         if (playerInput.IsBoosting()) {
             playerAnimator.isBoosting = true;
             AudioManager.instance.PlayBoosterSoundEffect(); //Plays the booster sound effect
+            GameManager.instance.boostAmount -= GameManager.instance.boostDescreaseAmount; //Decreasing boost slider
+            GameManager.instance.isBoosting = true; //Setting gamemanagers isBoosting to true
             Vector2 dirInput = playerInput.GetPlayerMovement();
             if (dirInput.magnitude == 0) {
                 Vector3 forceDirection = playerRb.velocity.normalized;
@@ -77,6 +80,7 @@ public class PlayerController : MonoBehaviour
         } else {
             playerAnimator.isBoosting = false;
             AudioManager.instance.audioSourceBooster.Stop(); //Stops the sound when player is no longer boosting
+            GameManager.instance.isBoosting = false; //Setting gamemanagers isBoosting to false
         }
     }
 
