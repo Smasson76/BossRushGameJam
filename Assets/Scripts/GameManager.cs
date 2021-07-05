@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour {
     public bool canRegenerateBoost = false;
     public bool isRegenerating = false;
 
+    //Player variables
+    public GameObject player;
+
     void Awake() {
         if (instance == null) {
             DontDestroyOnLoad(gameObject);
@@ -28,6 +31,8 @@ public class GameManager : MonoBehaviour {
         else {
             Destroy(gameObject);
         }
+
+        SpawnPlayer();
     }
 
     void Update() {
@@ -50,5 +55,14 @@ public class GameManager : MonoBehaviour {
             boostAmount += boostIncreaseAmount;
         }
         isRegenerating = false;
+    }
+
+    void SpawnPlayer() {
+        Instantiate(player, transform.position, transform.rotation);
+    }
+
+    IEnumerator RespawnPlayer() {
+        yield return new WaitForSeconds(4f);
+        
     }
 }
