@@ -5,22 +5,25 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class PlayerInput : MonoBehaviour {
-    public PlayerController playerController;
+    
     public GameObject player;
+    public PlayerController playerController;
     public Control controls;
 
     void Awake() {
+        controls = new Control();
+    }
+    
+    void Start() {
         player = GameObject.Find("Player");
         playerController = player.GetComponent<PlayerController>();
-        controls = new Control();
+
         controls.PlayerMovement.GrappleStart.performed += ctx => playerController.GrappleStart();
         controls.PlayerMovement.GrappleEnd.performed += ctx => playerController.GrappleEnd();
         controls.PlayerMovement.Boost.performed += ctx => playerController.BoostStarted();
         controls.MetaControls.Restart.performed += ctx => reloadScene();
         controls.MainMenuControls.ChangeDifficulty.performed += ctx => MainMenuManager.instance.ChargeStation();
-    }
-    
-    void Start() {
+
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
 

@@ -59,6 +59,7 @@ MonoBehaviour:
   isBoosting: 0
   canRegenerateBoost: 0
   isRegenerating: 0
+  player: {fileID: 9019689969792344799, guid: 24e60005668e8324ca604246877f205d, type: 3}
 --- !u!114 &1681423241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,6 +72,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82a439350a7878640a6bbd04483a2ff5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelDifficultyObjects: []
+  difficulty: 1
 --- !u!114 &1681423242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,3 +86,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1bf902610201c0c3960513b8e246e9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 0}
+  player: {fileID: 0}
