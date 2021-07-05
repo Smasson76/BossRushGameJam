@@ -325,6 +325,7 @@ GameObject:
   - component: {fileID: 408952453}
   - component: {fileID: 408952451}
   - component: {fileID: 408952450}
+  - component: {fileID: 408952452}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -361,6 +362,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.6
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &408952452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 408952449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a121b5bc7c2d0aa15b2418828cc6fe7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 990568619}
 --- !u!33 &408952453
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1114,6 +1128,7 @@ MonoBehaviour:
   boostAmount: 20
   slowAmount: 1
   rotationSlowAmount: 0.1
+  minForceToExplode: 20
 --- !u!114 &990568620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1203,7 +1218,7 @@ MonoBehaviour:
   boosterLerpSpeed: 10
   panelLerpSpeed: 8
   grappleLerpSpeed: 5
-  panelDistMin: 0.5
+  panelDistMin: 0.53
   panelDistMax: 1
   quality: 20
   damper: 8

@@ -230,13 +230,13 @@ public class PlayerAnimator : MonoBehaviour {
         return closest;
     }
 
-    /*
     public void Pop() {
         foreach (SectionData section in sphereSections) {
             section.transform.SetParent(null, true);
             BoxCollider collider = section.transform.gameObject.AddComponent<BoxCollider>();
-            collider.size = section.transform.gameObject.GetComponent<MeshFilter>().mesh.bounds.extents;
+            collider.size = Vector3.one * 0.2f;
             Rigidbody rb = section.transform.gameObject.AddComponent<Rigidbody>();
+            rb.mass = 0.1f;
             rb.interpolation = RigidbodyInterpolation.Interpolate;
             rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
             rb.velocity = playerController.GetPlayerVelocity();
@@ -244,5 +244,4 @@ public class PlayerAnimator : MonoBehaviour {
         }
         sphereSections = new SectionData[0];
     }
-    */
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerInput : MonoBehaviour {
     private PlayerController playerController;
@@ -12,6 +13,7 @@ public class PlayerInput : MonoBehaviour {
         controls.PlayerMovement.GrappleStart.performed += ctx => playerController.GrappleStart();
         controls.PlayerMovement.GrappleEnd.performed += ctx => playerController.GrappleEnd();
         controls.PlayerMovement.Boost.performed += ctx => playerController.BoostStarted();
+        controls.MetaControls.Restart.performed += ctx => reloadScene();
     }
     
     void Start() {
@@ -26,8 +28,17 @@ public class PlayerInput : MonoBehaviour {
         controls.Disable();
         Cursor.lockState = CursorLockMode.None;
     }
+
+    void reloadScene() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void PlayerDeath() {
+        controls.PlayerMovement.Disable();
+    }
+
     public Vector2 GetPointerPos() {
-        return controls.PlayerMovement.CameraControl.ReadValue<Vector2>();
+        return controls.CameraControl.CameraControl.ReadValue<Vector2>();
     }
 
     public Vector2 GetPlayerMovement() {

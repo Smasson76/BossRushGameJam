@@ -19,14 +19,6 @@ public class @Control : IInputActionCollection, IDisposable
             ""id"": ""f9c6c382-2e93-465a-bdab-759ceb4fab1c"",
             ""actions"": [
                 {
-                    ""name"": ""Camera Control"",
-                    ""type"": ""Value"",
-                    ""id"": ""581a2498-6894-4dcb-aaac-90f2aa745b1d"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""PlayerMove"",
                     ""type"": ""Value"",
                     ""id"": ""a9f4318c-01ed-4fc8-9cfd-bf218ac41d69"",
@@ -68,17 +60,6 @@ public class @Control : IInputActionCollection, IDisposable
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""1eeaa0b0-2cba-4db4-a9a4-410adcc8d73d"",
-                    ""path"": ""<Mouse>/position"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and mouse"",
-                    ""action"": ""Camera Control"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": ""2D Vector"",
                     ""id"": ""cbaedf55-d1be-4d5c-90c4-ad3a08cc576e"",
@@ -179,6 +160,60 @@ public class @Control : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""CameraControl"",
+            ""id"": ""76619169-7bc9-4fe5-952a-1d777f3425fb"",
+            ""actions"": [
+                {
+                    ""name"": ""Camera Control"",
+                    ""type"": ""Value"",
+                    ""id"": ""635c3dce-72b3-4610-9c77-8c55d7498d6e"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""f424e7ba-4e5b-4cb7-9241-79584801de94"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""Camera Control"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""MetaControls"",
+            ""id"": ""0654d749-79a6-468a-9f67-f770e8f752e7"",
+            ""actions"": [
+                {
+                    ""name"": ""Restart"",
+                    ""type"": ""Button"",
+                    ""id"": ""6b2b2afb-08a5-4d68-8bf6-7405f0159f62"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""0d26aa90-0ed5-4bf7-85f7-75d34716f45a"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""Restart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -202,12 +237,17 @@ public class @Control : IInputActionCollection, IDisposable
 }");
         // PlayerMovement
         m_PlayerMovement = asset.FindActionMap("PlayerMovement", throwIfNotFound: true);
-        m_PlayerMovement_CameraControl = m_PlayerMovement.FindAction("Camera Control", throwIfNotFound: true);
         m_PlayerMovement_PlayerMove = m_PlayerMovement.FindAction("PlayerMove", throwIfNotFound: true);
         m_PlayerMovement_GrappleStart = m_PlayerMovement.FindAction("GrappleStart", throwIfNotFound: true);
         m_PlayerMovement_GrappleEnd = m_PlayerMovement.FindAction("GrappleEnd", throwIfNotFound: true);
         m_PlayerMovement_Boost = m_PlayerMovement.FindAction("Boost", throwIfNotFound: true);
         m_PlayerMovement_Slow = m_PlayerMovement.FindAction("Slow", throwIfNotFound: true);
+        // CameraControl
+        m_CameraControl = asset.FindActionMap("CameraControl", throwIfNotFound: true);
+        m_CameraControl_CameraControl = m_CameraControl.FindAction("Camera Control", throwIfNotFound: true);
+        // MetaControls
+        m_MetaControls = asset.FindActionMap("MetaControls", throwIfNotFound: true);
+        m_MetaControls_Restart = m_MetaControls.FindAction("Restart", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -257,7 +297,6 @@ public class @Control : IInputActionCollection, IDisposable
     // PlayerMovement
     private readonly InputActionMap m_PlayerMovement;
     private IPlayerMovementActions m_PlayerMovementActionsCallbackInterface;
-    private readonly InputAction m_PlayerMovement_CameraControl;
     private readonly InputAction m_PlayerMovement_PlayerMove;
     private readonly InputAction m_PlayerMovement_GrappleStart;
     private readonly InputAction m_PlayerMovement_GrappleEnd;
@@ -267,7 +306,6 @@ public class @Control : IInputActionCollection, IDisposable
     {
         private @Control m_Wrapper;
         public PlayerMovementActions(@Control wrapper) { m_Wrapper = wrapper; }
-        public InputAction @CameraControl => m_Wrapper.m_PlayerMovement_CameraControl;
         public InputAction @PlayerMove => m_Wrapper.m_PlayerMovement_PlayerMove;
         public InputAction @GrappleStart => m_Wrapper.m_PlayerMovement_GrappleStart;
         public InputAction @GrappleEnd => m_Wrapper.m_PlayerMovement_GrappleEnd;
@@ -282,9 +320,6 @@ public class @Control : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_PlayerMovementActionsCallbackInterface != null)
             {
-                @CameraControl.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnCameraControl;
-                @CameraControl.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnCameraControl;
-                @CameraControl.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnCameraControl;
                 @PlayerMove.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnPlayerMove;
                 @PlayerMove.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnPlayerMove;
                 @PlayerMove.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnPlayerMove;
@@ -304,9 +339,6 @@ public class @Control : IInputActionCollection, IDisposable
             m_Wrapper.m_PlayerMovementActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @CameraControl.started += instance.OnCameraControl;
-                @CameraControl.performed += instance.OnCameraControl;
-                @CameraControl.canceled += instance.OnCameraControl;
                 @PlayerMove.started += instance.OnPlayerMove;
                 @PlayerMove.performed += instance.OnPlayerMove;
                 @PlayerMove.canceled += instance.OnPlayerMove;
@@ -326,6 +358,72 @@ public class @Control : IInputActionCollection, IDisposable
         }
     }
     public PlayerMovementActions @PlayerMovement => new PlayerMovementActions(this);
+
+    // CameraControl
+    private readonly InputActionMap m_CameraControl;
+    private ICameraControlActions m_CameraControlActionsCallbackInterface;
+    private readonly InputAction m_CameraControl_CameraControl;
+    public struct CameraControlActions
+    {
+        private @Control m_Wrapper;
+        public CameraControlActions(@Control wrapper) { m_Wrapper = wrapper; }
+        public InputAction @CameraControl => m_Wrapper.m_CameraControl_CameraControl;
+        public InputActionMap Get() { return m_Wrapper.m_CameraControl; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CameraControlActions set) { return set.Get(); }
+        public void SetCallbacks(ICameraControlActions instance)
+        {
+            if (m_Wrapper.m_CameraControlActionsCallbackInterface != null)
+            {
+                @CameraControl.started -= m_Wrapper.m_CameraControlActionsCallbackInterface.OnCameraControl;
+                @CameraControl.performed -= m_Wrapper.m_CameraControlActionsCallbackInterface.OnCameraControl;
+                @CameraControl.canceled -= m_Wrapper.m_CameraControlActionsCallbackInterface.OnCameraControl;
+            }
+            m_Wrapper.m_CameraControlActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @CameraControl.started += instance.OnCameraControl;
+                @CameraControl.performed += instance.OnCameraControl;
+                @CameraControl.canceled += instance.OnCameraControl;
+            }
+        }
+    }
+    public CameraControlActions @CameraControl => new CameraControlActions(this);
+
+    // MetaControls
+    private readonly InputActionMap m_MetaControls;
+    private IMetaControlsActions m_MetaControlsActionsCallbackInterface;
+    private readonly InputAction m_MetaControls_Restart;
+    public struct MetaControlsActions
+    {
+        private @Control m_Wrapper;
+        public MetaControlsActions(@Control wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Restart => m_Wrapper.m_MetaControls_Restart;
+        public InputActionMap Get() { return m_Wrapper.m_MetaControls; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MetaControlsActions set) { return set.Get(); }
+        public void SetCallbacks(IMetaControlsActions instance)
+        {
+            if (m_Wrapper.m_MetaControlsActionsCallbackInterface != null)
+            {
+                @Restart.started -= m_Wrapper.m_MetaControlsActionsCallbackInterface.OnRestart;
+                @Restart.performed -= m_Wrapper.m_MetaControlsActionsCallbackInterface.OnRestart;
+                @Restart.canceled -= m_Wrapper.m_MetaControlsActionsCallbackInterface.OnRestart;
+            }
+            m_Wrapper.m_MetaControlsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Restart.started += instance.OnRestart;
+                @Restart.performed += instance.OnRestart;
+                @Restart.canceled += instance.OnRestart;
+            }
+        }
+    }
+    public MetaControlsActions @MetaControls => new MetaControlsActions(this);
     private int m_KeyboardandmouseSchemeIndex = -1;
     public InputControlScheme KeyboardandmouseScheme
     {
@@ -337,11 +435,18 @@ public class @Control : IInputActionCollection, IDisposable
     }
     public interface IPlayerMovementActions
     {
-        void OnCameraControl(InputAction.CallbackContext context);
         void OnPlayerMove(InputAction.CallbackContext context);
         void OnGrappleStart(InputAction.CallbackContext context);
         void OnGrappleEnd(InputAction.CallbackContext context);
         void OnBoost(InputAction.CallbackContext context);
         void OnSlow(InputAction.CallbackContext context);
+    }
+    public interface ICameraControlActions
+    {
+        void OnCameraControl(InputAction.CallbackContext context);
+    }
+    public interface IMetaControlsActions
+    {
+        void OnRestart(InputAction.CallbackContext context);
     }
 }

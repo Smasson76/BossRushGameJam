@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float boostAmount;
     [SerializeField] private float slowAmount;
     [SerializeField] private float rotationSlowAmount;
+    [SerializeField] private float minForceToExplode;
 
     private PlayerAnimator playerAnimator;
     private Vector3 goalBoostDirection = Vector3.up;
@@ -138,6 +139,18 @@ public class PlayerController : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void HitSomething(Collision collision) {
+        float hitSpeed = Vector3.Dot(collision.relativeVelocity, collision.contacts[0].normal);
+        if (hitSpeed > minForceToExplode) {
+            Debug.Log("Exploded");
+            if (isGrappling) {
+                GrappleEnd();
+            }
+            playerAnimator.Pop();
+            playerInput.PlayerDeath();
+        }
     }
 
     public Vector3 GetPlayerVelocity() {

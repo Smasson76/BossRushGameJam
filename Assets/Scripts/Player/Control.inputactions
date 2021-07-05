@@ -6,14 +6,6 @@
             "id": "f9c6c382-2e93-465a-bdab-759ceb4fab1c",
             "actions": [
                 {
-                    "name": "Camera Control",
-                    "type": "Value",
-                    "id": "581a2498-6894-4dcb-aaac-90f2aa745b1d",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "PlayerMove",
                     "type": "Value",
                     "id": "a9f4318c-01ed-4fc8-9cfd-bf218ac41d69",
@@ -55,17 +47,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "1eeaa0b0-2cba-4db4-a9a4-410adcc8d73d",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and mouse",
-                    "action": "Camera Control",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "2D Vector",
                     "id": "cbaedf55-d1be-4d5c-90c4-ad3a08cc576e",
@@ -162,6 +143,60 @@
                     "processors": "",
                     "groups": "Keyboard and mouse",
                     "action": "Slow",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "CameraControl",
+            "id": "76619169-7bc9-4fe5-952a-1d777f3425fb",
+            "actions": [
+                {
+                    "name": "Camera Control",
+                    "type": "Value",
+                    "id": "635c3dce-72b3-4610-9c77-8c55d7498d6e",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f424e7ba-4e5b-4cb7-9241-79584801de94",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and mouse",
+                    "action": "Camera Control",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "MetaControls",
+            "id": "0654d749-79a6-468a-9f67-f770e8f752e7",
+            "actions": [
+                {
+                    "name": "Restart",
+                    "type": "Button",
+                    "id": "6b2b2afb-08a5-4d68-8bf6-7405f0159f62",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "0d26aa90-0ed5-4bf7-85f7-75d34716f45a",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and mouse",
+                    "action": "Restart",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
