@@ -214,6 +214,33 @@ public class @Control : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""MainMenuControls"",
+            ""id"": ""3b2200e4-a1fc-4f32-877c-822205561258"",
+            ""actions"": [
+                {
+                    ""name"": ""ChangeDifficulty"",
+                    ""type"": ""Button"",
+                    ""id"": ""529501cd-a6cd-4781-81bf-f03af33261de"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""d17296a7-b715-48d9-8c30-eef2ddc0a680"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeDifficulty"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -248,6 +275,9 @@ public class @Control : IInputActionCollection, IDisposable
         // MetaControls
         m_MetaControls = asset.FindActionMap("MetaControls", throwIfNotFound: true);
         m_MetaControls_Restart = m_MetaControls.FindAction("Restart", throwIfNotFound: true);
+        // MainMenuControls
+        m_MainMenuControls = asset.FindActionMap("MainMenuControls", throwIfNotFound: true);
+        m_MainMenuControls_ChangeDifficulty = m_MainMenuControls.FindAction("ChangeDifficulty", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -424,6 +454,39 @@ public class @Control : IInputActionCollection, IDisposable
         }
     }
     public MetaControlsActions @MetaControls => new MetaControlsActions(this);
+
+    // MainMenuControls
+    private readonly InputActionMap m_MainMenuControls;
+    private IMainMenuControlsActions m_MainMenuControlsActionsCallbackInterface;
+    private readonly InputAction m_MainMenuControls_ChangeDifficulty;
+    public struct MainMenuControlsActions
+    {
+        private @Control m_Wrapper;
+        public MainMenuControlsActions(@Control wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ChangeDifficulty => m_Wrapper.m_MainMenuControls_ChangeDifficulty;
+        public InputActionMap Get() { return m_Wrapper.m_MainMenuControls; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MainMenuControlsActions set) { return set.Get(); }
+        public void SetCallbacks(IMainMenuControlsActions instance)
+        {
+            if (m_Wrapper.m_MainMenuControlsActionsCallbackInterface != null)
+            {
+                @ChangeDifficulty.started -= m_Wrapper.m_MainMenuControlsActionsCallbackInterface.OnChangeDifficulty;
+                @ChangeDifficulty.performed -= m_Wrapper.m_MainMenuControlsActionsCallbackInterface.OnChangeDifficulty;
+                @ChangeDifficulty.canceled -= m_Wrapper.m_MainMenuControlsActionsCallbackInterface.OnChangeDifficulty;
+            }
+            m_Wrapper.m_MainMenuControlsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @ChangeDifficulty.started += instance.OnChangeDifficulty;
+                @ChangeDifficulty.performed += instance.OnChangeDifficulty;
+                @ChangeDifficulty.canceled += instance.OnChangeDifficulty;
+            }
+        }
+    }
+    public MainMenuControlsActions @MainMenuControls => new MainMenuControlsActions(this);
     private int m_KeyboardandmouseSchemeIndex = -1;
     public InputControlScheme KeyboardandmouseScheme
     {
@@ -448,5 +511,9 @@ public class @Control : IInputActionCollection, IDisposable
     public interface IMetaControlsActions
     {
         void OnRestart(InputAction.CallbackContext context);
+    }
+    public interface IMainMenuControlsActions
+    {
+        void OnChangeDifficulty(InputAction.CallbackContext context);
     }
 }

@@ -14,6 +14,7 @@ public class PlayerInput : MonoBehaviour {
         controls.PlayerMovement.GrappleEnd.performed += ctx => playerController.GrappleEnd();
         controls.PlayerMovement.Boost.performed += ctx => playerController.BoostStarted();
         controls.MetaControls.Restart.performed += ctx => reloadScene();
+        controls.MainMenuControls.ChangeDifficulty.performed += ctx => MainMenuManager.instance.ChargeStation();
     }
     
     void Start() {

@@ -201,6 +201,33 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "MainMenuControls",
+            "id": "3b2200e4-a1fc-4f32-877c-822205561258",
+            "actions": [
+                {
+                    "name": "ChangeDifficulty",
+                    "type": "Button",
+                    "id": "529501cd-a6cd-4781-81bf-f03af33261de",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d17296a7-b715-48d9-8c30-eef2ddc0a680",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeDifficulty",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

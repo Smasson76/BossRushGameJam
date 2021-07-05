@@ -28,10 +28,10 @@ public class GameManager : MonoBehaviour {
         else {
             Destroy(gameObject);
         }
-        boostSlider.value = boostAmount;
     }
 
     void Update() {
+        if (boostSlider == null) return;
         boostSlider.value = boostAmount;
 
         if (isBoosting) canRegenerateBoost = false;
