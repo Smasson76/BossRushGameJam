@@ -62,12 +62,14 @@ public class PlayerInput : MonoBehaviour {
 
     public void StartFindingPlayer() {
         StartCoroutine(FindNewPlayer());
+        Debug.Log("StartFindingNewPlayer");
     }
 
     IEnumerator FindNewPlayer() {
         yield return new WaitForSeconds(1f);
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
-        Debug.Log("Called find newplayer");
+        controls.PlayerMovement.Enable();
+        Debug.Log("FindNewPlayer");
     }
 }

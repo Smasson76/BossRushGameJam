@@ -62,7 +62,7 @@ MonoBehaviour:
   player: {fileID: 9019689969792344799, guid: 24e60005668e8324ca604246877f205d, type: 3}
   currentScene:
     m_Handle: 0
-  playerInput: {fileID: 0}
+  playerInput: {fileID: 1681423242}
 --- !u!114 &1681423241
 MonoBehaviour:
   m_ObjectHideFlags: 0

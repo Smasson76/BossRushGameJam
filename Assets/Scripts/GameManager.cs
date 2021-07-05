@@ -66,5 +66,6 @@ public class GameManager : MonoBehaviour {
 
     public void SpawnPlayer() {
         Instantiate(player, transform.position, transform.rotation);
+        Debug.Log("SpawnPlayer");
     }
 }
