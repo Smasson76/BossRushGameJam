@@ -11,13 +11,14 @@ public class GameManager : MonoBehaviour {
     public GameObject[] playerBombs;
     public int bombsRemaining;
 
-    //Slider variables
+    //Boost variables
     public Slider boostSlider;
     public float boostAmount = 100f;
     public float boostDescreaseAmount = 0.5f;
     public float boostIncreaseAmount = 0.1f;
-    public bool isBoosting;
-    public bool canRegenerateBoost;
+    public bool isBoosting = false;
+    public bool canRegenerateBoost = false;
+    public bool isRegenerating = false;
 
     void Awake() {
         if (instance == null) {
@@ -31,22 +32,23 @@ public class GameManager : MonoBehaviour {
     }
 
     void Update() {
-        //Here we will update the lives remaining
-
         boostSlider.value = boostAmount;
 
         if (isBoosting) canRegenerateBoost = false;
         else canRegenerateBoost = true;
 
-        if (boostAmount <= 50 && canRegenerateBoost) {
+        if (boostAmount < 100 && canRegenerateBoost && !isRegenerating) {
+            isRegenerating = true;
             StartCoroutine(RegainBoost());
         }
     }
 
     IEnumerator RegainBoost() {
+        yield return new WaitForSeconds(3f);
         while (boostAmount < 100) {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(0.1f);
             boostAmount += boostIncreaseAmount;
         }
+        isRegenerating = false;
     }
 }
