@@ -218,10 +218,10 @@ MonoBehaviour:
     value: 0
   postExposure:
     overrideState: 1
-    value: 0.33
+    value: 0.37
   contrast:
     overrideState: 1
-    value: 8
+    value: 4
   mixerRedOutRedIn:
     overrideState: 1
     value: 95
