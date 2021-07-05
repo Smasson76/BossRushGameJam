@@ -35,6 +35,12 @@ public class AudioManager : MonoBehaviour {
     public int maxMovementPitch = 3;
     public float movementVolume = 0.3f;
 
+    [Header("Impact Sound Manager")]
+    public AudioClip[] impactAudioClips;
+    public int minImpactPitch = 1;
+    public int maxImpactPitch = 3;
+    public float impactVolume = 0.3f;
+
     void Awake() {
         if (instance == null) {
             DontDestroyOnLoad(gameObject);
@@ -87,5 +93,12 @@ public class AudioManager : MonoBehaviour {
             audioSourceMovement.Play();
             yield return new WaitForSeconds(movementAudioClips.length);
         }
+    }
+
+    public void PlayImpactSoundEffect() {
+        audioSourceQuickSounds.clip = impactAudioClips[Random.Range(0, impactAudioClips.Length)];
+        audioSourceQuickSounds.pitch = Random.Range(minImpactPitch, maxImpactPitch);
+        audioSourceQuickSounds.volume = impactVolume;
+        audioSourceQuickSounds.Play();
     }
 }

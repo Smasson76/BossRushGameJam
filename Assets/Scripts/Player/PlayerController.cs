@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float boostAmount;
     [SerializeField] private float slowAmount;
     [SerializeField] private float rotationSlowAmount;
+    [SerializeField] private float minForceToExplode;
 
     private PlayerAnimator playerAnimator;
     private Vector3 goalBoostDirection = Vector3.up;
@@ -62,7 +63,7 @@ public class PlayerController : MonoBehaviour
     }
     
     void PlayerBoost() {
-        if (playerInput.IsBoosting()) {
+        if (playerInput.IsBoosting() && GameManager.instance.boostAmount > 0) {
             playerAnimator.isBoosting = true;
             AudioManager.instance.PlayBoosterSoundEffect(); //Plays the booster sound effect
             GameManager.instance.boostAmount -= GameManager.instance.boostDescreaseAmount; //Decreasing boost slider
@@ -138,6 +139,20 @@ public class PlayerController : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void HitSomething(Collision collision) {
+        float hitSpeed = Vector3.Dot(collision.relativeVelocity, collision.contacts[0].normal);
+        if (hitSpeed > minForceToExplode) {
+            Debug.Log("Exploded");
+            if (isGrappling) {
+                GrappleEnd();
+            }
+            playerAnimator.Pop();
+            playerInput.PlayerDeath();
+            AudioManager.instance.PlayImpactSoundEffect(); //Plays the impact sound effect
+            AudioManager.instance.audioSourceMovement.Stop(); //Stops movement audio source when dead
+        }
     }
 
     public Vector3 GetPlayerVelocity() {

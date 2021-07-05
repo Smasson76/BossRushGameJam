@@ -278,6 +278,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 799581406862375986, guid: e587217d156f2f2489728d3992e88775, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 56.30371
+      objectReference: {fileID: 0}
     - target: {fileID: 799581408269546974, guid: e587217d156f2f2489728d3992e88775, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -325,6 +329,7 @@ GameObject:
   - component: {fileID: 408952453}
   - component: {fileID: 408952451}
   - component: {fileID: 408952450}
+  - component: {fileID: 408952452}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -361,6 +366,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.6
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &408952452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 408952449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a121b5bc7c2d0aa15b2418828cc6fe7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 990568619}
 --- !u!33 &408952453
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1114,6 +1132,7 @@ MonoBehaviour:
   boostAmount: 20
   slowAmount: 1
   rotationSlowAmount: 0.1
+  minForceToExplode: 20
 --- !u!114 &990568620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1203,7 +1222,7 @@ MonoBehaviour:
   boosterLerpSpeed: 10
   panelLerpSpeed: 8
   grappleLerpSpeed: 5
-  panelDistMin: 0.5
+  panelDistMin: 0.53
   panelDistMax: 1
   quality: 20
   damper: 8
@@ -6806,9 +6825,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 4c955d30997a81d4181696a2f35a15d3, type: 3}
     - target: {fileID: 129395800956638972, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
+      propertyPath: impactAudioClips.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 129395800956638972, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
       propertyPath: grappleAudioClips.Array.size
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 129395800956638972, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
+      propertyPath: impactAudioClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9fc0d2d0a807f6d4890fd399f3af01cd, type: 3}
+    - target: {fileID: 129395800956638972, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
+      propertyPath: impactAudioClips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: adc55df8bd1c42249bd06a70b119845a, type: 3}
+    - target: {fileID: 129395800956638972, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
+      propertyPath: impactAudioClips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: f5793621d3fbaca4c8409ed053864d13, type: 3}
+    - target: {fileID: 129395800956638972, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
+      propertyPath: impactAudioClips.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: e5fb9ba753f1301419d40b7e263b92f0, type: 3}
     - target: {fileID: 129395800956638972, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
       propertyPath: grappleAudioClips.Array.data[0]
       value: 
@@ -6988,6 +7027,10 @@ PrefabInstance:
     - target: {fileID: 5701246327510232691, guid: ad7e587ea1f566343aa41989693d03aa, type: 3}
       propertyPath: bombsRemaining
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5701246327510232691, guid: ad7e587ea1f566343aa41989693d03aa, type: 3}
+      propertyPath: boostIncreaseAmount
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5701246327510232691, guid: ad7e587ea1f566343aa41989693d03aa, type: 3}
       propertyPath: boostDescreaseAmount

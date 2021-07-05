@@ -43,6 +43,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90eb1fc78a340824fb1516fa847637fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorTexture: {fileID: 0}
-  hotSpot: {x: 0, y: 0}
-  cursorMode: 0
+  playerBombs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  bombsRemaining: 5
+  boostSlider: {fileID: 0}
+  boostAmount: 100
+  boostDescreaseAmount: 0.5
+  boostIncreaseAmount: 8
+  isBoosting: 0
+  canRegenerateBoost: 0
+  isRegenerating: 0
