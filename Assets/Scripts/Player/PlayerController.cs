@@ -44,21 +44,29 @@ public class PlayerController : MonoBehaviour
     void PlayerMove() {
         if (isOnGround()) {
             Vector2 val = playerInput.GetPlayerMovement();
+            AudioManager.instance.PlayerMovementSoundEffect(); //Plays the movement sound effect
             if (val.magnitude != 0) {
                 Vector3 forceDirection = (cameraController.GetCameraHorizontalFacing() * new Vector3(val.x, 0, val.y)).normalized;
                 playerRb.AddForce(forceDirection * acceleration, ForceMode.Force);
-                goalBoostDirection = forceDirection;
+                goalBoostDirection = forceDirection; 
             }
+        }
+        else {
+            AudioManager.instance.audioSourceMovement.Stop(); //Stops the sound when player is not grounded
         }
     }
 
+    //YOU CAN DELETE THIS METHOD WHEN YOU SEE THIS
     public void BoostStarted() {
-        AudioManager.instance.PlayBoosterSoundEffect(); //Plays the booster sound effect
+        //AudioManager.instance.PlayBoosterSoundEffect(); //Plays the booster sound effect
     }
-
+    
     void PlayerBoost() {
         if (playerInput.IsBoosting()) {
             playerAnimator.isBoosting = true;
+            AudioManager.instance.PlayBoosterSoundEffect(); //Plays the booster sound effect
+            GameManager.instance.boostAmount -= GameManager.instance.boostDescreaseAmount; //Decreasing boost slider
+            GameManager.instance.isBoosting = true; //Setting gamemanagers isBoosting to true
             Vector2 dirInput = playerInput.GetPlayerMovement();
             if (dirInput.magnitude == 0) {
                 Vector3 forceDirection = playerRb.velocity.normalized;
@@ -71,6 +79,8 @@ public class PlayerController : MonoBehaviour
             }
         } else {
             playerAnimator.isBoosting = false;
+            AudioManager.instance.audioSourceBooster.Stop(); //Stops the sound when player is no longer boosting
+            GameManager.instance.isBoosting = false; //Setting gamemanagers isBoosting to false
         }
     }
 

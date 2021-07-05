@@ -91,6 +91,7 @@ public class PlayerAnimator : MonoBehaviour {
             SectionData section = sphereSections[i];
             switch (section.status) {
             case SectionStatus.standby:
+                bool positionedThisFrame = false;
                 if (isBraking) {
                     Vector3 playerVelocity = playerController.GetPlayerVelocity();
                     float angle = Vector3.Angle(playerVelocity, section.transform.parent.rotation * section.homeLocation);
@@ -99,10 +100,10 @@ public class PlayerAnimator : MonoBehaviour {
                         section.transform.localPosition = Vector3.Lerp(section.transform.localPosition, goalPos, Time.deltaTime * panelLerpSpeed);
                         Quaternion goalRot = Quaternion.LookRotation(playerVelocity, section.transform.localPosition);
                         section.transform.rotation = Quaternion.Lerp(section.transform.rotation, goalRot, Time.deltaTime * panelLerpSpeed);
-                    } else {
-                        LerpToHome(section);
+                        positionedThisFrame = true;
                     }
-                } else if (isBoosting) {
+                }
+                if (isBoosting && !positionedThisFrame) {
                     Vector3 boostDir = playerController.GetBoostDirection();
                     Vector3 localPosNoRot = section.transform.parent.rotation * section.homeLocation;
                     float angle = Vector3.Angle(boostDir, localPosNoRot);
@@ -117,10 +118,10 @@ public class PlayerAnimator : MonoBehaviour {
 
                         Quaternion goalRot = Quaternion.LookRotation(perpToBoost, localPosNoRot);
                         section.transform.rotation = Quaternion.Lerp(section.transform.rotation, goalRot, Time.deltaTime * panelLerpSpeed);
-                    } else {
-                        LerpToHome(section);
+                        positionedThisFrame = true;
                     }
-                } else {
+                }
+                if (!positionedThisFrame) {
                     LerpToHome(section);
                 }
                 break;
@@ -168,9 +169,12 @@ public class PlayerAnimator : MonoBehaviour {
         sphereSections[sectionIndex].ropeSpringPos = pos;
         sphereSections[sectionIndex].ropeSpringVelocity = velocity;
         SectionData section = sphereSections[sectionIndex];
-        for (var i = 0; i < quality + 1; i++) {
-            var delta = i / (float) quality;
-            var offset = Vector3.up * waveHeight * Mathf.Sin(delta * waveCount * Mathf.PI) * pos * affectCurve.Evaluate(delta);
+        for (int i = 0; i < quality + 1; i++) {
+            float delta = i / (float) quality;
+            Vector3 offset1 = Vector3.up * waveHeight * Mathf.Sin(delta * waveCount * Mathf.PI) * pos * affectCurve.Evaluate(delta);
+            Vector3 offset2Vector = Vector3.Cross(Vector3.up, section.ikEnd.transform.position - section.transform.position).normalized;
+            Vector3 offset2 = offset2Vector * waveHeight * Mathf.Cos(delta * waveCount * Mathf.PI) * pos * affectCurve.Evaluate(delta);
+            Vector3 offset = offset1 + offset2;
             section.rope.SetPosition(i, Vector3.Lerp(section.ikEnd.transform.position, section.transform.position, delta) + offset);
         }
     }
