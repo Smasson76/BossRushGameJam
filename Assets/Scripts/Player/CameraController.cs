@@ -27,11 +27,13 @@ public class CameraController : MonoBehaviour {
     private float cameraDistance;
     private Rigidbody playerRb;
     private Vector2 cameraPos = Vector2.zero;
-    private PlayerInput playerInput;
+    public PlayerInput playerInput;
+    public GameObject gameManager;
 
     void Start() {
         playerInput = this.GetComponent<PlayerInput>();
-
+        gameManager = GameObject.Find("GameManager");
+        playerInput = gameManager.GetComponent<PlayerInput>();
         playerRb = player.GetComponent<Rigidbody>();
         GameObject lookTargetGameObject = new GameObject("Look Target");
         lookTarget = lookTargetGameObject.transform;

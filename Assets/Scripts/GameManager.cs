@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour {
     }
 
     void SpawnPlayer() {
-        Instantiate(player, transform.position, transform.rotation);
+        //Instantiate(player, transform.position, transform.rotation);
     }
 
     IEnumerator RespawnPlayer() {

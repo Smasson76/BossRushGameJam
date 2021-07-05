@@ -18,16 +18,17 @@ public class PlayerController : MonoBehaviour
     private Vector3 goalBoostDirection = Vector3.up;
     private Rigidbody playerRb;
     private PlayerInput playerInput;
+    private GameObject gameManager;
     private CameraController cameraController;
     private Vector3 grapplePoint;
     private SpringJoint grappleSpring; 
     private bool isGrappling;
 
     void Start() {
-        playerInput = this.GetComponent<PlayerInput>();
         cameraController = this.GetComponent<CameraController>();
         playerAnimator = this.GetComponent<PlayerAnimator>();
-
+        gameManager = GameObject.Find("GameManager");
+        playerInput = gameManager.GetComponent<PlayerInput>();
         playerRb = player.GetComponent<Rigidbody>();
         GameObject lookTargetGameObject = new GameObject("Look Target");
     }

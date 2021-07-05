@@ -5,10 +5,13 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class PlayerInput : MonoBehaviour {
-    private PlayerController playerController;
-    private Control controls;
+    public PlayerController playerController;
+    public GameObject player;
+    public Control controls;
 
     void Awake() {
+        player = GameObject.Find("Player");
+        playerController = player.GetComponent<PlayerController>();
         controls = new Control();
         controls.PlayerMovement.GrappleStart.performed += ctx => playerController.GrappleStart();
         controls.PlayerMovement.GrappleEnd.performed += ctx => playerController.GrappleEnd();
@@ -18,7 +21,6 @@ public class PlayerInput : MonoBehaviour {
     }
     
     void Start() {
-        playerController = this.GetComponent<PlayerController>();
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
 
