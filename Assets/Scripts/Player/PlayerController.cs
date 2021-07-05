@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
     }
     
     void PlayerBoost() {
-        if (playerInput.IsBoosting()) {
+        if (playerInput.IsBoosting() && GameManager.instance.boostAmount > 0) {
             playerAnimator.isBoosting = true;
             AudioManager.instance.PlayBoosterSoundEffect(); //Plays the booster sound effect
             GameManager.instance.boostAmount -= GameManager.instance.boostDescreaseAmount; //Decreasing boost slider

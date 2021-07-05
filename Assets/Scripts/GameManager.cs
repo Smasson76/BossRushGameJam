@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour {
 
     IEnumerator RegainBoost() {
         yield return new WaitForSeconds(3f);
-        while (boostAmount < 100) {
+        while (boostAmount < 100 && !isBoosting) {
             yield return new WaitForSeconds(0.1f);
             boostAmount += boostIncreaseAmount;
         }
