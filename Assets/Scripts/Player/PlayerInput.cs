@@ -15,18 +15,8 @@ public class PlayerInput : MonoBehaviour {
     }
     
     void Start() {
-        player = GameObject.Find("Player");
-        playerController = player.GetComponent<PlayerController>();
-
-        controls.PlayerMovement.GrappleStart.performed += ctx => playerController.GrappleStart();
-        controls.PlayerMovement.GrappleEnd.performed += ctx => playerController.GrappleEnd();
-        controls.PlayerMovement.Boost.performed += ctx => playerController.BoostStarted();
-        controls.MetaControls.Restart.performed += ctx => reloadScene();
-        controls.MainMenuControls.ChangeDifficulty.performed += ctx => MainMenuManager.instance.ChargeStation();
-
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
-
         if (sceneName == "MainMenu") {
             controls.PlayerMovement.Disable();
             controls.MainMenuControls.Enable();
@@ -34,8 +24,16 @@ public class PlayerInput : MonoBehaviour {
         if (sceneName == "PlayerTestScene") {
             controls.PlayerMovement.Enable();
             controls.MainMenuControls.Disable();
+            player = GameObject.Find("Player(Clone)");
+            playerController = player.GetComponent<PlayerController>();
         }
         Debug.Log(sceneName);
+
+        controls.PlayerMovement.GrappleStart.performed += ctx => playerController.GrappleStart();
+        controls.PlayerMovement.GrappleEnd.performed += ctx => playerController.GrappleEnd();
+        controls.PlayerMovement.Boost.performed += ctx => playerController.BoostStarted();
+        controls.MetaControls.Restart.performed += ctx => reloadScene();
+        controls.MainMenuControls.ChangeDifficulty.performed += ctx => MainMenuManager.instance.ChargeStation();
     }
     void OnEnable() {
         controls.Enable();

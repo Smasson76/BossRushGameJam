@@ -7,7 +7,7 @@ public class MainMenuManager : MonoBehaviour {
 
     public static MainMenuManager instance;
 
-    PlayerInput playerInput;
+    public PlayerInput playerInput;
 
     public GameObject[] levelDifficultyObjects;
     public int difficulty = 1;
