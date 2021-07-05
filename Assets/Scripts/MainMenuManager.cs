@@ -9,6 +9,9 @@ public class MainMenuManager : MonoBehaviour {
 
     PlayerInput playerInput;
 
+    public GameObject[] levelDifficultyObjects;
+    public int difficulty = 1;
+    
     void Awake() {
         if (instance == null) instance = this;
 
@@ -16,16 +19,34 @@ public class MainMenuManager : MonoBehaviour {
     }
 
     public void ChargeStation() {
-        Debug.Log("Charge Station called");
         RaycastHit hit;
         Vector2 mousePos = playerInput.GetPointerPos();
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
         if (Physics.Raycast(ray, out hit)) {
-            Debug.Log("hit something");
-            Debug.Log(hit);
             if (hit.transform.gameObject.tag == "ChargeStation") {
-                Debug.Log("Charge station hit");
+                SwitchDifficulty(difficulty);
             }
+        }
+    }
+
+    void SwitchDifficulty(int difficultyChange) {
+        if (difficultyChange == 1) {
+            levelDifficultyObjects[0].SetActive(true);
+            levelDifficultyObjects[1].SetActive(false);
+            levelDifficultyObjects[2].SetActive(false);
+            difficulty = 2;
+        }
+        else if (difficultyChange == 2) {
+            levelDifficultyObjects[0].SetActive(false);
+            levelDifficultyObjects[1].SetActive(true);
+            levelDifficultyObjects[2].SetActive(false);
+            difficulty = 3;
+        }
+        else if (difficultyChange == 3) {
+            levelDifficultyObjects[0].SetActive(false);
+            levelDifficultyObjects[1].SetActive(false);
+            levelDifficultyObjects[2].SetActive(true);
+            difficulty = 1;
         }
     }
 }

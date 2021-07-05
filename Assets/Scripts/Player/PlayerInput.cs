@@ -19,6 +19,18 @@ public class PlayerInput : MonoBehaviour {
     
     void Start() {
         playerController = this.GetComponent<PlayerController>();
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
+
+        if (sceneName == "MainMenu") {
+            controls.PlayerMovement.Disable();
+            controls.MainMenuControls.Enable();
+        }
+        if (sceneName == "PlayerTestScene") {
+            controls.PlayerMovement.Enable();
+            controls.MainMenuControls.Disable();
+        }
+        Debug.Log(sceneName);
     }
     void OnEnable() {
         controls.Enable();

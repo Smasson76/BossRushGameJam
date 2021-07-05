@@ -225,7 +225,7 @@ public class @Control : IInputActionCollection, IDisposable
                     ""id"": ""529501cd-a6cd-4781-81bf-f03af33261de"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -235,7 +235,7 @@ public class @Control : IInputActionCollection, IDisposable
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard and mouse"",
                     ""action"": ""ChangeDifficulty"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
