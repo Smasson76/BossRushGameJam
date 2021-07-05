@@ -150,6 +150,8 @@ public class PlayerController : MonoBehaviour
             }
             playerAnimator.Pop();
             playerInput.PlayerDeath();
+            AudioManager.instance.PlayImpactSoundEffect(); //Plays the impact sound effect
+            AudioManager.instance.audioSourceMovement.Stop(); //Stops movement audio source when dead
         }
     }
 
