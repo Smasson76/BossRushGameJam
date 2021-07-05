@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
-{
+public class PlayerController : MonoBehaviour {
+    
     [Header("References")]
     [SerializeField] private GameObject player;
 
@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
         playerInput = gameManager.GetComponent<PlayerInput>();
         playerRb = player.GetComponent<Rigidbody>();
         GameObject lookTargetGameObject = new GameObject("Look Target");
+        playerInput.StartFindingPlayer();
     }
     
     // FixedUpdate for physics changes
@@ -56,11 +57,6 @@ public class PlayerController : MonoBehaviour
         else {
             AudioManager.instance.audioSourceMovement.Stop(); //Stops the sound when player is not grounded
         }
-    }
-
-    //YOU CAN DELETE THIS METHOD WHEN YOU SEE THIS
-    public void BoostStarted() {
-        //AudioManager.instance.PlayBoosterSoundEffect(); //Plays the booster sound effect
     }
     
     void PlayerBoost() {
@@ -153,7 +149,14 @@ public class PlayerController : MonoBehaviour
             playerInput.PlayerDeath();
             AudioManager.instance.PlayImpactSoundEffect(); //Plays the impact sound effect
             AudioManager.instance.audioSourceMovement.Stop(); //Stops movement audio source when dead
+            StartCoroutine(Death());
         }
+    }
+
+    IEnumerator Death() {
+        yield return new WaitForSeconds(3f);
+        Destroy(this.gameObject);
+        GameManager.instance.SpawnPlayer();
     }
 
     public Vector3 GetPlayerVelocity() {

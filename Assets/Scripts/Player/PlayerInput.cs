@@ -15,24 +15,19 @@ public class PlayerInput : MonoBehaviour {
     }
     
     void Start() {
-        Scene currentScene = SceneManager.GetActiveScene();
-        string sceneName = currentScene.name;
-        if (sceneName == "MainMenu") {
+        if (GameManager.instance.currentScene.name == "MainMenu") {
             controls.PlayerMovement.Disable();
             controls.MainMenuControls.Enable();
         }
-        if (sceneName == "PlayerTestScene") {
+        if (GameManager.instance.currentScene.name == "PlayerTestScene") {
             controls.PlayerMovement.Enable();
             controls.MainMenuControls.Disable();
             player = GameObject.Find("Player(Clone)");
             playerController = player.GetComponent<PlayerController>();
         }
-        Debug.Log(sceneName);
 
         controls.PlayerMovement.GrappleStart.performed += ctx => playerController.GrappleStart();
         controls.PlayerMovement.GrappleEnd.performed += ctx => playerController.GrappleEnd();
-        controls.PlayerMovement.Boost.performed += ctx => playerController.BoostStarted();
-        controls.MetaControls.Restart.performed += ctx => reloadScene();
         controls.MainMenuControls.ChangeDifficulty.performed += ctx => MainMenuManager.instance.ChargeStation();
     }
     void OnEnable() {
@@ -43,10 +38,6 @@ public class PlayerInput : MonoBehaviour {
     void OnDisable() {
         controls.Disable();
         Cursor.lockState = CursorLockMode.None;
-    }
-
-    void reloadScene() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void PlayerDeath() {
@@ -67,5 +58,16 @@ public class PlayerInput : MonoBehaviour {
 
     public bool IsSlowing() {
         return controls.PlayerMovement.Slow.ReadValue<float>() != 0;
+    }
+
+    public void StartFindingPlayer() {
+        StartCoroutine(FindNewPlayer());
+    }
+
+    IEnumerator FindNewPlayer() {
+        yield return new WaitForSeconds(1f);
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerController = player.GetComponent<PlayerController>();
+        Debug.Log("Called find newplayer");
     }
 }

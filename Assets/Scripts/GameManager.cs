@@ -8,11 +8,11 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager instance; //Creating an object singleton
     
-    //Bomb variables
+    [Header("Bomb Variables")]
     public GameObject[] playerBombs;
     public int bombsRemaining;
 
-    //Boost variables
+    [Header("Boost Variables")]
     public Slider boostSlider;
     public float boostAmount = 100f;
     public float boostDescreaseAmount = 0.5f;
@@ -21,8 +21,11 @@ public class GameManager : MonoBehaviour {
     public bool canRegenerateBoost = false;
     public bool isRegenerating = false;
 
-    //Player variables
+    [Header("Public GameObjects")]
     public GameObject player;
+    public Scene currentScene;
+
+    public PlayerInput playerInput;
 
     void Awake() {
         if (instance == null) {
@@ -33,9 +36,8 @@ public class GameManager : MonoBehaviour {
             Destroy(gameObject);
         }
         
-        Scene currentScene = SceneManager.GetActiveScene();
-        string sceneName = currentScene.name;
-        if (sceneName == "PlayerTestScene") {
+        currentScene = SceneManager.GetActiveScene();
+        if (currentScene.name == "PlayerTestScene") {
             SpawnPlayer();
         }
     }
@@ -62,12 +64,7 @@ public class GameManager : MonoBehaviour {
         isRegenerating = false;
     }
 
-    void SpawnPlayer() {
+    public void SpawnPlayer() {
         Instantiate(player, transform.position, transform.rotation);
-    }
-
-    IEnumerator RespawnPlayer() {
-        yield return new WaitForSeconds(4f);
-        
     }
 }
