@@ -72,6 +72,7 @@ public class PlayerAnimator : MonoBehaviour {
             newSection.ikPole = ikPole;
             FastIKFabric ikComponent = newSection.ikEnd.AddComponent<FastIKFabric>();
             ikComponent.ChainLength = 4;
+            Destroy(ikComponent.Target.gameObject); // The ik component script creates it's own target, we destroy that here to avoid excess gameObject creation
             ikComponent.Target = newSection.transform;
             ikComponent.Pole = ikPole;
 

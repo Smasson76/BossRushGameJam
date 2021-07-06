@@ -15,10 +15,16 @@ public class GameManager : MonoBehaviour {
     [Header("Public GameObjects")]
     public Slider boostSlider;
     public GameObject playerPrefab;
-    public Scene currentScene;
     public PlayerInput playerInput;
 
+    public enum SceneType {
+        mainMenu,
+        playerTestScene,
+    }
 
+    public delegate void PlayerSpawn();
+    public event PlayerSpawn OnPlayerSpawn;
+    private GameObject currentPlayer;
     private PlayerController playerController;
 
     void Awake() {
@@ -29,9 +35,10 @@ public class GameManager : MonoBehaviour {
         else {
             Destroy(gameObject);
         }
-        
-        currentScene = SceneManager.GetActiveScene();
-        if (currentScene.name == "PlayerTestScene") {
+    }
+
+    void Start() {
+        if (GetCurrentScene() == SceneType.playerTestScene) {
             SpawnPlayer();
         }
     }
@@ -41,11 +48,25 @@ public class GameManager : MonoBehaviour {
         boostSlider.value = playerController.GetBoostRemaining();
     }
 
-
     public void SpawnPlayer() {
-        playerController = Instantiate(playerPrefab, transform.position, transform.rotation).GetComponent<PlayerController>();
+        currentPlayer = Instantiate(playerPrefab, transform.position, transform.rotation);
+        playerController = currentPlayer.GetComponent<PlayerController>();
         playerController.playerInput = playerInput;
         playerInput.NewPlayer(playerController);
-        Debug.Log("SpawnPlayer");
+        if (OnPlayerSpawn != null) OnPlayerSpawn();
+    }
+
+    public SceneType GetCurrentScene() {
+        switch (SceneManager.GetActiveScene().name) {
+        case "MainMenu":
+            return SceneType.mainMenu;
+        case "PlayerTestScene":
+            return SceneType.playerTestScene;
+        default:
+            throw new System.Exception("Unhandled Scene Name");
+        }
+    }
+    public Transform GetPlayer() {
+        return currentPlayer.transform.Find("Sphere");
     }
 }

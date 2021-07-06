@@ -157,7 +157,6 @@ public class PlayerController : MonoBehaviour {
     public void HitSomething(Collision collision) {
         float hitSpeed = Vector3.Dot(collision.relativeVelocity, collision.contacts[0].normal);
         if (hitSpeed > minForceToExplode) {
-            Debug.Log("Exploded");
             if (isGrappling) {
                 GrappleEnd();
             }

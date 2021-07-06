@@ -10,21 +10,25 @@ public class PlayerInput : MonoBehaviour {
 
     void Awake() {
         controls = new Control();
-        controls.MainMenuControls.ChangeDifficulty.performed += ctx => MainMenuManager.instance.ChargeStation();
-        controls.MainMenuControls.ChangeDifficulty.performed += ctx => MainMenuManager.instance.SoundChanger();
-        controls.MainMenuControls.ChangeDifficulty.performed += ctx => MainMenuManager.instance.MusicChanger();
+        controls.MainMenuControls.ChangeDifficulty.performed += ctx => ChargeStation();
+        controls.MainMenuControls.ChangeDifficulty.performed += ctx => SoundChanger();
+        controls.MainMenuControls.ChangeDifficulty.performed += ctx => MusicChanger();
+
         controls.PlayerMovement.GrappleStart.performed += ctx => GrappleStart();
         controls.PlayerMovement.GrappleEnd.performed += ctx => GrappleEnd();
         controls.PlayerMovement.Megaboost.performed += ctx => Megaboost();
     }
     
     void Start() {
-        if (GameManager.instance.currentScene.name == "MainMenu") {
+        switch (GameManager.instance.GetCurrentScene()) {
+        case GameManager.SceneType.mainMenu:
             controls.PlayerMovement.Disable();
             controls.MainMenuControls.Enable();
-        } else if (GameManager.instance.currentScene.name == "PlayerTestScene") {
+            break;
+        case GameManager.SceneType.playerTestScene:
             controls.PlayerMovement.Enable();
             controls.MainMenuControls.Disable();
+            break;
         }
     }
     public void NewPlayer(PlayerController player) {
@@ -48,6 +52,19 @@ public class PlayerInput : MonoBehaviour {
 
     public Vector2 GetPointerPos() {
         return controls.CameraControl.CameraControl.ReadValue<Vector2>();
+    }
+
+    // Main Menu Controls:
+    private void ChargeStation() {
+        MainMenuManager.instance.ChargeStation();
+    }
+
+    private void SoundChanger() {
+        MainMenuManager.instance.SoundChanger();
+    }
+
+    private void MusicChanger() {
+        MainMenuManager.instance.MusicChanger();
     }
 
     // Player Movement Controls: 

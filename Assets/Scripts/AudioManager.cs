@@ -128,7 +128,7 @@ public class AudioManager : MonoBehaviour {
     }
 
     public void MusicSwitcher() {
-        if (GameManager.instance.currentScene.name == "MainMenu" && musicOn) {
+        if (GameManager.instance.GetCurrentScene() == GameManager.SceneType.mainMenu && musicOn) {
             audioSourceMusic.clip = musicAudioClips[0];
             audioSourceMusic.Play();
             audioSourceWind.clip = musicAudioClips[1];
@@ -145,7 +145,7 @@ public class AudioManager : MonoBehaviour {
             audioSourceHumBuz.Stop();
         }
         
-        if (GameManager.instance.currentScene.name == "PlayerTestScene" && musicOn) {
+        if (GameManager.instance.GetCurrentScene() == GameManager.SceneType.playerTestScene && musicOn) {
             //audioSourceMusic.clip = musicAudioClips[1];
             //audioSourceMusic.Play();
         }
