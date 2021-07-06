@@ -5,8 +5,6 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class PlayerInput : MonoBehaviour {
-    
-    public GameObject player;
     public PlayerController playerController;
     public Control controls;
 
@@ -18,17 +16,14 @@ public class PlayerInput : MonoBehaviour {
         if (GameManager.instance.currentScene.name == "MainMenu") {
             controls.PlayerMovement.Disable();
             controls.MainMenuControls.Enable();
-        }
-        if (GameManager.instance.currentScene.name == "PlayerTestScene") {
+        } else if (GameManager.instance.currentScene.name == "PlayerTestScene") {
             controls.PlayerMovement.Enable();
             controls.MainMenuControls.Disable();
-            player = GameObject.Find("Player(Clone)");
-            playerController = player.GetComponent<PlayerController>();
+            playerController = GameObject.Find("Player(Clone)").GetComponent<PlayerController>();
+            controls.PlayerMovement.GrappleStart.performed += ctx => playerController.GrappleStart();
+            controls.PlayerMovement.GrappleEnd.performed += ctx => playerController.GrappleEnd();
+            controls.MainMenuControls.ChangeDifficulty.performed += ctx => MainMenuManager.instance.ChargeStation();
         }
-
-        controls.PlayerMovement.GrappleStart.performed += ctx => playerController.GrappleStart();
-        controls.PlayerMovement.GrappleEnd.performed += ctx => playerController.GrappleEnd();
-        controls.MainMenuControls.ChangeDifficulty.performed += ctx => MainMenuManager.instance.ChargeStation();
     }
     void OnEnable() {
         controls.Enable();
@@ -58,18 +53,5 @@ public class PlayerInput : MonoBehaviour {
 
     public bool IsSlowing() {
         return controls.PlayerMovement.Slow.ReadValue<float>() != 0;
-    }
-
-    public void StartFindingPlayer() {
-        StartCoroutine(FindNewPlayer());
-        Debug.Log("StartFindingNewPlayer");
-    }
-
-    IEnumerator FindNewPlayer() {
-        yield return new WaitForSeconds(1f);
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerController = player.GetComponent<PlayerController>();
-        controls.PlayerMovement.Enable();
-        Debug.Log("FindNewPlayer");
     }
 }

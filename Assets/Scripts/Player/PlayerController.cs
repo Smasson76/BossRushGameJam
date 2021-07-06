@@ -9,29 +9,31 @@ public class PlayerController : MonoBehaviour {
 
     [Header("Movement")]
     [SerializeField] private float acceleration;
-    [SerializeField] private float boostAmount;
-    [SerializeField] private float slowAmount;
+    [SerializeField] private float boostForce;
+    [SerializeField] private float slowForce;
     [SerializeField] private float rotationSlowAmount;
     [SerializeField] private float minForceToExplode;
 
+    [Header("Boost Recharge Variables")]
+    public float boostDescreaseAmount = 0.5f;
+    public float boostIncreaseAmount = 0.1f;
+    public bool canRegenerateBoost = false;
+
+    [System.NonSerialized] public PlayerInput playerInput;
     private PlayerAnimator playerAnimator;
     private Vector3 goalBoostDirection = Vector3.up;
     private Rigidbody playerRb;
-    private PlayerInput playerInput;
-    private GameObject gameManager;
     private CameraController cameraController;
     private Vector3 grapplePoint;
     private SpringJoint grappleSpring; 
     private bool isGrappling;
+    private float boostPercent = 100f;
 
     void Start() {
         cameraController = this.GetComponent<CameraController>();
         playerAnimator = this.GetComponent<PlayerAnimator>();
-        gameManager = GameObject.Find("GameManager");
-        playerInput = gameManager.GetComponent<PlayerInput>();
         playerRb = player.GetComponent<Rigidbody>();
         GameObject lookTargetGameObject = new GameObject("Look Target");
-        playerInput.StartFindingPlayer();
     }
     
     // FixedUpdate for physics changes
@@ -60,32 +62,47 @@ public class PlayerController : MonoBehaviour {
     }
     
     void PlayerBoost() {
-        if (playerInput.IsBoosting() && GameManager.instance.boostAmount > 0) {
+        if (playerInput.IsBoosting() && boostPercent > 0) {
             playerAnimator.isBoosting = true;
             AudioManager.instance.PlayBoosterSoundEffect(); //Plays the booster sound effect
-            GameManager.instance.boostAmount -= GameManager.instance.boostDescreaseAmount; //Decreasing boost slider
-            GameManager.instance.isBoosting = true; //Setting gamemanagers isBoosting to true
+            boostPercent -= boostDescreaseAmount; //Decreasing boost slider
             Vector2 dirInput = playerInput.GetPlayerMovement();
             if (dirInput.magnitude == 0) {
                 Vector3 forceDirection = playerRb.velocity.normalized;
-                playerRb.AddForce(forceDirection * boostAmount, ForceMode.Force);
+                playerRb.AddForce(forceDirection * boostForce, ForceMode.Force);
                 goalBoostDirection = forceDirection;
             } else {
                 Vector3 forceDirection = (cameraController.GetCameraHorizontalFacing() * new Vector3(dirInput.x, 0, dirInput.y)).normalized;
-                playerRb.AddForce(forceDirection * boostAmount, ForceMode.Force);
+                playerRb.AddForce(forceDirection * boostForce, ForceMode.Force);
                 goalBoostDirection = forceDirection;
             }
         } else {
             playerAnimator.isBoosting = false;
             AudioManager.instance.audioSourceBooster.Stop(); //Stops the sound when player is no longer boosting
-            GameManager.instance.isBoosting = false; //Setting gamemanagers isBoosting to false
+            if (boostPercent < 100 && canRegenerateBoost) {
+                boostPercent += boostIncreaseAmount;    
+                //StartCoroutine(RegainBoost());
+            }
         }
+    }
+/*
+    IEnumerator RegainBoost() {
+        yield return new WaitForSeconds(3f);
+        while (boostPercent < 100 && !isBoosting) {
+            yield return new WaitForSeconds(0.1f);
+            boostPercent += boostIncreaseAmount;
+        }
+        isRegenerating = false;
+    }
+*/
+    public float GetBoostRemaining() {
+        return boostPercent;
     }
 
     void PlayerSlow() {
         if (playerInput.IsSlowing() && !isOnGround()) {
             playerAnimator.isBraking = true;
-            Vector3 force = -playerRb.velocity * slowAmount;
+            Vector3 force = -playerRb.velocity * slowForce;
             playerRb.AddForce(force, ForceMode.Force);
             playerRb.AddTorque(-playerRb.angularVelocity * rotationSlowAmount);
         } else {

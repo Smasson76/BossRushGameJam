@@ -53,13 +53,7 @@ MonoBehaviour:
   - {fileID: 0}
   bombsRemaining: 5
   boostSlider: {fileID: 0}
-  boostAmount: 100
-  boostDescreaseAmount: 0.5
-  boostIncreaseAmount: 8
-  isBoosting: 0
-  canRegenerateBoost: 0
-  isRegenerating: 0
-  player: {fileID: 9019689969792344799, guid: 24e60005668e8324ca604246877f205d, type: 3}
+  playerPrefab: {fileID: 9019689969792344799, guid: 24e60005668e8324ca604246877f205d, type: 3}
   currentScene:
     m_Handle: 0
   playerInput: {fileID: 1681423242}

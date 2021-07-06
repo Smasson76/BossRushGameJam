@@ -189,33 +189,6 @@ public class @Control : IInputActionCollection, IDisposable
             ]
         },
         {
-            ""name"": ""MetaControls"",
-            ""id"": ""0654d749-79a6-468a-9f67-f770e8f752e7"",
-            ""actions"": [
-                {
-                    ""name"": ""Restart"",
-                    ""type"": ""Button"",
-                    ""id"": ""6b2b2afb-08a5-4d68-8bf6-7405f0159f62"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""0d26aa90-0ed5-4bf7-85f7-75d34716f45a"",
-                    ""path"": ""<Keyboard>/r"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and mouse"",
-                    ""action"": ""Restart"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
             ""name"": ""MainMenuControls"",
             ""id"": ""3b2200e4-a1fc-4f32-877c-822205561258"",
             ""actions"": [
@@ -272,9 +245,6 @@ public class @Control : IInputActionCollection, IDisposable
         // CameraControl
         m_CameraControl = asset.FindActionMap("CameraControl", throwIfNotFound: true);
         m_CameraControl_CameraControl = m_CameraControl.FindAction("Camera Control", throwIfNotFound: true);
-        // MetaControls
-        m_MetaControls = asset.FindActionMap("MetaControls", throwIfNotFound: true);
-        m_MetaControls_Restart = m_MetaControls.FindAction("Restart", throwIfNotFound: true);
         // MainMenuControls
         m_MainMenuControls = asset.FindActionMap("MainMenuControls", throwIfNotFound: true);
         m_MainMenuControls_ChangeDifficulty = m_MainMenuControls.FindAction("ChangeDifficulty", throwIfNotFound: true);
@@ -422,39 +392,6 @@ public class @Control : IInputActionCollection, IDisposable
     }
     public CameraControlActions @CameraControl => new CameraControlActions(this);
 
-    // MetaControls
-    private readonly InputActionMap m_MetaControls;
-    private IMetaControlsActions m_MetaControlsActionsCallbackInterface;
-    private readonly InputAction m_MetaControls_Restart;
-    public struct MetaControlsActions
-    {
-        private @Control m_Wrapper;
-        public MetaControlsActions(@Control wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Restart => m_Wrapper.m_MetaControls_Restart;
-        public InputActionMap Get() { return m_Wrapper.m_MetaControls; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(MetaControlsActions set) { return set.Get(); }
-        public void SetCallbacks(IMetaControlsActions instance)
-        {
-            if (m_Wrapper.m_MetaControlsActionsCallbackInterface != null)
-            {
-                @Restart.started -= m_Wrapper.m_MetaControlsActionsCallbackInterface.OnRestart;
-                @Restart.performed -= m_Wrapper.m_MetaControlsActionsCallbackInterface.OnRestart;
-                @Restart.canceled -= m_Wrapper.m_MetaControlsActionsCallbackInterface.OnRestart;
-            }
-            m_Wrapper.m_MetaControlsActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @Restart.started += instance.OnRestart;
-                @Restart.performed += instance.OnRestart;
-                @Restart.canceled += instance.OnRestart;
-            }
-        }
-    }
-    public MetaControlsActions @MetaControls => new MetaControlsActions(this);
-
     // MainMenuControls
     private readonly InputActionMap m_MainMenuControls;
     private IMainMenuControlsActions m_MainMenuControlsActionsCallbackInterface;
@@ -507,10 +444,6 @@ public class @Control : IInputActionCollection, IDisposable
     public interface ICameraControlActions
     {
         void OnCameraControl(InputAction.CallbackContext context);
-    }
-    public interface IMetaControlsActions
-    {
-        void OnRestart(InputAction.CallbackContext context);
     }
     public interface IMainMenuControlsActions
     {

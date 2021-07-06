@@ -176,33 +176,6 @@
             ]
         },
         {
-            "name": "MetaControls",
-            "id": "0654d749-79a6-468a-9f67-f770e8f752e7",
-            "actions": [
-                {
-                    "name": "Restart",
-                    "type": "Button",
-                    "id": "6b2b2afb-08a5-4d68-8bf6-7405f0159f62",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "0d26aa90-0ed5-4bf7-85f7-75d34716f45a",
-                    "path": "<Keyboard>/r",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and mouse",
-                    "action": "Restart",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
             "name": "MainMenuControls",
             "id": "3b2200e4-a1fc-4f32-877c-822205561258",
             "actions": [
