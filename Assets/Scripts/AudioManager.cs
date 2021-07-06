@@ -44,6 +44,10 @@ public class AudioManager : MonoBehaviour {
     public int maxImpactPitch = 3;
     public float impactVolume = 0.3f;
 
+    [Header("Menu Sound Manager")]
+    public AudioClip[] menuAudioClips;
+    public float menuSoundVolume = 0.3f;
+
     [Header("Music Manager")]
     public AudioClip[] musicAudioClips;
     public float musicVolume = 0.3f;
@@ -135,6 +139,32 @@ public class AudioManager : MonoBehaviour {
         }
         else {
             //audioSourceMusic.Stop();
+        }
+    }
+
+    public void MenuSounds(int soundSelection) {
+        audioSourceQuickSounds.volume = menuSoundVolume;
+        if (soundOn) {
+            if (soundSelection == 1) {
+                audioSourceQuickSounds.clip = menuAudioClips[0];
+                audioSourceQuickSounds.Play();
+            }
+            else if (soundSelection == 2) {
+                audioSourceQuickSounds.clip = menuAudioClips[1];
+                audioSourceQuickSounds.Play();
+            }
+            else if (soundSelection == 3) {
+                audioSourceQuickSounds.clip = menuAudioClips[2];
+                audioSourceQuickSounds.Play();
+            }
+            else if (soundSelection == 4) {
+                audioSourceQuickSounds.clip = menuAudioClips[3];
+                audioSourceQuickSounds.Play();
+            }
+            else if (soundSelection == 5) {
+                audioSourceQuickSounds.clip = menuAudioClips[4];
+                audioSourceQuickSounds.Play();
+            }
         }
     }
 }

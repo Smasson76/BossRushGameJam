@@ -40,18 +40,21 @@ public class MainMenuManager : MonoBehaviour {
 
     void SwitchDifficulty(int difficultyChange) {
         if (difficultyChange == 1) {
+            AudioManager.instance.MenuSounds(1);
             levelDifficultyObjects[0].SetActive(true);
             levelDifficultyObjects[1].SetActive(false);
             levelDifficultyObjects[2].SetActive(false);
             difficulty = 2;
         }
         else if (difficultyChange == 2) {
+            AudioManager.instance.MenuSounds(2);
             levelDifficultyObjects[0].SetActive(false);
             levelDifficultyObjects[1].SetActive(true);
             levelDifficultyObjects[2].SetActive(false);
             difficulty = 3;
         }
         else if (difficultyChange == 3) {
+            AudioManager.instance.MenuSounds(3);
             levelDifficultyObjects[0].SetActive(false);
             levelDifficultyObjects[1].SetActive(false);
             levelDifficultyObjects[2].SetActive(true);
@@ -66,11 +69,14 @@ public class MainMenuManager : MonoBehaviour {
         if (Physics.Raycast(ray, out hit)) {
             if (hit.transform.gameObject.tag == "SoundValve") {
                 if (soundAnim.GetBool("Trigger") == true) {
+                    AudioManager.instance.soundOn = false;
                     soundAnim.SetBool("Trigger", false);
                 }
                 else if (soundAnim.GetBool("Trigger") == false) {
+                    AudioManager.instance.soundOn = true;
                     soundAnim.SetBool("Trigger", true);
                 }
+                AudioManager.instance.MenuSounds(4);
             }
         }
     }
@@ -91,6 +97,7 @@ public class MainMenuManager : MonoBehaviour {
                     AudioManager.instance.musicOn = true;
                     AudioManager.instance.MusicSwitcher();
                 }
+                AudioManager.instance.MenuSounds(4);
             }
         }
     }
