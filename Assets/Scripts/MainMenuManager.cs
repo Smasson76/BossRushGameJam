@@ -20,7 +20,7 @@ public class MainMenuManager : MonoBehaviour {
     void Awake() {
         if (instance == null) instance = this;
 
-        playerInput = this.GetComponent<PlayerInput>();
+        playerInput = GameObject.Find("GameManager").GetComponent<PlayerInput>();
         soundAnim = soundValve.GetComponent<Animator>();
         musicAnim = musicValve.GetComponent<Animator>();
         soundAnim.SetBool("Trigger", true);
