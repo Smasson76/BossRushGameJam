@@ -172,6 +172,9 @@ public class PlayerController : MonoBehaviour {
 
     IEnumerator Death() {
         yield return new WaitForSeconds(3f);
+        Transform sphere = this.transform.Find("Sphere");
+        sphere.SetParent(null);
+        Destroy(sphere.GetComponent<CollisionDetection>());
         Destroy(this.gameObject);
         GameManager.instance.SpawnPlayer();
     }

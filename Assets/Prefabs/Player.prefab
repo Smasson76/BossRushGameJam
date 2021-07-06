@@ -5299,6 +5299,10 @@ PrefabInstance:
       value: PlayerBallBot
       objectReference: {fileID: 0}
     - target: {fileID: 1929044034149125815, guid: fb6fa3f40ebf06d91bf9bc9facaffac8, type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1929044034149125815, guid: fb6fa3f40ebf06d91bf9bc9facaffac8, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ef67047cc3742415684c61296ac49f53, type: 2}
