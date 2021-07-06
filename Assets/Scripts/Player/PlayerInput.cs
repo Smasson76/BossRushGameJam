@@ -11,6 +11,8 @@ public class PlayerInput : MonoBehaviour {
     void Awake() {
         controls = new Control();
         controls.MainMenuControls.ChangeDifficulty.performed += ctx => MainMenuManager.instance.ChargeStation();
+        controls.MainMenuControls.ChangeDifficulty.performed += ctx => MainMenuManager.instance.SoundChanger();
+        controls.MainMenuControls.ChangeDifficulty.performed += ctx => MainMenuManager.instance.MusicChanger();
         controls.PlayerMovement.GrappleStart.performed += ctx => GrappleStart();
         controls.PlayerMovement.GrappleEnd.performed += ctx => GrappleEnd();
         controls.PlayerMovement.Megaboost.performed += ctx => Megaboost();

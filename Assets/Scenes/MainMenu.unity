@@ -6194,6 +6194,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1681423241, guid: ad7e587ea1f566343aa41989693d03aa, type: 3}
+      propertyPath: musicValve
+      value: 
+      objectReference: {fileID: 1806917314}
+    - target: {fileID: 1681423241, guid: ad7e587ea1f566343aa41989693d03aa, type: 3}
+      propertyPath: soundValve
+      value: 
+      objectReference: {fileID: 1687285707}
+    - target: {fileID: 1681423241, guid: ad7e587ea1f566343aa41989693d03aa, type: 3}
       propertyPath: levelDifficultyObjects.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -7198,9 +7206,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1687285708}
   - component: {fileID: 1687285709}
+  - component: {fileID: 1687285710}
   m_Layer: 0
   m_Name: SettingSound
-  m_TagString: Untagged
+  m_TagString: SoundValve
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7241,6 +7250,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &1687285710
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687285707}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.6775303, y: 3.9952812, z: 2.2074013}
+  m_Center: {x: -1.9308634, y: 0.944252, z: 5.876299}
 --- !u!4 &1692697468 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4dee6f88e9fd6db41a1875181be1076a, type: 3}
@@ -8009,9 +8031,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1806917315}
   - component: {fileID: 1806917316}
+  - component: {fileID: 1806917317}
   m_Layer: 0
   m_Name: SettingMusic
-  m_TagString: Untagged
+  m_TagString: MusicValve
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8052,6 +8075,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &1806917317
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806917314}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.4218483, y: 4.1434803, z: 2.145996}
+  m_Center: {x: -1.9333286, y: 0.916667, z: 5.3652573}
 --- !u!4 &1817175529 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3977022884737017417, guid: 1d01578b5bd482b458daa76e0c30eb2a, type: 3}

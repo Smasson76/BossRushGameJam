@@ -11,11 +11,20 @@ public class MainMenuManager : MonoBehaviour {
 
     public GameObject[] levelDifficultyObjects;
     public int difficulty = 1;
+
+    public GameObject soundValve;
+    Animator soundAnim;
+    public GameObject musicValve;
+    Animator musicAnim;
     
     void Awake() {
         if (instance == null) instance = this;
 
         playerInput = this.GetComponent<PlayerInput>();
+        soundAnim = soundValve.GetComponent<Animator>();
+        musicAnim = musicValve.GetComponent<Animator>();
+        soundAnim.SetBool("Trigger", true);
+        musicAnim.SetBool("Trigger", true);
     }
 
     public void ChargeStation() {
@@ -47,6 +56,40 @@ public class MainMenuManager : MonoBehaviour {
             levelDifficultyObjects[1].SetActive(false);
             levelDifficultyObjects[2].SetActive(true);
             difficulty = 1;
+        }
+    }
+
+    public void SoundChanger() {
+        RaycastHit hit;
+        Vector2 mousePos = playerInput.GetPointerPos();
+        Ray ray = Camera.main.ScreenPointToRay(mousePos);
+        if (Physics.Raycast(ray, out hit)) {
+            Debug.Log(hit.transform);
+            if (hit.transform.gameObject.tag == "SoundValve") {
+                if (soundAnim.GetBool("Trigger") == true) {
+                    soundAnim.SetBool("Trigger", false);
+                }
+                else if (soundAnim.GetBool("Trigger") == false) {
+                    soundAnim.SetBool("Trigger", true);
+                }
+            }
+        }
+    }
+
+    public void MusicChanger() {
+        RaycastHit hit;
+        Vector2 mousePos = playerInput.GetPointerPos();
+        Ray ray = Camera.main.ScreenPointToRay(mousePos);
+        if (Physics.Raycast(ray, out hit)) {
+            Debug.Log(hit.transform);
+            if (hit.transform.gameObject.tag == "MusicValve") {
+                if (soundAnim.GetBool("Trigger") == true) {
+                    soundAnim.SetBool("Trigger", false);
+                }
+                else if (soundAnim.GetBool("Trigger") == false) {
+                    soundAnim.SetBool("Trigger", true);
+                }
+            }
         }
     }
 }
