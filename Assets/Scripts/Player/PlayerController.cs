@@ -10,12 +10,14 @@ public class PlayerController : MonoBehaviour {
     [Header("Movement")]
     [SerializeField] private float acceleration;
     [SerializeField] private float boostForce;
+    [SerializeField] private float megaboostForce;
     [SerializeField] private float slowForce;
     [SerializeField] private float rotationSlowAmount;
     [SerializeField] private float minForceToExplode;
 
     [Header("Boost Recharge Variables")]
     public float boostDescreaseAmount = 0.5f;
+    public float megaboostDescreaseAmount = 20f;
     public float boostIncreaseAmount = 0.1f;
     public bool canRegenerateBoost = false;
 
@@ -65,36 +67,34 @@ public class PlayerController : MonoBehaviour {
         if (playerInput.IsBoosting() && boostPercent > 0) {
             playerAnimator.isBoosting = true;
             AudioManager.instance.PlayBoosterSoundEffect(); //Plays the booster sound effect
-            boostPercent -= boostDescreaseAmount; //Decreasing boost slider
-            Vector2 dirInput = playerInput.GetPlayerMovement();
-            if (dirInput.magnitude == 0) {
-                Vector3 forceDirection = playerRb.velocity.normalized;
-                playerRb.AddForce(forceDirection * boostForce, ForceMode.Force);
-                goalBoostDirection = forceDirection;
-            } else {
-                Vector3 forceDirection = (cameraController.GetCameraHorizontalFacing() * new Vector3(dirInput.x, 0, dirInput.y)).normalized;
-                playerRb.AddForce(forceDirection * boostForce, ForceMode.Force);
-                goalBoostDirection = forceDirection;
-            }
+            boostPercent -= boostDescreaseAmount;
+            goalBoostDirection = GetCurrentBoostDir();
+            playerRb.AddForce(goalBoostDirection * boostForce, ForceMode.Force);
         } else {
             playerAnimator.isBoosting = false;
             AudioManager.instance.audioSourceBooster.Stop(); //Stops the sound when player is no longer boosting
             if (boostPercent < 100 && canRegenerateBoost) {
-                boostPercent += boostIncreaseAmount;    
-                //StartCoroutine(RegainBoost());
+                boostPercent += boostIncreaseAmount;
             }
         }
     }
-/*
-    IEnumerator RegainBoost() {
-        yield return new WaitForSeconds(3f);
-        while (boostPercent < 100 && !isBoosting) {
-            yield return new WaitForSeconds(0.1f);
-            boostPercent += boostIncreaseAmount;
+    public void Megaboost () {
+        if (boostPercent > megaboostDescreaseAmount) {
+            goalBoostDirection = GetCurrentBoostDir();
+            boostPercent -= megaboostDescreaseAmount;
+            playerRb.AddForce(goalBoostDirection * megaboostForce, ForceMode.Force);
         }
-        isRegenerating = false;
     }
-*/
+
+    private Vector3 GetCurrentBoostDir() {
+        Vector2 dirInput = playerInput.GetPlayerMovement();
+        if (dirInput.magnitude == 0) {
+            return playerRb.velocity.normalized;
+        } else {
+            return (cameraController.GetCameraHorizontalFacing() * new Vector3(dirInput.x, 0, dirInput.y)).normalized;
+        }
+    }
+
     public float GetBoostRemaining() {
         return boostPercent;
     }

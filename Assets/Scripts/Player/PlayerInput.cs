@@ -5,26 +5,31 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class PlayerInput : MonoBehaviour {
-    public PlayerController playerController;
-    public Control controls;
+    private PlayerController playerController;
+    private Control controls;
 
     void Awake() {
         controls = new Control();
+        controls.MainMenuControls.ChangeDifficulty.performed += ctx => MainMenuManager.instance.ChargeStation();
+        controls.PlayerMovement.GrappleStart.performed += ctx => GrappleStart();
+        controls.PlayerMovement.GrappleEnd.performed += ctx => GrappleEnd();
+        controls.PlayerMovement.Megaboost.performed += ctx => Megaboost();
     }
     
     void Start() {
         if (GameManager.instance.currentScene.name == "MainMenu") {
             controls.PlayerMovement.Disable();
             controls.MainMenuControls.Enable();
-            controls.MainMenuControls.ChangeDifficulty.performed += ctx => MainMenuManager.instance.ChargeStation();
         } else if (GameManager.instance.currentScene.name == "PlayerTestScene") {
             controls.PlayerMovement.Enable();
             controls.MainMenuControls.Disable();
-            playerController = GameObject.Find("Player(Clone)").GetComponent<PlayerController>();
-            controls.PlayerMovement.GrappleStart.performed += ctx => playerController.GrappleStart();
-            controls.PlayerMovement.GrappleEnd.performed += ctx => playerController.GrappleEnd();
         }
     }
+    public void NewPlayer(PlayerController player) {
+        playerController = player;
+        controls.PlayerMovement.Enable();
+    }
+
     void OnEnable() {
         controls.Enable();
         Cursor.lockState = CursorLockMode.Confined;
@@ -41,6 +46,19 @@ public class PlayerInput : MonoBehaviour {
 
     public Vector2 GetPointerPos() {
         return controls.CameraControl.CameraControl.ReadValue<Vector2>();
+    }
+
+    // Player Movement Controls: 
+    private void GrappleStart() {
+        playerController.GrappleStart();
+    }
+
+    private void GrappleEnd() {
+        playerController.GrappleEnd();
+    }
+
+    private void Megaboost() {
+        playerController.Megaboost();
     }
 
     public Vector2 GetPlayerMovement() {

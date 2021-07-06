@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour {
     public void SpawnPlayer() {
         playerController = Instantiate(playerPrefab, transform.position, transform.rotation).GetComponent<PlayerController>();
         playerController.playerInput = playerInput;
-        playerInput.playerController = playerController;
+        playerInput.NewPlayer(playerController);
         Debug.Log("SpawnPlayer");
     }
 }

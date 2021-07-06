@@ -57,6 +57,14 @@ public class @Control : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Megaboost"",
+                    ""type"": ""Button"",
+                    ""id"": ""d17a6fe2-5932-4cf3-9efa-7e636598104c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -158,6 +166,17 @@ public class @Control : IInputActionCollection, IDisposable
                     ""action"": ""Slow"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0c39e333-a1d9-4074-91cd-b0fb99477ece"",
+                    ""path"": ""<Keyboard>/alt"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""Megaboost"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -242,6 +261,7 @@ public class @Control : IInputActionCollection, IDisposable
         m_PlayerMovement_GrappleEnd = m_PlayerMovement.FindAction("GrappleEnd", throwIfNotFound: true);
         m_PlayerMovement_Boost = m_PlayerMovement.FindAction("Boost", throwIfNotFound: true);
         m_PlayerMovement_Slow = m_PlayerMovement.FindAction("Slow", throwIfNotFound: true);
+        m_PlayerMovement_Megaboost = m_PlayerMovement.FindAction("Megaboost", throwIfNotFound: true);
         // CameraControl
         m_CameraControl = asset.FindActionMap("CameraControl", throwIfNotFound: true);
         m_CameraControl_CameraControl = m_CameraControl.FindAction("Camera Control", throwIfNotFound: true);
@@ -302,6 +322,7 @@ public class @Control : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerMovement_GrappleEnd;
     private readonly InputAction m_PlayerMovement_Boost;
     private readonly InputAction m_PlayerMovement_Slow;
+    private readonly InputAction m_PlayerMovement_Megaboost;
     public struct PlayerMovementActions
     {
         private @Control m_Wrapper;
@@ -311,6 +332,7 @@ public class @Control : IInputActionCollection, IDisposable
         public InputAction @GrappleEnd => m_Wrapper.m_PlayerMovement_GrappleEnd;
         public InputAction @Boost => m_Wrapper.m_PlayerMovement_Boost;
         public InputAction @Slow => m_Wrapper.m_PlayerMovement_Slow;
+        public InputAction @Megaboost => m_Wrapper.m_PlayerMovement_Megaboost;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -335,6 +357,9 @@ public class @Control : IInputActionCollection, IDisposable
                 @Slow.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnSlow;
                 @Slow.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnSlow;
                 @Slow.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnSlow;
+                @Megaboost.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMegaboost;
+                @Megaboost.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMegaboost;
+                @Megaboost.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMegaboost;
             }
             m_Wrapper.m_PlayerMovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -354,6 +379,9 @@ public class @Control : IInputActionCollection, IDisposable
                 @Slow.started += instance.OnSlow;
                 @Slow.performed += instance.OnSlow;
                 @Slow.canceled += instance.OnSlow;
+                @Megaboost.started += instance.OnMegaboost;
+                @Megaboost.performed += instance.OnMegaboost;
+                @Megaboost.canceled += instance.OnMegaboost;
             }
         }
     }
@@ -440,6 +468,7 @@ public class @Control : IInputActionCollection, IDisposable
         void OnGrappleEnd(InputAction.CallbackContext context);
         void OnBoost(InputAction.CallbackContext context);
         void OnSlow(InputAction.CallbackContext context);
+        void OnMegaboost(InputAction.CallbackContext context);
     }
     public interface ICameraControlActions
     {
