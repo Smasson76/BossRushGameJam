@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour {
     public AudioSource audioSourceMovement;
     public AudioSource audioSourceBooster;
     public AudioSource audioSourceMusic;
+    public AudioSource ambientSourceMusic;
 
     public bool soundOn = true;
 
@@ -128,9 +129,15 @@ public class AudioManager : MonoBehaviour {
         if (GameManager.instance.currentScene.name == "MainMenu" && musicOn) {
             audioSourceMusic.clip = musicAudioClips[0];
             audioSourceMusic.Play();
+            audioSourceMovement.clip = musicAudioClips[1];
+            audioSourceMovement.Play();
+            ambientSourceMusic.clip = musicAudioClips[2];
+            ambientSourceMusic.Play();
         }
         else {
             audioSourceMusic.Stop();
+            audioSourceMovement.Stop();
+            ambientSourceMusic.Stop();
         }
         
         if (GameManager.instance.currentScene.name == "PlayerTestScene" && musicOn) {
