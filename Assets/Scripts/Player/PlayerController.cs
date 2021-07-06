@@ -64,18 +64,17 @@ public class PlayerController : MonoBehaviour {
     }
     
     void PlayerBoost() {
-        if (playerInput.IsBoosting() && boostPercent > 0) {
+        if (playerInput.IsBoosting()) {
             playerAnimator.isBoosting = true;
             AudioManager.instance.PlayBoosterSoundEffect(); //Plays the booster sound effect
-            boostPercent -= boostDescreaseAmount;
             goalBoostDirection = GetCurrentBoostDir();
             playerRb.AddForce(goalBoostDirection * boostForce, ForceMode.Force);
         } else {
             playerAnimator.isBoosting = false;
             AudioManager.instance.audioSourceBooster.Stop(); //Stops the sound when player is no longer boosting
-            if (boostPercent < 100 && canRegenerateBoost) {
-                boostPercent += boostIncreaseAmount;
-            }
+        }
+        if (boostPercent < 100 && canRegenerateBoost) {
+            boostPercent += boostIncreaseAmount;
         }
     }
     public void Megaboost () {
