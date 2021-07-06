@@ -81,13 +81,12 @@ public class MainMenuManager : MonoBehaviour {
         Vector2 mousePos = playerInput.GetPointerPos();
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
         if (Physics.Raycast(ray, out hit)) {
-            Debug.Log(hit.transform);
             if (hit.transform.gameObject.tag == "MusicValve") {
-                if (soundAnim.GetBool("Trigger") == true) {
-                    soundAnim.SetBool("Trigger", false);
+                if (musicAnim.GetBool("Trigger") == true) {
+                    musicAnim.SetBool("Trigger", false);
                 }
-                else if (soundAnim.GetBool("Trigger") == false) {
-                    soundAnim.SetBool("Trigger", true);
+                else if (musicAnim.GetBool("Trigger") == false) {
+                    musicAnim.SetBool("Trigger", true);
                 }
             }
         }
