@@ -64,7 +64,6 @@ public class MainMenuManager : MonoBehaviour {
         Vector2 mousePos = playerInput.GetPointerPos();
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
         if (Physics.Raycast(ray, out hit)) {
-            Debug.Log(hit.transform);
             if (hit.transform.gameObject.tag == "SoundValve") {
                 if (soundAnim.GetBool("Trigger") == true) {
                     soundAnim.SetBool("Trigger", false);
@@ -84,9 +83,13 @@ public class MainMenuManager : MonoBehaviour {
             if (hit.transform.gameObject.tag == "MusicValve") {
                 if (musicAnim.GetBool("Trigger") == true) {
                     musicAnim.SetBool("Trigger", false);
+                    AudioManager.instance.musicOn = false;
+                    AudioManager.instance.MusicSwitcher();
                 }
                 else if (musicAnim.GetBool("Trigger") == false) {
                     musicAnim.SetBool("Trigger", true);
+                    AudioManager.instance.musicOn = true;
+                    AudioManager.instance.MusicSwitcher();
                 }
             }
         }

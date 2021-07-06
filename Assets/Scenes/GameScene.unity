@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5938,6 +5938,70 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 607493662155411931, guid: 98202fb9cb5e7444f8026c4a22f0aea8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1651048676660622120, guid: 98202fb9cb5e7444f8026c4a22f0aea8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1746919328414921832, guid: 98202fb9cb5e7444f8026c4a22f0aea8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2296758170050711428, guid: 98202fb9cb5e7444f8026c4a22f0aea8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3457305527120095617, guid: 98202fb9cb5e7444f8026c4a22f0aea8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4481289526303884030, guid: 98202fb9cb5e7444f8026c4a22f0aea8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4509761092492101847, guid: 98202fb9cb5e7444f8026c4a22f0aea8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4541159269539826949, guid: 98202fb9cb5e7444f8026c4a22f0aea8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658156331787370797, guid: 98202fb9cb5e7444f8026c4a22f0aea8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5580383203391048268, guid: 98202fb9cb5e7444f8026c4a22f0aea8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615723404890143279, guid: 98202fb9cb5e7444f8026c4a22f0aea8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5982939702775217066, guid: 98202fb9cb5e7444f8026c4a22f0aea8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618998310539054869, guid: 98202fb9cb5e7444f8026c4a22f0aea8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6672288213427074537, guid: 98202fb9cb5e7444f8026c4a22f0aea8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6913359208949831630, guid: 98202fb9cb5e7444f8026c4a22f0aea8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7200196359085228406, guid: 98202fb9cb5e7444f8026c4a22f0aea8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8290380868838993595, guid: 98202fb9cb5e7444f8026c4a22f0aea8, type: 3}
       propertyPath: m_Name
       value: Boss1_v1
@@ -5985,6 +6049,14 @@ PrefabInstance:
     - target: {fileID: 8666766082073687041, guid: 98202fb9cb5e7444f8026c4a22f0aea8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750816405635689218, guid: 98202fb9cb5e7444f8026c4a22f0aea8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9052166365268089159, guid: 98202fb9cb5e7444f8026c4a22f0aea8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98202fb9cb5e7444f8026c4a22f0aea8, type: 3}

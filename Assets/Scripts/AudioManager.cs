@@ -9,6 +9,9 @@ public class AudioManager : MonoBehaviour {
     public AudioSource audioSourceQuickSounds;
     public AudioSource audioSourceMovement;
     public AudioSource audioSourceBooster;
+    public AudioSource audioSourceMusic;
+
+    public bool soundOn = true;
 
     [Header("Grapple Sound Manager")]
     public AudioClip[] grappleAudioClips;
@@ -41,6 +44,11 @@ public class AudioManager : MonoBehaviour {
     public int maxImpactPitch = 3;
     public float impactVolume = 0.3f;
 
+    [Header("Music Manager")]
+    public AudioClip[] musicAudioClips;
+    public float musicVolume = 0.3f;
+    public bool musicOn = true;
+
     void Awake() {
         if (instance == null) {
             DontDestroyOnLoad(gameObject);
@@ -51,22 +59,30 @@ public class AudioManager : MonoBehaviour {
         }
     }
 
+    void Start() {
+        MusicSwitcher();
+    }
+
     public void PlayGrappleSoundEffect() {
-        audioSourceQuickSounds.clip = grappleAudioClips[Random.Range(0, grappleAudioClips.Length)];
-        audioSourceQuickSounds.pitch = Random.Range(minGrapplePitch, maxGrapplePitch);
-        audioSourceQuickSounds.volume = grappleVolume;
-        audioSourceQuickSounds.Play();
+        if (soundOn) {
+            audioSourceQuickSounds.clip = grappleAudioClips[Random.Range(0, grappleAudioClips.Length)];
+            audioSourceQuickSounds.pitch = Random.Range(minGrapplePitch, maxGrapplePitch);
+            audioSourceQuickSounds.volume = grappleVolume;
+            audioSourceQuickSounds.Play();
+        }
     }
 
     public void PlayReelReturnSoundEffect() {
-        audioSourceQuickSounds.clip = reelReturnAudioClips[Random.Range(0, reelReturnAudioClips.Length)];
-        audioSourceQuickSounds.pitch = Random.Range(minReelReturnPitch, maxReelReturnPitch);
-        audioSourceQuickSounds.volume = reelReturnVolume;
-        audioSourceQuickSounds.Play();
+        if (soundOn) {
+            audioSourceQuickSounds.clip = reelReturnAudioClips[Random.Range(0, reelReturnAudioClips.Length)];
+            audioSourceQuickSounds.pitch = Random.Range(minReelReturnPitch, maxReelReturnPitch);
+            audioSourceQuickSounds.volume = reelReturnVolume;
+            audioSourceQuickSounds.Play();
+        }
     }
 
     public void PlayBoosterSoundEffect() {
-        StartCoroutine(PlayBoosterSound());
+        if (soundOn) StartCoroutine(PlayBoosterSound());
     }
 
     IEnumerator PlayBoosterSound() {
@@ -81,7 +97,7 @@ public class AudioManager : MonoBehaviour {
     }    
 
     public void PlayerMovementSoundEffect() {
-        StartCoroutine(PlayMovementSound());
+        if (soundOn) StartCoroutine(PlayMovementSound());
     }
 
     IEnumerator PlayMovementSound() {
@@ -96,9 +112,29 @@ public class AudioManager : MonoBehaviour {
     }
 
     public void PlayImpactSoundEffect() {
-        audioSourceQuickSounds.clip = impactAudioClips[Random.Range(0, impactAudioClips.Length)];
-        audioSourceQuickSounds.pitch = Random.Range(minImpactPitch, maxImpactPitch);
-        audioSourceQuickSounds.volume = impactVolume;
-        audioSourceQuickSounds.Play();
+        if (soundOn) {
+            audioSourceQuickSounds.clip = impactAudioClips[Random.Range(0, impactAudioClips.Length)];
+            audioSourceQuickSounds.pitch = Random.Range(minImpactPitch, maxImpactPitch);
+            audioSourceQuickSounds.volume = impactVolume;
+            audioSourceQuickSounds.Play();
+        }
+    }
+
+    public void MusicSwitcher() {
+        if (GameManager.instance.currentScene.name == "MainMenu" && musicOn) {
+            audioSourceMusic.clip = musicAudioClips[0];
+            audioSourceMusic.Play();
+        }
+        else {
+            audioSourceMusic.Stop();
+        }
+        
+        if (GameManager.instance.currentScene.name == "PlayerTestScene" && musicOn) {
+            //audioSourceMusic.clip = musicAudioClips[1];
+            //audioSourceMusic.Play();
+        }
+        else {
+            //audioSourceMusic.Stop();
+        }
     }
 }
