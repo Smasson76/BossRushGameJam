@@ -16,13 +16,13 @@ public class PlayerInput : MonoBehaviour {
         if (GameManager.instance.currentScene.name == "MainMenu") {
             controls.PlayerMovement.Disable();
             controls.MainMenuControls.Enable();
+            controls.MainMenuControls.ChangeDifficulty.performed += ctx => MainMenuManager.instance.ChargeStation();
         } else if (GameManager.instance.currentScene.name == "PlayerTestScene") {
             controls.PlayerMovement.Enable();
             controls.MainMenuControls.Disable();
             playerController = GameObject.Find("Player(Clone)").GetComponent<PlayerController>();
             controls.PlayerMovement.GrappleStart.performed += ctx => playerController.GrappleStart();
             controls.PlayerMovement.GrappleEnd.performed += ctx => playerController.GrappleEnd();
-            controls.MainMenuControls.ChangeDifficulty.performed += ctx => MainMenuManager.instance.ChargeStation();
         }
     }
     void OnEnable() {
