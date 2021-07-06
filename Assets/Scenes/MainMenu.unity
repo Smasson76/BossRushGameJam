@@ -7205,8 +7205,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1687285708}
-  - component: {fileID: 1687285709}
   - component: {fileID: 1687285710}
+  - component: {fileID: 1687285709}
   m_Layer: 0
   m_Name: SettingSound
   m_TagString: SoundValve
@@ -7241,7 +7241,7 @@ Animator:
   m_GameObject: {fileID: 1687285707}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 676021a99295a424d8a9f1b456d384f5, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5b3bab5d8d5ecb64db11df93e561fc72, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
