@@ -74,4 +74,12 @@ public class PlayerInput : MonoBehaviour {
     public bool IsSlowing() {
         return controls.PlayerMovement.Slow.ReadValue<float>() != 0;
     }
+
+    public bool DirectCameraControl() {
+        return controls.PlayerMovement.DirectCameraControl.ReadValue<float>() != 0;
+    }
+
+    public Vector2 DirectCameraControlDelta() {
+        return controls.PlayerMovement.DirectCameraControlDelta.ReadValue<Vector2>();
+    }
 }

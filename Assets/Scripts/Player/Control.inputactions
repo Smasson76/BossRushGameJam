@@ -52,6 +52,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
+                },
+                {
+                    "name": "DirectCameraControl",
+                    "type": "Value",
+                    "id": "55db1fbf-5fbf-42ec-8d73-b5bf416c0d24",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "DirectCameraControlDelta",
+                    "type": "Value",
+                    "id": "31b97224-5c9d-4f03-b1ae-9da3bfee9677",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -162,6 +178,28 @@
                     "processors": "",
                     "groups": "Keyboard and mouse",
                     "action": "Megaboost",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5388da43-af2b-4085-889a-bd2cbd1a9803",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DirectCameraControl",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b71787db-5e01-48b0-8d2d-4b86fe7093e5",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DirectCameraControlDelta",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

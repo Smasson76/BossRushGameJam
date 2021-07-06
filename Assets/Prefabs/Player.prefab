@@ -180,6 +180,7 @@ MonoBehaviour:
   cameraMaxSpeed: 100
   cameraDeadZone: 100
   cameraGradientSize: 100
+  cameraDirectControlSensitivity: 0.5
   playerInput: {fileID: 0}
   gameManager: {fileID: 0}
 --- !u!114 &9019689969792344787

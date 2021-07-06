@@ -65,6 +65,22 @@ public class @Control : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""DirectCameraControl"",
+                    ""type"": ""Value"",
+                    ""id"": ""55db1fbf-5fbf-42ec-8d73-b5bf416c0d24"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""DirectCameraControlDelta"",
+                    ""type"": ""Value"",
+                    ""id"": ""31b97224-5c9d-4f03-b1ae-9da3bfee9677"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -177,6 +193,28 @@ public class @Control : IInputActionCollection, IDisposable
                     ""action"": ""Megaboost"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5388da43-af2b-4085-889a-bd2cbd1a9803"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DirectCameraControl"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b71787db-5e01-48b0-8d2d-4b86fe7093e5"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DirectCameraControlDelta"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -262,6 +300,8 @@ public class @Control : IInputActionCollection, IDisposable
         m_PlayerMovement_Boost = m_PlayerMovement.FindAction("Boost", throwIfNotFound: true);
         m_PlayerMovement_Slow = m_PlayerMovement.FindAction("Slow", throwIfNotFound: true);
         m_PlayerMovement_Megaboost = m_PlayerMovement.FindAction("Megaboost", throwIfNotFound: true);
+        m_PlayerMovement_DirectCameraControl = m_PlayerMovement.FindAction("DirectCameraControl", throwIfNotFound: true);
+        m_PlayerMovement_DirectCameraControlDelta = m_PlayerMovement.FindAction("DirectCameraControlDelta", throwIfNotFound: true);
         // CameraControl
         m_CameraControl = asset.FindActionMap("CameraControl", throwIfNotFound: true);
         m_CameraControl_CameraControl = m_CameraControl.FindAction("Camera Control", throwIfNotFound: true);
@@ -323,6 +363,8 @@ public class @Control : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerMovement_Boost;
     private readonly InputAction m_PlayerMovement_Slow;
     private readonly InputAction m_PlayerMovement_Megaboost;
+    private readonly InputAction m_PlayerMovement_DirectCameraControl;
+    private readonly InputAction m_PlayerMovement_DirectCameraControlDelta;
     public struct PlayerMovementActions
     {
         private @Control m_Wrapper;
@@ -333,6 +375,8 @@ public class @Control : IInputActionCollection, IDisposable
         public InputAction @Boost => m_Wrapper.m_PlayerMovement_Boost;
         public InputAction @Slow => m_Wrapper.m_PlayerMovement_Slow;
         public InputAction @Megaboost => m_Wrapper.m_PlayerMovement_Megaboost;
+        public InputAction @DirectCameraControl => m_Wrapper.m_PlayerMovement_DirectCameraControl;
+        public InputAction @DirectCameraControlDelta => m_Wrapper.m_PlayerMovement_DirectCameraControlDelta;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -360,6 +404,12 @@ public class @Control : IInputActionCollection, IDisposable
                 @Megaboost.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMegaboost;
                 @Megaboost.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMegaboost;
                 @Megaboost.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMegaboost;
+                @DirectCameraControl.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnDirectCameraControl;
+                @DirectCameraControl.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnDirectCameraControl;
+                @DirectCameraControl.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnDirectCameraControl;
+                @DirectCameraControlDelta.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnDirectCameraControlDelta;
+                @DirectCameraControlDelta.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnDirectCameraControlDelta;
+                @DirectCameraControlDelta.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnDirectCameraControlDelta;
             }
             m_Wrapper.m_PlayerMovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -382,6 +432,12 @@ public class @Control : IInputActionCollection, IDisposable
                 @Megaboost.started += instance.OnMegaboost;
                 @Megaboost.performed += instance.OnMegaboost;
                 @Megaboost.canceled += instance.OnMegaboost;
+                @DirectCameraControl.started += instance.OnDirectCameraControl;
+                @DirectCameraControl.performed += instance.OnDirectCameraControl;
+                @DirectCameraControl.canceled += instance.OnDirectCameraControl;
+                @DirectCameraControlDelta.started += instance.OnDirectCameraControlDelta;
+                @DirectCameraControlDelta.performed += instance.OnDirectCameraControlDelta;
+                @DirectCameraControlDelta.canceled += instance.OnDirectCameraControlDelta;
             }
         }
     }
@@ -469,6 +525,8 @@ public class @Control : IInputActionCollection, IDisposable
         void OnBoost(InputAction.CallbackContext context);
         void OnSlow(InputAction.CallbackContext context);
         void OnMegaboost(InputAction.CallbackContext context);
+        void OnDirectCameraControl(InputAction.CallbackContext context);
+        void OnDirectCameraControlDelta(InputAction.CallbackContext context);
     }
     public interface ICameraControlActions
     {

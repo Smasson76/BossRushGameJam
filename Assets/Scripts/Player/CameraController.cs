@@ -21,6 +21,7 @@ public class CameraController : MonoBehaviour {
     [SerializeField] private float cameraMaxSpeed;
     [SerializeField] private float cameraDeadZone;
     [SerializeField] private float cameraGradientSize;
+    [SerializeField] private float cameraDirectControlSensitivity;
 
     private Transform lookTarget;
     private float lookTargetHeight;
@@ -43,7 +44,12 @@ public class CameraController : MonoBehaviour {
 
     void LateUpdate() {
         PositionLookTarget();
-        CameraMove();
+        if (playerInput.DirectCameraControl()) {
+            CameraMoveDirect();
+        } else {
+            CameraMoveStandard();
+        }
+        PositionCamera();
         float targetFOV = Mathf.Clamp(UtilityFunctions.Remap(playerRb.velocity.magnitude, 0, cameraDistanceVelocityLimit, minFOV, maxFOV), minFOV, maxFOV);
         Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetFOV, Time.deltaTime * cameraLerpSpeed);
     }
@@ -54,7 +60,7 @@ public class CameraController : MonoBehaviour {
         lookTarget.position = player.transform.position + Vector3.up * lookTargetHeight;
     }
 
-    void CameraMove() {
+    void CameraMoveStandard() {
         Vector2 val = playerInput.GetPointerPos();
         // Camera movement horizontally
         val.x -= Screen.width/2;
@@ -64,9 +70,15 @@ public class CameraController : MonoBehaviour {
         cameraPos.x += val.x * Time.deltaTime;
 
         // Camera movement vertically
-        cameraPos.y = UtilityFunctions.Remap(val.y, Screen.height, 0, cameraMinTilt, cameraMaxTilt);
+        cameraPos.y = Mathf.Lerp(cameraPos.y, UtilityFunctions.Remap(val.y, Screen.height, 0, cameraMinTilt, cameraMaxTilt), Time.deltaTime * cameraLerpSpeed);
         cameraPos.y = Mathf.Clamp(cameraPos.y, -cameraMaxTilt, cameraMaxTilt);
-        PositionCamera();
+    }
+
+    void CameraMoveDirect() {
+        Vector2 val = playerInput.DirectCameraControlDelta();
+        Debug.Log(val);
+        cameraPos.x += val.x * cameraDirectControlSensitivity;
+        cameraPos.y = Mathf.Clamp(cameraPos.y - val.y * cameraDirectControlSensitivity, cameraMinTilt, cameraMaxTilt);
     }
 
     void PositionCamera() {
