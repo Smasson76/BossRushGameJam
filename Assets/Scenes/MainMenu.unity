@@ -353,7 +353,7 @@ Cloth:
   m_GameObject: {fileID: 41378815}
   m_Enabled: 1
   m_StretchingStiffness: 1
-  m_BendingStiffness: 0
+  m_BendingStiffness: 0.5
   m_UseTethers: 1
   m_UseGravity: 1
   m_Damping: 0
@@ -7490,7 +7490,7 @@ Cloth:
   m_GameObject: {fileID: 1089123977}
   m_Enabled: 1
   m_StretchingStiffness: 0.93
-  m_BendingStiffness: 0
+  m_BendingStiffness: 0.5
   m_UseTethers: 1
   m_UseGravity: 1
   m_Damping: 0
@@ -7874,7 +7874,7 @@ Cloth:
   m_GameObject: {fileID: 1095726111}
   m_Enabled: 1
   m_StretchingStiffness: 0.99
-  m_BendingStiffness: 0
+  m_BendingStiffness: 0.5
   m_UseTethers: 1
   m_UseGravity: 1
   m_Damping: 0
@@ -8249,7 +8249,7 @@ Cloth:
   m_GameObject: {fileID: 1121134824}
   m_Enabled: 1
   m_StretchingStiffness: 0.99
-  m_BendingStiffness: 0
+  m_BendingStiffness: 0.41
   m_UseTethers: 1
   m_UseGravity: 1
   m_Damping: 0
@@ -8919,7 +8919,7 @@ Cloth:
   m_GameObject: {fileID: 1173941488}
   m_Enabled: 1
   m_StretchingStiffness: 1
-  m_BendingStiffness: 0
+  m_BendingStiffness: 0.5
   m_UseTethers: 1
   m_UseGravity: 1
   m_Damping: 0
@@ -14332,7 +14332,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2067483884}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.8298, y: -2.7931392, z: -6.459976}
+  m_LocalPosition: {x: 21.16, y: -2.7931392, z: -6.459976}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1121134829}
