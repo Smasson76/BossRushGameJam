@@ -97,7 +97,6 @@ public class AudioManager : MonoBehaviour {
 
         if (audioSourceBooster.isPlaying == false) {
             audioSourceBooster.clip = boosterBurnAudioClips[Random.Range(0, boosterBurnAudioClips.Length)];
-            //audioSourceBooster.pitch = Random.Range(minBoosterPitch, maxBoosterPitch);
             audioSourceBooster.Play();
             yield return new WaitForSeconds(boosterBurnAudioClips.Length);
         }
@@ -109,8 +108,8 @@ public class AudioManager : MonoBehaviour {
 
     IEnumerator PlayMovementSound() {
         audioSourceMovement.clip = movementAudioClips;
-        audioSourceMovement.pitch = Random.Range(minMovementPitch, maxMovementPitch);
         audioSourceMovement.volume = movementVolume;
+        
 
         if (audioSourceMovement.isPlaying == false) {
             audioSourceMovement.Play();

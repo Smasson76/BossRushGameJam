@@ -271,6 +271,33 @@ public class @Control : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""TopViewCamControl"",
+            ""id"": ""b0a73a7e-e5a2-4afa-8127-d380fe9baf10"",
+            ""actions"": [
+                {
+                    ""name"": ""Controls"",
+                    ""type"": ""Button"",
+                    ""id"": ""36d6ef1c-bb1b-4c9d-92d1-0384ed57033b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""c36dda0a-3518-40cb-9735-9dd690e6b89a"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""Controls"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -308,6 +335,9 @@ public class @Control : IInputActionCollection, IDisposable
         // MainMenuControls
         m_MainMenuControls = asset.FindActionMap("MainMenuControls", throwIfNotFound: true);
         m_MainMenuControls_ChangeDifficulty = m_MainMenuControls.FindAction("ChangeDifficulty", throwIfNotFound: true);
+        // TopViewCamControl
+        m_TopViewCamControl = asset.FindActionMap("TopViewCamControl", throwIfNotFound: true);
+        m_TopViewCamControl_Controls = m_TopViewCamControl.FindAction("Controls", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -508,6 +538,39 @@ public class @Control : IInputActionCollection, IDisposable
         }
     }
     public MainMenuControlsActions @MainMenuControls => new MainMenuControlsActions(this);
+
+    // TopViewCamControl
+    private readonly InputActionMap m_TopViewCamControl;
+    private ITopViewCamControlActions m_TopViewCamControlActionsCallbackInterface;
+    private readonly InputAction m_TopViewCamControl_Controls;
+    public struct TopViewCamControlActions
+    {
+        private @Control m_Wrapper;
+        public TopViewCamControlActions(@Control wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Controls => m_Wrapper.m_TopViewCamControl_Controls;
+        public InputActionMap Get() { return m_Wrapper.m_TopViewCamControl; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(TopViewCamControlActions set) { return set.Get(); }
+        public void SetCallbacks(ITopViewCamControlActions instance)
+        {
+            if (m_Wrapper.m_TopViewCamControlActionsCallbackInterface != null)
+            {
+                @Controls.started -= m_Wrapper.m_TopViewCamControlActionsCallbackInterface.OnControls;
+                @Controls.performed -= m_Wrapper.m_TopViewCamControlActionsCallbackInterface.OnControls;
+                @Controls.canceled -= m_Wrapper.m_TopViewCamControlActionsCallbackInterface.OnControls;
+            }
+            m_Wrapper.m_TopViewCamControlActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Controls.started += instance.OnControls;
+                @Controls.performed += instance.OnControls;
+                @Controls.canceled += instance.OnControls;
+            }
+        }
+    }
+    public TopViewCamControlActions @TopViewCamControl => new TopViewCamControlActions(this);
     private int m_KeyboardandmouseSchemeIndex = -1;
     public InputControlScheme KeyboardandmouseScheme
     {
@@ -535,5 +598,9 @@ public class @Control : IInputActionCollection, IDisposable
     public interface IMainMenuControlsActions
     {
         void OnChangeDifficulty(InputAction.CallbackContext context);
+    }
+    public interface ITopViewCamControlActions
+    {
+        void OnControls(InputAction.CallbackContext context);
     }
 }

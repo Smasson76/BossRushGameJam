@@ -258,6 +258,33 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "TopViewCamControl",
+            "id": "b0a73a7e-e5a2-4afa-8127-d380fe9baf10",
+            "actions": [
+                {
+                    "name": "Controls",
+                    "type": "Button",
+                    "id": "36d6ef1c-bb1b-4c9d-92d1-0384ed57033b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c36dda0a-3518-40cb-9735-9dd690e6b89a",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and mouse",
+                    "action": "Controls",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour {
     public Slider boostSlider;
     public GameObject playerPrefab;
     public PlayerInput playerInput;
-
+    
     public enum SceneType {
         mainMenu,
         playerTestScene,
