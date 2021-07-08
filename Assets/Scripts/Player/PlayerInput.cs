@@ -30,9 +30,9 @@ public class PlayerInput : MonoBehaviour {
             controls.PlayerSpawnerControls.Disable();
             break;
         case GameManager.SceneType.playerTestScene:
-            controls.PlayerMovement.Enable();
+            controls.PlayerMovement.Disable();
             controls.MainMenuControls.Disable();
-            controls.PlayerSpawnerControls.Disable();
+            controls.PlayerSpawnerControls.Enable();
             break;
         case GameManager.SceneType.gameScene:
             controls.PlayerMovement.Disable();
@@ -58,6 +58,7 @@ public class PlayerInput : MonoBehaviour {
 
     public void PlayerDeath() {
         controls.PlayerMovement.Disable();
+        controls.PlayerSpawnerControls.Enable();
     }
 
     public Vector2 GetPointerPos() {
@@ -84,6 +85,7 @@ public class PlayerInput : MonoBehaviour {
     // Spawning Controls:
     private void SpawnPlayer() {
         GameManager.instance.SpawnPlayer();
+        controls.PlayerSpawnerControls.Disable();
     }
 
     // Player Movement Controls: 

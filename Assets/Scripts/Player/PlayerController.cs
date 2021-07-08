@@ -175,6 +175,7 @@ public class PlayerController : MonoBehaviour {
         Destroy(sphere.GetComponent<CollisionDetection>());
         Destroy(this.gameObject);
         GameManager.instance.SpawnPlayer();
+        GameManager.instance.canSpawnPlayer = true;
     }
 
     public Vector3 GetPlayerVelocity() {

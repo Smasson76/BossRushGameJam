@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour {
     public PlayerInput playerInput;
 
     GameObject spawnCam;
+
+    public bool canSpawnPlayer;
     
     public enum SceneType {
         mainMenu,
@@ -45,35 +47,36 @@ public class GameManager : MonoBehaviour {
     }
 
     void Start() {
-        if (GetCurrentScene() == SceneType.gameScene) {
-            SpawnPlayer();
+        if (GetCurrentScene() == SceneType.playerTestScene) {
+            spawnCam.SetActive(true);
+            canSpawnPlayer = true;
         }
     }
 
     void Update() {
         if (boostSlider == null) return;
-        boostSlider.value = playerController.GetBoostRemaining();
+        //boostSlider.value = playerController.GetBoostRemaining();
     }
 
     public void SpawnPlayer() {
         spawnCam.SetActive(true);
-        Debug.Log("SpawnPlayer Function Called");
         RaycastHit hit;
         Vector2 mousePos = playerInput.GetPointerPos();
-        Ray ray = Camera.main.ScreenPointToRay(mousePos);
+        Ray ray = spawnCam.GetComponent<Camera>().ScreenPointToRay(mousePos);
         if (Physics.Raycast(ray, out hit)) {
-            Debug.Log(hit.transform);
             if (hit.transform.gameObject.tag == "Ground") {
-                Debug.Log("Ground hit");
+                if (canSpawnPlayer) {
+                    canSpawnPlayer = false;
+                    spawnCam.SetActive(false);
+                    Vector3 spawnPoint = hit.transform.position;
+                    currentPlayer = Instantiate(playerPrefab, hit.point, Quaternion.identity);
+                    playerController = currentPlayer.GetComponent<PlayerController>();
+                    playerController.playerInput = playerInput;
+                    playerInput.NewPlayer(playerController);
+                    if (OnPlayerSpawn != null) OnPlayerSpawn();
+                }
             }
         }
-
-
-        /*currentPlayer = Instantiate(playerPrefab, transform.position, transform.rotation);
-        playerController = currentPlayer.GetComponent<PlayerController>();
-        playerController.playerInput = playerInput;
-        playerInput.NewPlayer(playerController);
-        if (OnPlayerSpawn != null) OnPlayerSpawn();*/
     }
 
     public SceneType GetCurrentScene() {
