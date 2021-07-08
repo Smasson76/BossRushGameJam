@@ -43,21 +43,21 @@ public class MainMenuManager : MonoBehaviour {
 
     void SwitchDifficulty(int difficultyChange) {
         if (difficultyChange == 1) {
-            AudioManager.instance.MenuSounds(1);
+            //Play difficulty menu sound here
             levelDifficultyObjects[0].SetActive(true);
             levelDifficultyObjects[1].SetActive(false);
             levelDifficultyObjects[2].SetActive(false);
             difficulty = 2;
         }
         else if (difficultyChange == 2) {
-            AudioManager.instance.MenuSounds(2);
+            //Play difficulty menu sound here
             levelDifficultyObjects[0].SetActive(false);
             levelDifficultyObjects[1].SetActive(true);
             levelDifficultyObjects[2].SetActive(false);
             difficulty = 3;
         }
         else if (difficultyChange == 3) {
-            AudioManager.instance.MenuSounds(3);
+            //Play difficulty menu sound here
             levelDifficultyObjects[0].SetActive(false);
             levelDifficultyObjects[1].SetActive(false);
             levelDifficultyObjects[2].SetActive(true);
@@ -72,14 +72,14 @@ public class MainMenuManager : MonoBehaviour {
         if (Physics.Raycast(ray, out hit)) {
             if (hit.transform.gameObject.tag == "SoundValve") {
                 if (soundAnim.GetBool("Trigger") == true) {
-                    AudioManager.instance.soundOn = false;
+                    //Sounds should be off here
                     soundAnim.SetBool("Trigger", false);
                 }
                 else if (soundAnim.GetBool("Trigger") == false) {
-                    AudioManager.instance.soundOn = true;
+                    //Sounds should be on here
                     soundAnim.SetBool("Trigger", true);
                 }
-                AudioManager.instance.MenuSounds(4);
+                //Play a sound here when the sound changer is clicked
             }
         }
     }
@@ -92,15 +92,15 @@ public class MainMenuManager : MonoBehaviour {
             if (hit.transform.gameObject.tag == "MusicValve") {
                 if (musicAnim.GetBool("Trigger") == true) {
                     musicAnim.SetBool("Trigger", false);
-                    AudioManager.instance.musicOn = false;
-                    AudioManager.instance.MusicSwitcher();
+                    //Playing an audiosound here
+                    //Setting music audio off here
                 }
                 else if (musicAnim.GetBool("Trigger") == false) {
                     musicAnim.SetBool("Trigger", true);
-                    AudioManager.instance.musicOn = true;
-                    AudioManager.instance.MusicSwitcher();
+                    //Playing an audiosound here
+                    //Setting music audio on here
                 }
-                AudioManager.instance.MenuSounds(4);
+                //Playing a sound here when music changer is clicked
             }
         }
     }
@@ -113,7 +113,7 @@ public class MainMenuManager : MonoBehaviour {
             if (hit.transform.gameObject.tag == "ExitBox") {
                 quitAnim.SetTrigger("TriggerExitBox");
                 Application.Quit();
-                //AudioManager.instance.MenuSounds(4);
+                //Playing an audio sound here
             }
         }
     }

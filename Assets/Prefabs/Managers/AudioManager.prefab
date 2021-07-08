@@ -279,7 +279,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 129395800956638946}
-  - component: {fileID: 129395800956638972}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -308,77 +307,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &129395800956638972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129395800956638947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bab147588eaafc445a252bffecc1f71d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSourceQuickSounds: {fileID: 0}
-  audioSourceMovement: {fileID: 0}
-  audioSourceBooster: {fileID: 0}
-  audioSourceMusic: {fileID: 0}
-  audioSourceWind: {fileID: 0}
-  audioSourceSteam: {fileID: 0}
-  audioSourceHumBuz: {fileID: 0}
-  soundOn: 1
-  grappleAudioClips:
-  - {fileID: 8300000, guid: 8b8e3451c0e7e804cbd4454db8796ca9, type: 3}
-  - {fileID: 8300000, guid: 2d4ee775d893989478c70baad762241e, type: 3}
-  - {fileID: 8300000, guid: 47f776daa77770547baad6f4c7a7ff05, type: 3}
-  - {fileID: 8300000, guid: 23bf2216fd8ef1a4ca532089384c10be, type: 3}
-  minGrapplePitch: 1
-  maxGrapplePitch: 3
-  grappleVolume: 0.3
-  reelReturnAudioClips:
-  - {fileID: 8300000, guid: d2902e3a90ad69e4b99418783cef31c6, type: 3}
-  - {fileID: 8300000, guid: 16dfadb17a874d44e8087da59081ca55, type: 3}
-  - {fileID: 8300000, guid: 8abc7e46f5719234bb66f4b643b4369f, type: 3}
-  - {fileID: 8300000, guid: 48303dcf1ef85fe4da62ef661f17b27b, type: 3}
-  minReelReturnPitch: 1
-  maxReelReturnPitch: 3
-  reelReturnVolume: 0.3
-  boosterAudioClips:
-  - {fileID: 8300000, guid: b135d7c93d2217644ba61fd3f8c291ee, type: 3}
-  - {fileID: 8300000, guid: 4422bf78ee489f1438ea6becc2f0492a, type: 3}
-  - {fileID: 8300000, guid: 4422bf78ee489f1438ea6becc2f0492a, type: 3}
-  - {fileID: 8300000, guid: 73a2dcc86e9da8c48bcc3a4764c7aab8, type: 3}
-  boosterBurnAudioClips:
-  - {fileID: 8300000, guid: 4c955d30997a81d4181696a2f35a15d3, type: 3}
-  - {fileID: 8300000, guid: 1c1013bd9a7788840b835848f70292bc, type: 3}
-  - {fileID: 8300000, guid: 5ff16133782399a4aacf6e893c9df992, type: 3}
-  boosterVolume: 0.3
-  movementAudioClips: {fileID: 8300000, guid: 57691e4332dedd1498d7b10f65b6fb4f, type: 3}
-  minMovementPitch: 1
-  maxMovementPitch: 1
-  movementVolume: 0.2
-  impactAudioClips:
-  - {fileID: 8300000, guid: 9fc0d2d0a807f6d4890fd399f3af01cd, type: 3}
-  - {fileID: 8300000, guid: adc55df8bd1c42249bd06a70b119845a, type: 3}
-  - {fileID: 8300000, guid: f5793621d3fbaca4c8409ed053864d13, type: 3}
-  - {fileID: 8300000, guid: e5fb9ba753f1301419d40b7e263b92f0, type: 3}
-  minImpactPitch: 1
-  maxImpactPitch: 3
-  impactVolume: 0.3
-  menuAudioClips:
-  - {fileID: 8300000, guid: 558eb40b23111064086c3bf62ce8e72b, type: 3}
-  - {fileID: 8300000, guid: f86749282df972d43893ae98c5133999, type: 3}
-  - {fileID: 8300000, guid: b202f9938d1c9434c94ccdc9c1b9a2d2, type: 3}
-  - {fileID: 8300000, guid: 408d4dca152b1f54ea9b70f8218154e1, type: 3}
-  menuSoundVolume: 0.3
-  musicAudioClips:
-  - {fileID: 8300000, guid: 9161e6a697b2b2948a3f2e006ce1bbf7, type: 3}
-  - {fileID: 8300000, guid: c98b82cc06789744d81b385d1b057992, type: 3}
-  - {fileID: 8300000, guid: c9f8e2e4200f3cc4fa4dfb8db7561e7a, type: 3}
-  - {fileID: 8300000, guid: 612731bddb6fde3499585efc025f1c43, type: 3}
-  musicVolume: 0.3
-  musicOn: 1
 --- !u!1 &869511880135613522
 GameObject:
   m_ObjectHideFlags: 0
