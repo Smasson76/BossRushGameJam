@@ -13,6 +13,7 @@ public class PlayerInput : MonoBehaviour {
         controls.MainMenuControls.ChangeDifficulty.performed += ctx => ChargeStation();
         controls.MainMenuControls.ChangeDifficulty.performed += ctx => SoundChanger();
         controls.MainMenuControls.ChangeDifficulty.performed += ctx => MusicChanger();
+        controls.MainMenuControls.ChangeDifficulty.performed += ctx => ExitGame();
 
         controls.PlayerMovement.GrappleStart.performed += ctx => GrappleStart();
         controls.PlayerMovement.GrappleEnd.performed += ctx => GrappleEnd();
@@ -65,6 +66,10 @@ public class PlayerInput : MonoBehaviour {
 
     private void MusicChanger() {
         MainMenuManager.instance.MusicChanger();
+    }
+
+    private void ExitGame() {
+        MainMenuManager.instance.ExitGame();
     }
 
     // Player Movement Controls: 

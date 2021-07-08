@@ -7,6 +7,7 @@ TagManager:
   - ChargeStation
   - SoundValve
   - MusicValve
+  - ExitBox
   layers:
   - Default
   - TransparentFX

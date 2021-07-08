@@ -16,6 +16,8 @@ public class MainMenuManager : MonoBehaviour {
     Animator soundAnim;
     public GameObject musicValve;
     Animator musicAnim;
+    public GameObject quitBox;
+    Animator quitAnim;
     
     void Awake() {
         if (instance == null) instance = this;
@@ -23,6 +25,7 @@ public class MainMenuManager : MonoBehaviour {
         playerInput = GameObject.Find("GameManager").GetComponent<PlayerInput>();
         soundAnim = soundValve.GetComponent<Animator>();
         musicAnim = musicValve.GetComponent<Animator>();
+        quitAnim = quitBox.GetComponent<Animator>();
         soundAnim.SetBool("Trigger", true);
         musicAnim.SetBool("Trigger", true);
     }
@@ -98,6 +101,19 @@ public class MainMenuManager : MonoBehaviour {
                     AudioManager.instance.MusicSwitcher();
                 }
                 AudioManager.instance.MenuSounds(4);
+            }
+        }
+    }
+
+    public void ExitGame() {
+        RaycastHit hit;
+        Vector2 mousePos = playerInput.GetPointerPos();
+        Ray ray = Camera.main.ScreenPointToRay(mousePos);
+        if (Physics.Raycast(ray, out hit)) {
+            if (hit.transform.gameObject.tag == "ExitBox") {
+                quitAnim.SetTrigger("TriggerExitBox");
+                Application.Quit();
+                //AudioManager.instance.MenuSounds(4);
             }
         }
     }

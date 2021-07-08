@@ -14220,9 +14220,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2051461057}
   - component: {fileID: 2051461058}
+  - component: {fileID: 2051461059}
   m_Layer: 0
   m_Name: ExitBox
-  m_TagString: Untagged
+  m_TagString: ExitBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14263,6 +14264,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &2051461059
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051461056}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.6714325, y: 4.1211205, z: 4.914421}
+  m_Center: {x: -7.9847794, y: 0.13848495, z: 6.3582077}
 --- !u!1001 &2053238096
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14689,6 +14703,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7238698785139523565, guid: f5ef9b31d08bf656187f484be88e8df9, type: 3}
+      propertyPath: quitBox
+      value: 
+      objectReference: {fileID: 2051461056}
     - target: {fileID: 7238698785139523565, guid: f5ef9b31d08bf656187f484be88e8df9, type: 3}
       propertyPath: musicValve
       value: 
