@@ -164,6 +164,7 @@ public class PlayerController : MonoBehaviour {
             playerInput.PlayerDeath();
             //Plays the impact sound effect here
             //Stops movement audio source when dead here
+            AudioManager.instance.DeathSound();
             StartCoroutine(Death());
         }
     }

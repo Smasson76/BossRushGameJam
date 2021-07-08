@@ -16,7 +16,7 @@ public class AudioManager : MonoBehaviour {
     //These events are one shot sounds. They are sounds that have a finite length. 
     //We do not store an EventInstance to manage the sounds. Once started they will play to completion.
     [FMODUnity.EventRef]
-    public string DamageEvent = "";
+    public string DeathEvent = "";
     [FMODUnity.EventRef]
     public string HealEvent = "";
 
@@ -24,9 +24,6 @@ public class AudioManager : MonoBehaviour {
     [FMODUnity.EventRef]
     public string PlayerIntroEvent = "";
     FMOD.Studio.EventInstance playerIntro;
-
-    FMOD.Studio.PARAMETER_ID healthParameterId, fullHealthParameterId;
-
 
     void Awake() {
         if (instance == null) {
@@ -42,13 +39,17 @@ public class AudioManager : MonoBehaviour {
         
     }
 
-    public void DeathSound() {
-        playerState = FMODUnity.RuntimeManager.CreateInstance(PlayerStateEvent);
+    public void IgnoreEW() {
+        /*playerState = FMODUnity.RuntimeManager.CreateInstance(PlayerStateEvent);
         playerState.start();
 
         playerIntro = FMODUnity.RuntimeManager.CreateInstance(PlayerIntroEvent);
         playerIntro.start();
 
-        FMODUnity.RuntimeManager.AttachInstanceToGameObject(playerIntro, GetComponent<Transform>());
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(playerIntro, GetComponent<Transform>());*/
+    }
+
+    public void DeathSound() {
+        FMODUnity.RuntimeManager.PlayOneShot(DeathEvent, transform.position);
     }
 }
