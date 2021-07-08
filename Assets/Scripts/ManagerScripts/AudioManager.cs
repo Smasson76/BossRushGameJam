@@ -36,7 +36,10 @@ public class AudioManager : MonoBehaviour {
     }
 
     void Start() {
-        
+        playerState = FMODUnity.RuntimeManager.CreateInstance(PlayerStateEvent);
+        //playerState.start();
+
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(playerState, GetComponent<Transform>());
     }
 
     public void IgnoreEW() {
@@ -50,6 +53,9 @@ public class AudioManager : MonoBehaviour {
     }
 
     public void DeathSound() {
-        FMODUnity.RuntimeManager.PlayOneShot(DeathEvent, transform.position);
+
+        //FMODUnity.RuntimeManager.PlayOneShot(DeathEvent, transform.position);
+        playerState.start();
+        //playerState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 }
