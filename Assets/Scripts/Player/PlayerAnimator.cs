@@ -40,6 +40,7 @@ public class PlayerAnimator : MonoBehaviour {
         public Transform transform;
         public GameObject ikEnd;
         public Transform ikPole;
+        public FastIKFabric ikComponent;
         public Vector3 homeLocation;
         public Quaternion homeRotation;
         public SectionStatus status;
@@ -72,11 +73,11 @@ public class PlayerAnimator : MonoBehaviour {
             ikPole.SetParent(poleContainer);
             ikPole.localPosition = newSection.homeLocation * 2;
             newSection.ikPole = ikPole;
-            FastIKFabric ikComponent = newSection.ikEnd.AddComponent<FastIKFabric>();
-            ikComponent.ChainLength = 4;
-            Destroy(ikComponent.Target.gameObject); // The ik component script creates it's own target, we destroy that here to avoid excess gameObject creation
-            ikComponent.Target = newSection.transform;
-            ikComponent.Pole = ikPole;
+            newSection.ikComponent = newSection.ikEnd.AddComponent<FastIKFabric>();
+            newSection.ikComponent.ChainLength = 4;
+            Destroy(newSection.ikComponent.Target.gameObject); // The ik component script creates it's own target, we destroy that here to avoid excess gameObject creation
+            newSection.ikComponent.Target = newSection.transform;
+            newSection.ikComponent.Pole = ikPole;
 
             newSection.status = SectionStatus.standby;
             sphereSections[i] = newSection;
@@ -242,6 +243,8 @@ public class PlayerAnimator : MonoBehaviour {
     public void Pop() {
         foreach (SectionData section in sphereSections) {
             section.transform.SetParent(null, true);
+            Destroy(section.ikComponent);
+            Destroy(section.rope);
             BoxCollider collider = section.transform.gameObject.AddComponent<BoxCollider>();
             collider.size = Vector3.one * 0.2f;
             Rigidbody rb = section.transform.gameObject.AddComponent<Rigidbody>();

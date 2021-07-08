@@ -4,10 +4,11 @@ using UnityEngine;
 using DitzelGames.FastIK;
 
 public class Boss1Animator : MonoBehaviour {
-    [Header("References")]
     [SerializeField] private Transform[] armEnds;
-    [SerializeField] private float armHeight;
-    [SerializeField] private float armRadius;
+    [SerializeField] private float armMoveSpeed;
+    [SerializeField] private float armHeightOffset;
+    [SerializeField] private float armRadiusMin;
+    [SerializeField] private float armRadiusDelta;
 
     private Transform armTargetAndPoleContainer;
     private List<Arm> arms;
@@ -41,7 +42,16 @@ public class Boss1Animator : MonoBehaviour {
 
     public void UpdateArms(Vector3 playerPos) {
         foreach(Arm arm in arms) {
-            arm.ikTarget.position = arm.homeDir * armRadius + Vector3.up * armHeight;
+            float angle = Vector3.Angle(arm.homeDir, this.transform.position - playerPos);
+            float angleInfluence = Mathf.Clamp(UtilityFunctions.Remap(angle, 0, 180, 0, 1), 0, 1);
+            RaycastHit hit;
+            int layermask = 1 << 6;
+            if (!Physics.Raycast(arm.ikEnd.position + Vector3.up * 100, Vector3.down, out hit, Mathf.Infinity, layermask)) {
+                throw new System.Exception("Boss arm raycast didn't hit terrain");
+            }
+            float height = armHeightOffset + Mathf.Clamp(playerPos.y * angleInfluence, hit.point.y, 100f);
+            Vector3 targetPos = arm.homeDir * (armRadiusMin + angleInfluence * armRadiusDelta) + Vector3.up * height;
+            arm.ikTarget.position = Vector3.Lerp(arm.ikTarget.position, targetPos, Time.deltaTime * armMoveSpeed);
         }
     }
 

@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 9019689969275018489}
-  acceleration: 10
+  acceleration: 20
   boostForce: 20
   megaboostForce: 1000
   slowForce: 1
