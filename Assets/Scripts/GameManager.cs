@@ -67,8 +67,7 @@ public class GameManager : MonoBehaviour {
                 if (canSpawnPlayer) {
                     canSpawnPlayer = false;
                     spawnCam.SetActive(false);
-                    Vector3 spawnPoint = hit.transform.position;
-                    currentPlayer = Instantiate(playerPrefab, hit.point, Quaternion.identity);
+                    currentPlayer = Instantiate(playerPrefab, hit.point + Vector3.up * 2, Quaternion.identity);
                     playerController = currentPlayer.GetComponent<PlayerController>();
                     playerController.playerInput = playerInput;
                     playerInput.NewPlayer(playerController);
