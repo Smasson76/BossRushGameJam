@@ -24,8 +24,7 @@ public class GameManager : MonoBehaviour {
     
     public enum SceneType {
         mainMenu,
-        playerTestScene,
-        gameScene,
+        withPlayer,
     }
 
     public delegate void PlayerSpawn();
@@ -47,7 +46,7 @@ public class GameManager : MonoBehaviour {
     }
 
     void Start() {
-        if (GetCurrentScene() == SceneType.playerTestScene) {
+        if (GetCurrentScene() == SceneType.withPlayer) {
             spawnCam.SetActive(true);
             canSpawnPlayer = true;
         }
@@ -84,11 +83,11 @@ public class GameManager : MonoBehaviour {
         case "MainMenu":
             return SceneType.mainMenu;
         case "PlayerTestScene":
-            return SceneType.playerTestScene;
+            return SceneType.withPlayer;
         case "GameScene":
-            return SceneType.gameScene;
+            return SceneType.withPlayer;
         default:
-            throw new System.Exception("Unhandled Scene Name");
+            return SceneType.withPlayer;
         }
     }
     public Transform GetPlayer() {

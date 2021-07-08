@@ -29,12 +29,7 @@ public class PlayerInput : MonoBehaviour {
             controls.MainMenuControls.Enable();
             controls.PlayerSpawnerControls.Disable();
             break;
-        case GameManager.SceneType.playerTestScene:
-            controls.PlayerMovement.Disable();
-            controls.MainMenuControls.Disable();
-            controls.PlayerSpawnerControls.Enable();
-            break;
-        case GameManager.SceneType.gameScene:
+        case GameManager.SceneType.withPlayer:
             controls.PlayerMovement.Disable();
             controls.MainMenuControls.Disable();
             controls.PlayerSpawnerControls.Enable();

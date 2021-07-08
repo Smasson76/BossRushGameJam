@@ -144,7 +144,7 @@ public class AudioManager : MonoBehaviour {
             audioSourceHumBuz.Stop();
         }
         
-        if (GameManager.instance.GetCurrentScene() == GameManager.SceneType.playerTestScene && musicOn) {
+        if (GameManager.instance.GetCurrentScene() == GameManager.SceneType.withPlayer && musicOn) {
             //audioSourceMusic.clip = musicAudioClips[1];
             //audioSourceMusic.Play();
         }
