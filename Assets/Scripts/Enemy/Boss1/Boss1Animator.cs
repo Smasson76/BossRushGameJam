@@ -9,10 +9,12 @@ public class Boss1Animator : MonoBehaviour {
     [SerializeField] private float armHeightOffset;
     [SerializeField] private float armRadiusMin;
     [SerializeField] private float armRadiusDelta;
+    [SerializeField] private float armDisconnectForce;
 
     private Transform armTargetAndPoleContainer;
     private List<Arm> arms;
-    private struct Arm {
+    private class Arm {
+        public int armNumber;
         public Vector3 homeDir;
         public Transform ikEnd;
         public Transform ikTarget;
@@ -26,8 +28,10 @@ public class Boss1Animator : MonoBehaviour {
         arms = new List<Arm>();
         for (int i = 0; i < armEnds.Length; i++) {
             Arm newArm = new Arm();
+            newArm.armNumber = i + 1;
             newArm.ikEnd = armEnds[i];
-            newArm.homeDir = new Vector3(newArm.ikEnd.position.x, 0, newArm.ikEnd.position.z).normalized;
+            Vector3 localPos = newArm.ikEnd.position - this.transform.position;
+            newArm.homeDir = new Vector3(localPos.x, 0, localPos.z).normalized;
             newArm.ikComponent = newArm.ikEnd.gameObject.AddComponent<FastIKFabric>();
             newArm.ikTarget = newArm.ikComponent.Target;
             newArm.ikTarget.SetParent(armTargetAndPoleContainer);
@@ -55,4 +59,27 @@ public class Boss1Animator : MonoBehaviour {
         }
     }
 
+    public void DestroyArm(Transform jointTransform, int armNumber) {
+        Arm destroyedArm = GetArm(armNumber);
+        if (destroyedArm == null) {
+            throw new System.Exception("Destroyed arm not in arms list");
+        }
+        Destroy(destroyedArm.ikComponent);
+        MeshCollider meshCollider = destroyedArm.ikEnd.GetChild(1).GetComponent<MeshCollider>();
+        meshCollider.convex = true;
+        arms.Remove(destroyedArm);
+        jointTransform.SetParent(null, true);
+        Rigidbody rb = jointTransform.gameObject.AddComponent<Rigidbody>();
+        rb.mass = 1000;
+        rb.AddForce((destroyedArm.homeDir).normalized * armDisconnectForce, ForceMode.Force);
+    }
+
+    Arm GetArm(int armNumber) {
+        foreach(Arm arm in arms) {
+            if (arm.armNumber == armNumber) {
+                return arm;
+            }
+        }
+        return null;
+    }
 }

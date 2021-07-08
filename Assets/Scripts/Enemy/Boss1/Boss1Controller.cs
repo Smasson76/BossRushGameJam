@@ -20,4 +20,9 @@ public class Boss1Controller : MonoBehaviour {
     void Update() {
         animator.UpdateArms(player.position);
     }
+
+    public void ArmDestroyed(Transform transform, int armNumber) {
+        Debug.Log("Arm " + armNumber + " Destroyed");
+        animator.DestroyArm(transform, armNumber);
+    }
 }

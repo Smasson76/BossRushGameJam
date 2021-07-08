@@ -36,7 +36,7 @@ public class PlayerAnimator : MonoBehaviour {
     private SectionData [] sphereSections;
     private Vector3 grapplePoint;
 
-    private struct SectionData {
+    private class SectionData {
         public Transform transform;
         public GameObject ikEnd;
         public Transform ikPole;
