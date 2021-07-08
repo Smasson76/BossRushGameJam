@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour {
     void PlayerMove() {
         if (isOnGround()) {
             Vector2 val = playerInput.GetPlayerMovement();
-            AudioManager.instance.PlayerMovementSoundEffect(); //Plays the movement sound effect
+            //Plays the movement sound effect here
             if (val.magnitude != 0) {
                 Vector3 forceDirection = (cameraController.GetCameraHorizontalFacing() * new Vector3(val.x, 0, val.y)).normalized;
                 playerRb.AddForce(forceDirection * acceleration, ForceMode.Force);
@@ -59,19 +59,19 @@ public class PlayerController : MonoBehaviour {
             }
         }
         else {
-            AudioManager.instance.audioSourceMovement.Stop(); //Stops the sound when player is not grounded
+            //Stop player movement audio here
         }
     }
     
     void PlayerBoost() {
         if (playerInput.IsBoosting()) {
             playerAnimator.isBoosting = true;
-            AudioManager.instance.PlayBoosterSoundEffect(); //Plays the booster sound effect
+            //Plays the booster sound effect here
             goalBoostDirection = GetCurrentBoostDir();
             playerRb.AddForce(goalBoostDirection * boostForce, ForceMode.Force);
         } else {
             playerAnimator.isBoosting = false;
-            AudioManager.instance.audioSourceBooster.Stop(); //Stops the sound when player is no longer boosting
+            //Stops the booster sound when player is no longer boosting here
         }
         if (boostPercent < 100 && canRegenerateBoost) {
             boostPercent += boostIncreaseAmount;
@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour {
             grappleSpring.spring = 5f;
             grappleSpring.damper = 5f;
 
-            AudioManager.instance.PlayGrappleSoundEffect(); //Plays the grapple fire sound effect
+            //Plays the grapple fire sound effect here
         }   
     }
 
@@ -136,7 +136,7 @@ public class PlayerController : MonoBehaviour {
         isGrappling = false;
         Destroy(grappleSpring);
         playerAnimator.GrappleEnd();
-        AudioManager.instance.PlayReelReturnSoundEffect(); //Plays the reel return sound effect
+        //Plays the reel return sound effect here
     }
 
     public void UpdateRope() {
@@ -162,8 +162,9 @@ public class PlayerController : MonoBehaviour {
             }
             playerAnimator.Pop();
             playerInput.PlayerDeath();
-            AudioManager.instance.PlayImpactSoundEffect(); //Plays the impact sound effect
-            AudioManager.instance.audioSourceMovement.Stop(); //Stops movement audio source when dead
+            //Plays the impact sound effect here
+            //Stops movement audio source when dead here
+            AudioManager.instance.DeathSound();
             StartCoroutine(Death());
         }
     }
