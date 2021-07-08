@@ -4,6 +4,7 @@ using UnityEngine;
 using DitzelGames.FastIK;
 
 public class Boss1Animator : MonoBehaviour {
+    [SerializeField] private Boss1Controller controller;
     [SerializeField] private Transform[] armEnds;
     [SerializeField] private float armMoveSpeed;
     [SerializeField] private float armHeightOffset;
@@ -54,7 +55,7 @@ public class Boss1Animator : MonoBehaviour {
                 throw new System.Exception("Boss arm raycast didn't hit terrain");
             }
             float height = armHeightOffset + Mathf.Clamp(playerPos.y * angleInfluence, hit.point.y, 100f);
-            Vector3 targetPos = arm.homeDir * (armRadiusMin + angleInfluence * armRadiusDelta) + Vector3.up * height;
+            Vector3 targetPos = arm.homeDir * (armRadiusMin) + Vector3.up * height;
             arm.ikTarget.position = Vector3.Lerp(arm.ikTarget.position, targetPos, Time.deltaTime * armMoveSpeed);
         }
     }
@@ -72,6 +73,10 @@ public class Boss1Animator : MonoBehaviour {
         Rigidbody rb = jointTransform.gameObject.AddComponent<Rigidbody>();
         rb.mass = 1000;
         rb.AddForce((destroyedArm.homeDir).normalized * armDisconnectForce, ForceMode.Force);
+
+        if (arms.Count == 0) {
+            controller.AllArmsDestroyed();
+        }
     }
 
     Arm GetArm(int armNumber) {

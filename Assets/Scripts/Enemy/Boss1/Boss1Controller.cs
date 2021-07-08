@@ -25,4 +25,8 @@ public class Boss1Controller : MonoBehaviour {
         Debug.Log("Arm " + armNumber + " Destroyed");
         animator.DestroyArm(transform, armNumber);
     }
+
+    public void AllArmsDestroyed() {
+        Debug.Log("All arms destroyed");
+    }
 }
