@@ -18,6 +18,8 @@ public class PlayerInput : MonoBehaviour {
         controls.PlayerMovement.GrappleStart.performed += ctx => GrappleStart();
         controls.PlayerMovement.GrappleEnd.performed += ctx => GrappleEnd();
         controls.PlayerMovement.Megaboost.performed += ctx => Megaboost();
+
+        controls.PlayerSpawnerControls.Spawning.performed += ctx => SpawnPlayer();
     }
     
     void Start() {
@@ -25,10 +27,17 @@ public class PlayerInput : MonoBehaviour {
         case GameManager.SceneType.mainMenu:
             controls.PlayerMovement.Disable();
             controls.MainMenuControls.Enable();
+            controls.PlayerSpawnerControls.Disable();
             break;
         case GameManager.SceneType.playerTestScene:
             controls.PlayerMovement.Enable();
             controls.MainMenuControls.Disable();
+            controls.PlayerSpawnerControls.Disable();
+            break;
+        case GameManager.SceneType.gameScene:
+            controls.PlayerMovement.Disable();
+            controls.MainMenuControls.Disable();
+            controls.PlayerSpawnerControls.Enable();
             break;
         }
     }
@@ -70,6 +79,11 @@ public class PlayerInput : MonoBehaviour {
 
     private void ExitGame() {
         MainMenuManager.instance.ExitGame();
+    }
+
+    // Spawning Controls:
+    private void SpawnPlayer() {
+        GameManager.instance.SpawnPlayer();
     }
 
     // Player Movement Controls: 

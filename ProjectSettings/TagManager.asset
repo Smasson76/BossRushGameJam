@@ -8,6 +8,7 @@ TagManager:
   - SoundValve
   - MusicValve
   - ExitBox
+  - Ground
   layers:
   - Default
   - TransparentFX

@@ -260,13 +260,13 @@
             ]
         },
         {
-            "name": "TopViewCamControl",
-            "id": "b0a73a7e-e5a2-4afa-8127-d380fe9baf10",
+            "name": "PlayerSpawnerControls",
+            "id": "9c1044f3-deff-4700-b124-82f4f7ec0c01",
             "actions": [
                 {
-                    "name": "Controls",
+                    "name": "Spawning",
                     "type": "Button",
-                    "id": "36d6ef1c-bb1b-4c9d-92d1-0384ed57033b",
+                    "id": "3849fc66-c7da-42d6-a983-07eebba220f7",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press"
@@ -275,12 +275,12 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "c36dda0a-3518-40cb-9735-9dd690e6b89a",
+                    "id": "561d5d1e-d668-471e-94a6-770bfd11daa4",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and mouse",
-                    "action": "Controls",
+                    "action": "Spawning",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

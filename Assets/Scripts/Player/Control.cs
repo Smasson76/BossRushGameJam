@@ -273,13 +273,13 @@ public class @Control : IInputActionCollection, IDisposable
             ]
         },
         {
-            ""name"": ""TopViewCamControl"",
-            ""id"": ""b0a73a7e-e5a2-4afa-8127-d380fe9baf10"",
+            ""name"": ""PlayerSpawnerControls"",
+            ""id"": ""9c1044f3-deff-4700-b124-82f4f7ec0c01"",
             ""actions"": [
                 {
-                    ""name"": ""Controls"",
+                    ""name"": ""Spawning"",
                     ""type"": ""Button"",
-                    ""id"": ""36d6ef1c-bb1b-4c9d-92d1-0384ed57033b"",
+                    ""id"": ""3849fc66-c7da-42d6-a983-07eebba220f7"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
@@ -288,12 +288,12 @@ public class @Control : IInputActionCollection, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""c36dda0a-3518-40cb-9735-9dd690e6b89a"",
+                    ""id"": ""561d5d1e-d668-471e-94a6-770bfd11daa4"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and mouse"",
-                    ""action"": ""Controls"",
+                    ""action"": ""Spawning"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -335,9 +335,9 @@ public class @Control : IInputActionCollection, IDisposable
         // MainMenuControls
         m_MainMenuControls = asset.FindActionMap("MainMenuControls", throwIfNotFound: true);
         m_MainMenuControls_ChangeDifficulty = m_MainMenuControls.FindAction("ChangeDifficulty", throwIfNotFound: true);
-        // TopViewCamControl
-        m_TopViewCamControl = asset.FindActionMap("TopViewCamControl", throwIfNotFound: true);
-        m_TopViewCamControl_Controls = m_TopViewCamControl.FindAction("Controls", throwIfNotFound: true);
+        // PlayerSpawnerControls
+        m_PlayerSpawnerControls = asset.FindActionMap("PlayerSpawnerControls", throwIfNotFound: true);
+        m_PlayerSpawnerControls_Spawning = m_PlayerSpawnerControls.FindAction("Spawning", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -539,38 +539,38 @@ public class @Control : IInputActionCollection, IDisposable
     }
     public MainMenuControlsActions @MainMenuControls => new MainMenuControlsActions(this);
 
-    // TopViewCamControl
-    private readonly InputActionMap m_TopViewCamControl;
-    private ITopViewCamControlActions m_TopViewCamControlActionsCallbackInterface;
-    private readonly InputAction m_TopViewCamControl_Controls;
-    public struct TopViewCamControlActions
+    // PlayerSpawnerControls
+    private readonly InputActionMap m_PlayerSpawnerControls;
+    private IPlayerSpawnerControlsActions m_PlayerSpawnerControlsActionsCallbackInterface;
+    private readonly InputAction m_PlayerSpawnerControls_Spawning;
+    public struct PlayerSpawnerControlsActions
     {
         private @Control m_Wrapper;
-        public TopViewCamControlActions(@Control wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Controls => m_Wrapper.m_TopViewCamControl_Controls;
-        public InputActionMap Get() { return m_Wrapper.m_TopViewCamControl; }
+        public PlayerSpawnerControlsActions(@Control wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Spawning => m_Wrapper.m_PlayerSpawnerControls_Spawning;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerSpawnerControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(TopViewCamControlActions set) { return set.Get(); }
-        public void SetCallbacks(ITopViewCamControlActions instance)
+        public static implicit operator InputActionMap(PlayerSpawnerControlsActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayerSpawnerControlsActions instance)
         {
-            if (m_Wrapper.m_TopViewCamControlActionsCallbackInterface != null)
+            if (m_Wrapper.m_PlayerSpawnerControlsActionsCallbackInterface != null)
             {
-                @Controls.started -= m_Wrapper.m_TopViewCamControlActionsCallbackInterface.OnControls;
-                @Controls.performed -= m_Wrapper.m_TopViewCamControlActionsCallbackInterface.OnControls;
-                @Controls.canceled -= m_Wrapper.m_TopViewCamControlActionsCallbackInterface.OnControls;
+                @Spawning.started -= m_Wrapper.m_PlayerSpawnerControlsActionsCallbackInterface.OnSpawning;
+                @Spawning.performed -= m_Wrapper.m_PlayerSpawnerControlsActionsCallbackInterface.OnSpawning;
+                @Spawning.canceled -= m_Wrapper.m_PlayerSpawnerControlsActionsCallbackInterface.OnSpawning;
             }
-            m_Wrapper.m_TopViewCamControlActionsCallbackInterface = instance;
+            m_Wrapper.m_PlayerSpawnerControlsActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Controls.started += instance.OnControls;
-                @Controls.performed += instance.OnControls;
-                @Controls.canceled += instance.OnControls;
+                @Spawning.started += instance.OnSpawning;
+                @Spawning.performed += instance.OnSpawning;
+                @Spawning.canceled += instance.OnSpawning;
             }
         }
     }
-    public TopViewCamControlActions @TopViewCamControl => new TopViewCamControlActions(this);
+    public PlayerSpawnerControlsActions @PlayerSpawnerControls => new PlayerSpawnerControlsActions(this);
     private int m_KeyboardandmouseSchemeIndex = -1;
     public InputControlScheme KeyboardandmouseScheme
     {
@@ -599,8 +599,8 @@ public class @Control : IInputActionCollection, IDisposable
     {
         void OnChangeDifficulty(InputAction.CallbackContext context);
     }
-    public interface ITopViewCamControlActions
+    public interface IPlayerSpawnerControlsActions
     {
-        void OnControls(InputAction.CallbackContext context);
+        void OnSpawning(InputAction.CallbackContext context);
     }
 }
