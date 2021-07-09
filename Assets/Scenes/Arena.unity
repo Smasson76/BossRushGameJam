@@ -599,7 +599,7 @@ GameObject:
   - component: {fileID: 1643408029}
   - component: {fileID: 1643408028}
   m_Layer: 0
-  m_Name: TerrainGroup_0
+  m_Name: ArenaGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -763,7 +763,7 @@ GameObject:
   - component: {fileID: 1984787111}
   - component: {fileID: 1984787110}
   m_Layer: 0
-  m_Name: Terrain_0_0_06df41f9-fb91-44ce-8078-8b51bc19dc3d
+  m_Name: Arena
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -818,7 +818,7 @@ Terrain:
   m_DrawInstanced: 1
   m_DrawTreesAndFoliage: 1
   m_ReflectionProbeUsage: 1
-  m_MaterialTemplate: {fileID: 10652, guid: 0000000000000000f000000000000000, type: 0}
+  m_MaterialTemplate: {fileID: 10650, guid: 0000000000000000f000000000000000, type: 0}
   m_BakeLightProbesForTrees: 1
   m_PreserveTreePrototypeLayers: 0
   m_DeringLightProbesForTrees: 1
