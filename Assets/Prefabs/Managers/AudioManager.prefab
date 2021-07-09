@@ -58,3 +58,4 @@ MonoBehaviour:
   - event:/PlayerMovementFeather
   - event:/PlayerParachuteEngage
   - event:/PlayerBoostEngage
+  - event:/PlayerGrappleFire

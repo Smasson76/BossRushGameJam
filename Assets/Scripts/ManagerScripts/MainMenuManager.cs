@@ -74,11 +74,11 @@ public class MainMenuManager : MonoBehaviour {
         if (Physics.Raycast(ray, out hit)) {
             if (hit.transform.gameObject.tag == "SoundValve") {
                 if (soundAnim.GetBool("Trigger") == true) {
-                    //Sounds should be off here
+                    AudioManager.instance.canPlaySounds = false;
                     soundAnim.SetBool("Trigger", false);
                 }
                 else if (soundAnim.GetBool("Trigger") == false) {
-                    //Sounds should be on here
+                    AudioManager.instance.canPlaySounds = true;
                     soundAnim.SetBool("Trigger", true);
                 }
                 AudioManager.instance.MenuButtonEvents("Valve");
@@ -94,14 +94,13 @@ public class MainMenuManager : MonoBehaviour {
             if (hit.transform.gameObject.tag == "MusicValve") {
                 if (musicAnim.GetBool("Trigger") == true) {
                     musicAnim.SetBool("Trigger", false);
-                    //Playing an audiosound here
-                    //Setting music audio off here
+                    AudioManager.instance.canPlayMusic = false;
                 }
                 else if (musicAnim.GetBool("Trigger") == false) {
                     musicAnim.SetBool("Trigger", true);
-                    //Playing an audiosound here
-                    //Setting music audio on here
+                    AudioManager.instance.canPlayMusic = true;
                 }
+                AudioManager.instance.MusicEvents("MainMenu");
                 AudioManager.instance.MenuButtonEvents("Valve");
             }
         }

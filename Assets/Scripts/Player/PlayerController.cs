@@ -129,7 +129,7 @@ public class PlayerController : MonoBehaviour {
             grappleSpring.spring = 5f;
             grappleSpring.damper = 5f;
 
-            //Plays the grapple fire sound effect here
+            AudioManager.instance.PlayerEvents("GrappleFire");
         }   
     }
 
