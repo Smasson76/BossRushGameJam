@@ -2342,6 +2342,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 295403032}
   m_Mesh: {fileID: 5856139165324365971, guid: 41b7fbec21d32f04790b6ba5ecc2868d, type: 3}
+--- !u!1 &296143068 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: fb6fa3f40ebf06d91bf9bc9facaffac8, type: 3}
+  m_PrefabInstance: {fileID: 375075251}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &296143069
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296143068}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.6
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &312982348
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2892,6 +2910,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fb6fa3f40ebf06d91bf9bc9facaffac8, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fb6fa3f40ebf06d91bf9bc9facaffac8, type: 3}
+      propertyPath: m_TagString
+      value: StartBall
       objectReference: {fileID: 0}
     - target: {fileID: 1929044034149125815, guid: fb6fa3f40ebf06d91bf9bc9facaffac8, type: 3}
       propertyPath: m_Materials.Array.data[0]

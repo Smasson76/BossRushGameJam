@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour {
 
@@ -101,6 +102,18 @@ public class MainMenuManager : MonoBehaviour {
                     //Setting music audio on here
                 }
                 //Playing a sound here when music changer is clicked
+            }
+        }
+    }
+
+    public void PlayGame() {
+        RaycastHit hit;
+        Vector2 mousePos = playerInput.GetPointerPos();
+        Ray ray = Camera.main.ScreenPointToRay(mousePos);
+        if (Physics.Raycast(ray, out hit)) {
+            if (hit.transform.gameObject.tag == "StartBall") {
+                SceneManager.LoadScene(1);
+                //Playing an audio sound here
             }
         }
     }
