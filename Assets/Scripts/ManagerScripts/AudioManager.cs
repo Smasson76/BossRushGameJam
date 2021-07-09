@@ -90,6 +90,9 @@ public class AudioManager : MonoBehaviour {
             menuAmbienceState = FMODUnity.RuntimeManager.CreateInstance(menuAmbienceEvents[1]);
             menuAmbienceState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
             menuAmbienceState.start();
+            menuAmbienceState = FMODUnity.RuntimeManager.CreateInstance(menuAmbienceEvents[2]);
+            menuAmbienceState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+            menuAmbienceState.start();
             break;
         default:
             break;
