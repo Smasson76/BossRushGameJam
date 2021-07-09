@@ -170,7 +170,7 @@ MonoBehaviour:
   cameraLerpSpeed: 5
   lookTargetHeightMin: 1
   lookTargetHeightMax: 3
-  cameraMinDistance: 5
+  cameraMinDistance: 8
   cameraMaxDistance: 20
   minFOV: 60
   maxFOV: 100
@@ -356,7 +356,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 95
+  field of view: 30
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
