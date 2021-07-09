@@ -47,6 +47,10 @@ public class GameManager : MonoBehaviour {
         if (boostSlider == null) return;
         //boostSlider.value = playerController.GetBoostRemaining();
 
+        if (GetCurrentScene() == SceneType.withPlayer) {
+            Debug.Log("Finding scene");
+        }
+
         if (spawnCam == null) return;
     }
 
