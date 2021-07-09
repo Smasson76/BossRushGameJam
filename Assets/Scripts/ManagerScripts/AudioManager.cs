@@ -22,7 +22,7 @@ public class AudioManager : MonoBehaviour {
 
     //This is for the player sound effects
     [FMODUnity.EventRef]
-    public string PlayerStateEvent = "";
+    public string[] PlayerStateEvent;
     FMOD.Studio.EventInstance playerState;
 
     void Awake() {
@@ -71,6 +71,25 @@ public class AudioManager : MonoBehaviour {
             menuAmbienceState = FMODUnity.RuntimeManager.CreateInstance(menuAmbienceEvents[1]);
             menuAmbienceState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
             menuAmbienceState.start();
+            break;
+        default:
+            break;
+        }
+    }
+
+    public void PlayerEvents(string playerEvent) {
+        switch (playerEvent) {
+        case "Movement":
+            Debug.Log("Movement is happening");
+            playerState = FMODUnity.RuntimeManager.CreateInstance(PlayerStateEvent[0]);
+            playerState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+            playerState.start();
+            break;
+        case "Parachute":
+            FMODUnity.RuntimeManager.PlayOneShot(PlayerStateEvent[1], transform.position);
+            break;
+        case "Boost":
+            FMODUnity.RuntimeManager.PlayOneShot(PlayerStateEvent[2], transform.position);
             break;
         default:
             break;

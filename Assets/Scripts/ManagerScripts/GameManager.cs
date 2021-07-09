@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour {
     public GameObject playerPrefab;
     public PlayerInput playerInput;
 
-    GameObject spawnCam;
+    public GameObject spawnCam;
 
     public bool canSpawnPlayer;
     
@@ -41,21 +41,13 @@ public class GameManager : MonoBehaviour {
         else {
             Destroy(gameObject);
         }
-
-        spawnCam = this.transform.GetChild(0).gameObject;
-        spawnCam.SetActive(false);
-    }
-
-    void Start() {
-        if (GetCurrentScene() == SceneType.withPlayer) {
-            spawnCam.SetActive(true);
-            canSpawnPlayer = true;
-        }
     }
 
     void Update() {
         if (boostSlider == null) return;
         //boostSlider.value = playerController.GetBoostRemaining();
+
+        if (spawnCam == null) return;
     }
 
     public void SpawnPlayer() {
@@ -84,6 +76,9 @@ public class GameManager : MonoBehaviour {
             AudioManager.instance.MusicEvents("MainMenu");
             return SceneType.mainMenu;
         case "PlayerTestScene":
+            spawnCam = GameObject.Find("SpawnCamera");
+            canSpawnPlayer = true;
+            Debug.Log("PlayerTest Scene");
             return SceneType.withPlayer;
         case "GameScene":
             return SceneType.withPlayer;

@@ -701,6 +701,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 691071163, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
+      propertyPath: PlayerStateEvent.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 691071163, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
+      propertyPath: PlayerStateEvent.Array.data[0]
+      value: event:/PlayerMovementFeather
+      objectReference: {fileID: 0}
+    - target: {fileID: 691071163, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
+      propertyPath: PlayerStateEvent.Array.data[1]
+      value: event:/PlayerParachuteEngage
+      objectReference: {fileID: 0}
+    - target: {fileID: 691071163, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
+      propertyPath: PlayerStateEvent.Array.data[2]
+      value: event:/PlayerBoostEngage
+      objectReference: {fileID: 0}
     - target: {fileID: 129395800956638946, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
       propertyPath: m_RootOrder
       value: 5

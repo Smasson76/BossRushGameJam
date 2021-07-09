@@ -54,4 +54,7 @@ MonoBehaviour:
   menuAmbienceEvents:
   - event:/MainMenuWind
   - event:/MainMenuSteam
-  PlayerStateEvent: 
+  PlayerStateEvent:
+  - event:/PlayerMovementFeather
+  - event:/PlayerParachuteEngage
+  - event:/PlayerBoostEngage
