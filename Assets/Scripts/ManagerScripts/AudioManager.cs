@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour {
     //This is for all of the clicks, switched, and buttons in the Main Menu
     [FMODUnity.EventRef]
     public string[] menuClickEvents;
+    FMOD.Studio.EventInstance menuClickState;
 
     //This is for all the music in the game
     [FMODUnity.EventRef]
@@ -38,22 +39,40 @@ public class AudioManager : MonoBehaviour {
     public void MenuButtonEvents(string clickEvent) {
         switch (clickEvent) {
         case "EasyMode":
-            FMODUnity.RuntimeManager.PlayOneShot(menuClickEvents[0], transform.position);
+            menuClickState.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            menuClickState = FMODUnity.RuntimeManager.CreateInstance(menuClickEvents[0]);
+            menuClickState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+            menuClickState.start();
             break;
         case "MediumMode":
-            FMODUnity.RuntimeManager.PlayOneShot(menuClickEvents[1], transform.position);
+            menuClickState.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            menuClickState = FMODUnity.RuntimeManager.CreateInstance(menuClickEvents[1]);
+            menuClickState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+            menuClickState.start();
             break;
         case "HardMode":
-            FMODUnity.RuntimeManager.PlayOneShot(menuClickEvents[2], transform.position);
+            menuClickState.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            menuClickState = FMODUnity.RuntimeManager.CreateInstance(menuClickEvents[2]);
+            menuClickState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+            menuClickState.start();
             break;
         case "Valve":
-            FMODUnity.RuntimeManager.PlayOneShot(menuClickEvents[3], transform.position);
+            menuClickState.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            menuClickState = FMODUnity.RuntimeManager.CreateInstance(menuClickEvents[3]);
+            menuClickState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+            menuClickState.start();
             break;
         case "ExitGame":
-            FMODUnity.RuntimeManager.PlayOneShot(menuClickEvents[4], transform.position);
+            menuClickState.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            menuClickState = FMODUnity.RuntimeManager.CreateInstance(menuClickEvents[4]);
+            menuClickState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+            menuClickState.start();
             break;
         case "PlayGame":
-            FMODUnity.RuntimeManager.PlayOneShot(menuClickEvents[5], transform.position);
+            menuClickState.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            menuClickState = FMODUnity.RuntimeManager.CreateInstance(menuClickEvents[5]);
+            menuClickState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+            menuClickState.start();
             break;
         default:
             break;
