@@ -41,7 +41,6 @@ public class GameManager : MonoBehaviour {
         else {
             Destroy(gameObject);
         }
-        AudioManager.instance.MusicEvents("MainMenu");
     }
 
     void Start() {
@@ -81,6 +80,8 @@ public class GameManager : MonoBehaviour {
         case "MainMenu":
             return SceneType.mainMenu;
         case "PlayerTestScene":
+            return SceneType.withPlayer;
+        case "PlayerAudioTest":
             return SceneType.withPlayer;
         case "GameScene":
             return SceneType.withPlayer;

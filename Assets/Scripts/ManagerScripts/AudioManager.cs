@@ -108,10 +108,17 @@ public class AudioManager : MonoBehaviour {
             playerState.start();
             break;
         case "Parachute":
-            FMODUnity.RuntimeManager.PlayOneShot(PlayerStateEvent[1], transform.position);
+            // /FMODUnity.RuntimeManager.PlayOneShot(PlayerStateEvent[1], transform.position);
+            Debug.Log("Parachute sound should play here");
+            //playerState.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            playerState = FMODUnity.RuntimeManager.CreateInstance(PlayerStateEvent[1]);
+            playerState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+            playerState.start();
             break;
         case "Boost":
-            FMODUnity.RuntimeManager.PlayOneShot(PlayerStateEvent[2], transform.position);
+            playerState = FMODUnity.RuntimeManager.CreateInstance(PlayerStateEvent[2]);
+            playerState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+            playerState.start();
             break;
         default:
             break;

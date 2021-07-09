@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour {
     void PlayerMove() {
         if (isOnGround()) {
             Vector2 val = playerInput.GetPlayerMovement();
-            AudioManager.instance.PlayerEvents("Movement");
+            //AudioManager.instance.PlayerEvents("Movement");
             if (val.magnitude != 0) {
                 Vector3 forceDirection = (cameraController.GetCameraHorizontalFacing() * new Vector3(val.x, 0, val.y)).normalized;
                 playerRb.AddForce(forceDirection * acceleration, ForceMode.Force);
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour {
     void PlayerBoost() {
         if (playerInput.IsBoosting()) {
             playerAnimator.isBoosting = true;
-            AudioManager.instance.PlayerEvents("Boost");
+            //AudioManager.instance.PlayerEvents("Boost");
             goalBoostDirection = GetCurrentBoostDir();
             playerRb.AddForce(goalBoostDirection * boostForce, ForceMode.Force);
         } else {
@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour {
             Vector3 force = -playerRb.velocity * slowForce;
             playerRb.AddForce(force, ForceMode.Force);
             playerRb.AddTorque(-playerRb.angularVelocity * rotationSlowAmount);
-            AudioManager.instance.PlayerEvents("Parachute");
+            //AudioManager.instance.PlayerEvents("Parachute");
         } else {
             playerAnimator.isBraking = false;
         }

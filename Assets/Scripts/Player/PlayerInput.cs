@@ -37,6 +37,7 @@ public class PlayerInput : MonoBehaviour {
             break;
         }
     }
+
     public void NewPlayer(PlayerController player) {
         playerController = player;
         controls.PlayerMovement.Enable();
