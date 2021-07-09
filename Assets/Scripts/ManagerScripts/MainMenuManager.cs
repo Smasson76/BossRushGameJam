@@ -44,21 +44,21 @@ public class MainMenuManager : MonoBehaviour {
 
     void SwitchDifficulty(int difficultyChange) {
         if (difficultyChange == 1) {
-            //Play difficulty menu sound here
+            AudioManager.instance.MenuButtonEvents("EasyMode");
             levelDifficultyObjects[0].SetActive(true);
             levelDifficultyObjects[1].SetActive(false);
             levelDifficultyObjects[2].SetActive(false);
             difficulty = 2;
         }
         else if (difficultyChange == 2) {
-            //Play difficulty menu sound here
+            AudioManager.instance.MenuButtonEvents("MediumMode");
             levelDifficultyObjects[0].SetActive(false);
             levelDifficultyObjects[1].SetActive(true);
             levelDifficultyObjects[2].SetActive(false);
             difficulty = 3;
         }
         else if (difficultyChange == 3) {
-            //Play difficulty menu sound here
+            AudioManager.instance.MenuButtonEvents("HardMode");
             levelDifficultyObjects[0].SetActive(false);
             levelDifficultyObjects[1].SetActive(false);
             levelDifficultyObjects[2].SetActive(true);
@@ -80,7 +80,7 @@ public class MainMenuManager : MonoBehaviour {
                     //Sounds should be on here
                     soundAnim.SetBool("Trigger", true);
                 }
-                //Play a sound here when the sound changer is clicked
+                AudioManager.instance.MenuButtonEvents("Valve");
             }
         }
     }
@@ -101,7 +101,7 @@ public class MainMenuManager : MonoBehaviour {
                     //Playing an audiosound here
                     //Setting music audio on here
                 }
-                //Playing a sound here when music changer is clicked
+                AudioManager.instance.MenuButtonEvents("Valve");
             }
         }
     }
@@ -113,7 +113,7 @@ public class MainMenuManager : MonoBehaviour {
         if (Physics.Raycast(ray, out hit)) {
             if (hit.transform.gameObject.tag == "StartBall") {
                 SceneManager.LoadScene(1);
-                //Playing an audio sound here
+                AudioManager.instance.MenuButtonEvents("PlayGame");
             }
         }
     }
@@ -126,7 +126,7 @@ public class MainMenuManager : MonoBehaviour {
             if (hit.transform.gameObject.tag == "ExitBox") {
                 quitAnim.SetTrigger("TriggerExitBox");
                 Application.Quit();
-                //Playing an audio sound here
+                AudioManager.instance.MenuButtonEvents("ExitGame");
             }
         }
     }

@@ -6,24 +6,24 @@ public class AudioManager : MonoBehaviour {
     
     public static AudioManager instance; //Creating a singleton object
 
-    //This allows us to use EventRef attribute and will present the designer with the UI for selecting events
+    //This is for all of the clicks, switched, and buttons in the Main Menu
+    [FMODUnity.EventRef]
+    public string[] menuClickEvents;
+
+    //This is for all the music in the game
+    [FMODUnity.EventRef]
+    public string[] musicEvents;
+    FMOD.Studio.EventInstance musicState;
+
+    //This is for all the music in the game
+    [FMODUnity.EventRef]
+    public string[] menuAmbienceEvents;
+    FMOD.Studio.EventInstance menuAmbienceState;
+
+    //This is for the player sound effects
     [FMODUnity.EventRef]
     public string PlayerStateEvent = "";
-
-    //EventInstance class will allow us to manage an event over it's lifetime. Including Starting, stopping, and changing parameters
     FMOD.Studio.EventInstance playerState;
-
-    //These events are one shot sounds. They are sounds that have a finite length. 
-    //We do not store an EventInstance to manage the sounds. Once started they will play to completion.
-    [FMODUnity.EventRef]
-    public string DeathEvent = "";
-    [FMODUnity.EventRef]
-    public string HealEvent = "";
-
-    //One shot event system that will have a tracked state and take action when it ends. Could also change parameter values over the lifetime.
-    [FMODUnity.EventRef]
-    public string PlayerIntroEvent = "";
-    FMOD.Studio.EventInstance playerIntro;
 
     void Awake() {
         if (instance == null) {
@@ -35,27 +35,41 @@ public class AudioManager : MonoBehaviour {
         }
     }
 
-    void Start() {
-        playerState = FMODUnity.RuntimeManager.CreateInstance(PlayerStateEvent);
-        //playerState.start();
-
-        FMODUnity.RuntimeManager.AttachInstanceToGameObject(playerState, GetComponent<Transform>());
+    public void MenuButtonEvents(string clickEvent) {
+        switch (clickEvent) {
+        case "EasyMode":
+            FMODUnity.RuntimeManager.PlayOneShot(menuClickEvents[0], transform.position);
+            break;
+        case "MediumMode":
+            FMODUnity.RuntimeManager.PlayOneShot(menuClickEvents[1], transform.position);
+            break;
+        case "HardMode":
+            FMODUnity.RuntimeManager.PlayOneShot(menuClickEvents[2], transform.position);
+            break;
+        case "Valve":
+            FMODUnity.RuntimeManager.PlayOneShot(menuClickEvents[3], transform.position);
+            break;
+        case "ExitGame":
+            FMODUnity.RuntimeManager.PlayOneShot(menuClickEvents[4], transform.position);
+            break;
+        case "PlayGame":
+            FMODUnity.RuntimeManager.PlayOneShot(menuClickEvents[5], transform.position);
+            break;
+        default:
+            break;
+        }
     }
 
-    public void IgnoreEW() {
-        /*playerState = FMODUnity.RuntimeManager.CreateInstance(PlayerStateEvent);
-        playerState.start();
-
-        playerIntro = FMODUnity.RuntimeManager.CreateInstance(PlayerIntroEvent);
-        playerIntro.start();
-
-        FMODUnity.RuntimeManager.AttachInstanceToGameObject(playerIntro, GetComponent<Transform>());*/
-    }
-
-    public void DeathSound() {
-
-        //FMODUnity.RuntimeManager.PlayOneShot(DeathEvent, transform.position);
-        playerState.start();
-        //playerState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    public void MusicEvents(string sceneEvent) {
+        switch (sceneEvent) {
+        case "MainMenu":
+            musicState = FMODUnity.RuntimeManager.CreateInstance(musicEvents[0]);
+            musicState.start();
+            menuAmbienceState = FMODUnity.RuntimeManager.CreateInstance(menuAmbienceEvents[0]);
+            menuAmbienceState.start();
+            break;
+        default:
+            break;
+        }
     }
 }

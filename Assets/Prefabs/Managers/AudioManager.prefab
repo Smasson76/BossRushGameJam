@@ -320,10 +320,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bab147588eaafc445a252bffecc1f71d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerStateEvent: event:/EXPLOSION_DEATH_VARIANT01_01
-  DeathEvent: event:/EXPLOSION_DEATH_VARIANT01_01
-  HealEvent: event:/EXPLOSION_DEATH_VARIANT01_01
-  PlayerIntroEvent: event:/EXPLOSION_DEATH_VARIANT01_01
+  menuClickEvents:
+  - event:/MainMenuSelectEasy
+  - event:/MainMenuSelectMedium
+  - event:/MainMenuSelectHard
 --- !u!1 &869511880135613522
 GameObject:
   m_ObjectHideFlags: 0

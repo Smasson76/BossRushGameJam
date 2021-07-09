@@ -5595,10 +5595,10 @@ GameObject:
   m_Component:
   - component: {fileID: 732699812}
   - component: {fileID: 732699811}
-  - component: {fileID: 732699810}
   - component: {fileID: 732699813}
   - component: {fileID: 732699814}
   - component: {fileID: 732699815}
+  - component: {fileID: 732699810}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5606,14 +5606,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &732699810
-AudioListener:
+--- !u!114 &732699810
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 732699809}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
+  ListenerNumber: -1
 --- !u!20 &732699811
 Camera:
   m_ObjectHideFlags: 0
@@ -14762,6 +14768,42 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 691071163, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
+      propertyPath: musicEvents.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 691071163, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
+      propertyPath: menuClickEvents.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 691071163, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
+      propertyPath: menuAmbienceEvents.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 691071163, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
+      propertyPath: menuClickEvents.Array.data[3]
+      value: event:/MainMenuValves
+      objectReference: {fileID: 0}
+    - target: {fileID: 691071163, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
+      propertyPath: menuClickEvents.Array.data[4]
+      value: event:/MainMenuTVSwitch
+      objectReference: {fileID: 0}
+    - target: {fileID: 691071163, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
+      propertyPath: menuClickEvents.Array.data[5]
+      value: event:/MainMenuClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 691071163, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
+      propertyPath: menuAmbienceEvents.Array.data[0]
+      value: event:/MainMenuWind
+      objectReference: {fileID: 0}
+    - target: {fileID: 691071163, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
+      propertyPath: menuAmbienceEvents.Array.data[1]
+      value: event:/MainMenuSteam
+      objectReference: {fileID: 0}
+    - target: {fileID: 691071163, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
+      propertyPath: menuAmbienceEvents.Array.data[2]
+      value: event:/MainMenuWind
+      objectReference: {fileID: 0}
     - target: {fileID: 129395800956638946, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
       propertyPath: m_RootOrder
       value: 2
