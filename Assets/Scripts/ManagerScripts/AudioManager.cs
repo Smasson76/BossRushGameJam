@@ -15,7 +15,7 @@ public class AudioManager : MonoBehaviour {
     public string[] musicEvents;
     FMOD.Studio.EventInstance musicState;
 
-    //This is for all the music in the game
+    //This is for all the menu ambience in the game
     [FMODUnity.EventRef]
     public string[] menuAmbienceEvents;
     FMOD.Studio.EventInstance menuAmbienceState;
@@ -63,9 +63,13 @@ public class AudioManager : MonoBehaviour {
     public void MusicEvents(string sceneEvent) {
         switch (sceneEvent) {
         case "MainMenu":
-            musicState = FMODUnity.RuntimeManager.CreateInstance(musicEvents[0]);
-            musicState.start();
+            //musicState = FMODUnity.RuntimeManager.CreateInstance(musicEvents[0]);
+            //musicState.start();
             menuAmbienceState = FMODUnity.RuntimeManager.CreateInstance(menuAmbienceEvents[0]);
+            menuAmbienceState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+            menuAmbienceState.start();
+            menuAmbienceState = FMODUnity.RuntimeManager.CreateInstance(menuAmbienceEvents[1]);
+            menuAmbienceState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
             menuAmbienceState.start();
             break;
         default:

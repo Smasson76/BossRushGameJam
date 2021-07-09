@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour {
     public SceneType GetCurrentScene() {
         switch (SceneManager.GetActiveScene().name) {
         case "MainMenu":
+            AudioManager.instance.MusicEvents("MainMenu");
             return SceneType.mainMenu;
         case "PlayerTestScene":
             return SceneType.withPlayer;
