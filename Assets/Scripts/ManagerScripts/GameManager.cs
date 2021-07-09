@@ -41,16 +41,18 @@ public class GameManager : MonoBehaviour {
         else {
             Destroy(gameObject);
         }
+        AudioManager.instance.MusicEvents("MainMenu");
+    }
+
+    void Start() {
+        if (GetCurrentScene() == SceneType.withPlayer) {
+            spawnCam.SetActive(true);
+            canSpawnPlayer = true;
+        }
     }
 
     void Update() {
-        if (boostSlider == null) return;
         //boostSlider.value = playerController.GetBoostRemaining();
-
-        if (GetCurrentScene() == SceneType.withPlayer) {
-            Debug.Log("Finding scene");
-        }
-
         if (spawnCam == null) return;
     }
 
@@ -77,12 +79,8 @@ public class GameManager : MonoBehaviour {
     public SceneType GetCurrentScene() {
         switch (SceneManager.GetActiveScene().name) {
         case "MainMenu":
-            AudioManager.instance.MusicEvents("MainMenu");
             return SceneType.mainMenu;
         case "PlayerTestScene":
-            spawnCam = GameObject.Find("SpawnCamera");
-            canSpawnPlayer = true;
-            Debug.Log("PlayerTest Scene");
             return SceneType.withPlayer;
         case "GameScene":
             return SceneType.withPlayer;
@@ -92,6 +90,7 @@ public class GameManager : MonoBehaviour {
             return SceneType.withPlayer;
         }
     }
+
     public Transform GetPlayer() {
         return currentPlayer.transform.Find("Sphere");
     }

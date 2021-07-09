@@ -112,6 +112,7 @@ public class MainMenuManager : MonoBehaviour {
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
         if (Physics.Raycast(ray, out hit)) {
             if (hit.transform.gameObject.tag == "StartBall") {
+                
                 SceneManager.LoadScene(1);
                 AudioManager.instance.MenuButtonEvents("PlayGame");
             }
