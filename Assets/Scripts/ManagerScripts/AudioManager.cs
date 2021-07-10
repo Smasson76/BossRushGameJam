@@ -6,24 +6,28 @@ public class AudioManager : MonoBehaviour {
     
     public static AudioManager instance; //Creating a singleton object
 
-    //This allows us to use EventRef attribute and will present the designer with the UI for selecting events
+    //This is for all of the clicks, switched, and buttons in the Main Menu
     [FMODUnity.EventRef]
-    public string PlayerStateEvent = "";
+    public string[] menuClickEvents;
+    FMOD.Studio.EventInstance menuClickState;
 
-    //EventInstance class will allow us to manage an event over it's lifetime. Including Starting, stopping, and changing parameters
+    //This is for all the music in the game
+    [FMODUnity.EventRef]
+    public string[] musicEvents;
+    FMOD.Studio.EventInstance musicState;
+
+    //This is for all the menu ambience in the game
+    [FMODUnity.EventRef]
+    public string[] menuAmbienceEvents;
+    public FMOD.Studio.EventInstance menuAmbienceState;
+
+    //This is for the player sound effects
+    [FMODUnity.EventRef]
+    public string[] PlayerStateEvent;
     FMOD.Studio.EventInstance playerState;
 
-    //These events are one shot sounds. They are sounds that have a finite length. 
-    //We do not store an EventInstance to manage the sounds. Once started they will play to completion.
-    [FMODUnity.EventRef]
-    public string DeathEvent = "";
-    [FMODUnity.EventRef]
-    public string HealEvent = "";
-
-    //One shot event system that will have a tracked state and take action when it ends. Could also change parameter values over the lifetime.
-    [FMODUnity.EventRef]
-    public string PlayerIntroEvent = "";
-    FMOD.Studio.EventInstance playerIntro;
+    public bool canPlayMusic = true;
+    public bool canPlaySounds = true;
 
     void Awake() {
         if (instance == null) {
@@ -35,27 +39,100 @@ public class AudioManager : MonoBehaviour {
         }
     }
 
-    void Start() {
-        playerState = FMODUnity.RuntimeManager.CreateInstance(PlayerStateEvent);
-        //playerState.start();
-
-        FMODUnity.RuntimeManager.AttachInstanceToGameObject(playerState, GetComponent<Transform>());
+    public void MenuButtonEvents(string clickEvent) {
+        if (canPlaySounds) {
+            switch (clickEvent) {
+                case "EasyMode":
+                    menuClickState.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                    menuClickState = FMODUnity.RuntimeManager.CreateInstance(menuClickEvents[0]);
+                    menuClickState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+                    menuClickState.start();
+                    break;
+                case "MediumMode":
+                    menuClickState.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                    menuClickState = FMODUnity.RuntimeManager.CreateInstance(menuClickEvents[1]);
+                    menuClickState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+                    menuClickState.start();
+                    break;
+                case "HardMode":
+                    menuClickState.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                    menuClickState = FMODUnity.RuntimeManager.CreateInstance(menuClickEvents[2]);
+                    menuClickState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+                    menuClickState.start();
+                    break;
+                case "Valve":
+                    menuClickState.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                    menuClickState = FMODUnity.RuntimeManager.CreateInstance(menuClickEvents[3]);
+                    menuClickState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+                    menuClickState.start();
+                    break;
+                case "ExitGame":
+                    menuClickState.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                    menuClickState = FMODUnity.RuntimeManager.CreateInstance(menuClickEvents[4]);
+                    menuClickState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+                    menuClickState.start();
+                    break;
+                case "PlayGame":
+                    menuClickState.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                    menuClickState = FMODUnity.RuntimeManager.CreateInstance(menuClickEvents[5]);
+                    menuClickState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+                    menuClickState.start();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
-    public void IgnoreEW() {
-        /*playerState = FMODUnity.RuntimeManager.CreateInstance(PlayerStateEvent);
-        playerState.start();
-
-        playerIntro = FMODUnity.RuntimeManager.CreateInstance(PlayerIntroEvent);
-        playerIntro.start();
-
-        FMODUnity.RuntimeManager.AttachInstanceToGameObject(playerIntro, GetComponent<Transform>());*/
+    public void MusicEvents(string sceneEvent) {
+        if (canPlayMusic) {
+            switch (sceneEvent) {
+                case "MainMenu":
+                    //musicState = FMODUnity.RuntimeManager.CreateInstance(musicEvents[0]);
+                    //musicState.start();
+                    menuAmbienceState = FMODUnity.RuntimeManager.CreateInstance(menuAmbienceEvents[0]);
+                    menuAmbienceState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+                    menuAmbienceState.start();
+                    menuAmbienceState = FMODUnity.RuntimeManager.CreateInstance(menuAmbienceEvents[1]);
+                    menuAmbienceState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+                    menuAmbienceState.start();
+                    menuAmbienceState = FMODUnity.RuntimeManager.CreateInstance(menuAmbienceEvents[2]);
+                    menuAmbienceState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+                    menuAmbienceState.start();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
-    public void DeathSound() {
-
-        //FMODUnity.RuntimeManager.PlayOneShot(DeathEvent, transform.position);
-        playerState.start();
-        //playerState.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    public void PlayerEvents(string playerEvent) {
+        if (canPlaySounds) {
+            switch (playerEvent) {
+                case "Movement":
+                    playerState = FMODUnity.RuntimeManager.CreateInstance(PlayerStateEvent[0]);
+                    playerState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+                    playerState.start();
+                    break;
+                case "Parachute":
+                    //playerState.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                    playerState = FMODUnity.RuntimeManager.CreateInstance(PlayerStateEvent[1]);
+                    playerState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+                    playerState.start();
+                    break;
+                case "Boost":
+                    playerState = FMODUnity.RuntimeManager.CreateInstance(PlayerStateEvent[2]);
+                    playerState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+                    playerState.start();
+                    break;
+                case "GrappleFire":
+                    playerState = FMODUnity.RuntimeManager.CreateInstance(PlayerStateEvent[3]);
+                    playerState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+                    playerState.start();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

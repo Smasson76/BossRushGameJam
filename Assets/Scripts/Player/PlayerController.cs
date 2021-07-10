@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour {
     void PlayerMove() {
         if (isOnGround()) {
             Vector2 val = playerInput.GetPlayerMovement();
-            //Plays the movement sound effect here
+            //AudioManager.instance.PlayerEvents("Movement");
             if (val.magnitude != 0) {
                 Vector3 forceDirection = (cameraController.GetCameraHorizontalFacing() * new Vector3(val.x, 0, val.y)).normalized;
                 playerRb.AddForce(forceDirection * acceleration, ForceMode.Force);
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour {
     void PlayerBoost() {
         if (playerInput.IsBoosting()) {
             playerAnimator.isBoosting = true;
-            //Plays the booster sound effect here
+            AudioManager.instance.PlayerEvents("Boost");
             goalBoostDirection = GetCurrentBoostDir();
             playerRb.AddForce(goalBoostDirection * boostForce, ForceMode.Force);
         } else {
@@ -104,6 +104,7 @@ public class PlayerController : MonoBehaviour {
             Vector3 force = -playerRb.velocity * slowForce;
             playerRb.AddForce(force, ForceMode.Force);
             playerRb.AddTorque(-playerRb.angularVelocity * rotationSlowAmount);
+            //AudioManager.instance.PlayerEvents("Parachute");
         } else {
             playerAnimator.isBraking = false;
         }
@@ -128,7 +129,7 @@ public class PlayerController : MonoBehaviour {
             grappleSpring.spring = 5f;
             grappleSpring.damper = 5f;
 
-            //Plays the grapple fire sound effect here
+            AudioManager.instance.PlayerEvents("GrappleFire");
         }   
     }
 
@@ -164,7 +165,7 @@ public class PlayerController : MonoBehaviour {
             playerInput.PlayerDeath();
             //Plays the impact sound effect here
             //Stops movement audio source when dead here
-            AudioManager.instance.DeathSound();
+            //AudioManager.instance.DeathSound();
             StartCoroutine(Death());
         }
     }

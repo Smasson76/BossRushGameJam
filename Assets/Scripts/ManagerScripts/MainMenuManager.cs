@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour {
 
@@ -28,6 +29,7 @@ public class MainMenuManager : MonoBehaviour {
         quitAnim = quitBox.GetComponent<Animator>();
         soundAnim.SetBool("Trigger", true);
         musicAnim.SetBool("Trigger", true);
+        AudioManager.instance.MusicEvents("MainMenu");
     }
 
     public void ChargeStation() {
@@ -43,21 +45,21 @@ public class MainMenuManager : MonoBehaviour {
 
     void SwitchDifficulty(int difficultyChange) {
         if (difficultyChange == 1) {
-            //Play difficulty menu sound here
+            AudioManager.instance.MenuButtonEvents("EasyMode");
             levelDifficultyObjects[0].SetActive(true);
             levelDifficultyObjects[1].SetActive(false);
             levelDifficultyObjects[2].SetActive(false);
             difficulty = 2;
         }
         else if (difficultyChange == 2) {
-            //Play difficulty menu sound here
+            AudioManager.instance.MenuButtonEvents("MediumMode");
             levelDifficultyObjects[0].SetActive(false);
             levelDifficultyObjects[1].SetActive(true);
             levelDifficultyObjects[2].SetActive(false);
             difficulty = 3;
         }
         else if (difficultyChange == 3) {
-            //Play difficulty menu sound here
+            AudioManager.instance.MenuButtonEvents("HardMode");
             levelDifficultyObjects[0].SetActive(false);
             levelDifficultyObjects[1].SetActive(false);
             levelDifficultyObjects[2].SetActive(true);
@@ -72,14 +74,14 @@ public class MainMenuManager : MonoBehaviour {
         if (Physics.Raycast(ray, out hit)) {
             if (hit.transform.gameObject.tag == "SoundValve") {
                 if (soundAnim.GetBool("Trigger") == true) {
-                    //Sounds should be off here
+                    AudioManager.instance.canPlaySounds = false;
                     soundAnim.SetBool("Trigger", false);
                 }
                 else if (soundAnim.GetBool("Trigger") == false) {
-                    //Sounds should be on here
+                    AudioManager.instance.canPlaySounds = true;
                     soundAnim.SetBool("Trigger", true);
                 }
-                //Play a sound here when the sound changer is clicked
+                AudioManager.instance.MenuButtonEvents("Valve");
             }
         }
     }
@@ -92,15 +94,27 @@ public class MainMenuManager : MonoBehaviour {
             if (hit.transform.gameObject.tag == "MusicValve") {
                 if (musicAnim.GetBool("Trigger") == true) {
                     musicAnim.SetBool("Trigger", false);
-                    //Playing an audiosound here
-                    //Setting music audio off here
+                    AudioManager.instance.canPlayMusic = false;
                 }
                 else if (musicAnim.GetBool("Trigger") == false) {
                     musicAnim.SetBool("Trigger", true);
-                    //Playing an audiosound here
-                    //Setting music audio on here
+                    AudioManager.instance.canPlayMusic = true;
                 }
-                //Playing a sound here when music changer is clicked
+                AudioManager.instance.MusicEvents("MainMenu");
+                AudioManager.instance.MenuButtonEvents("Valve");
+            }
+        }
+    }
+
+    public void PlayGame() {
+        RaycastHit hit;
+        Vector2 mousePos = playerInput.GetPointerPos();
+        Ray ray = Camera.main.ScreenPointToRay(mousePos);
+        if (Physics.Raycast(ray, out hit)) {
+            if (hit.transform.gameObject.tag == "StartBall") {
+                GameManager.instance.spawnCam.SetActive(true);
+                SceneManager.LoadScene(1);
+                AudioManager.instance.MenuButtonEvents("PlayGame");
             }
         }
     }
@@ -113,7 +127,7 @@ public class MainMenuManager : MonoBehaviour {
             if (hit.transform.gameObject.tag == "ExitBox") {
                 quitAnim.SetTrigger("TriggerExitBox");
                 Application.Quit();
-                //Playing an audio sound here
+                AudioManager.instance.MenuButtonEvents("ExitGame");
             }
         }
     }
