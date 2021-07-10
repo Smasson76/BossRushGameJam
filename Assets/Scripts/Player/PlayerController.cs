@@ -205,20 +205,18 @@ public class PlayerController : MonoBehaviour {
             }
             playerAnimator.Pop();
             playerInput.PlayerDeath();
-            StartCoroutine(Death());
+            //Plays the impact sound effect here
+            //Stops movement audio source when dead here
+            //AudioManager.instance.DeathSound();
+            GameManager.instance.PlayerDead();
         }
     }
 
-    IEnumerator Death() {
-        isBoosting = false;
-        playerAnimator.isBoosting = false;
-        playerAudio.PlayerDeath();
-        yield return new WaitForSeconds(3f);
+    public void DisablePlayer() {
         Transform sphere = this.transform.Find("Sphere");
         sphere.SetParent(null);
         Destroy(sphere.GetComponent<CollisionDetection>());
         Destroy(this.gameObject);
-        GameManager.instance.PlayerDeath();
     }
 
     public Vector3 GetPlayerVelocity() {

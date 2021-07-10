@@ -29,7 +29,8 @@ public class GameManager : MonoBehaviour {
 
     public delegate void SceneChange(SceneType sceneType);
     public static event SceneChange OnSceneChange;
-
+    public delegate void PlayerDeath();
+    public static event PlayerDeath OnPlayerDeath;
     public delegate void PlayerSpawn(PlayerController newPlayer);
     public static event PlayerSpawn OnPlayerSpawn;
     private GameObject currentPlayer;
@@ -78,10 +79,18 @@ public class GameManager : MonoBehaviour {
             OnSceneChange(sceneType);
         }
     }
+    public void PlayerDead() {
+        if (OnPlayerDeath != null) {
+            OnPlayerDeath();
+        }
+        StartCoroutine(playerDeadCoroutine());
+    }
 
-    public void PlayerDeath() {
+    public IEnumerator playerDeadCoroutine() {
+        yield return new WaitForSeconds(3f);
+        playerController.DisablePlayer();
+        canSpawnPlayer = true;
         spawnCam.SetActive(true);
-        GameManager.instance.canSpawnPlayer = true;
     }
 
     public void SpawnPlayer() {

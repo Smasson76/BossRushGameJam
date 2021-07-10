@@ -5605,6 +5605,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 013cd30c80e8f57759bc4454a0665aed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 0}
   armEnds:
   - {fileID: 2787706330524973648}
   - {fileID: 7310132061343534035}
@@ -5614,11 +5615,11 @@ MonoBehaviour:
   - {fileID: 446418446154219556}
   - {fileID: 8650019109847892329}
   - {fileID: 5097074788276823445}
-  armMoveSpeed: 0
-  armHeightOffset: 0
-  armRadiusMin: 0
-  armRadiusDelta: 0
-  armDisconnectForce: 10000
+  armMoveSpeed: 1
+  armHeightOffset: 18
+  armRadiusMin: 56
+  armRadiusDelta: 10
+  armDisconnectForce: 1000000
 --- !u!114 &612372557275727148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5632,3 +5633,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 6008637773841172715}
+  playerDistanceTrigger: 50
