@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour {
 
@@ -112,8 +111,7 @@ public class MainMenuManager : MonoBehaviour {
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
         if (Physics.Raycast(ray, out hit)) {
             if (hit.transform.gameObject.tag == "StartBall") {
-                GameManager.instance.spawnCam.SetActive(true);
-                SceneManager.LoadScene(1);
+                GameManager.instance.LoadScene(1);
                 AudioManager.instance.MenuButtonEvents("PlayGame");
             }
         }
