@@ -170,7 +170,7 @@ MonoBehaviour:
   cameraLerpSpeed: 5
   lookTargetHeightMin: 1
   lookTargetHeightMax: 3
-  cameraMinDistance: 10
+  cameraMinDistance: 8
   cameraMaxDistance: 20
   minFOV: 60
   maxFOV: 100

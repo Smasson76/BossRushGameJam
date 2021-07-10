@@ -1574,5 +1574,5 @@ MonoBehaviour:
     overrideState: 1
     value: 149
   kernelSize:
-    overrideState: 0
-    value: 1
+    overrideState: 1
+    value: 2
