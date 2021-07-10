@@ -10,11 +10,7 @@ public class PlayerInput : MonoBehaviour {
 
     void Awake() {
         controls = new Control();
-        controls.MainMenuControls.ChangeDifficulty.performed += ctx => ChargeStation();
-        controls.MainMenuControls.ChangeDifficulty.performed += ctx => SoundChanger();
-        controls.MainMenuControls.ChangeDifficulty.performed += ctx => MusicChanger();
-        controls.MainMenuControls.ChangeDifficulty.performed += ctx => PlayGame();
-        controls.MainMenuControls.ChangeDifficulty.performed += ctx => ExitGame();
+        controls.MainMenuControls.Click.performed += ctx => MainMenuClick();
 
         controls.PlayerMovement.GrappleStart.performed += ctx => GrappleStart();
         controls.PlayerMovement.GrappleEnd.performed += ctx => GrappleEnd();
@@ -26,16 +22,29 @@ public class PlayerInput : MonoBehaviour {
     void OnEnable() {
         controls.Enable();
         Cursor.lockState = CursorLockMode.Confined;
-        GameManager.instance.OnSceneChange += SceneChange;
-        GameManager.instance.OnPlayerSpawn += NewPlayer;
+        GameManager.OnSceneChange += SceneChange;
+        GameManager.OnPlayerSpawn += NewPlayer;
     }
 
     void OnDisable() {
         controls.Disable();
         Cursor.lockState = CursorLockMode.None;
-        GameManager.instance.OnSceneChange -= SceneChange;
-        GameManager.instance.OnPlayerSpawn -= NewPlayer;
+        GameManager.OnSceneChange -= SceneChange;
+        GameManager.OnPlayerSpawn -= NewPlayer;
     }
+
+    void Update() {
+        if (controls.PlayerMovement.enabled) {
+            Debug.Log("Player movement enabled");
+        }
+        if (controls.PlayerSpawnerControls.enabled) {
+            Debug.Log("Player spawner enabled");
+        }
+        if (controls.MainMenuControls.enabled) {
+            Debug.Log("Main menu controls enabled");
+        }
+    }
+
     void SceneChange(GameManager.SceneType sceneType) {
         switch (sceneType) {
         case GameManager.SceneType.mainMenu:
@@ -67,29 +76,12 @@ public class PlayerInput : MonoBehaviour {
     }
 
     // Main Menu Controls:
-    private void ChargeStation() {
-        MainMenuManager.instance.ChargeStation();
+    private void MainMenuClick() {
+        MainMenuManager.instance.Click();
     }
-
-    private void SoundChanger() {
-        MainMenuManager.instance.SoundChanger();
-    }
-
-    private void MusicChanger() {
-        MainMenuManager.instance.MusicChanger();
-    }
-
-    private void ExitGame() {
-        MainMenuManager.instance.ExitGame();
-    }
-    private void PlayGame() {
-        MainMenuManager.instance.PlayGame();
-    }
-
     // Spawning Controls:
     private void SpawnPlayer() {
         GameManager.instance.SpawnPlayer();
-        controls.PlayerSpawnerControls.Disable();
     }
 
     // Player Movement Controls: 
