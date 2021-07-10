@@ -250,7 +250,7 @@ public class @Control : IInputActionCollection, IDisposable
             ""id"": ""3b2200e4-a1fc-4f32-877c-822205561258"",
             ""actions"": [
                 {
-                    ""name"": ""ChangeDifficulty"",
+                    ""name"": ""Click"",
                     ""type"": ""Button"",
                     ""id"": ""529501cd-a6cd-4781-81bf-f03af33261de"",
                     ""expectedControlType"": ""Button"",
@@ -266,7 +266,7 @@ public class @Control : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and mouse"",
-                    ""action"": ""ChangeDifficulty"",
+                    ""action"": ""Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -334,7 +334,7 @@ public class @Control : IInputActionCollection, IDisposable
         m_CameraControl_CameraControl = m_CameraControl.FindAction("Camera Control", throwIfNotFound: true);
         // MainMenuControls
         m_MainMenuControls = asset.FindActionMap("MainMenuControls", throwIfNotFound: true);
-        m_MainMenuControls_ChangeDifficulty = m_MainMenuControls.FindAction("ChangeDifficulty", throwIfNotFound: true);
+        m_MainMenuControls_Click = m_MainMenuControls.FindAction("Click", throwIfNotFound: true);
         // PlayerSpawnerControls
         m_PlayerSpawnerControls = asset.FindActionMap("PlayerSpawnerControls", throwIfNotFound: true);
         m_PlayerSpawnerControls_Spawning = m_PlayerSpawnerControls.FindAction("Spawning", throwIfNotFound: true);
@@ -509,12 +509,12 @@ public class @Control : IInputActionCollection, IDisposable
     // MainMenuControls
     private readonly InputActionMap m_MainMenuControls;
     private IMainMenuControlsActions m_MainMenuControlsActionsCallbackInterface;
-    private readonly InputAction m_MainMenuControls_ChangeDifficulty;
+    private readonly InputAction m_MainMenuControls_Click;
     public struct MainMenuControlsActions
     {
         private @Control m_Wrapper;
         public MainMenuControlsActions(@Control wrapper) { m_Wrapper = wrapper; }
-        public InputAction @ChangeDifficulty => m_Wrapper.m_MainMenuControls_ChangeDifficulty;
+        public InputAction @Click => m_Wrapper.m_MainMenuControls_Click;
         public InputActionMap Get() { return m_Wrapper.m_MainMenuControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -524,16 +524,16 @@ public class @Control : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_MainMenuControlsActionsCallbackInterface != null)
             {
-                @ChangeDifficulty.started -= m_Wrapper.m_MainMenuControlsActionsCallbackInterface.OnChangeDifficulty;
-                @ChangeDifficulty.performed -= m_Wrapper.m_MainMenuControlsActionsCallbackInterface.OnChangeDifficulty;
-                @ChangeDifficulty.canceled -= m_Wrapper.m_MainMenuControlsActionsCallbackInterface.OnChangeDifficulty;
+                @Click.started -= m_Wrapper.m_MainMenuControlsActionsCallbackInterface.OnClick;
+                @Click.performed -= m_Wrapper.m_MainMenuControlsActionsCallbackInterface.OnClick;
+                @Click.canceled -= m_Wrapper.m_MainMenuControlsActionsCallbackInterface.OnClick;
             }
             m_Wrapper.m_MainMenuControlsActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @ChangeDifficulty.started += instance.OnChangeDifficulty;
-                @ChangeDifficulty.performed += instance.OnChangeDifficulty;
-                @ChangeDifficulty.canceled += instance.OnChangeDifficulty;
+                @Click.started += instance.OnClick;
+                @Click.performed += instance.OnClick;
+                @Click.canceled += instance.OnClick;
             }
         }
     }
@@ -597,7 +597,7 @@ public class @Control : IInputActionCollection, IDisposable
     }
     public interface IMainMenuControlsActions
     {
-        void OnChangeDifficulty(InputAction.CallbackContext context);
+        void OnClick(InputAction.CallbackContext context);
     }
     public interface IPlayerSpawnerControlsActions
     {

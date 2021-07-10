@@ -31,17 +31,53 @@ public class MainMenuManager : MonoBehaviour {
         AudioManager.instance.MusicEvents("MainMenu");
     }
 
-    public void ChargeStation() {
+    public void Click() {
         RaycastHit hit;
         Vector2 mousePos = playerInput.GetPointerPos();
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
         if (Physics.Raycast(ray, out hit)) {
-            if (hit.transform.gameObject.tag == "ChargeStation") {
-                SwitchDifficulty(difficulty);
+            switch(hit.transform.gameObject.tag) {
+                case "ChargeStation":
+                    SwitchDifficulty(difficulty);
+                    break;
+                case "SoundValve":
+                    if (soundAnim.GetBool("Trigger") == true) {
+                        AudioManager.instance.canPlaySounds = false;
+                        soundAnim.SetBool("Trigger", false);
+                    }
+                    else if (soundAnim.GetBool("Trigger") == false) {
+                        AudioManager.instance.canPlaySounds = true;
+                        soundAnim.SetBool("Trigger", true);
+                    }
+                    AudioManager.instance.MenuButtonEvents("Valve");
+                    break;
+                case "MusicValve":
+                    if (musicAnim.GetBool("Trigger") == true) {
+                        musicAnim.SetBool("Trigger", false);
+                        AudioManager.instance.canPlayMusic = false;
+                    }
+                    else if (musicAnim.GetBool("Trigger") == false) {
+                        musicAnim.SetBool("Trigger", true);
+                        AudioManager.instance.canPlayMusic = true;
+                    }
+                    AudioManager.instance.MusicEvents("MainMenu");
+                    AudioManager.instance.MenuButtonEvents("Valve");
+                    break;
+                case "StartBall":
+                    GameManager.instance.LoadScene("PlayerTestScene");
+                    AudioManager.instance.MenuButtonEvents("PlayGame");
+                    break;
+                case "ExitBox":
+                    quitAnim.SetTrigger("TriggerExitBox");
+                    Application.Quit();
+                    AudioManager.instance.MenuButtonEvents("ExitGame");
+                    break;
+                default:
+                    Debug.Log("Clicked an object with no tag");
+                    break;
             }
         }
     }
-
     void SwitchDifficulty(int difficultyChange) {
         if (difficultyChange == 1) {
             AudioManager.instance.MenuButtonEvents("EasyMode");
@@ -63,70 +99,6 @@ public class MainMenuManager : MonoBehaviour {
             levelDifficultyObjects[1].SetActive(false);
             levelDifficultyObjects[2].SetActive(true);
             difficulty = 1;
-        }
-    }
-
-    public void SoundChanger() {
-        RaycastHit hit;
-        Vector2 mousePos = playerInput.GetPointerPos();
-        Ray ray = Camera.main.ScreenPointToRay(mousePos);
-        if (Physics.Raycast(ray, out hit)) {
-            if (hit.transform.gameObject.tag == "SoundValve") {
-                if (soundAnim.GetBool("Trigger") == true) {
-                    AudioManager.instance.canPlaySounds = false;
-                    soundAnim.SetBool("Trigger", false);
-                }
-                else if (soundAnim.GetBool("Trigger") == false) {
-                    AudioManager.instance.canPlaySounds = true;
-                    soundAnim.SetBool("Trigger", true);
-                }
-                AudioManager.instance.MenuButtonEvents("Valve");
-            }
-        }
-    }
-
-    public void MusicChanger() {
-        RaycastHit hit;
-        Vector2 mousePos = playerInput.GetPointerPos();
-        Ray ray = Camera.main.ScreenPointToRay(mousePos);
-        if (Physics.Raycast(ray, out hit)) {
-            if (hit.transform.gameObject.tag == "MusicValve") {
-                if (musicAnim.GetBool("Trigger") == true) {
-                    musicAnim.SetBool("Trigger", false);
-                    AudioManager.instance.canPlayMusic = false;
-                }
-                else if (musicAnim.GetBool("Trigger") == false) {
-                    musicAnim.SetBool("Trigger", true);
-                    AudioManager.instance.canPlayMusic = true;
-                }
-                AudioManager.instance.MusicEvents("MainMenu");
-                AudioManager.instance.MenuButtonEvents("Valve");
-            }
-        }
-    }
-
-    public void PlayGame() {
-        RaycastHit hit;
-        Vector2 mousePos = playerInput.GetPointerPos();
-        Ray ray = Camera.main.ScreenPointToRay(mousePos);
-        if (Physics.Raycast(ray, out hit)) {
-            if (hit.transform.gameObject.tag == "StartBall") {
-                GameManager.instance.LoadScene(1);
-                AudioManager.instance.MenuButtonEvents("PlayGame");
-            }
-        }
-    }
-
-    public void ExitGame() {
-        RaycastHit hit;
-        Vector2 mousePos = playerInput.GetPointerPos();
-        Ray ray = Camera.main.ScreenPointToRay(mousePos);
-        if (Physics.Raycast(ray, out hit)) {
-            if (hit.transform.gameObject.tag == "ExitBox") {
-                quitAnim.SetTrigger("TriggerExitBox");
-                Application.Quit();
-                AudioManager.instance.MenuButtonEvents("ExitGame");
-            }
         }
     }
 }

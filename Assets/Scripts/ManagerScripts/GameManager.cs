@@ -28,10 +28,10 @@ public class GameManager : MonoBehaviour {
     }
 
     public delegate void SceneChange(SceneType sceneType);
-    public event SceneChange OnSceneChange;
+    public static event SceneChange OnSceneChange;
 
     public delegate void PlayerSpawn(PlayerController newPlayer);
-    public event PlayerSpawn OnPlayerSpawn;
+    public static event PlayerSpawn OnPlayerSpawn;
     private GameObject currentPlayer;
     private PlayerController playerController;
 
@@ -49,13 +49,17 @@ public class GameManager : MonoBehaviour {
         SceneSetup();
     }
     
-    public void LoadScene(int sceneIndex) {
-        SceneManager.LoadScene(sceneIndex);
-        StartCoroutine(SceneSetup());
+    public void LoadScene(string sceneName) {
+        StartCoroutine(LoadSceneCoroutine(sceneName));
     }
 
-    private IEnumerator SceneSetup() {
-        yield return new WaitForSeconds(1);
+    public IEnumerator LoadSceneCoroutine(string sceneName) {
+        SceneManager.LoadScene(sceneName);
+        yield return null;
+        SceneSetup();
+    }
+
+    private void SceneSetup() {
         SceneType sceneType = GetCurrentSceneType();
         switch(sceneType) {
             case SceneType.mainMenu:
@@ -63,6 +67,9 @@ public class GameManager : MonoBehaviour {
             case SceneType.withPlayer:
                 spawnCam.SetActive(true);
                 canSpawnPlayer = true;
+                break;
+            default:
+                Debug.LogError("Unhandled Scene Type");
                 break;
         }
         if (OnSceneChange != null) {
@@ -72,13 +79,13 @@ public class GameManager : MonoBehaviour {
 
 
     public void SpawnPlayer() {
-        spawnCam.SetActive(true);
         RaycastHit hit;
         Vector2 mousePos = playerInput.GetPointerPos();
         Ray ray = spawnCam.GetComponent<Camera>().ScreenPointToRay(mousePos);
         if (Physics.Raycast(ray, out hit)) {
             if (hit.transform.gameObject.tag == "Ground") {
                 if (canSpawnPlayer) {
+                    Debug.Log("Spawning Player");
                     canSpawnPlayer = false;
                     spawnCam.SetActive(false);
                     currentPlayer = Instantiate(playerPrefab, hit.point + Vector3.up * 2, Quaternion.identity);
@@ -90,16 +97,12 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private SceneType GetCurrentSceneType() {
+    SceneType GetCurrentSceneType() {
         switch (SceneManager.GetActiveScene().name) {
         case "MainMenu":
             return SceneType.mainMenu;
         default:
             return SceneType.withPlayer;
         }
-    }
-
-    public Transform GetPlayer() {
-        return currentPlayer.transform.Find("Sphere");
     }
 }
