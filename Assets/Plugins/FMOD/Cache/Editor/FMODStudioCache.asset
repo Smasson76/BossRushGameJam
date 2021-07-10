@@ -153,7 +153,7 @@ MonoBehaviour:
   Path: FMODAssets/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637614583844248365
+  lastModified: 637614753115820659
   LoadResult: 0
   FileSizes:
   - Name: 
@@ -460,7 +460,7 @@ MonoBehaviour:
   - {fileID: 1247186626190314035}
   StringsBanks:
   - {fileID: -6420116907401734323}
-  stringsBankWriteTime: 637614583844248365
+  stringsBankWriteTime: 637614753115820659
   cacheVersion: 8
 --- !u!114 &73402728408708292
 MonoBehaviour:
@@ -546,7 +546,7 @@ MonoBehaviour:
   Path: FMODAssets/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637614583844248365
+  lastModified: 637614753115820659
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -703,7 +703,7 @@ MonoBehaviour:
   Path: FMODAssets/PlayerSounds.bank
   Name: PlayerSounds
   StudioPath: bank:/PlayerSounds
-  lastModified: 637614583844628325
+  lastModified: 637614753116319327
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -745,7 +745,7 @@ MonoBehaviour:
   Path: FMODAssets/MenuSounds.bank
   Name: MenuSounds
   StudioPath: bank:/MenuSounds
-  lastModified: 637614583844548337
+  lastModified: 637614753116209615
   LoadResult: 0
   FileSizes: []
   Exists: 1
