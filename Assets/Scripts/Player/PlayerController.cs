@@ -66,12 +66,12 @@ public class PlayerController : MonoBehaviour {
     void PlayerBoost() {
         if (playerInput.IsBoosting()) {
             playerAnimator.isBoosting = true;
-            AudioManager.instance.PlayerEvents("Boost");
             goalBoostDirection = GetCurrentBoostDir();
             playerRb.AddForce(goalBoostDirection * boostForce, ForceMode.Force);
+            AudioManager.instance.PlayerEvents("Boost");
         } else {
             playerAnimator.isBoosting = false;
-            //Stops the booster sound when player is no longer boosting here
+            AudioManager.instance.StopAllPlayerEvents();
         }
         if (boostPercent < 100 && canRegenerateBoost) {
             boostPercent += boostIncreaseAmount;
