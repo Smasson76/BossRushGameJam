@@ -23,6 +23,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-8650255415248789712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: snapshot:/ReverbOutside
+  m_EditorClassIdentifier: 
+  Path: snapshot:/ReverbOutside
+  guid: 13a7d28f04dfa140b42728ea0ee423bb
+  Banks:
+  - {fileID: 1247186626190314035}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
 --- !u!114 &-8455234925870059095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,11 +153,11 @@ MonoBehaviour:
   Path: FMODAssets/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637614415055589696
+  lastModified: 637614583844248365
   LoadResult: 0
   FileSizes:
   - Name: 
-    Value: 1932
+    Value: 2030
   Exists: 1
 --- !u!114 &-5882973985931039820
 MonoBehaviour:
@@ -431,12 +454,13 @@ MonoBehaviour:
   - {fileID: 9081532061360130731}
   - {fileID: 4202672034429369858}
   - {fileID: -3462021826323821631}
+  - {fileID: -8650255415248789712}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1247186626190314035}
   StringsBanks:
   - {fileID: -6420116907401734323}
-  stringsBankWriteTime: 637614415055589696
+  stringsBankWriteTime: 637614583844248365
   cacheVersion: 8
 --- !u!114 &73402728408708292
 MonoBehaviour:
@@ -522,7 +546,7 @@ MonoBehaviour:
   Path: FMODAssets/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637613590183806617
+  lastModified: 637614583844248365
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -679,7 +703,7 @@ MonoBehaviour:
   Path: FMODAssets/PlayerSounds.bank
   Name: PlayerSounds
   StudioPath: bank:/PlayerSounds
-  lastModified: 637614415055985531
+  lastModified: 637614583844628325
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -721,7 +745,7 @@ MonoBehaviour:
   Path: FMODAssets/MenuSounds.bank
   Name: MenuSounds
   StudioPath: bank:/MenuSounds
-  lastModified: 637614415055903399
+  lastModified: 637614583844548337
   LoadResult: 0
   FileSizes: []
   Exists: 1

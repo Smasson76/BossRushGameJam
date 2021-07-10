@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour {
     void PlayerBoost() {
         if (playerInput.IsBoosting()) {
             playerAnimator.isBoosting = true;
-            //AudioManager.instance.PlayerEvents("Boost");
+            AudioManager.instance.PlayerEvents("Boost");
             goalBoostDirection = GetCurrentBoostDir();
             playerRb.AddForce(goalBoostDirection * boostForce, ForceMode.Force);
         } else {
