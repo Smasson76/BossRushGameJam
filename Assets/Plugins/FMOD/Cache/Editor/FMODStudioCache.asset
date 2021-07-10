@@ -23,29 +23,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-8650255415248789712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: snapshot:/ReverbOutside
-  m_EditorClassIdentifier: 
-  Path: snapshot:/ReverbOutside
-  guid: 13a7d28f04dfa140b42728ea0ee423bb
-  Banks:
-  - {fileID: 1247186626190314035}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 0
 --- !u!114 &-8455234925870059095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,29 +92,6 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
---- !u!114 &-7162650742972757766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/PlayerGrappleFire
-  m_EditorClassIdentifier: 
-  Path: event:/PlayerGrappleFire
-  guid: 585e9e931ca56b468233e0eb10c91a94
-  Banks:
-  - {fileID: 4754031548072132626}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &-6420116907401734323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,11 +107,11 @@ MonoBehaviour:
   Path: FMODAssets/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637614583844248365
+  lastModified: 637613815942626245
   LoadResult: 0
   FileSizes:
   - Name: 
-    Value: 2030
+    Value: 1574
   Exists: 1
 --- !u!114 &-5882973985931039820
 MonoBehaviour:
@@ -177,7 +131,7 @@ MonoBehaviour:
   - {fileID: 6565395649448905393}
   IsStream: 1
   Is3D: 1
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
@@ -274,52 +228,6 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
---- !u!114 &-4275803722661290712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/PlayerGrappleUngrasp
-  m_EditorClassIdentifier: 
-  Path: event:/PlayerGrappleUngrasp
-  guid: 4cad230290e9084da7fd8787541e58d3
-  Banks:
-  - {fileID: 4754031548072132626}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 406
---- !u!114 &-4216365691009209311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/PlayerImpactSoft
-  m_EditorClassIdentifier: 
-  Path: event:/PlayerImpactSoft
-  guid: 82fb62c1b171ec4ba7faddb0668c9356
-  Banks:
-  - {fileID: 4754031548072132626}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &-3823716945314252001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,29 +245,6 @@ MonoBehaviour:
   Banks:
   - {fileID: 6565395649448905393}
   IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-3462021826323821631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/PlayerGrappleFireStacked
-  m_EditorClassIdentifier: 
-  Path: event:/PlayerGrappleFireStacked
-  guid: d6f560cd333d0442bd0a2c36868fab2c
-  Banks:
-  - {fileID: 4754031548072132626}
-  IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters: []
@@ -380,29 +265,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/PlayerDeath
   guid: ab85b5bc1a39634e80ff57ecdc193f6a
-  Banks:
-  - {fileID: 4754031548072132626}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-835932533279536561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/PlayerGrappleRehouse
-  m_EditorClassIdentifier: 
-  Path: event:/PlayerGrappleRehouse
-  guid: 4fd73c8553473b4d8197ecd6131536b9
   Banks:
   - {fileID: 4754031548072132626}
   IsStream: 0
@@ -446,21 +308,12 @@ MonoBehaviour:
   - {fileID: -3263845817954237323}
   - {fileID: 3114099800913209535}
   - {fileID: -4902718348655035265}
-  - {fileID: 1192929956442757896}
-  - {fileID: -4275803722661290712}
-  - {fileID: -835932533279536561}
-  - {fileID: -7162650742972757766}
-  - {fileID: -4216365691009209311}
-  - {fileID: 9081532061360130731}
-  - {fileID: 4202672034429369858}
-  - {fileID: -3462021826323821631}
-  - {fileID: -8650255415248789712}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1247186626190314035}
   StringsBanks:
   - {fileID: -6420116907401734323}
-  stringsBankWriteTime: 637614583844248365
+  stringsBankWriteTime: 637613815942626245
   cacheVersion: 8
 --- !u!114 &73402728408708292
 MonoBehaviour:
@@ -508,29 +361,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &1192929956442757896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/PlayerGrappleReelOut
-  m_EditorClassIdentifier: 
-  Path: event:/PlayerGrappleReelOut
-  guid: 1db6e01420e97241b2c3e5bf3f2ec9a1
-  Banks:
-  - {fileID: 4754031548072132626}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 13714
 --- !u!114 &1247186626190314035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -546,7 +376,7 @@ MonoBehaviour:
   Path: FMODAssets/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637614583844248365
+  lastModified: 637613815942616285
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -614,7 +444,7 @@ MonoBehaviour:
   - {fileID: 6565395649448905393}
   IsStream: 1
   Is3D: 1
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
@@ -642,29 +472,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &4202672034429369858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/PlayerGrappleReelReturn
-  m_EditorClassIdentifier: 
-  Path: event:/PlayerGrappleReelReturn
-  guid: cb4c7c9c3a6d714c9e966c8d439b754b
-  Banks:
-  - {fileID: 4754031548072132626}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 13714
 --- !u!114 &4471461792161883553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -703,7 +510,7 @@ MonoBehaviour:
   Path: FMODAssets/PlayerSounds.bank
   Name: PlayerSounds
   StudioPath: bank:/PlayerSounds
-  lastModified: 637614583844628325
+  lastModified: 637613815943055098
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -745,7 +552,7 @@ MonoBehaviour:
   Path: FMODAssets/MenuSounds.bank
   Name: MenuSounds
   StudioPath: bank:/MenuSounds
-  lastModified: 637614583844548337
+  lastModified: 637613815943005237
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -772,26 +579,3 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &9081532061360130731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/PlayerGrappleGrasp
-  m_EditorClassIdentifier: 
-  Path: event:/PlayerGrappleGrasp
-  guid: 9106203ca1eacb46901e1c951072208e
-  Banks:
-  - {fileID: 4754031548072132626}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 441

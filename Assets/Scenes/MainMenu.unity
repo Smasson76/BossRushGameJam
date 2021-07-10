@@ -2342,24 +2342,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 295403032}
   m_Mesh: {fileID: 5856139165324365971, guid: 41b7fbec21d32f04790b6ba5ecc2868d, type: 3}
---- !u!1 &296143068 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: fb6fa3f40ebf06d91bf9bc9facaffac8, type: 3}
-  m_PrefabInstance: {fileID: 375075251}
-  m_PrefabAsset: {fileID: 0}
---- !u!135 &296143069
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 296143068}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.6
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &312982348
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2910,10 +2892,6 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fb6fa3f40ebf06d91bf9bc9facaffac8, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: fb6fa3f40ebf06d91bf9bc9facaffac8, type: 3}
-      propertyPath: m_TagString
-      value: StartBall
       objectReference: {fileID: 0}
     - target: {fileID: 1929044034149125815, guid: fb6fa3f40ebf06d91bf9bc9facaffac8, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -5595,10 +5573,10 @@ GameObject:
   m_Component:
   - component: {fileID: 732699812}
   - component: {fileID: 732699811}
+  - component: {fileID: 732699810}
   - component: {fileID: 732699813}
   - component: {fileID: 732699814}
   - component: {fileID: 732699815}
-  - component: {fileID: 732699810}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5606,20 +5584,14 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &732699810
-MonoBehaviour:
+--- !u!81 &732699810
+AudioListener:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 732699809}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attenuationObject: {fileID: 0}
-  ListenerNumber: -1
 --- !u!20 &732699811
 Camera:
   m_ObjectHideFlags: 0
@@ -14768,14 +14740,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 691071163, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
-      propertyPath: menuAmbienceEvents.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 691071163, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
-      propertyPath: menuAmbienceEvents.Array.data[2]
-      value: event:/MainMenuBuzz
-      objectReference: {fileID: 0}
     - target: {fileID: 129395800956638946, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
       propertyPath: m_RootOrder
       value: 2

@@ -18,14 +18,13 @@ public class GameManager : MonoBehaviour {
     public GameObject playerPrefab;
     public PlayerInput playerInput;
 
-    public GameObject spawnCam;
+    GameObject spawnCam;
 
     public bool canSpawnPlayer;
     
     public enum SceneType {
         mainMenu,
         withPlayer,
-        arenaOne,
     }
 
     public delegate void PlayerSpawn();
@@ -41,6 +40,9 @@ public class GameManager : MonoBehaviour {
         else {
             Destroy(gameObject);
         }
+
+        spawnCam = this.transform.GetChild(0).gameObject;
+        spawnCam.SetActive(false);
     }
 
     void Start() {
@@ -51,8 +53,8 @@ public class GameManager : MonoBehaviour {
     }
 
     void Update() {
+        if (boostSlider == null) return;
         //boostSlider.value = playerController.GetBoostRemaining();
-        if (spawnCam == null) return;
     }
 
     public void SpawnPlayer() {
@@ -81,17 +83,12 @@ public class GameManager : MonoBehaviour {
             return SceneType.mainMenu;
         case "PlayerTestScene":
             return SceneType.withPlayer;
-        case "PlayerAudioTest":
-            return SceneType.withPlayer;
         case "GameScene":
             return SceneType.withPlayer;
-        case "Arena":
-            return SceneType.arenaOne;
         default:
             return SceneType.withPlayer;
         }
     }
-
     public Transform GetPlayer() {
         return currentPlayer.transform.Find("Sphere");
     }

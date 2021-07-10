@@ -9,7 +9,6 @@ TagManager:
   - MusicValve
   - ExitBox
   - Ground
-  - StartBall
   layers:
   - Default
   - TransparentFX
