@@ -21,7 +21,7 @@ MonoBehaviour:
     value: 0
   color:
     overrideState: 1
-    value: {r: 0.5943396, g: 0.43573502, b: 0.32800817, a: 1}
+    value: {r: 0.3301887, g: 0.079432175, b: 0.0847827, a: 1}
   center:
     overrideState: 0
     value: {x: 0.5, y: 0.5}
@@ -200,19 +200,19 @@ MonoBehaviour:
     value: 1
   temperature:
     overrideState: 1
-    value: 20
+    value: 32
   tint:
     overrideState: 1
-    value: 12
+    value: 14
   colorFilter:
     overrideState: 0
-    value: {r: 1, g: 1, b: 1, a: 1}
+    value: {r: 0.9245283, g: 0.6798732, b: 0.6497864, a: 1}
   hueShift:
-    overrideState: 1
-    value: 2
-  saturation:
     overrideState: 0
-    value: -12
+    value: -8
+  saturation:
+    overrideState: 1
+    value: -7
   brightness:
     overrideState: 0
     value: 0
@@ -221,25 +221,25 @@ MonoBehaviour:
     value: 0.37
   contrast:
     overrideState: 1
-    value: 4
+    value: 18
   mixerRedOutRedIn:
     overrideState: 1
-    value: 95
+    value: 90
   mixerRedOutGreenIn:
-    overrideState: 0
-    value: -13
+    overrideState: 1
+    value: 16
   mixerRedOutBlueIn:
     overrideState: 1
-    value: 64
+    value: 58
   mixerGreenOutRedIn:
     overrideState: 0
     value: 0
   mixerGreenOutGreenIn:
     overrideState: 0
-    value: 100
+    value: 107
   mixerGreenOutBlueIn:
     overrideState: 0
-    value: 0
+    value: 4
   mixerBlueOutRedIn:
     overrideState: 0
     value: 0
@@ -251,13 +251,13 @@ MonoBehaviour:
     value: 100
   lift:
     overrideState: 1
-    value: {x: 0.91473204, y: 0.8648466, z: 1, w: -0.043196622}
+    value: {x: 0.9963074, y: 0.8884728, z: 1, w: -0.06712007}
   gamma:
     overrideState: 1
-    value: {x: 0.9907678, y: 0.981532, z: 1, w: -0.04319654}
+    value: {x: 0.7962074, y: 0.67969424, z: 1, w: -0.04319654}
   gain:
     overrideState: 1
-    value: {x: 0.96895516, y: 1, z: 0.802769, w: 0.08639311}
+    value: {x: 0.9710649, y: 0.7264725, z: 1, w: 0.08639311}
   masterCurve:
     overrideState: 0
     value:
@@ -1490,7 +1490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6050e2d5de785ce4d931e4dbdbf2d755, type: 3}
   m_Name: ChromaticAberration
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
