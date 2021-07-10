@@ -51,15 +51,15 @@ public class PlayerController : MonoBehaviour {
     void PlayerMove() {
         if (isOnGround()) {
             Vector2 val = playerInput.GetPlayerMovement();
-            //AudioManager.instance.PlayerEvents("Movement");
+            //AudioManager.instance.PlayerMovement();
             if (val.magnitude != 0) {
                 Vector3 forceDirection = (cameraController.GetCameraHorizontalFacing() * new Vector3(val.x, 0, val.y)).normalized;
                 playerRb.AddForce(forceDirection * acceleration, ForceMode.Force);
-                goalBoostDirection = forceDirection; 
+                goalBoostDirection = forceDirection;
             }
         }
         else {
-            //Stop player movement audio here
+            AudioManager.instance.StopAllPlayerEvents();
         }
     }
     
@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour {
             playerAnimator.isBoosting = true;
             goalBoostDirection = GetCurrentBoostDir();
             playerRb.AddForce(goalBoostDirection * boostForce, ForceMode.Force);
-            AudioManager.instance.PlayerEvents("Boost");
+            //AudioManager.instance.PlayerBoost();
         } else {
             playerAnimator.isBoosting = false;
             AudioManager.instance.StopAllPlayerEvents();
@@ -129,7 +129,7 @@ public class PlayerController : MonoBehaviour {
             grappleSpring.spring = 5f;
             grappleSpring.damper = 5f;
 
-            AudioManager.instance.PlayerEvents("GrappleFire");
+            AudioManager.instance.PlayerGrapple();
         }   
     }
 
@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour {
         isGrappling = false;
         Destroy(grappleSpring);
         playerAnimator.GrappleEnd();
-        //Plays the reel return sound effect here
+        AudioManager.instance.PlayerReelReturn();
     }
 
     public void UpdateRope() {
@@ -165,7 +165,7 @@ public class PlayerController : MonoBehaviour {
             playerInput.PlayerDeath();
             //Plays the impact sound effect here
             //Stops movement audio source when dead here
-            //AudioManager.instance.DeathSound();
+            AudioManager.instance.PlayerImpact();
             StartCoroutine(Death());
         }
     }

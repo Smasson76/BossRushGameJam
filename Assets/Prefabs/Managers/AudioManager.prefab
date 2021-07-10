@@ -57,5 +57,7 @@ MonoBehaviour:
   PlayerStateEvent:
   - event:/PlayerMovementFeather
   - event:/PlayerParachuteEngage
-  - event:/PlayerBoostEngage
+  - event:/PlayerBoostBurn
   - event:/PlayerGrappleFire
+  canPlayMusic: 1
+  canPlaySounds: 1
