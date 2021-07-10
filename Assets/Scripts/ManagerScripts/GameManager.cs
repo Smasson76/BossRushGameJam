@@ -25,10 +25,12 @@ public class GameManager : MonoBehaviour {
     public enum SceneType {
         mainMenu,
         withPlayer,
-        arenaOne,
     }
 
-    public delegate void PlayerSpawn();
+    public delegate void SceneChange(SceneType sceneType);
+    public event SceneChange OnSceneChange;
+
+    public delegate void PlayerSpawn(PlayerController newPlayer);
     public event PlayerSpawn OnPlayerSpawn;
     private GameObject currentPlayer;
     private PlayerController playerController;
@@ -44,16 +46,30 @@ public class GameManager : MonoBehaviour {
     }
 
     void Start() {
-        if (GetCurrentScene() == SceneType.withPlayer) {
-            spawnCam.SetActive(true);
-            canSpawnPlayer = true;
+        SceneSetup();
+    }
+    
+    public void LoadScene(int sceneIndex) {
+        SceneManager.LoadScene(sceneIndex);
+        StartCoroutine(SceneSetup());
+    }
+
+    private IEnumerator SceneSetup() {
+        yield return new WaitForSeconds(1);
+        SceneType sceneType = GetCurrentSceneType();
+        switch(sceneType) {
+            case SceneType.mainMenu:
+                break;
+            case SceneType.withPlayer:
+                spawnCam.SetActive(true);
+                canSpawnPlayer = true;
+                break;
+        }
+        if (OnSceneChange != null) {
+            OnSceneChange(sceneType);
         }
     }
 
-    void Update() {
-        //boostSlider.value = playerController.GetBoostRemaining();
-        if (spawnCam == null) return;
-    }
 
     public void SpawnPlayer() {
         spawnCam.SetActive(true);
@@ -68,25 +84,16 @@ public class GameManager : MonoBehaviour {
                     currentPlayer = Instantiate(playerPrefab, hit.point + Vector3.up * 2, Quaternion.identity);
                     playerController = currentPlayer.GetComponent<PlayerController>();
                     playerController.playerInput = playerInput;
-                    playerInput.NewPlayer(playerController);
-                    if (OnPlayerSpawn != null) OnPlayerSpawn();
+                    if (OnPlayerSpawn != null) OnPlayerSpawn(playerController);
                 }
             }
         }
     }
 
-    public SceneType GetCurrentScene() {
+    private SceneType GetCurrentSceneType() {
         switch (SceneManager.GetActiveScene().name) {
         case "MainMenu":
             return SceneType.mainMenu;
-        case "PlayerTestScene":
-            return SceneType.withPlayer;
-        case "PlayerAudioTest":
-            return SceneType.withPlayer;
-        case "GameScene":
-            return SceneType.withPlayer;
-        case "Arena":
-            return SceneType.arenaOne;
         default:
             return SceneType.withPlayer;
         }

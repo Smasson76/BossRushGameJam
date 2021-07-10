@@ -22,9 +22,22 @@ public class PlayerInput : MonoBehaviour {
 
         controls.PlayerSpawnerControls.Spawning.performed += ctx => SpawnPlayer();
     }
-    
-    void Start() {
-        switch (GameManager.instance.GetCurrentScene()) {
+
+    void OnEnable() {
+        controls.Enable();
+        Cursor.lockState = CursorLockMode.Confined;
+        GameManager.instance.OnSceneChange += SceneChange;
+        GameManager.instance.OnPlayerSpawn += NewPlayer;
+    }
+
+    void OnDisable() {
+        controls.Disable();
+        Cursor.lockState = CursorLockMode.None;
+        GameManager.instance.OnSceneChange -= SceneChange;
+        GameManager.instance.OnPlayerSpawn -= NewPlayer;
+    }
+    void SceneChange(GameManager.SceneType sceneType) {
+        switch (sceneType) {
         case GameManager.SceneType.mainMenu:
             controls.PlayerMovement.Disable();
             controls.MainMenuControls.Enable();
@@ -40,17 +53,8 @@ public class PlayerInput : MonoBehaviour {
 
     public void NewPlayer(PlayerController player) {
         playerController = player;
+        controls.PlayerSpawnerControls.Disable();
         controls.PlayerMovement.Enable();
-    }
-
-    void OnEnable() {
-        controls.Enable();
-        Cursor.lockState = CursorLockMode.Confined;
-    }
-
-    void OnDisable() {
-        controls.Disable();
-        Cursor.lockState = CursorLockMode.None;
     }
 
     public void PlayerDeath() {

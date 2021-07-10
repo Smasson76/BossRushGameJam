@@ -19,8 +19,8 @@ public class Boss1Controller : MonoBehaviour {
         gameManager.OnPlayerSpawn -= newPlayer;
     }
 
-    void newPlayer() {
-        player = gameManager.GetPlayer();
+    void newPlayer(PlayerController newPlayer) {
+        player = newPlayer.transform;
     }
     void Update() {
         animator.UpdateArms(player.position);
