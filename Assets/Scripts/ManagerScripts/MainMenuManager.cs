@@ -18,6 +18,8 @@ public class MainMenuManager : MonoBehaviour {
     Animator musicAnim;
     public GameObject quitBox;
     Animator quitAnim;
+    public GameObject camera;
+    Animator cameraAnim;
     
     void Awake() {
         if (instance == null) instance = this;
@@ -25,6 +27,7 @@ public class MainMenuManager : MonoBehaviour {
         playerInput = GameObject.Find("GameManager").GetComponent<PlayerInput>();
         soundAnim = soundValve.GetComponent<Animator>();
         musicAnim = musicValve.GetComponent<Animator>();
+        cameraAnim = camera.GetComponent<Animator>();
         quitAnim = quitBox.GetComponent<Animator>();
         soundAnim.SetBool("Trigger", true);
         musicAnim.SetBool("Trigger", true);
@@ -64,8 +67,8 @@ public class MainMenuManager : MonoBehaviour {
                     AudioManager.instance.MenuButtonEvents("Valve");
                     break;
                 case "StartBall":
-                    GameManager.instance.LoadScene("PlayerTestScene");
                     AudioManager.instance.MenuButtonEvents("PlayGame");
+                    StartCoroutine(PlayGame());
                     break;
                 case "ExitBox":
                     quitAnim.SetTrigger("TriggerExitBox");
@@ -78,6 +81,13 @@ public class MainMenuManager : MonoBehaviour {
             }
         }
     }
+
+    IEnumerator PlayGame() {
+        cameraAnim.SetTrigger("TriggerExit");
+        yield return new WaitForSeconds(3f);
+        GameManager.instance.LoadScene("PlayerTestScene");
+    }
+
     void SwitchDifficulty(int difficultyChange) {
         if (difficultyChange == 1) {
             AudioManager.instance.MenuButtonEvents("EasyMode");

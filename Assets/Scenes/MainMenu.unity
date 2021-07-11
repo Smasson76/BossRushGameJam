@@ -14732,6 +14732,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7238698785139523565, guid: f5ef9b31d08bf656187f484be88e8df9, type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 732699809}
+    - target: {fileID: 7238698785139523565, guid: f5ef9b31d08bf656187f484be88e8df9, type: 3}
       propertyPath: quitBox
       value: 
       objectReference: {fileID: 2051461056}
