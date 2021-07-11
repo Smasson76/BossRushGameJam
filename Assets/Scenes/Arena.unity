@@ -123,6 +123,75 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &241752668
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3648574951511973362, guid: 62059df86bedfbf45944813a3d9319c5, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3648574951511973362, guid: 62059df86bedfbf45944813a3d9319c5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1033.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3648574951511973362, guid: 62059df86bedfbf45944813a3d9319c5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1219.2026
+      objectReference: {fileID: 0}
+    - target: {fileID: 3648574951511973362, guid: 62059df86bedfbf45944813a3d9319c5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -454.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3648574951511973362, guid: 62059df86bedfbf45944813a3d9319c5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3648574951511973362, guid: 62059df86bedfbf45944813a3d9319c5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3648574951511973362, guid: 62059df86bedfbf45944813a3d9319c5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3648574951511973362, guid: 62059df86bedfbf45944813a3d9319c5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3648574951511973362, guid: 62059df86bedfbf45944813a3d9319c5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3648574951511973362, guid: 62059df86bedfbf45944813a3d9319c5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3648574951511973362, guid: 62059df86bedfbf45944813a3d9319c5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3707348610244665970, guid: 62059df86bedfbf45944813a3d9319c5, type: 3}
+      propertyPath: m_Name
+      value: OilLake (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8243210694241432724, guid: 62059df86bedfbf45944813a3d9319c5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8243210694241432724, guid: 62059df86bedfbf45944813a3d9319c5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 8243210694241432724, guid: 62059df86bedfbf45944813a3d9319c5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 62.1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 62059df86bedfbf45944813a3d9319c5, type: 3}
 --- !u!1 &317314253
 GameObject:
   m_ObjectHideFlags: 0
