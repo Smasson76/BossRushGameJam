@@ -76,7 +76,6 @@ public class CameraController : MonoBehaviour {
 
     void CameraMoveDirect() {
         Vector2 val = playerInput.DirectCameraControlDelta();
-        Debug.Log(val);
         cameraPos.x += val.x * cameraDirectControlSensitivity;
         cameraPos.y = Mathf.Clamp(cameraPos.y - val.y * cameraDirectControlSensitivity, cameraMinTilt, cameraMaxTilt);
     }

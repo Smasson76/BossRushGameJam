@@ -23,19 +23,23 @@ public class PlayerController : MonoBehaviour {
 
     [System.NonSerialized] public PlayerInput playerInput;
     private PlayerAnimator playerAnimator;
+    private PlayerAudio playerAudio;
     private Vector3 goalBoostDirection = Vector3.up;
     private Rigidbody playerRb;
     private CameraController cameraController;
     private Vector3 grapplePoint;
     private SpringJoint grappleSpring; 
     private bool isGrappling;
+    private bool isBoosting;
     private float boostPercent = 100f;
 
     void Start() {
         cameraController = this.GetComponent<CameraController>();
         playerAnimator = this.GetComponent<PlayerAnimator>();
+        playerAudio = this.GetComponent<PlayerAudio>();
         playerRb = player.GetComponent<Rigidbody>();
         GameObject lookTargetGameObject = new GameObject("Look Target");
+        playerAudio.InitInstances(playerRb.transform);
     }
     
     // FixedUpdate for physics changes
@@ -51,31 +55,35 @@ public class PlayerController : MonoBehaviour {
     void PlayerMove() {
         if (isOnGround()) {
             Vector2 val = playerInput.GetPlayerMovement();
-            //AudioManager.instance.PlayerMovement();
             if (val.magnitude != 0) {
                 Vector3 forceDirection = (cameraController.GetCameraHorizontalFacing() * new Vector3(val.x, 0, val.y)).normalized;
                 playerRb.AddForce(forceDirection * acceleration, ForceMode.Force);
                 goalBoostDirection = forceDirection;
             }
         }
-        else {
-            AudioManager.instance.StopAllPlayerEvents();
-        }
     }
-    
+
     void PlayerBoost() {
-        if (playerInput.IsBoosting()) {
-            playerAnimator.isBoosting = true;
+        if (isBoosting) {
             goalBoostDirection = GetCurrentBoostDir();
             playerRb.AddForce(goalBoostDirection * boostForce, ForceMode.Force);
-            //AudioManager.instance.PlayerBoost();
-        } else {
-            playerAnimator.isBoosting = false;
-            AudioManager.instance.StopAllPlayerEvents();
         }
+
         if (boostPercent < 100 && canRegenerateBoost) {
             boostPercent += boostIncreaseAmount;
         }
+    }
+    
+    public void BoostStart() {
+        isBoosting = true;
+        playerAnimator.isBoosting = true;
+        playerAudio.BoostStart();
+    }
+    
+    public void BoostEnd() {
+        isBoosting = false;
+        playerAnimator.isBoosting = false;
+        playerAudio.BoostEnd();
     }
     public void Megaboost () {
         if (boostPercent > megaboostDescreaseAmount) {
@@ -104,7 +112,6 @@ public class PlayerController : MonoBehaviour {
             Vector3 force = -playerRb.velocity * slowForce;
             playerRb.AddForce(force, ForceMode.Force);
             playerRb.AddTorque(-playerRb.angularVelocity * rotationSlowAmount);
-            //AudioManager.instance.PlayerEvents("Parachute");
         } else {
             playerAnimator.isBraking = false;
         }
@@ -129,7 +136,7 @@ public class PlayerController : MonoBehaviour {
             grappleSpring.spring = 5f;
             grappleSpring.damper = 5f;
 
-            AudioManager.instance.PlayerGrapple();
+            playerAudio.GrappleReelOutStart();
         }   
     }
 
@@ -137,7 +144,7 @@ public class PlayerController : MonoBehaviour {
         isGrappling = false;
         Destroy(grappleSpring);
         playerAnimator.GrappleEnd();
-        AudioManager.instance.PlayerReelReturn();
+        playerAudio.GrappleReelInStart(grapplePoint);
     }
 
     public void UpdateRope() {
@@ -145,6 +152,14 @@ public class PlayerController : MonoBehaviour {
         if (grappleSpring.maxDistance > grapplelength) {
             grappleSpring.maxDistance = grapplelength;
         }
+    }
+
+    public void GrappleReelOutEnded () {
+
+    }
+
+    public void GrappleReelInEnded () {
+        
     }
 
     bool isOnGround() {
@@ -163,26 +178,26 @@ public class PlayerController : MonoBehaviour {
             }
             playerAnimator.Pop();
             playerInput.PlayerDeath();
-            //Plays the impact sound effect here
-            //Stops movement audio source when dead here
-            AudioManager.instance.PlayerImpact();
             StartCoroutine(Death());
         }
     }
 
     IEnumerator Death() {
+        isBoosting = false;
+        playerAnimator.isBoosting = false;
+        playerAudio.PlayerDeath();
         yield return new WaitForSeconds(3f);
         Transform sphere = this.transform.Find("Sphere");
         sphere.SetParent(null);
         Destroy(sphere.GetComponent<CollisionDetection>());
         Destroy(this.gameObject);
-        GameManager.instance.SpawnPlayer();
-        GameManager.instance.canSpawnPlayer = true;
+        GameManager.instance.PlayerDeath();
     }
 
     public Vector3 GetPlayerVelocity() {
         return playerRb.velocity;
     }
+
     public Vector3 GetBoostDirection() {
         return goalBoostDirection;
     }

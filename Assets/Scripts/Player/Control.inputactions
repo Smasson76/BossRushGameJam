@@ -30,12 +30,20 @@
                     "interactions": "Press(behavior=1)"
                 },
                 {
-                    "name": "Boost",
-                    "type": "Value",
+                    "name": "BoostStart",
+                    "type": "Button",
                     "id": "11175b10-4b64-42c4-a41c-e28ba95b5fcb",
-                    "expectedControlType": "Axis",
+                    "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
+                },
+                {
+                    "name": "BoostEnd",
+                    "type": "Button",
+                    "id": "d1b6d77e-c6c6-4713-8a23-3598ddb502fa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=1)"
                 },
                 {
                     "name": "Slow",
@@ -155,7 +163,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and mouse",
-                    "action": "Boost",
+                    "action": "BoostStart",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -200,6 +208,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "DirectCameraControlDelta",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5fca5dcf-0353-4efd-8060-359ddb64b217",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and mouse",
+                    "action": "BoostEnd",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
