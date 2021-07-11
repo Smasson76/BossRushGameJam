@@ -32,6 +32,7 @@ public class PlayerAnimator : MonoBehaviour {
     [System.NonSerialized] public bool isBraking;
     [System.NonSerialized] public bool isBoosting;
     private PlayerController playerController;
+    private PlayerAudio playerAudio;
     private SectionData [] sphereSections;
     private Vector3 grapplePoint;
 
@@ -56,6 +57,7 @@ public class PlayerAnimator : MonoBehaviour {
 
     void Start() {
         playerController = this.gameObject.GetComponent<PlayerController>();
+        playerAudio = this.gameObject.GetComponent<PlayerAudio>();
         sphereSections = new SectionData[sectionBones.Length];
         Transform poleContainer = new GameObject("IKPole Container").transform;
         poleContainer.SetParent(this.transform);
@@ -131,6 +133,8 @@ public class PlayerAnimator : MonoBehaviour {
                 if (isGrappling == false) {
                     sphereSections[i].status = SectionStatus.grappleReturning;
                 } else if (Vector3.Distance(section.transform.position, grapplePoint) < 1f) {
+                    playerAudio.GrappleHit(section.transform.position);
+                    playerAudio.GrappleReelOutEnd();
                     sphereSections[i].status = SectionStatus.grappled;
                 }
                 UpdateRope(i);
@@ -146,6 +150,7 @@ public class PlayerAnimator : MonoBehaviour {
                 section.transform.position += GetDiffToTarget(section.transform.position, goal);
                 UpdateRope(i);
                 if (Vector3.Distance(section.transform.position, goal) < 1f) {
+                    playerAudio.GrappleReelInEnd();
                     section.transform.SetParent(sectionParent, true);
                     sphereSections[i].status = SectionStatus.standby;
                     Destroy(section.rope);

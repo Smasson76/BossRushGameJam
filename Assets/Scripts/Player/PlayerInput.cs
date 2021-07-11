@@ -12,6 +12,8 @@ public class PlayerInput : MonoBehaviour {
         controls = new Control();
         controls.MainMenuControls.Click.performed += ctx => MainMenuClick();
 
+        controls.PlayerMovement.BoostStart.performed += ctx => BoostStart();
+        controls.PlayerMovement.BoostEnd.performed += ctx => BoostEnd();
         controls.PlayerMovement.GrappleStart.performed += ctx => GrappleStart();
         controls.PlayerMovement.GrappleEnd.performed += ctx => GrappleEnd();
         controls.PlayerMovement.Megaboost.performed += ctx => Megaboost();
@@ -31,18 +33,6 @@ public class PlayerInput : MonoBehaviour {
         Cursor.lockState = CursorLockMode.None;
         GameManager.OnSceneChange -= SceneChange;
         GameManager.OnPlayerSpawn -= NewPlayer;
-    }
-
-    void Update() {
-        if (controls.PlayerMovement.enabled) {
-            Debug.Log("Player movement enabled");
-        }
-        if (controls.PlayerSpawnerControls.enabled) {
-            Debug.Log("Player spawner enabled");
-        }
-        if (controls.MainMenuControls.enabled) {
-            Debug.Log("Main menu controls enabled");
-        }
     }
 
     void SceneChange(GameManager.SceneType sceneType) {
@@ -84,7 +74,13 @@ public class PlayerInput : MonoBehaviour {
         GameManager.instance.SpawnPlayer();
     }
 
-    // Player Movement Controls: 
+    // Player Movement Controls:
+    private void BoostStart() {
+        playerController.BoostStart();
+    }
+    private void BoostEnd() {
+        playerController.BoostEnd();
+    }
     private void GrappleStart() {
         playerController.GrappleStart();
     }
@@ -99,10 +95,6 @@ public class PlayerInput : MonoBehaviour {
 
     public Vector2 GetPlayerMovement() {
         return controls.PlayerMovement.PlayerMove.ReadValue<Vector2>().normalized;
-    }
-
-    public bool IsBoosting() {
-        return controls.PlayerMovement.Boost.ReadValue<float>() != 0;
     }
 
     public bool IsSlowing() {

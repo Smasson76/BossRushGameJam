@@ -24,7 +24,6 @@ public class AudioManager : MonoBehaviour {
     //This is for the player sound effects
     [FMODUnity.EventRef]
     public string[] PlayerStateEvent;
-    public FMOD.Studio.EventInstance playerState;
 
     public bool canPlayMusic = true;
     public bool canPlaySounds = true;
@@ -37,6 +36,10 @@ public class AudioManager : MonoBehaviour {
         else {
             Destroy(gameObject);
         }
+    }
+
+    void Start() {
+        
     }
 
     public void MenuButtonEvents(string clickEvent) {
@@ -106,55 +109,12 @@ public class AudioManager : MonoBehaviour {
         }
     }
 
-    public void PlayerMovement() {
-        GameObject player = GameObject.Find("Player");
-        FMOD.Studio.PLAYBACK_STATE playbackState;
-        playerState.getPlaybackState(out playbackState);
-        if (playbackState != FMOD.Studio.PLAYBACK_STATE.PLAYING) {
-            playerState = FMODUnity.RuntimeManager.CreateInstance(PlayerStateEvent[0]);
-            playerState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
-            FMODUnity.RuntimeManager.AttachInstanceToGameObject(playerState, player.GetComponent<Transform>());
-            playerState.start();
-        }
-    }
-
-    public void PlayerBoost() {
-        GameObject player = GameObject.Find("Player");
-        FMOD.Studio.PLAYBACK_STATE playbackState;
-        playerState.getPlaybackState(out playbackState);
-        if (playbackState != FMOD.Studio.PLAYBACK_STATE.PLAYING) {
-            playerState = FMODUnity.RuntimeManager.CreateInstance(PlayerStateEvent[2]);
-            playerState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
-            FMODUnity.RuntimeManager.AttachInstanceToGameObject(playerState, player.GetComponent<Transform>());
-            playerState.start();
-        }
-        else if (playbackState == FMOD.Studio.PLAYBACK_STATE.PLAYING) {
-           playerState.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-        }
-    }
-
-    public void PlayerGrapple() {
-        GameObject player = GameObject.Find("Player");
-        playerState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
-        FMODUnity.RuntimeManager.AttachInstanceToGameObject(playerState, player.GetComponent<Transform>());
-        FMODUnity.RuntimeManager.PlayOneShot(PlayerStateEvent[3], player.transform.position);
-    }
-
-    public void PlayerReelReturn() {
-        GameObject player = GameObject.Find("Player");
-        playerState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
-        FMODUnity.RuntimeManager.AttachInstanceToGameObject(playerState, player.GetComponent<Transform>());
-        FMODUnity.RuntimeManager.PlayOneShot(PlayerStateEvent[4], player.transform.position);
-    }
-
-    public void PlayerImpact() {
-        GameObject player = GameObject.Find("Player");
-        playerState.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
-        FMODUnity.RuntimeManager.AttachInstanceToGameObject(playerState, player.GetComponent<Transform>());
-        FMODUnity.RuntimeManager.PlayOneShot(PlayerStateEvent[5], player.transform.position);
-    }
-    
-    public void StopAllPlayerEvents() {
-        playerState.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+    public FMOD.Studio.EventInstance PlayAttatchedToTransform(string sound, Transform transform) {
+        FMOD.Studio.EventInstance instance = FMODUnity.RuntimeManager.CreateInstance(sound);
+        instance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(transform));
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(instance, transform);
+        instance.start();
+        instance.release();
+        return instance;
     }
 }

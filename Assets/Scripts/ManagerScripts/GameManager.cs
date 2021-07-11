@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour {
     public static event PlayerSpawn OnPlayerSpawn;
     private GameObject currentPlayer;
     private PlayerController playerController;
+    private bool soundEffectsEnabled = true;
+    private bool musicEnabled = true;
 
     void Awake() {
         if (instance == null) {
@@ -77,6 +79,10 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    public void PlayerDeath() {
+        spawnCam.SetActive(true);
+        GameManager.instance.canSpawnPlayer = true;
+    }
 
     public void SpawnPlayer() {
         RaycastHit hit;
@@ -85,7 +91,6 @@ public class GameManager : MonoBehaviour {
         if (Physics.Raycast(ray, out hit)) {
             if (hit.transform.gameObject.tag == "Ground") {
                 if (canSpawnPlayer) {
-                    Debug.Log("Spawning Player");
                     canSpawnPlayer = false;
                     spawnCam.SetActive(false);
                     currentPlayer = Instantiate(playerPrefab, hit.point + Vector3.up * 2, Quaternion.identity);
