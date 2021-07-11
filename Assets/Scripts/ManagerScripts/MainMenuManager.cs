@@ -18,6 +18,8 @@ public class MainMenuManager : MonoBehaviour {
     Animator musicAnim;
     public GameObject quitBox;
     Animator quitAnim;
+
+    MainMenuSounds mainMenuSounds;
     
     void Awake() {
         if (instance == null) instance = this;
@@ -28,7 +30,7 @@ public class MainMenuManager : MonoBehaviour {
         quitAnim = quitBox.GetComponent<Animator>();
         soundAnim.SetBool("Trigger", true);
         musicAnim.SetBool("Trigger", true);
-        AudioManager.instance.MusicEvents("MainMenu");
+        mainMenuSounds = this.gameObject.GetComponent<MainMenuSounds>();
     }
 
     public void Click() {
@@ -42,35 +44,35 @@ public class MainMenuManager : MonoBehaviour {
                     break;
                 case "SoundValve":
                     if (soundAnim.GetBool("Trigger") == true) {
-                        AudioManager.instance.canPlaySounds = false;
+                        //AudioManager.instance.canPlaySounds = false;
                         soundAnim.SetBool("Trigger", false);
                     }
                     else if (soundAnim.GetBool("Trigger") == false) {
-                        AudioManager.instance.canPlaySounds = true;
+                        //AudioManager.instance.canPlaySounds = true;
                         soundAnim.SetBool("Trigger", true);
                     }
-                    AudioManager.instance.MenuButtonEvents("Valve");
+                    //AudioManager.instance.MenuButtonEvents("Valve");
                     break;
                 case "MusicValve":
                     if (musicAnim.GetBool("Trigger") == true) {
                         musicAnim.SetBool("Trigger", false);
-                        AudioManager.instance.canPlayMusic = false;
+                        //AudioManager.instance.canPlayMusic = false;
                     }
                     else if (musicAnim.GetBool("Trigger") == false) {
                         musicAnim.SetBool("Trigger", true);
-                        AudioManager.instance.canPlayMusic = true;
+                        //AudioManager.instance.canPlayMusic = true;
                     }
-                    AudioManager.instance.MusicEvents("MainMenu");
-                    AudioManager.instance.MenuButtonEvents("Valve");
+                    //AudioManager.instance.MusicEvents("MainMenu");
+                    //AudioManager.instance.MenuButtonEvents("Valve");
                     break;
                 case "StartBall":
                     GameManager.instance.LoadScene("PlayerTestScene");
-                    AudioManager.instance.MenuButtonEvents("PlayGame");
+                    //AudioManager.instance.MenuButtonEvents("PlayGame");
                     break;
                 case "ExitBox":
                     quitAnim.SetTrigger("TriggerExitBox");
                     Application.Quit();
-                    AudioManager.instance.MenuButtonEvents("ExitGame");
+                    //AudioManager.instance.MenuButtonEvents("ExitGame");
                     break;
                 default:
                     Debug.Log("Clicked an object with no tag");
@@ -80,21 +82,21 @@ public class MainMenuManager : MonoBehaviour {
     }
     void SwitchDifficulty(int difficultyChange) {
         if (difficultyChange == 1) {
-            AudioManager.instance.MenuButtonEvents("EasyMode");
+            mainMenuSounds.DifficultySelection(1);
             levelDifficultyObjects[0].SetActive(true);
             levelDifficultyObjects[1].SetActive(false);
             levelDifficultyObjects[2].SetActive(false);
             difficulty = 2;
         }
         else if (difficultyChange == 2) {
-            AudioManager.instance.MenuButtonEvents("MediumMode");
+            mainMenuSounds.DifficultySelection(2);
             levelDifficultyObjects[0].SetActive(false);
             levelDifficultyObjects[1].SetActive(true);
             levelDifficultyObjects[2].SetActive(false);
             difficulty = 3;
         }
         else if (difficultyChange == 3) {
-            AudioManager.instance.MenuButtonEvents("HardMode");
+            mainMenuSounds.DifficultySelection(3);
             levelDifficultyObjects[0].SetActive(false);
             levelDifficultyObjects[1].SetActive(false);
             levelDifficultyObjects[2].SetActive(true);
