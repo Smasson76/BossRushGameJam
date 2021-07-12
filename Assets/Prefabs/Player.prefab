@@ -313,7 +313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioEvents:
-  - event:/PlayerSounds/PlayerGrappleFire
+  - event:/PlayerSounds/PlayerGrappleFireHeavy
   - event:/PlayerSounds/PlayerBoostEngage
   - event:/PlayerSounds/PlayerBoostBurn
   - event:/PlayerSounds/PlayerGrappleReelOut
