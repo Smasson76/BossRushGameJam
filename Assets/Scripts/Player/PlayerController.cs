@@ -152,10 +152,12 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void GrappleEnd() {
-        isGrappling = false;
-        Destroy(grappleSpring);
-        playerAnimator.GrappleEnd();
-        playerAudio.GrappleReelInStart(grapplePoint);
+        if (isGrappling) {
+            isGrappling = false;
+            Destroy(grappleSpring);
+            playerAnimator.GrappleEnd();
+            playerAudio.GrappleReelInStart(grapplePoint);
+        }
     }
 
     public void UpdateRope() {
