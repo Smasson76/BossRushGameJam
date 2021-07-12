@@ -47,11 +47,11 @@ public class MainMenuManager : MonoBehaviour {
                     break;
                 case "SoundValve":
                     if (soundAnim.GetBool("Trigger") == true) {
-                        //AudioManager.instance.canPlaySounds = false;
+                        mainMenuSounds.canPlaySounds = false;
                         soundAnim.SetBool("Trigger", false);
                     }
                     else if (soundAnim.GetBool("Trigger") == false) {
-                        //AudioManager.instance.canPlaySounds = true;
+                        mainMenuSounds.canPlaySounds = true;
                         soundAnim.SetBool("Trigger", true);
                     }
                     mainMenuSounds.Valve();
@@ -59,12 +59,13 @@ public class MainMenuManager : MonoBehaviour {
                 case "MusicValve":
                     if (musicAnim.GetBool("Trigger") == true) {
                         musicAnim.SetBool("Trigger", false);
-                        //AudioManager.instance.canPlayMusic = false;
+                        mainMenuSounds.canPlayMusic = false;
                     }
                     else if (musicAnim.GetBool("Trigger") == false) {
                         musicAnim.SetBool("Trigger", true);
-                        //AudioManager.instance.canPlayMusic = true;
+                        mainMenuSounds.canPlayMusic = true;
                     }
+                    mainMenuSounds.PlayAmbienceSounds();
                     mainMenuSounds.Valve();
                     break;
                 case "StartBall":

@@ -2868,12 +2868,8 @@ MonoBehaviour:
   - event:/MainMenu/MainMenuBuzz
   - event:/MainMenu/MainMenuSteam
   - event:/MainMenu/MainMenuWind
-  ourTransform: {fileID: 365766008}
---- !u!4 &365766008 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3212519046807422157, guid: f5ef9b31d08bf656187f484be88e8df9, type: 3}
-  m_PrefabInstance: {fileID: 1017287631675068315}
-  m_PrefabAsset: {fileID: 0}
+  ballTransform: {fileID: 28709832}
+  camTransform: {fileID: 732699812}
 --- !u!1001 &375075251
 PrefabInstance:
   m_ObjectHideFlags: 0

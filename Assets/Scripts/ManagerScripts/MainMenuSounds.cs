@@ -25,7 +25,11 @@ public class MainMenuSounds : MonoBehaviour {
         Buzz,
     }
 
-    public Transform ourTransform;
+    public Transform ballTransform;
+    public Transform camTransform;
+
+    public bool canPlayMusic = true;
+    public bool canPlaySounds = true;
 
     void Start() {
         int soundCount = audioEvents.Length;
@@ -37,48 +41,53 @@ public class MainMenuSounds : MonoBehaviour {
         InitAmbienceSounds();
     }
 
-    void InitAmbienceSounds() {
-        //ourTransform = transform;
+    public void InitAmbienceSounds() {
         int musicCount = musicEvents.Length;
         musicInstances = new FMOD.Studio.EventInstance[musicCount];
         for (int i = 0; i < musicCount; i++) {
             musicInstances[i] = FMODUnity.RuntimeManager.CreateInstance(musicEvents[i]);
-            musicInstances[i].set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(ourTransform));
+            musicInstances[i].set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(ballTransform));
         }
         
         PlayAmbienceSounds();
     }
 
-    void PlayAmbienceSounds() {
-        FMODUnity.RuntimeManager.AttachInstanceToGameObject(musicInstances[(int)Music.Steam], ourTransform);
-        musicInstances[(int)Music.Steam].start();
-        /*FMODUnity.RuntimeManager.AttachInstanceToGameObject(musicInstances[(int)Music.Wind], ourTransform);
-        musicInstances[(int)Music.Wind].start();
-        FMODUnity.RuntimeManager.AttachInstanceToGameObject(musicInstances[(int)Music.Buzz], ourTransform);
-        musicInstances[(int)Music.Buzz].start();*/
+    public void PlayAmbienceSounds() {
+        if (canPlayMusic) {
+            FMODUnity.RuntimeManager.AttachInstanceToGameObject(musicInstances[(int)Music.Steam], ballTransform);
+            musicInstances[(int)Music.Steam].start();
+            FMODUnity.RuntimeManager.AttachInstanceToGameObject(musicInstances[(int)Music.Wind], camTransform);
+            musicInstances[(int)Music.Wind].start();
+            FMODUnity.RuntimeManager.AttachInstanceToGameObject(musicInstances[(int)Music.Buzz], ballTransform);
+            musicInstances[(int)Music.Buzz].start();
+        }
+        else {
+            musicInstances[(int)Music.Steam].stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            musicInstances[(int)Music.Wind].stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            musicInstances[(int)Music.Buzz].stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        }
     }
 
     public void DifficultySelection(int difficulty) {
-        if (difficulty == 1) {
-            audioInstances[(int)Sound.SelectEasy].start();
-        }
-        else if (difficulty == 2) {
-            audioInstances[(int)Sound.SelectMedium].start();
-        }
-        else if (difficulty == 3) {
-            audioInstances[(int)Sound.SelectHard].start();
+        if (canPlaySounds) {
+            if (difficulty == 1)
+                audioInstances[(int)Sound.SelectEasy].start();
+            else if (difficulty == 2)
+                audioInstances[(int)Sound.SelectMedium].start();
+            else if (difficulty == 3)
+                audioInstances[(int)Sound.SelectHard].start();
         }
     }
 
     public void Valve() {
-        audioInstances[(int)Sound.Valve].start();
+        if (canPlaySounds) audioInstances[(int)Sound.Valve].start();
     }
 
     public void TVSwitch() {
-        audioInstances[(int)Sound.TVSwitch].start();
+        if (canPlaySounds) audioInstances[(int)Sound.TVSwitch].start();
     }
 
     public void MenuClickPlay() {
-        audioInstances[(int)Sound.MenuClick].start();
+        if (canPlaySounds) audioInstances[(int)Sound.MenuClick].start();
     } 
 }
