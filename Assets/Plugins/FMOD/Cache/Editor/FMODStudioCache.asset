@@ -20,8 +20,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
+  MinDistance: 0
+  MaxDistance: 10000
   Length: 0
 --- !u!114 &-8556649098270267112
 MonoBehaviour:
@@ -83,7 +83,7 @@ MonoBehaviour:
   Path: FMODAssets/WorldSounds.bank
   Name: WorldSounds
   StudioPath: bank:/WorldSounds
-  lastModified: 637617176850000000
+  lastModified: 637616960954248667
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -107,8 +107,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
+  MinDistance: 0.1
+  MaxDistance: 50
   Length: 0
 --- !u!114 &-8004664182657520010
 MonoBehaviour:
@@ -145,16 +145,16 @@ MonoBehaviour:
   m_Name: event:/PlayerSounds/PlayerGrappleReelOut
   m_EditorClassIdentifier: 
   Path: event:/PlayerSounds/PlayerGrappleReelOut
-  guid: 1db6e01420e97241b2c3e5bf3f2ec9a1
+  guid: 6f57117d37bf5f479934b7d343c960aa
   Banks:
   - {fileID: -1979804808589292278}
-  IsStream: 1
+  IsStream: 0
   Is3D: 1
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters: []
   MinDistance: 1
-  MaxDistance: 20
-  Length: 13714
+  MaxDistance: 50
+  Length: 2600
 --- !u!114 &-7714097949093366501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,8 +241,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
+  MinDistance: 30
+  MaxDistance: 600
   Length: 0
 --- !u!114 &-6814802487002847801
 MonoBehaviour:
@@ -304,7 +304,7 @@ MonoBehaviour:
   Path: FMODAssets/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637617149280000000
+  lastModified: 637616961655466321
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -373,8 +373,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
+  MinDistance: 2.4
+  MaxDistance: 30
   Length: 0
 --- !u!114 &-4428055073717700642
 MonoBehaviour:
@@ -441,7 +441,7 @@ MonoBehaviour:
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
-  MaxDistance: 20
+  MaxDistance: 45
   Length: 441
 --- !u!114 &-3409214866483940174
 MonoBehaviour:
@@ -481,11 +481,11 @@ MonoBehaviour:
   Path: FMODAssets/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637617176850000000
+  lastModified: 637616961655476314
   LoadResult: 0
   FileSizes:
   - Name: 
-    Value: 2128
+    Value: 2218
   Exists: 1
 --- !u!114 &-2819638630766737142
 MonoBehaviour:
@@ -547,7 +547,7 @@ MonoBehaviour:
   Path: FMODAssets/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 637617149280000000
+  lastModified: 637616960954158926
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -611,7 +611,7 @@ MonoBehaviour:
   Path: FMODAssets/PlayerSounds.bank
   Name: PlayerSounds
   StudioPath: bank:/PlayerSounds
-  lastModified: 637617176850000000
+  lastModified: 637616965757869094
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -689,7 +689,7 @@ MonoBehaviour:
   - {fileID: -6654524123727514309}
   StringsBanks:
   - {fileID: -3402532370315061654}
-  stringsBankWriteTime: 637617176850000000
+  stringsBankWriteTime: 637616961655476314
   cacheVersion: 8
 --- !u!114 &113507098026826028
 MonoBehaviour:
@@ -734,8 +734,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
+  MinDistance: 0.3
+  MaxDistance: 9.150001
   Length: 0
 --- !u!114 &1256671110996549359
 MonoBehaviour:
@@ -757,8 +757,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
+  MinDistance: 0.90000004
+  MaxDistance: 16.5
   Length: 4571
 --- !u!114 &1338142922525911020
 MonoBehaviour:
@@ -868,8 +868,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters: []
-  MinDistance: 50
-  MaxDistance: 2000
+  MinDistance: 5.6
+  MaxDistance: 70
   Length: 0
 --- !u!114 &2780476926505434862
 MonoBehaviour:
@@ -906,16 +906,16 @@ MonoBehaviour:
   m_Name: event:/PlayerSounds/PlayerGrappleReelReturn
   m_EditorClassIdentifier: 
   Path: event:/PlayerSounds/PlayerGrappleReelReturn
-  guid: cb4c7c9c3a6d714c9e966c8d439b754b
+  guid: 632a092176c6d444b757945f2dced04f
   Banks:
   - {fileID: -1979804808589292278}
-  IsStream: 1
+  IsStream: 0
   Is3D: 1
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters: []
   MinDistance: 1
-  MaxDistance: 20
-  Length: 13714
+  MaxDistance: 50
+  Length: 0
 --- !u!114 &3104228070380596325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1071,8 +1071,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
+  MinDistance: 2.45
+  MaxDistance: 50
   Length: 0
 --- !u!114 &5804284857017524040
 MonoBehaviour:
@@ -1095,7 +1095,7 @@ MonoBehaviour:
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
-  MaxDistance: 20
+  MaxDistance: 45
   Length: 406
 --- !u!114 &5870016354610912745
 MonoBehaviour:
@@ -1118,7 +1118,7 @@ MonoBehaviour:
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
-  MaxDistance: 20
+  MaxDistance: 15
   Length: 0
 --- !u!114 &6038691167256196949
 MonoBehaviour:
@@ -1226,7 +1226,7 @@ MonoBehaviour:
   Path: FMODAssets/MenuSounds.bank
   Name: MenuSounds
   StudioPath: bank:/MenuSounds
-  lastModified: 637617149280000000
+  lastModified: 637616960954058857
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -1317,8 +1317,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
+  MinDistance: 4
+  MaxDistance: 85
   Length: 0
 --- !u!114 &8893264126014034770
 MonoBehaviour:

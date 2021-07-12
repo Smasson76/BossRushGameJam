@@ -2845,31 +2845,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1919289145312076336, guid: f5ef9b31d08bf656187f484be88e8df9, type: 3}
   m_PrefabInstance: {fileID: 1017287631675068315}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &365766006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 365766005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bab147588eaafc445a252bffecc1f71d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioEvents:
-  - event:/MainMenu/MainMenuSelectEasy
-  - event:/MainMenu/MainMenuSelectMedium
-  - event:/MainMenu/MainMenuSelectHard
-  - event:/MainMenu/MainMenuValves
-  - event:/MainMenu/MainMenuTVSwitch
-  - event:/MainMenu/MainMenuClick
-  musicEvents:
-  - event:/MainMenu/MainMenuBuzz
-  - event:/MainMenu/MainMenuSteam
-  - event:/MainMenu/MainMenuWind
-  ballTransform: {fileID: 28709832}
-  camTransform: {fileID: 732699812}
 --- !u!1001 &375075251
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5648,7 +5623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attenuationObject: {fileID: 732699809}
+  attenuationObject: {fileID: 365766005}
   ListenerNumber: -1
 --- !u!20 &732699811
 Camera:
@@ -14713,6 +14688,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 365766006, guid: f5ef9b31d08bf656187f484be88e8df9, type: 3}
+      propertyPath: ballTransform
+      value: 
+      objectReference: {fileID: 28709832}
     - target: {fileID: 1919289145312076336, guid: f5ef9b31d08bf656187f484be88e8df9, type: 3}
       propertyPath: m_Name
       value: MainMenuManager
@@ -14723,15 +14702,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3212519046807422157, guid: f5ef9b31d08bf656187f484be88e8df9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.8
+      value: 43.35
       objectReference: {fileID: 0}
     - target: {fileID: 3212519046807422157, guid: f5ef9b31d08bf656187f484be88e8df9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.1
+      value: -8.34
       objectReference: {fileID: 0}
     - target: {fileID: 3212519046807422157, guid: f5ef9b31d08bf656187f484be88e8df9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.2
+      value: -62.2
       objectReference: {fileID: 0}
     - target: {fileID: 3212519046807422157, guid: f5ef9b31d08bf656187f484be88e8df9, type: 3}
       propertyPath: m_LocalRotation.w
