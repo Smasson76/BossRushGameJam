@@ -20,6 +20,7 @@ public class PlayerAudio : MonoBehaviour {
         ImpactSoft,
         Movement,
         Parachute,
+        EngageAlert,
     }
 
     private Transform playerTransform;
@@ -61,6 +62,8 @@ public class PlayerAudio : MonoBehaviour {
     public void GrappleHit(Vector3 grapplePoint) {
         instances[(int)Sound.GrappleHit].set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(grapplePoint));
         instances[(int)Sound.GrappleHit].start();
+        instances[(int)Sound.EngageAlert].set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(playerTransform));
+        instances[(int)Sound.EngageAlert].start();
     }
 
     public void GrappleReelInStart (Vector3 grapplePoint) {
