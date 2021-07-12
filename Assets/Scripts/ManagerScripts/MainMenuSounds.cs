@@ -25,7 +25,7 @@ public class MainMenuSounds : MonoBehaviour {
         Buzz,
     }
 
-    Transform ourTransform;
+    public Transform ourTransform;
 
     void Start() {
         int soundCount = audioEvents.Length;
@@ -34,11 +34,11 @@ public class MainMenuSounds : MonoBehaviour {
             audioInstances[i] = FMODUnity.RuntimeManager.CreateInstance(audioEvents[i]);
         }
 
-        InitAmbienceSounds(this.transform);
+        InitAmbienceSounds();
     }
 
-    void InitAmbienceSounds(Transform transform) {
-        ourTransform = transform;
+    void InitAmbienceSounds() {
+        //ourTransform = transform;
         int musicCount = musicEvents.Length;
         musicInstances = new FMOD.Studio.EventInstance[musicCount];
         for (int i = 0; i < musicCount; i++) {
@@ -46,16 +46,16 @@ public class MainMenuSounds : MonoBehaviour {
             musicInstances[i].set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(ourTransform));
         }
         
-        //PlayAmbienceSounds();
+        PlayAmbienceSounds();
     }
 
     void PlayAmbienceSounds() {
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(musicInstances[(int)Music.Steam], ourTransform);
         musicInstances[(int)Music.Steam].start();
-        FMODUnity.RuntimeManager.AttachInstanceToGameObject(musicInstances[(int)Music.Wind], ourTransform);
+        /*FMODUnity.RuntimeManager.AttachInstanceToGameObject(musicInstances[(int)Music.Wind], ourTransform);
         musicInstances[(int)Music.Wind].start();
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(musicInstances[(int)Music.Buzz], ourTransform);
-        musicInstances[(int)Music.Buzz].start();
+        musicInstances[(int)Music.Buzz].start();*/
     }
 
     public void DifficultySelection(int difficulty) {
