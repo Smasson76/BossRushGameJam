@@ -322,8 +322,11 @@ MonoBehaviour:
   - event:/PlayerGrappleGrasp
   - event:/PlayerGrappleRehouse
   - event:/PlayerGrappleUngrasp
+  - event:/PlayerDeathPlateGibs
+  - event:/PlayerImpactHard
+  - event:/PlayerImpactSoft
   - event:/PlayerMovementFeather
-  - event:/MainMenuSelectHard
+  - event:/PlayerParachuteEngage
 --- !u!1 &9019689969828212489
 GameObject:
   m_ObjectHideFlags: 0

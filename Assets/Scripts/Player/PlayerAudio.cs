@@ -15,6 +15,11 @@ public class PlayerAudio : MonoBehaviour {
         GrappleHit,
         GrappleRehouse,
         GrappleUngrasp,
+        DeathGibs,
+        ImpactHard,
+        ImpactSoft,
+        Movement,
+        Parachute,
     }
 
     private Transform playerTransform;
@@ -78,5 +83,15 @@ public class PlayerAudio : MonoBehaviour {
         GrappleReelOutEnd();
         instances[(int)Sound.PlayerDeath].set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(playerTransform));
         instances[(int)Sound.PlayerDeath].start();
+    }
+
+    public void SlowStart() {
+        Debug.Log("Parachuting");
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(instances[(int)Sound.Parachute], playerTransform);
+        instances[(int)Sound.GrappleReelIn].start();
+    }
+
+    public void SlowEnd() {
+        instances[(int)Sound.Parachute].stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 }

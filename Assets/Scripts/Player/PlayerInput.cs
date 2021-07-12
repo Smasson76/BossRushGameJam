@@ -16,6 +16,8 @@ public class PlayerInput : MonoBehaviour {
         controls.PlayerMovement.BoostEnd.performed += ctx => BoostEnd();
         controls.PlayerMovement.GrappleStart.performed += ctx => GrappleStart();
         controls.PlayerMovement.GrappleEnd.performed += ctx => GrappleEnd();
+        controls.PlayerMovement.SlowStart.performed += ctx => SlowStart();
+        controls.PlayerMovement.SlowEnd.performed += ctx => SlowEnd();
         controls.PlayerMovement.Megaboost.performed += ctx => Megaboost();
 
         controls.PlayerSpawnerControls.Spawning.performed += ctx => SpawnPlayer();
@@ -89,16 +91,20 @@ public class PlayerInput : MonoBehaviour {
         playerController.GrappleEnd();
     }
 
+    private void SlowStart() {
+        playerController.SlowStart();
+    }
+
+    private void SlowEnd() {
+        playerController.SlowEnd();
+    }
+
     private void Megaboost() {
         playerController.Megaboost();
     }
 
     public Vector2 GetPlayerMovement() {
         return controls.PlayerMovement.PlayerMove.ReadValue<Vector2>().normalized;
-    }
-
-    public bool IsSlowing() {
-        return controls.PlayerMovement.Slow.ReadValue<float>() != 0;
     }
 
     public bool DirectCameraControl() {

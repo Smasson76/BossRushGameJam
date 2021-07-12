@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour {
     private SpringJoint grappleSpring; 
     private bool isGrappling;
     private bool isBoosting;
+    private bool isBraking;
     private float boostPercent = 100f;
 
     void Start() {
@@ -107,14 +108,24 @@ public class PlayerController : MonoBehaviour {
     }
 
     void PlayerSlow() {
-        if (playerInput.IsSlowing() && !isOnGround()) {
-            playerAnimator.isBraking = true;
+        if (isBraking) {
             Vector3 force = -playerRb.velocity * slowForce;
             playerRb.AddForce(force, ForceMode.Force);
             playerRb.AddTorque(-playerRb.angularVelocity * rotationSlowAmount);
-        } else {
-            playerAnimator.isBraking = false;
         }
+    }
+
+    public void SlowStart() {
+        if (!isOnGround()) {
+            isBraking = true;
+            playerAnimator.isBraking = true;
+        }
+    }
+
+    public void SlowEnd() {
+        isBraking = false;
+        playerAnimator.isBraking = false;
+
     }
 
     public void GrappleStart() {
@@ -152,14 +163,6 @@ public class PlayerController : MonoBehaviour {
         if (grappleSpring.maxDistance > grapplelength) {
             grappleSpring.maxDistance = grapplelength;
         }
-    }
-
-    public void GrappleReelOutEnded () {
-
-    }
-
-    public void GrappleReelInEnded () {
-        
     }
 
     bool isOnGround() {
