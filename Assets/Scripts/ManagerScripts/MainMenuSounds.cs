@@ -5,23 +5,36 @@ using UnityEngine;
 public class MainMenuSounds : MonoBehaviour {
     
     [FMODUnity.EventRef] public string[] audioEvents;
-    public FMOD.Studio.EventInstance[] instance;
+    public FMOD.Studio.EventInstance[] instances;
+
+    public enum Sound {
+        SelectEasy,
+        SelectMedium,
+        SelectHard,
+        Valve,
+    }
+
+    void Start() {
+        int soundCount = audioEvents.Length;
+        instances = new FMOD.Studio.EventInstance[soundCount];
+        for (int i = 0; i < soundCount; i++) {
+            instances[i] = FMODUnity.RuntimeManager.CreateInstance(audioEvents[i]);
+        }
+    }
 
     public void DifficultySelection(int difficulty) {
         if (difficulty == 1) {
-            instance[0] = FMODUnity.RuntimeManager.CreateInstance(audioEvents[0]);
-            instance[0].set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
-            instance[0].start();
+            instances[(int)Sound.SelectEasy].start();
         }
         else if (difficulty == 2) {
-            instance[1] = FMODUnity.RuntimeManager.CreateInstance(audioEvents[1]);
-            instance[1].set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
-            instance[1].start();
+            instances[(int)Sound.SelectMedium].start();
         }
         else if (difficulty == 3) {
-            instance[2] = FMODUnity.RuntimeManager.CreateInstance(audioEvents[2]);
-            instance[2].set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
-            instance[2].start();
+            instances[(int)Sound.SelectHard].start();
         }
+    }
+
+    public void Valve() {
+        instances[(int)Sound.Valve].start();
     }
 }

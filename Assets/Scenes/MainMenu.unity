@@ -2861,7 +2861,7 @@ MonoBehaviour:
   - event:/MainMenuSelectEasy
   - event:/MainMenuSelectMedium
   - event:/MainMenuSelectHard
-  - event:/MainMenuSelectHard
+  - event:/MainMenuValves
 --- !u!1001 &375075251
 PrefabInstance:
   m_ObjectHideFlags: 0
