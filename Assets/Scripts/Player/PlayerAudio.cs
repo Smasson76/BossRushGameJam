@@ -86,12 +86,14 @@ public class PlayerAudio : MonoBehaviour {
         BoostEnd();
         GrappleReelInEnd();
         GrappleReelOutEnd();
+        RollingStop();
+        MovementInputStop();
+        SlowEnd();
         instances[(int)Sound.PlayerDeath].set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(playerRb.transform, playerRb));
         instances[(int)Sound.PlayerDeath].start();
     }
 
     public void SlowStart() {
-        Debug.Log("Parachuting");
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(instances[(int)Sound.Parachute], playerRb.transform, playerRb);
         instances[(int)Sound.Parachute].start();
     }

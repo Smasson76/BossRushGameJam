@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour {
     private bool isBraking;
     private bool isMoving;
     private bool isRolling;
+    private bool isDead;
     private float boostPercent = 100f;
 
     void Start() {
@@ -199,15 +200,22 @@ public class PlayerController : MonoBehaviour {
     public void HitSomething(Collision collision) {
         float hitSpeed = Vector3.Dot(collision.relativeVelocity, collision.contacts[0].normal);
         playerAudio.HitSomething(collision.contacts[0].point, hitSpeed);
-        if (hitSpeed > minForceToExplode) {
+        if (hitSpeed > minForceToExplode && !isDead) {
+            isDead = true;
             if (isGrappling) {
                 GrappleEnd();
             }
+            if (isBoosting) {
+                BoostEnd();
+            }
+            if (isBraking) {
+                SlowEnd();
+            }
+            isMoving = false;
+            isRolling = false;
             playerAnimator.Pop();
             playerInput.PlayerDeath();
-            //Plays the impact sound effect here
-            //Stops movement audio source when dead here
-            //AudioManager.instance.DeathSound();
+            playerAudio.PlayerDeath();
             GameManager.instance.PlayerDead();
         }
     }

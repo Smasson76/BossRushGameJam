@@ -257,5 +257,6 @@ public class PlayerAnimator : MonoBehaviour {
             controller.soundCallback = playerAudio.GibsHit;
         }
         sphereSections = new SectionData[0];
+        //Destroy(boosterParticles.gameObject);
     }
 }
