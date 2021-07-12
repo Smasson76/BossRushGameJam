@@ -68,13 +68,13 @@ public class MainMenuManager : MonoBehaviour {
                     mainMenuSounds.Valve();
                     break;
                 case "StartBall":
-                    //AudioManager.instance.MenuButtonEvents("PlayGame");
+                    mainMenuSounds.MenuClickPlay();
                     StartCoroutine(PlayGame());
                     break;
                 case "ExitBox":
                     quitAnim.SetTrigger("TriggerExitBox");
                     Application.Quit();
-                    //AudioManager.instance.MenuButtonEvents("ExitGame");
+                    mainMenuSounds.TVSwitch();
                     break;
                 default:
                     Debug.Log("Clicked an object with no tag");

@@ -282,11 +282,11 @@ MonoBehaviour:
   Banks:
   - {fileID: 6855185548298467500}
   IsStream: 0
-  Is3D: 1
+  Is3D: 0
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
+  MinDistance: 0
+  MaxDistance: 0
   Length: 0
 --- !u!114 &-6167730912659095315
 MonoBehaviour:
@@ -439,11 +439,11 @@ MonoBehaviour:
   Banks:
   - {fileID: 6855185548298467500}
   IsStream: 0
-  Is3D: 1
+  Is3D: 0
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
+  MinDistance: 0
+  MaxDistance: 0
   Length: 0
 --- !u!114 &-2615167315374104687
 MonoBehaviour:
@@ -1113,7 +1113,7 @@ MonoBehaviour:
   Path: FMODAssets/MenuSounds.bank
   Name: MenuSounds
   StudioPath: bank:/MenuSounds
-  lastModified: 637616356591138298
+  lastModified: 637616363475518584
   LoadResult: 0
   FileSizes: []
   Exists: 1

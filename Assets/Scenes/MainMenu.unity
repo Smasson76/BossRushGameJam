@@ -2862,6 +2862,12 @@ MonoBehaviour:
   - event:/MainMenu/MainMenuSelectMedium
   - event:/MainMenu/MainMenuSelectHard
   - event:/MainMenu/MainMenuValves
+  - event:/MainMenu/MainMenuTVSwitch
+  - event:/MainMenu/MainMenuClick
+  musicEvents:
+  - event:/MainMenu/MainMenuBuzz
+  - event:/MainMenu/MainMenuSteam
+  - event:/MainMenu/MainMenuWind
 --- !u!1001 &375075251
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14715,15 +14721,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3212519046807422157, guid: f5ef9b31d08bf656187f484be88e8df9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0000038146973
+      value: 53.1
       objectReference: {fileID: 0}
     - target: {fileID: 3212519046807422157, guid: f5ef9b31d08bf656187f484be88e8df9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 29.602198
+      value: -16.2
       objectReference: {fileID: 0}
     - target: {fileID: 3212519046807422157, guid: f5ef9b31d08bf656187f484be88e8df9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.0000076293945
+      value: -65.6
       objectReference: {fileID: 0}
     - target: {fileID: 3212519046807422157, guid: f5ef9b31d08bf656187f484be88e8df9, type: 3}
       propertyPath: m_LocalRotation.w
