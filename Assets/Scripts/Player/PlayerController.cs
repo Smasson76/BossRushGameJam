@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour {
     private bool isGrappling;
     private bool isBoosting;
     private bool isBraking;
+    private bool isMoving;
+    private bool isRolling;
     private float boostPercent = 100f;
 
     void Start() {
@@ -40,7 +42,7 @@ public class PlayerController : MonoBehaviour {
         playerAudio = this.GetComponent<PlayerAudio>();
         playerRb = player.GetComponent<Rigidbody>();
         GameObject lookTargetGameObject = new GameObject("Look Target");
-        playerAudio.InitInstances(playerRb.transform);
+        playerAudio.InitInstances(playerRb);
     }
     
     // FixedUpdate for physics changes
@@ -51,17 +53,32 @@ public class PlayerController : MonoBehaviour {
         if (isGrappling) {
             UpdateRope();
         }
+        if (isOnGround() && playerRb.velocity.magnitude > 1f) {
+            if (!isRolling) {
+                isRolling = true;
+                playerAudio.RollingStart();
+            }
+        } else if (isRolling) {
+            isRolling = false;
+            playerAudio.RollingStop();
+        }
     }
 
     void PlayerMove() {
-        if (isOnGround()) {
-            Vector2 val = playerInput.GetPlayerMovement();
-            if (val.magnitude != 0) {
-                Vector3 forceDirection = (cameraController.GetCameraHorizontalFacing() * new Vector3(val.x, 0, val.y)).normalized;
-                playerRb.AddForce(forceDirection * acceleration, ForceMode.Force);
-                goalBoostDirection = forceDirection;
+        Vector2 val = playerInput.GetPlayerMovement();
+        if (isOnGround() && val.magnitude != 0) {
+            if (!isMoving) {
+                isMoving = true;
+                playerAudio.MovementInputStart();
             }
+            Vector3 forceDirection = (cameraController.GetCameraHorizontalFacing() * new Vector3(val.x, 0, val.y)).normalized;
+            playerRb.AddForce(forceDirection * acceleration, ForceMode.Force);
+            goalBoostDirection = forceDirection;
+        } else if (isMoving) {
+            isMoving = false;
+            playerAudio.MovementInputStop();
         }
+        
     }
 
     void PlayerBoost() {
@@ -113,19 +130,23 @@ public class PlayerController : MonoBehaviour {
             playerRb.AddForce(force, ForceMode.Force);
             playerRb.AddTorque(-playerRb.angularVelocity * rotationSlowAmount);
         }
+        if (isOnGround()) {
+            SlowEnd();
+        }
     }
 
     public void SlowStart() {
         if (!isOnGround()) {
             isBraking = true;
             playerAnimator.isBraking = true;
+            playerAudio.SlowStart();
         }
     }
 
     public void SlowEnd() {
         isBraking = false;
         playerAnimator.isBraking = false;
-
+        playerAudio.SlowEnd();
     }
 
     public void GrappleStart() {
@@ -177,6 +198,7 @@ public class PlayerController : MonoBehaviour {
 
     public void HitSomething(Collision collision) {
         float hitSpeed = Vector3.Dot(collision.relativeVelocity, collision.contacts[0].normal);
+        playerAudio.HitSomething(collision.contacts[0].point, hitSpeed);
         if (hitSpeed > minForceToExplode) {
             if (isGrappling) {
                 GrappleEnd();

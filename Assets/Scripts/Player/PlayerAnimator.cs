@@ -209,7 +209,10 @@ public class PlayerAnimator : MonoBehaviour {
         sphereSections[grappleSectionIndex].status = SectionStatus.grappleLeaving;
         Transform sectionTransform = sphereSections[grappleSectionIndex].transform;
         sectionTransform.SetParent(null);
-        LineRenderer rope = sectionTransform.gameObject.AddComponent<LineRenderer>();
+        LineRenderer rope = sectionTransform.gameObject.GetComponent<LineRenderer>();
+        if (rope == null) {
+            rope = sectionTransform.gameObject.AddComponent<LineRenderer>();
+        }
         rope.startWidth = 0.1f;
         rope.material = ropeMaterial;
         rope.positionCount = quality + 1;
@@ -247,6 +250,8 @@ public class PlayerAnimator : MonoBehaviour {
             rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
             rb.velocity = playerController.GetPlayerVelocity();
             rb.AddForce(section.homeLocation.normalized * 5);
+            GibsController controller = section.transform.gameObject.AddComponent<GibsController>();
+            controller.soundCallback = playerAudio.GibsHit;
         }
         sphereSections = new SectionData[0];
     }

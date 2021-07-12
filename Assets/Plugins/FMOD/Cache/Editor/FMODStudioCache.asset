@@ -1,5 +1,28 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8702945233764605973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerSounds/PlayerGrappleEngageAlert
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerSounds/PlayerGrappleEngageAlert
+  guid: c8d151aa30bcef48bd3a58073adda139
+  Banks:
+  - {fileID: -1979804808589292278}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-8556649098270267112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45,6 +68,25 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &-8186894660325188377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/WorldSounds.bank
+  m_EditorClassIdentifier: 
+  Path: FMODAssets/WorldSounds.bank
+  Name: WorldSounds
+  StudioPath: bank:/WorldSounds
+  lastModified: 637617176850000000
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-8067574373847295140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,6 +244,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-6814802487002847801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/WorldSounds/Ambience/DesertWind
+  m_EditorClassIdentifier: 
+  Path: event:/WorldSounds/Ambience/DesertWind
+  guid: d0a097346c03b948820b2f589e156be6
+  Banks:
+  - {fileID: -8186894660325188377}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-6719971197842911896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,7 +304,7 @@ MonoBehaviour:
   Path: FMODAssets/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637616447606163174
+  lastModified: 637617149280000000
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -416,11 +481,11 @@ MonoBehaviour:
   Path: FMODAssets/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637616447606172955
+  lastModified: 637617176850000000
   LoadResult: 0
   FileSizes:
   - Name: 
-    Value: 1908
+    Value: 2128
   Exists: 1
 --- !u!114 &-2819638630766737142
 MonoBehaviour:
@@ -467,6 +532,25 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-2243772623271965958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Music.bank
+  m_EditorClassIdentifier: 
+  Path: FMODAssets/Music.bank
+  Name: Music
+  StudioPath: bank:/Music
+  lastModified: 637617149280000000
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-2209212564548978717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -527,7 +611,7 @@ MonoBehaviour:
   Path: FMODAssets/PlayerSounds.bank
   Name: PlayerSounds
   StudioPath: bank:/PlayerSounds
-  lastModified: 637616447606543208
+  lastModified: 637617176850000000
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -570,6 +654,8 @@ MonoBehaviour:
   - {fileID: -6654524123727514309}
   - {fileID: 6855185548298467500}
   - {fileID: -1979804808589292278}
+  - {fileID: -2243772623271965958}
+  - {fileID: -8186894660325188377}
   EditorEvents:
   - {fileID: 6797647002077814902}
   - {fileID: 113507098026826028}
@@ -595,12 +681,15 @@ MonoBehaviour:
   - {fileID: 3029211526908161663}
   - {fileID: 8877103733903884629}
   - {fileID: 2640067253052959604}
+  - {fileID: 4035341350061484258}
+  - {fileID: -8702945233764605973}
+  - {fileID: -6814802487002847801}
   EditorParameters: []
   MasterBanks:
   - {fileID: -6654524123727514309}
   StringsBanks:
   - {fileID: -3402532370315061654}
-  stringsBankWriteTime: 637616447606172955
+  stringsBankWriteTime: 637617176850000000
   cacheVersion: 8
 --- !u!114 &113507098026826028
 MonoBehaviour:
@@ -894,6 +983,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &4035341350061484258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MainMenu/MainMenuMusic
+  m_EditorClassIdentifier: 
+  Path: event:/MainMenu/MainMenuMusic
+  guid: 1f3494d0542a3646be1c33c713130908
+  Banks:
+  - {fileID: 6855185548298467500}
+  - {fileID: -2243772623271965958}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
 --- !u!114 &4159282103276941721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1113,7 +1226,7 @@ MonoBehaviour:
   Path: FMODAssets/MenuSounds.bank
   Name: MenuSounds
   StudioPath: bank:/MenuSounds
-  lastModified: 637616447606463208
+  lastModified: 637617149280000000
   LoadResult: 0
   FileSizes: []
   Exists: 1

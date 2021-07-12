@@ -99,6 +99,10 @@ public class PlayerInput : MonoBehaviour {
         playerController.SlowEnd();
     }
 
+    public bool IsSlowing() {
+        return controls.PlayerMovement.SlowStart.ReadValue<float>() != 0;
+    }
+
     private void Megaboost() {
         playerController.Megaboost();
     }

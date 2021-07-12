@@ -328,6 +328,7 @@ MonoBehaviour:
   - event:/PlayerSounds/PlayerMovementFeather
   - event:/PlayerSounds/PlayerParachuteEngage
   - event:/PlayerSounds/PlayerGrappleEngageAlert
+  - event:/PlayerSounds/PlayerMovementFeather
 --- !u!1 &9019689969828212489
 GameObject:
   m_ObjectHideFlags: 0

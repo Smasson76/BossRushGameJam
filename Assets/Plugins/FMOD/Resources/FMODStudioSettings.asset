@@ -24,7 +24,7 @@ MonoBehaviour:
       Value: 0
       HasValue: 0
     Overlay:
-      Value: 1
+      Value: 0
       HasValue: 1
     Logging:
       Value: 0
@@ -361,7 +361,9 @@ MonoBehaviour:
   - Master
   Banks:
   - MenuSounds
+  - Music
   - PlayerSounds
+  - WorldSounds
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0
