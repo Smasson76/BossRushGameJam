@@ -12,6 +12,8 @@ public class MainMenuSounds : MonoBehaviour {
         SelectMedium,
         SelectHard,
         Valve,
+        TVSwitch,
+        MenuClick
     }
 
     void Start() {

@@ -2858,10 +2858,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioEvents:
-  - event:/MainMenuSelectEasy
-  - event:/MainMenuSelectMedium
-  - event:/MainMenuSelectHard
-  - event:/MainMenuValves
+  - event:/MainMenu/MainMenuSelectEasy
+  - event:/MainMenu/MainMenuSelectMedium
+  - event:/MainMenu/MainMenuSelectHard
+  - event:/MainMenu/MainMenuValves
 --- !u!1001 &375075251
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -54,7 +54,7 @@ public class MainMenuManager : MonoBehaviour {
                         //AudioManager.instance.canPlaySounds = true;
                         soundAnim.SetBool("Trigger", true);
                     }
-                    //AudioManager.instance.MenuButtonEvents("Valve");
+                    mainMenuSounds.Valve();
                     break;
                 case "MusicValve":
                     if (musicAnim.GetBool("Trigger") == true) {
@@ -65,8 +65,7 @@ public class MainMenuManager : MonoBehaviour {
                         musicAnim.SetBool("Trigger", true);
                         //AudioManager.instance.canPlayMusic = true;
                     }
-                    //AudioManager.instance.MusicEvents("MainMenu");
-                    //AudioManager.instance.MenuButtonEvents("Valve");
+                    mainMenuSounds.Valve();
                     break;
                 case "StartBall":
                     //AudioManager.instance.MenuButtonEvents("PlayGame");
