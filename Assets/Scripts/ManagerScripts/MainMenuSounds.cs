@@ -20,9 +20,9 @@ public class MainMenuSounds : MonoBehaviour {
     }
 
     public enum Music {
+        Buzz,
         Steam,
         Wind,
-        Buzz,
     }
 
     public Transform ballTransform;
