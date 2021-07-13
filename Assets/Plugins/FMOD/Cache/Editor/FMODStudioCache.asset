@@ -1,5 +1,96 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9142844011741018048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MainMenuTVSwitch
+  m_EditorClassIdentifier: 
+  Path: event:/MainMenuTVSwitch
+  guid: fb7c340701d92b4b8407f8024d691156
+  Banks: []
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-9134556062782825230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MainMenu/MainMenuTVSwitch
+  m_EditorClassIdentifier: 
+  Path: event:/MainMenu/MainMenuTVSwitch
+  guid: fb7c340701d92b4b8407f8024d691156
+  Banks:
+  - {fileID: 6565395649448905393}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
+--- !u!114 &-8976654919553747065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/WorldSounds/Ambience/DesertWind
+  m_EditorClassIdentifier: 
+  Path: event:/WorldSounds/Ambience/DesertWind
+  guid: d0a097346c03b948820b2f589e156be6
+  Banks:
+  - {fileID: 5900695835012125175}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-8917455551796170725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerSounds/PlayerImpactHard
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerSounds/PlayerImpactHard
+  guid: 0b82618442b3124f95fc8d91a5430c89
+  Banks:
+  - {fileID: 4754031548072132626}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0.1
+  MaxDistance: 50
+  Length: 0
 --- !u!114 &-8702945233764605973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18,10 +109,32 @@ MonoBehaviour:
   - {fileID: -1979804808589292278}
   IsStream: 0
   Is3D: 1
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 0
   MaxDistance: 10000
+  Length: 223
+--- !u!114 &-8650255415248789712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: snapshot:/ReverbOutside
+  m_EditorClassIdentifier: 
+  Path: snapshot:/ReverbOutside
+  guid: 13a7d28f04dfa140b42728ea0ee423bb
+  Banks: []
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
   Length: 0
 --- !u!114 &-8556649098270267112
 MonoBehaviour:
@@ -45,6 +158,28 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4571
+--- !u!114 &-8455234925870059095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MainMenuSelectMedium
+  m_EditorClassIdentifier: 
+  Path: event:/MainMenuSelectMedium
+  guid: 4d4130303d300441952fd112c92c40b4
+  Banks: []
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
 --- !u!114 &-8378193599954291368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,7 +218,7 @@ MonoBehaviour:
   Path: FMODAssets/WorldSounds.bank
   Name: WorldSounds
   StudioPath: bank:/WorldSounds
-  lastModified: 637616960954248667
+  lastModified: 637617201608956289
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -107,8 +242,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 0.1
-  MaxDistance: 50
+  MinDistance: 4
+  MaxDistance: 25
   Length: 0
 --- !u!114 &-8004664182657520010
 MonoBehaviour:
@@ -152,9 +287,31 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 50
+  MinDistance: 0.5
+  MaxDistance: 5.8
   Length: 2600
+--- !u!114 &-7832676886320866886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerImpactHard
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerImpactHard
+  guid: 0b82618442b3124f95fc8d91a5430c89
+  Banks: []
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-7714097949093366501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +334,28 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-7504038444546505450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MainMenuSelectHard
+  m_EditorClassIdentifier: 
+  Path: event:/MainMenuSelectHard
+  guid: 1657edaa09cb884e8ba670440992fb3a
+  Banks: []
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
 --- !u!114 &-7222109929097539152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,6 +370,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/PlayerBoostEngage
   guid: 3895e26d0046504d8de3c5277f1c57ae
+  Banks: []
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-7162650742972757766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerGrappleFire
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerGrappleFire
+  guid: 585e9e931ca56b468233e0eb10c91a94
   Banks: []
   IsStream: 0
   Is3D: 1
@@ -304,7 +505,7 @@ MonoBehaviour:
   Path: FMODAssets/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637616961655466321
+  lastModified: 637617916752173974
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -326,6 +527,51 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
+--- !u!114 &-6420116907401734323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: FMODAssets/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 637617201608385996
+  LoadResult: 0
+  FileSizes:
+  - Name: 
+    Value: 2218
+  Exists: 1
+--- !u!114 &-6289054646728774479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MainMenu/MainMenuMusic
+  m_EditorClassIdentifier: 
+  Path: event:/MainMenu/MainMenuMusic
+  guid: 1f3494d0542a3646be1c33c713130908
+  Banks:
+  - {fileID: 6565395649448905393}
+  - {fileID: -1793072184305332222}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
@@ -373,8 +619,187 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 2.4
+  MinDistance: 3.25
   MaxDistance: 30
+  Length: 0
+--- !u!114 &-5882973985931039820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MainMenuSteam
+  m_EditorClassIdentifier: 
+  Path: event:/MainMenuSteam
+  guid: 129ad97c0655fb48a8e3a079e928ca8b
+  Banks: []
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-5882230539213775915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MainMenu/MainMenuSelectMedium
+  m_EditorClassIdentifier: 
+  Path: event:/MainMenu/MainMenuSelectMedium
+  guid: 4d4130303d300441952fd112c92c40b4
+  Banks:
+  - {fileID: 6565395649448905393}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
+--- !u!114 &-5833702006371736169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MainMenuSelectEasy
+  m_EditorClassIdentifier: 
+  Path: event:/MainMenuSelectEasy
+  guid: b34aa60ac887df4c8094202577a32bfe
+  Banks: []
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
+--- !u!114 &-5806753227642790180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MainMenuValves
+  m_EditorClassIdentifier: 
+  Path: event:/MainMenuValves
+  guid: 5f4bb9c6f5a975478d9cfa8a0acbaf72
+  Banks: []
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-4908095657158823204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerSounds/PlayerGrappleRehouse
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerSounds/PlayerGrappleRehouse
+  guid: 4fd73c8553473b4d8197ecd6131536b9
+  Banks:
+  - {fileID: 4754031548072132626}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 15
+  Length: 0
+--- !u!114 &-4902718348655035265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerBoostBurn
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerBoostBurn
+  guid: fc4f75dc043ecf4eaca1ea5d24d60a43
+  Banks: []
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 50
+  MaxDistance: 2000
+  Length: 0
+--- !u!114 &-4742998722245713973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MainMenuClick
+  m_EditorClassIdentifier: 
+  Path: event:/MainMenuClick
+  guid: a9af7ae5580e694c90c08b4029a58db7
+  Banks: []
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
+--- !u!114 &-4633558518370269237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerSounds/PlayerGrappleFireHeavy
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerSounds/PlayerGrappleFireHeavy
+  guid: d6f560cd333d0442bd0a2c36868fab2c
+  Banks:
+  - {fileID: 4754031548072132626}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 4
+  MaxDistance: 85
   Length: 0
 --- !u!114 &-4428055073717700642
 MonoBehaviour:
@@ -398,6 +823,141 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &-4275803722661290712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerGrappleUngrasp
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerGrappleUngrasp
+  guid: 4cad230290e9084da7fd8787541e58d3
+  Banks: []
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 406
+--- !u!114 &-4216365691009209311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerImpactSoft
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerImpactSoft
+  guid: 82fb62c1b171ec4ba7faddb0668c9356
+  Banks: []
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-4029117824871788697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerSounds/PlayerBoostEngage
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerSounds/PlayerBoostEngage
+  guid: 3895e26d0046504d8de3c5277f1c57ae
+  Banks:
+  - {fileID: 4754031548072132626}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3878600644027589049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerSounds/PlayerGrappleFire
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerSounds/PlayerGrappleFire
+  guid: 585e9e931ca56b468233e0eb10c91a94
+  Banks:
+  - {fileID: 4754031548072132626}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0.3
+  MaxDistance: 9.150001
+  Length: 0
+--- !u!114 &-3823716945314252001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MainMenuBuzz
+  m_EditorClassIdentifier: 
+  Path: event:/MainMenuBuzz
+  guid: 38affc44ff22f9469ac7c40100826792
+  Banks: []
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3741204870684688119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerSounds/PlayerGrappleUngrasp
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerSounds/PlayerGrappleUngrasp
+  guid: 4cad230290e9084da7fd8787541e58d3
+  Banks:
+  - {fileID: 4754031548072132626}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 45
+  Length: 406
 --- !u!114 &-3651930774381714259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,6 +1003,28 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 45
   Length: 441
+--- !u!114 &-3462021826323821631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerGrappleFireStacked
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerGrappleFireStacked
+  guid: d6f560cd333d0442bd0a2c36868fab2c
+  Banks: []
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-3409214866483940174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,12 +1063,34 @@ MonoBehaviour:
   Path: FMODAssets/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637616961655476314
+  lastModified: 637617916752173974
   LoadResult: 0
   FileSizes:
   - Name: 
-    Value: 2218
+    Value: 2308
   Exists: 1
+--- !u!114 &-3263845817954237323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerDeath
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerDeath
+  guid: ab85b5bc1a39634e80ff57ecdc193f6a
+  Banks: []
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-2819638630766737142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -532,6 +1136,52 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-2531583503004215533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MainMenu/MainMenuValves
+  m_EditorClassIdentifier: 
+  Path: event:/MainMenu/MainMenuValves
+  guid: 5f4bb9c6f5a975478d9cfa8a0acbaf72
+  Banks:
+  - {fileID: 6565395649448905393}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
+--- !u!114 &-2473182102227183865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerSounds/PlayerGrappleGrasp
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerSounds/PlayerGrappleGrasp
+  guid: 9106203ca1eacb46901e1c951072208e
+  Banks:
+  - {fileID: 4754031548072132626}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 45
+  Length: 441
 --- !u!114 &-2243772623271965958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -547,7 +1197,7 @@ MonoBehaviour:
   Path: FMODAssets/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 637616960954158926
+  lastModified: 637617201608885988
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -611,7 +1261,26 @@ MonoBehaviour:
   Path: FMODAssets/PlayerSounds.bank
   Name: PlayerSounds
   StudioPath: bank:/PlayerSounds
-  lastModified: 637616965757869094
+  lastModified: 637617916752271585
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-1793072184305332222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Music.bank
+  m_EditorClassIdentifier: 
+  Path: FMODAssets/Music.bank
+  Name: Music
+  StudioPath: bank:/Music
+  lastModified: 637617201608885988
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -636,6 +1305,74 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 0
   MaxDistance: 0
+  Length: 0
+--- !u!114 &-1214083706283519489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerSounds/PlayerGrappleReelOut
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerSounds/PlayerGrappleReelOut
+  guid: 6f57117d37bf5f479934b7d343c960aa
+  Banks:
+  - {fileID: 4754031548072132626}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 50
+  Length: 2600
+--- !u!114 &-835932533279536561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerGrappleRehouse
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerGrappleRehouse
+  guid: 4fd73c8553473b4d8197ecd6131536b9
+  Banks: []
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-75990351752709831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MainMenu/MainMenuBuzz
+  m_EditorClassIdentifier: 
+  Path: event:/MainMenu/MainMenuBuzz
+  guid: 38affc44ff22f9469ac7c40100826792
+  Banks:
+  - {fileID: 6565395649448905393}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
   Length: 0
 --- !u!114 &11400000
 MonoBehaviour:
@@ -689,7 +1426,7 @@ MonoBehaviour:
   - {fileID: -6654524123727514309}
   StringsBanks:
   - {fileID: -3402532370315061654}
-  stringsBankWriteTime: 637616961655476314
+  stringsBankWriteTime: 637617916752173974
   cacheVersion: 8
 --- !u!114 &113507098026826028
 MonoBehaviour:
@@ -714,6 +1451,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &1013197960438510936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MainMenu/MainMenuSteam
+  m_EditorClassIdentifier: 
+  Path: event:/MainMenu/MainMenuSteam
+  guid: 129ad97c0655fb48a8e3a079e928ca8b
+  Banks:
+  - {fileID: 6565395649448905393}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &1050219800020918505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -737,6 +1497,28 @@ MonoBehaviour:
   MinDistance: 0.3
   MaxDistance: 9.150001
   Length: 0
+--- !u!114 &1192929956442757896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerGrappleReelOut
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerGrappleReelOut
+  guid: 1db6e01420e97241b2c3e5bf3f2ec9a1
+  Banks: []
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 13714
 --- !u!114 &1256671110996549359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -750,16 +1532,16 @@ MonoBehaviour:
   m_Name: event:/PlayerSounds/PlayerMovementFeather
   m_EditorClassIdentifier: 
   Path: event:/PlayerSounds/PlayerMovementFeather
-  guid: 0a13b87292bd964aac6d8dd7e5561d7d
+  guid: ea2e110246eb81438b3211497c4c46dc
   Banks:
   - {fileID: -1979804808589292278}
-  IsStream: 0
+  IsStream: 1
   Is3D: 1
   IsOneShot: 0
   Parameters: []
-  MinDistance: 0.90000004
-  MaxDistance: 16.5
-  Length: 4571
+  MinDistance: 2.4
+  MaxDistance: 30
+  Length: 4600
 --- !u!114 &1338142922525911020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -782,6 +1564,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 13714
+--- !u!114 &1589003838009465268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerSounds/PlayerGrappleReelReturn
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerSounds/PlayerGrappleReelReturn
+  guid: 632a092176c6d444b757945f2dced04f
+  Banks:
+  - {fileID: 4754031548072132626}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 50
+  Length: 0
 --- !u!114 &1605071281683925382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -868,8 +1673,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters: []
-  MinDistance: 5.6
-  MaxDistance: 70
+  MinDistance: 5.4
+  MaxDistance: 65
   Length: 0
 --- !u!114 &2780476926505434862
 MonoBehaviour:
@@ -913,8 +1718,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 50
+  MinDistance: 0.5
+  MaxDistance: 5.8
   Length: 0
 --- !u!114 &3104228070380596325
 MonoBehaviour:
@@ -934,6 +1739,50 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &3114099800913209535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerDeathPlateGibs
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerDeathPlateGibs
+  guid: b99cafaa39fbfb408b7f1df3b19b40f0
+  Banks: []
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &3230629857130129367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MainMenuWind
+  m_EditorClassIdentifier: 
+  Path: event:/MainMenuWind
+  guid: 1ae6eb13770bde4780e145294ca53625
+  Banks: []
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
@@ -961,6 +1810,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &3668268416694601416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerSounds/PlayerMovementFeather
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerSounds/PlayerMovementFeather
+  guid: 0a13b87292bd964aac6d8dd7e5561d7d
+  Banks:
+  - {fileID: 4754031548072132626}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0.90000004
+  MaxDistance: 16.5
+  Length: 4571
 --- !u!114 &3780908597172955412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -982,6 +1854,29 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
+  Length: 0
+--- !u!114 &3829737762285480053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MainMenu/MainMenuSelectEasy
+  m_EditorClassIdentifier: 
+  Path: event:/MainMenu/MainMenuSelectEasy
+  guid: b34aa60ac887df4c8094202577a32bfe
+  Banks:
+  - {fileID: 6565395649448905393}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
   Length: 0
 --- !u!114 &4035341350061484258
 MonoBehaviour:
@@ -1029,6 +1924,92 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &4202672034429369858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerGrappleReelReturn
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerGrappleReelReturn
+  guid: cb4c7c9c3a6d714c9e966c8d439b754b
+  Banks: []
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 13714
+--- !u!114 &4283793079108023023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerSounds/PlayerDeath
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerSounds/PlayerDeath
+  guid: ab85b5bc1a39634e80ff57ecdc193f6a
+  Banks:
+  - {fileID: 4754031548072132626}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 30
+  MaxDistance: 600
+  Length: 0
+--- !u!114 &4471461792161883553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerMovementFeather
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerMovementFeather
+  guid: 0a13b87292bd964aac6d8dd7e5561d7d
+  Banks: []
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4571
+--- !u!114 &4754031548072132626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/PlayerSounds.bank
+  m_EditorClassIdentifier: 
+  Path: FMODAssets/PlayerSounds.bank
+  Name: PlayerSounds
+  StudioPath: bank:/PlayerSounds
+  lastModified: 637617201608956289
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &5153523281090865755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1097,6 +2078,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 45
   Length: 406
+--- !u!114 &5843432319836726321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerSounds/PlayerBoostBurn
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerSounds/PlayerBoostBurn
+  guid: fc4f75dc043ecf4eaca1ea5d24d60a43
+  Banks:
+  - {fileID: 4754031548072132626}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 5.6
+  MaxDistance: 70
+  Length: 0
 --- !u!114 &5870016354610912745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1117,9 +2121,28 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 15
-  Length: 0
+  MinDistance: 3.2
+  MaxDistance: 50
+  Length: 644
+--- !u!114 &5900695835012125175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/WorldSounds.bank
+  m_EditorClassIdentifier: 
+  Path: FMODAssets/WorldSounds.bank
+  Name: WorldSounds
+  StudioPath: bank:/WorldSounds
+  lastModified: 637617201608956289
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &6038691167256196949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1143,6 +2166,116 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &6049578981651473283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerSounds/PlayerDeathPlateGibsHard
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerSounds/PlayerDeathPlateGibsHard
+  guid: b99cafaa39fbfb408b7f1df3b19b40f0
+  Banks:
+  - {fileID: 4754031548072132626}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 2.4
+  MaxDistance: 30
+  Length: 0
+--- !u!114 &6347239361358388125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MainMenu/MainMenuClick
+  m_EditorClassIdentifier: 
+  Path: event:/MainMenu/MainMenuClick
+  guid: a9af7ae5580e694c90c08b4029a58db7
+  Banks:
+  - {fileID: 6565395649448905393}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
+--- !u!114 &6371025819635599481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerParachuteEngage
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerParachuteEngage
+  guid: 0cdb73d5eba7fa4eb29ba09a5114ae74
+  Banks: []
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &6485133048075795230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerSounds/PlayerParachuteEngage
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerSounds/PlayerParachuteEngage
+  guid: 0cdb73d5eba7fa4eb29ba09a5114ae74
+  Banks:
+  - {fileID: 4754031548072132626}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 2.45
+  MaxDistance: 50
+  Length: 0
+--- !u!114 &6565395649448905393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/MenuSounds.bank
+  m_EditorClassIdentifier: 
+  Path: FMODAssets/MenuSounds.bank
+  Name: MenuSounds
+  StudioPath: bank:/MenuSounds
+  lastModified: 637617201608786003
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &6620904712032118209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1188,6 +2321,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &6696752160122673365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerSounds/PlayerImpactSoft
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerSounds/PlayerImpactSoft
+  guid: 82fb62c1b171ec4ba7faddb0668c9356
+  Banks:
+  - {fileID: 4754031548072132626}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &6797647002077814902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1226,7 +2382,7 @@ MonoBehaviour:
   Path: FMODAssets/MenuSounds.bank
   Name: MenuSounds
   StudioPath: bank:/MenuSounds
-  lastModified: 637616960954058857
+  lastModified: 637617201608786003
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -1251,6 +2407,74 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
+  Length: 0
+--- !u!114 &7716614825311812241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MainMenu/MainMenuSelectHard
+  m_EditorClassIdentifier: 
+  Path: event:/MainMenu/MainMenuSelectHard
+  guid: 1657edaa09cb884e8ba670440992fb3a
+  Banks:
+  - {fileID: 6565395649448905393}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
+--- !u!114 &7818917628782394686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerBoostEngage
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerBoostEngage
+  guid: 3895e26d0046504d8de3c5277f1c57ae
+  Banks: []
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &8014243116770219029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerSounds/PlayerGrappleEngageAlert
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerSounds/PlayerGrappleEngageAlert
+  guid: c8d151aa30bcef48bd3a58073adda139
+  Banks:
+  - {fileID: 4754031548072132626}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 10000
   Length: 0
 --- !u!114 &8347190127000200328
 MonoBehaviour:
@@ -1317,8 +2541,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 4
-  MaxDistance: 85
+  MinDistance: 3.4
+  MaxDistance: 30
   Length: 0
 --- !u!114 &8893264126014034770
 MonoBehaviour:
@@ -1342,3 +2566,48 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &9043034782944705048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MainMenu/MainMenuWind
+  m_EditorClassIdentifier: 
+  Path: event:/MainMenu/MainMenuWind
+  guid: 1ae6eb13770bde4780e145294ca53625
+  Banks:
+  - {fileID: 6565395649448905393}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &9081532061360130731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerGrappleGrasp
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerGrappleGrasp
+  guid: 9106203ca1eacb46901e1c951072208e
+  Banks: []
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 441
