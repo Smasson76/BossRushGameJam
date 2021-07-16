@@ -74,3 +74,5 @@ fmod_editor.log
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 /[Aa]ssets/[Mm]apMagic/*
 /[Aa]ssets/[Mm]apMagic.meta
+/[Aa]ssets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset
+/[Aa]ssets/Plugins/FMOD/Resources/FMODStudioSettings.asset
