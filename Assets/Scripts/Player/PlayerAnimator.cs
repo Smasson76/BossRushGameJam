@@ -86,8 +86,10 @@ public class PlayerAnimator : MonoBehaviour {
 
     // LateUpdate for visual changes
     void LateUpdate() {
-        UpdateBooster();
-        UpdateSections();
+        if (!playerController.IsPlayerDead()) {
+            UpdateBooster();
+            UpdateSections();
+        }
     }
 
     void UpdateSections() {
@@ -256,7 +258,11 @@ public class PlayerAnimator : MonoBehaviour {
             GibsController controller = section.transform.gameObject.AddComponent<GibsController>();
             controller.soundCallback = playerAudio.GibsHit;
         }
-        sphereSections = new SectionData[0];
-        //Destroy(boosterParticles.gameObject);
+    }
+
+    public void ClearEvidence() {
+        foreach (SectionData section in sphereSections) {
+            Destroy(section.transform.gameObject);
+        }
     }
 }

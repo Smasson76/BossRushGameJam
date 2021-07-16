@@ -153,6 +153,7 @@ public class PlayerController : MonoBehaviour {
     public void GrappleStart() {
         RaycastHit hit;
         Vector2 mousePos = playerInput.GetPointerPos();
+        Debug.Log(mousePos);
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
         if (Physics.Raycast(ray, out hit)) {
             isGrappling = true;
@@ -221,9 +222,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void DisablePlayer() {
-        Transform sphere = this.transform.Find("Sphere");
-        sphere.SetParent(null);
-        Destroy(sphere.GetComponent<CollisionDetection>());
+        playerAnimator.ClearEvidence();
         Destroy(this.gameObject);
     }
 
@@ -233,5 +232,9 @@ public class PlayerController : MonoBehaviour {
 
     public Vector3 GetBoostDirection() {
         return goalBoostDirection;
+    }
+
+    public bool IsPlayerDead() {
+        return isDead;
     }
 }

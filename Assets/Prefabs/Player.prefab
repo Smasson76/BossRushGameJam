@@ -173,8 +173,8 @@ MonoBehaviour:
   lookTargetHeightMax: 3
   cameraMinDistance: 5
   cameraMaxDistance: 20
-  minFOV: 60
-  maxFOV: 100
+  minFOV: 45
+  maxFOV: 75
   cameraDistanceVelocityLimit: 100
   cameraMinTilt: -5
   cameraMaxTilt: 45
