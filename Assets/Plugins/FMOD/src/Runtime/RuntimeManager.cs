@@ -34,15 +34,15 @@ namespace FMODUnity
             
             if (flags == FMOD.DEBUG_FLAGS.ERROR)
             {
-                Debug.LogError(string.Format(("[FMOD] {0} : {1}"), (string)func, (string)message));
+                //Debug.LogError(string.Format(("[FMOD] {0} : {1}"), (string)func, (string)message));
             }
             else if (flags == FMOD.DEBUG_FLAGS.WARNING)
             {
-                Debug.LogWarning(string.Format(("[FMOD] {0} : {1}"), (string)func, (string)message));
+                //Debug.LogWarning(string.Format(("[FMOD] {0} : {1}"), (string)func, (string)message));
             }
             else if (flags == FMOD.DEBUG_FLAGS.LOG)
             {
-                Debug.Log(string.Format(("[FMOD] {0} : {1}"), (string)func, (string)message));
+                //Debug.Log(string.Format(("[FMOD] {0} : {1}"), (string)func, (string)message));
             }
             return FMOD.RESULT.OK;
         }

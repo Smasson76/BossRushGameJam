@@ -43,20 +43,20 @@ public class @Control : IInputActionCollection, IDisposable
                     ""interactions"": ""Press(behavior=1)""
                 },
                 {
-                    ""name"": ""Boost"",
-                    ""type"": ""Value"",
+                    ""name"": ""BoostStart"",
+                    ""type"": ""Button"",
                     ""id"": ""11175b10-4b64-42c4-a41c-e28ba95b5fcb"",
-                    ""expectedControlType"": ""Axis"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
                 },
                 {
-                    ""name"": ""Slow"",
-                    ""type"": ""Value"",
-                    ""id"": ""fce496d8-a50d-4d4d-b189-21a48be4d29e"",
-                    ""expectedControlType"": ""Axis"",
+                    ""name"": ""BoostEnd"",
+                    ""type"": ""Button"",
+                    ""id"": ""d1b6d77e-c6c6-4713-8a23-3598ddb502fa"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press(behavior=1)""
                 },
                 {
                     ""name"": ""Megaboost"",
@@ -81,6 +81,22 @@ public class @Control : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""SlowStart"",
+                    ""type"": ""Button"",
+                    ""id"": ""eddb55b5-a7fa-4002-a7b6-9475619ea387"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""SlowEnd"",
+                    ""type"": ""Button"",
+                    ""id"": ""5b55f24d-8b79-4f0e-9e2c-fcea2f523591"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)""
                 }
             ],
             ""bindings"": [
@@ -168,18 +184,7 @@ public class @Control : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and mouse"",
-                    ""action"": ""Boost"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""90dff0de-9601-4b56-b5b4-86b9d233a5c2"",
-                    ""path"": ""<Keyboard>/shift"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and mouse"",
-                    ""action"": ""Slow"",
+                    ""action"": ""BoostStart"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -213,6 +218,39 @@ public class @Control : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""DirectCameraControlDelta"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5fca5dcf-0353-4efd-8060-359ddb64b217"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and mouse"",
+                    ""action"": ""BoostEnd"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3f25e0da-4881-47c6-8a23-82354f265d44"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SlowStart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ebb5c7fc-407f-4424-bd44-2cb866af6eff"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SlowEnd"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -324,11 +362,13 @@ public class @Control : IInputActionCollection, IDisposable
         m_PlayerMovement_PlayerMove = m_PlayerMovement.FindAction("PlayerMove", throwIfNotFound: true);
         m_PlayerMovement_GrappleStart = m_PlayerMovement.FindAction("GrappleStart", throwIfNotFound: true);
         m_PlayerMovement_GrappleEnd = m_PlayerMovement.FindAction("GrappleEnd", throwIfNotFound: true);
-        m_PlayerMovement_Boost = m_PlayerMovement.FindAction("Boost", throwIfNotFound: true);
-        m_PlayerMovement_Slow = m_PlayerMovement.FindAction("Slow", throwIfNotFound: true);
+        m_PlayerMovement_BoostStart = m_PlayerMovement.FindAction("BoostStart", throwIfNotFound: true);
+        m_PlayerMovement_BoostEnd = m_PlayerMovement.FindAction("BoostEnd", throwIfNotFound: true);
         m_PlayerMovement_Megaboost = m_PlayerMovement.FindAction("Megaboost", throwIfNotFound: true);
         m_PlayerMovement_DirectCameraControl = m_PlayerMovement.FindAction("DirectCameraControl", throwIfNotFound: true);
         m_PlayerMovement_DirectCameraControlDelta = m_PlayerMovement.FindAction("DirectCameraControlDelta", throwIfNotFound: true);
+        m_PlayerMovement_SlowStart = m_PlayerMovement.FindAction("SlowStart", throwIfNotFound: true);
+        m_PlayerMovement_SlowEnd = m_PlayerMovement.FindAction("SlowEnd", throwIfNotFound: true);
         // CameraControl
         m_CameraControl = asset.FindActionMap("CameraControl", throwIfNotFound: true);
         m_CameraControl_CameraControl = m_CameraControl.FindAction("Camera Control", throwIfNotFound: true);
@@ -390,11 +430,13 @@ public class @Control : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerMovement_PlayerMove;
     private readonly InputAction m_PlayerMovement_GrappleStart;
     private readonly InputAction m_PlayerMovement_GrappleEnd;
-    private readonly InputAction m_PlayerMovement_Boost;
-    private readonly InputAction m_PlayerMovement_Slow;
+    private readonly InputAction m_PlayerMovement_BoostStart;
+    private readonly InputAction m_PlayerMovement_BoostEnd;
     private readonly InputAction m_PlayerMovement_Megaboost;
     private readonly InputAction m_PlayerMovement_DirectCameraControl;
     private readonly InputAction m_PlayerMovement_DirectCameraControlDelta;
+    private readonly InputAction m_PlayerMovement_SlowStart;
+    private readonly InputAction m_PlayerMovement_SlowEnd;
     public struct PlayerMovementActions
     {
         private @Control m_Wrapper;
@@ -402,11 +444,13 @@ public class @Control : IInputActionCollection, IDisposable
         public InputAction @PlayerMove => m_Wrapper.m_PlayerMovement_PlayerMove;
         public InputAction @GrappleStart => m_Wrapper.m_PlayerMovement_GrappleStart;
         public InputAction @GrappleEnd => m_Wrapper.m_PlayerMovement_GrappleEnd;
-        public InputAction @Boost => m_Wrapper.m_PlayerMovement_Boost;
-        public InputAction @Slow => m_Wrapper.m_PlayerMovement_Slow;
+        public InputAction @BoostStart => m_Wrapper.m_PlayerMovement_BoostStart;
+        public InputAction @BoostEnd => m_Wrapper.m_PlayerMovement_BoostEnd;
         public InputAction @Megaboost => m_Wrapper.m_PlayerMovement_Megaboost;
         public InputAction @DirectCameraControl => m_Wrapper.m_PlayerMovement_DirectCameraControl;
         public InputAction @DirectCameraControlDelta => m_Wrapper.m_PlayerMovement_DirectCameraControlDelta;
+        public InputAction @SlowStart => m_Wrapper.m_PlayerMovement_SlowStart;
+        public InputAction @SlowEnd => m_Wrapper.m_PlayerMovement_SlowEnd;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -425,12 +469,12 @@ public class @Control : IInputActionCollection, IDisposable
                 @GrappleEnd.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnGrappleEnd;
                 @GrappleEnd.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnGrappleEnd;
                 @GrappleEnd.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnGrappleEnd;
-                @Boost.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnBoost;
-                @Boost.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnBoost;
-                @Boost.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnBoost;
-                @Slow.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnSlow;
-                @Slow.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnSlow;
-                @Slow.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnSlow;
+                @BoostStart.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnBoostStart;
+                @BoostStart.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnBoostStart;
+                @BoostStart.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnBoostStart;
+                @BoostEnd.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnBoostEnd;
+                @BoostEnd.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnBoostEnd;
+                @BoostEnd.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnBoostEnd;
                 @Megaboost.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMegaboost;
                 @Megaboost.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMegaboost;
                 @Megaboost.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMegaboost;
@@ -440,6 +484,12 @@ public class @Control : IInputActionCollection, IDisposable
                 @DirectCameraControlDelta.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnDirectCameraControlDelta;
                 @DirectCameraControlDelta.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnDirectCameraControlDelta;
                 @DirectCameraControlDelta.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnDirectCameraControlDelta;
+                @SlowStart.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnSlowStart;
+                @SlowStart.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnSlowStart;
+                @SlowStart.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnSlowStart;
+                @SlowEnd.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnSlowEnd;
+                @SlowEnd.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnSlowEnd;
+                @SlowEnd.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnSlowEnd;
             }
             m_Wrapper.m_PlayerMovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -453,12 +503,12 @@ public class @Control : IInputActionCollection, IDisposable
                 @GrappleEnd.started += instance.OnGrappleEnd;
                 @GrappleEnd.performed += instance.OnGrappleEnd;
                 @GrappleEnd.canceled += instance.OnGrappleEnd;
-                @Boost.started += instance.OnBoost;
-                @Boost.performed += instance.OnBoost;
-                @Boost.canceled += instance.OnBoost;
-                @Slow.started += instance.OnSlow;
-                @Slow.performed += instance.OnSlow;
-                @Slow.canceled += instance.OnSlow;
+                @BoostStart.started += instance.OnBoostStart;
+                @BoostStart.performed += instance.OnBoostStart;
+                @BoostStart.canceled += instance.OnBoostStart;
+                @BoostEnd.started += instance.OnBoostEnd;
+                @BoostEnd.performed += instance.OnBoostEnd;
+                @BoostEnd.canceled += instance.OnBoostEnd;
                 @Megaboost.started += instance.OnMegaboost;
                 @Megaboost.performed += instance.OnMegaboost;
                 @Megaboost.canceled += instance.OnMegaboost;
@@ -468,6 +518,12 @@ public class @Control : IInputActionCollection, IDisposable
                 @DirectCameraControlDelta.started += instance.OnDirectCameraControlDelta;
                 @DirectCameraControlDelta.performed += instance.OnDirectCameraControlDelta;
                 @DirectCameraControlDelta.canceled += instance.OnDirectCameraControlDelta;
+                @SlowStart.started += instance.OnSlowStart;
+                @SlowStart.performed += instance.OnSlowStart;
+                @SlowStart.canceled += instance.OnSlowStart;
+                @SlowEnd.started += instance.OnSlowEnd;
+                @SlowEnd.performed += instance.OnSlowEnd;
+                @SlowEnd.canceled += instance.OnSlowEnd;
             }
         }
     }
@@ -585,11 +641,13 @@ public class @Control : IInputActionCollection, IDisposable
         void OnPlayerMove(InputAction.CallbackContext context);
         void OnGrappleStart(InputAction.CallbackContext context);
         void OnGrappleEnd(InputAction.CallbackContext context);
-        void OnBoost(InputAction.CallbackContext context);
-        void OnSlow(InputAction.CallbackContext context);
+        void OnBoostStart(InputAction.CallbackContext context);
+        void OnBoostEnd(InputAction.CallbackContext context);
         void OnMegaboost(InputAction.CallbackContext context);
         void OnDirectCameraControl(InputAction.CallbackContext context);
         void OnDirectCameraControlDelta(InputAction.CallbackContext context);
+        void OnSlowStart(InputAction.CallbackContext context);
+        void OnSlowEnd(InputAction.CallbackContext context);
     }
     public interface ICameraControlActions
     {

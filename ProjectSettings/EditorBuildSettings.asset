@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/PlayerAudioTest.unity
     guid: ce9d910114fbe22408426b57ea9e0668
+  - enabled: 1
+    path: Assets/Scenes/MapTest.unity
+    guid: f138a7d2af7f7cc2b8f52133c6664c12
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 904e452d08eeb8e488a11756cd5af683, type: 2}

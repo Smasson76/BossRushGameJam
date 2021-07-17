@@ -1241,8 +1241,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 691071163, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
-      propertyPath: PlayerStateEvent.Array.data[2]
-      value: event:/MainMenuSelectEasy
+      propertyPath: PlayerStateEvent.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 691071163, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
+      propertyPath: PlayerStateEvent.Array.data[4]
+      value: event:/PlayerGrappleRehouse
+      objectReference: {fileID: 0}
+    - target: {fileID: 691071163, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
+      propertyPath: PlayerStateEvent.Array.data[5]
+      value: event:/PlayerImpactHard
       objectReference: {fileID: 0}
     - target: {fileID: 129395800956638946, guid: 281aed66ee70a3f4caa4a7c9b4c657a2, type: 3}
       propertyPath: m_RootOrder

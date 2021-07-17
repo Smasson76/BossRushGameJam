@@ -29,11 +29,14 @@ public class GameManager : MonoBehaviour {
 
     public delegate void SceneChange(SceneType sceneType);
     public static event SceneChange OnSceneChange;
-
+    public delegate void PlayerDeath();
+    public static event PlayerDeath OnPlayerDeath;
     public delegate void PlayerSpawn(PlayerController newPlayer);
     public static event PlayerSpawn OnPlayerSpawn;
     private GameObject currentPlayer;
     private PlayerController playerController;
+    private bool soundEffectsEnabled = true;
+    private bool musicEnabled = true;
 
     void Awake() {
         if (instance == null) {
@@ -76,7 +79,19 @@ public class GameManager : MonoBehaviour {
             OnSceneChange(sceneType);
         }
     }
+    public void PlayerDead() {
+        if (OnPlayerDeath != null) {
+            OnPlayerDeath();
+        }
+        StartCoroutine(playerDeadCoroutine());
+    }
 
+    public IEnumerator playerDeadCoroutine() {
+        yield return new WaitForSeconds(3f);
+        playerController.DisablePlayer();
+        canSpawnPlayer = true;
+        spawnCam.SetActive(true);
+    }
 
     public void SpawnPlayer() {
         RaycastHit hit;
@@ -85,13 +100,13 @@ public class GameManager : MonoBehaviour {
         if (Physics.Raycast(ray, out hit)) {
             if (hit.transform.gameObject.tag == "Ground") {
                 if (canSpawnPlayer) {
-                    Debug.Log("Spawning Player");
                     canSpawnPlayer = false;
                     spawnCam.SetActive(false);
                     currentPlayer = Instantiate(playerPrefab, hit.point + Vector3.up * 2, Quaternion.identity);
                     playerController = currentPlayer.GetComponent<PlayerController>();
                     playerController.playerInput = playerInput;
                     if (OnPlayerSpawn != null) OnPlayerSpawn(playerController);
+                    //Boss2Controller.instance.InitalizeFindPlayer();
                 }
             }
         }

@@ -32,13 +32,15 @@ public class PlayerAnimator : MonoBehaviour {
     [System.NonSerialized] public bool isBraking;
     [System.NonSerialized] public bool isBoosting;
     private PlayerController playerController;
+    private PlayerAudio playerAudio;
     private SectionData [] sphereSections;
     private Vector3 grapplePoint;
 
-    private struct SectionData {
+    private class SectionData {
         public Transform transform;
         public GameObject ikEnd;
         public Transform ikPole;
+        public FastIKFabric ikComponent;
         public Vector3 homeLocation;
         public Quaternion homeRotation;
         public SectionStatus status;
@@ -56,6 +58,7 @@ public class PlayerAnimator : MonoBehaviour {
 
     void Start() {
         playerController = this.gameObject.GetComponent<PlayerController>();
+        playerAudio = this.gameObject.GetComponent<PlayerAudio>();
         sphereSections = new SectionData[sectionBones.Length];
         Transform poleContainer = new GameObject("IKPole Container").transform;
         poleContainer.SetParent(this.transform);
@@ -70,11 +73,11 @@ public class PlayerAnimator : MonoBehaviour {
             ikPole.SetParent(poleContainer);
             ikPole.localPosition = newSection.homeLocation * 2;
             newSection.ikPole = ikPole;
-            FastIKFabric ikComponent = newSection.ikEnd.AddComponent<FastIKFabric>();
-            ikComponent.ChainLength = 4;
-            Destroy(ikComponent.Target.gameObject); // The ik component script creates it's own target, we destroy that here to avoid excess gameObject creation
-            ikComponent.Target = newSection.transform;
-            ikComponent.Pole = ikPole;
+            newSection.ikComponent = newSection.ikEnd.AddComponent<FastIKFabric>();
+            newSection.ikComponent.ChainLength = 4;
+            Destroy(newSection.ikComponent.Target.gameObject); // The ik component script creates it's own target, we destroy that here to avoid excess gameObject creation
+            newSection.ikComponent.Target = newSection.transform;
+            newSection.ikComponent.Pole = ikPole;
 
             newSection.status = SectionStatus.standby;
             sphereSections[i] = newSection;
@@ -83,8 +86,10 @@ public class PlayerAnimator : MonoBehaviour {
 
     // LateUpdate for visual changes
     void LateUpdate() {
-        UpdateBooster();
-        UpdateSections();
+        if (!playerController.IsPlayerDead()) {
+            UpdateBooster();
+            UpdateSections();
+        }
     }
 
     void UpdateSections() {
@@ -131,6 +136,8 @@ public class PlayerAnimator : MonoBehaviour {
                 if (isGrappling == false) {
                     sphereSections[i].status = SectionStatus.grappleReturning;
                 } else if (Vector3.Distance(section.transform.position, grapplePoint) < 1f) {
+                    playerAudio.GrappleHit(section.transform.position);
+                    playerAudio.GrappleReelOutEnd();
                     sphereSections[i].status = SectionStatus.grappled;
                 }
                 UpdateRope(i);
@@ -146,6 +153,7 @@ public class PlayerAnimator : MonoBehaviour {
                 section.transform.position += GetDiffToTarget(section.transform.position, goal);
                 UpdateRope(i);
                 if (Vector3.Distance(section.transform.position, goal) < 1f) {
+                    playerAudio.GrappleReelInEnd();
                     section.transform.SetParent(sectionParent, true);
                     sphereSections[i].status = SectionStatus.standby;
                     Destroy(section.rope);
@@ -204,7 +212,10 @@ public class PlayerAnimator : MonoBehaviour {
         sphereSections[grappleSectionIndex].status = SectionStatus.grappleLeaving;
         Transform sectionTransform = sphereSections[grappleSectionIndex].transform;
         sectionTransform.SetParent(null);
-        LineRenderer rope = sectionTransform.gameObject.AddComponent<LineRenderer>();
+        LineRenderer rope = sectionTransform.gameObject.GetComponent<LineRenderer>();
+        if (rope == null) {
+            rope = sectionTransform.gameObject.AddComponent<LineRenderer>();
+        }
         rope.startWidth = 0.1f;
         rope.material = ropeMaterial;
         rope.positionCount = quality + 1;
@@ -234,6 +245,8 @@ public class PlayerAnimator : MonoBehaviour {
     public void Pop() {
         foreach (SectionData section in sphereSections) {
             section.transform.SetParent(null, true);
+            Destroy(section.ikComponent);
+            Destroy(section.rope);
             BoxCollider collider = section.transform.gameObject.AddComponent<BoxCollider>();
             collider.size = Vector3.one * 0.2f;
             Rigidbody rb = section.transform.gameObject.AddComponent<Rigidbody>();
@@ -242,7 +255,14 @@ public class PlayerAnimator : MonoBehaviour {
             rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
             rb.velocity = playerController.GetPlayerVelocity();
             rb.AddForce(section.homeLocation.normalized * 5);
+            GibsController controller = section.transform.gameObject.AddComponent<GibsController>();
+            controller.soundCallback = playerAudio.GibsHit;
         }
-        sphereSections = new SectionData[0];
+    }
+
+    public void ClearEvidence() {
+        foreach (SectionData section in sphereSections) {
+            Destroy(section.transform.gameObject);
+        }
     }
 }
