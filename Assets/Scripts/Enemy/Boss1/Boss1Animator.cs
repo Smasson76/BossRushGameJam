@@ -55,7 +55,7 @@ public class Boss1Animator : MonoBehaviour {
                 throw new System.Exception("Boss arm raycast didn't hit terrain");
             }
             float height = armHeightOffset + Mathf.Clamp(playerPos.y * angleInfluence, hit.point.y, 100f);
-            Vector3 targetPos = arm.homeDir * (armRadiusMin) + Vector3.up * height;
+            Vector3 targetPos = this.transform.position + arm.homeDir * (armRadiusMin) + Vector3.up * height;
             arm.ikTarget.position = Vector3.Lerp(arm.ikTarget.position, targetPos, Time.deltaTime * armMoveSpeed);
         }
     }
