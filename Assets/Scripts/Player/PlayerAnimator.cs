@@ -27,10 +27,15 @@ public class PlayerAnimator : MonoBehaviour {
     [SerializeField] float waveCount;
     [SerializeField] float waveHeight;
     [SerializeField] AnimationCurve affectCurve;
+    
+    [Header ("Walking Properties")]
+    [SerializeField] private float footRadius;
+    [SerializeField] private float footHeightOffset;
 
     [System.NonSerialized] public bool isGrappling = false;
-    [System.NonSerialized] public bool isBraking;
-    [System.NonSerialized] public bool isBoosting;
+    [System.NonSerialized] public bool isBraking = false;
+    [System.NonSerialized] public bool isBoosting = false;
+    [System.NonSerialized] private bool isWalking = false;
     private PlayerController playerController;
     private PlayerAudio playerAudio;
     private SectionData [] sphereSections;
@@ -54,6 +59,7 @@ public class PlayerAnimator : MonoBehaviour {
         grappleLeaving,
         grappled,
         grappleReturning,
+        leg,
     }
 
     void Start() {
@@ -89,6 +95,9 @@ public class PlayerAnimator : MonoBehaviour {
         if (!playerController.IsPlayerDead()) {
             UpdateBooster();
             UpdateSections();
+            if (isWalking) {
+                SetCurrentLegs();
+            }
         }
     }
 
@@ -129,6 +138,27 @@ public class PlayerAnimator : MonoBehaviour {
                 }
                 if (!positionedThisFrame) {
                     LerpToHome(section);
+                }
+                break;
+            case SectionStatus.leg:
+                if (isWalking) {
+                    if (section.status == SectionStatus.leg) {
+                    Vector3 localPosNoRot = section.transform.parent.rotation * section.homeLocation;
+                        Vector3 DirVectorComponent = Vector3.down * Vector3.Dot(localPosNoRot, Vector3.down);
+                        Vector3 perp = (localPosNoRot - DirVectorComponent);
+                        RaycastHit hit;
+                        int layerMask = ~(1 << 7);
+                        Vector3 rayStart = player.transform.position + perp.normalized * footRadius;
+                        if (Physics.Raycast(rayStart, Vector3.down, out hit, Mathf.Infinity, layerMask)) {
+                            Vector3 goalPos = hit.point + Vector3.up * footHeightOffset;
+                            section.transform.position = Vector3.Lerp(section.transform.position, goalPos, Time.deltaTime * panelLerpSpeed);
+                            Quaternion goalRot = Quaternion.LookRotation(perp, localPosNoRot);
+                            section.transform.rotation = Quaternion.Lerp(section.transform.rotation, goalRot, Time.deltaTime * panelLerpSpeed);
+                            positionedThisFrame = true;
+                        }
+                    }
+                } else {
+                    sphereSections[i].status = SectionStatus.standby;
                 }
                 break;
             case SectionStatus.grappleLeaving:
@@ -227,6 +257,28 @@ public class PlayerAnimator : MonoBehaviour {
 
     public void GrappleEnd() {
         isGrappling = false;
+    }
+
+    public Vector3 walkStarted() {
+        isWalking = true;
+        return sphereSections[GetClosestSection(Vector3.up)].homeLocation;
+    }
+
+    public void SetCurrentLegs() {
+        for (int i = 0; i < sphereSections.Length; i++) {
+            float angle = Vector3.Angle(Vector3.down, sphereSections[i].transform.parent.rotation * sphereSections[i].homeLocation);
+            if (angle < 80) {
+                sphereSections[i].status = SectionStatus.leg;
+            } else if (sphereSections[i].status == SectionStatus.leg) {
+                sphereSections[i].status = SectionStatus.standby;
+            }
+        }
+    }
+
+    public void walkEnded() {
+        if (isWalking) {
+            isWalking = false;
+        }
     }
 
     int GetClosestSection(Vector3 pos) {

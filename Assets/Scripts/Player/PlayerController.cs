@@ -21,6 +21,15 @@ public class PlayerController : MonoBehaviour {
     public float boostIncreaseAmount = 0.1f;
     public bool canRegenerateBoost = false;
 
+    [Header("Walking Movement")]
+    [SerializeField] private float groundedHeight;
+    [SerializeField] private float targetHeight;
+    [SerializeField] private float springStrength;
+    [SerializeField] private float springDamper;
+    [SerializeField] private float rotationStrength;
+    [SerializeField] private float rotationDamper;
+    [SerializeField] private float velocitySlow;
+
     [System.NonSerialized] public PlayerInput playerInput;
     private PlayerAnimator playerAnimator;
     private PlayerAudio playerAudio;
@@ -36,6 +45,7 @@ public class PlayerController : MonoBehaviour {
     private bool isRolling;
     private bool isDead;
     private float boostPercent = 100f;
+    private Vector3 walkingCurrentUp;
 
     void Start() {
         cameraController = this.GetComponent<CameraController>();
@@ -125,22 +135,48 @@ public class PlayerController : MonoBehaviour {
         return boostPercent;
     }
 
-    void PlayerSlow() {
-        if (isBraking) {
-            Vector3 force = -playerRb.velocity * slowForce;
-            playerRb.AddForce(force, ForceMode.Force);
-            playerRb.AddTorque(-playerRb.angularVelocity * rotationSlowAmount);
-        }
-        if (isOnGround()) {
-            SlowEnd();
-        }
-    }
-
     public void SlowStart() {
         if (!isOnGround()) {
             isBraking = true;
             playerAnimator.isBraking = true;
             playerAudio.SlowStart();
+        } else {
+            isBraking = true;
+            walkingCurrentUp = playerAnimator.walkStarted();
+        }
+    }
+
+    void PlayerSlow() {
+        if (isBraking) {
+            if (isOnGround()) {
+                playerAnimator.walkStarted();
+                playerAnimator.isBraking = false;
+
+                RaycastHit hit;
+                int layermask = 1 << 6;
+                Physics.Raycast(player.transform.position, Vector3.down, out hit, Mathf.Infinity, layermask);
+                float height = targetHeight - hit.distance;
+                Debug.Log(height);
+                float springForce = (height * springStrength) - (playerRb.velocity.y * springDamper);
+                playerRb.AddForce(Vector3.up * springForce);
+
+                Quaternion goal = Quaternion.LookRotation(walkingCurrentUp);
+                Quaternion diff = UtilityFunctions.ShortestRotation(goal, player.transform.rotation);
+                Vector3 rotAxis;
+                float rotDegrees;
+                diff.ToAngleAxis(out rotDegrees, out rotAxis);
+                rotAxis.Normalize();
+                float rotRadians = rotDegrees * Mathf.Deg2Rad;
+                playerRb.AddTorque((rotAxis * (rotRadians * rotationStrength)) - (playerRb.angularVelocity * rotationDamper));
+
+                playerRb.velocity = new Vector3(playerRb.velocity.x * velocitySlow, playerRb.velocity.y, playerRb.velocity.z * velocitySlow);
+            } else { 
+                Vector3 force = -playerRb.velocity * slowForce;
+                playerRb.AddForce(force, ForceMode.Force);
+                playerRb.AddTorque(-playerRb.angularVelocity * rotationSlowAmount);
+            }
+        } else {
+            playerAnimator.walkEnded();
         }
     }
 
@@ -153,10 +189,10 @@ public class PlayerController : MonoBehaviour {
     public void GrappleStart() {
         RaycastHit hit;
         Vector2 mousePos = playerInput.GetPointerPos();
-        Debug.Log(mousePos);
         Ray ray = Camera.main.ScreenPointToRay(mousePos);
         if (Physics.Raycast(ray, out hit)) {
             isGrappling = true;
+            playerAnimator.walkEnded();
             
             grapplePoint = hit.point;
             grappleSpring = player.AddComponent<SpringJoint>();
@@ -192,7 +228,7 @@ public class PlayerController : MonoBehaviour {
 
     bool isOnGround() {
         RaycastHit hit;
-        if (Physics.Raycast(player.transform.position, Vector3.down, out hit, 2f)) {
+        if (Physics.Raycast(player.transform.position, Vector3.down, out hit, groundedHeight)) {
             return true;
         }
         return false;
