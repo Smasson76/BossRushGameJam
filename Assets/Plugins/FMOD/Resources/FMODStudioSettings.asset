@@ -362,6 +362,7 @@ MonoBehaviour:
   Banks:
   - MenuSounds
   - Music
+  - NPCSounds
   - PlayerSounds
   - WorldSounds
   BanksToLoad: []
