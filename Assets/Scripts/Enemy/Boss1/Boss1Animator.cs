@@ -4,13 +4,20 @@ using UnityEngine;
 using DitzelGames.FastIK;
 
 public class Boss1Animator : MonoBehaviour {
+    [Header("References")]
     [SerializeField] private Boss1Controller controller;
     [SerializeField] private Transform[] armEnds;
+    [SerializeField] private Transform mid;
+
+    [Header("Sheild Movement")]
     [SerializeField] private float armMoveSpeed;
+    [SerializeField] private float armRotateSpeed;
     [SerializeField] private float armHeightOffset;
     [SerializeField] private float armRadiusMin;
     [SerializeField] private float armRadiusDelta;
     [SerializeField] private float armDisconnectForce;
+    [SerializeField] private float downRot;
+    [SerializeField] private float upRot;
 
     private Transform armTargetAndPoleContainer;
     private List<Arm> arms;
@@ -20,7 +27,9 @@ public class Boss1Animator : MonoBehaviour {
         public Transform ikEnd;
         public Transform ikTarget;
         public Transform ikPole;
+        public Transform shield;
         public FastIKFabric ikComponent;
+        public float currentRot;
     }
 
     void Start() {
@@ -31,6 +40,7 @@ public class Boss1Animator : MonoBehaviour {
             Arm newArm = new Arm();
             newArm.armNumber = i + 1;
             newArm.ikEnd = armEnds[i];
+            newArm.shield = newArm.ikEnd.GetChild(0);
             Vector3 localPos = newArm.ikEnd.position - this.transform.position;
             newArm.homeDir = new Vector3(localPos.x, 0, localPos.z).normalized;
             newArm.ikComponent = newArm.ikEnd.gameObject.AddComponent<FastIKFabric>();
@@ -40,23 +50,53 @@ public class Boss1Animator : MonoBehaviour {
             newArm.ikPole.SetParent(armTargetAndPoleContainer);
             newArm.ikComponent.Pole = newArm.ikPole;
             newArm.ikPole.position = this.transform.position + Vector3.up * 50f;
-            newArm.ikComponent.ChainLength = 3;
+            newArm.ikComponent.ChainLength = 2;
+            newArm.ikComponent.SnapBackStrength = 0;
             arms.Add(newArm);
         }
     }
 
-    public void UpdateArms(Vector3 playerPos) {
-        foreach(Arm arm in arms) {
-            float angle = Vector3.Angle(arm.homeDir, this.transform.position - playerPos);
-            float angleInfluence = Mathf.Clamp(UtilityFunctions.Remap(angle, 0, 180, 0, 1), 0, 1);
-            RaycastHit hit;
-            int layermask = 1 << 6;
-            if (!Physics.Raycast(arm.ikEnd.position + Vector3.up * 100, Vector3.down, out hit, Mathf.Infinity, layermask)) {
-                throw new System.Exception("Boss arm raycast didn't hit terrain");
-            }
-            float height = armHeightOffset + Mathf.Clamp(playerPos.y * angleInfluence, hit.point.y, 100f);
-            Vector3 targetPos = this.transform.position + arm.homeDir * (armRadiusMin) + Vector3.up * height;
-            arm.ikTarget.position = Vector3.Lerp(arm.ikTarget.position, targetPos, Time.deltaTime * armMoveSpeed);
+    public void UpdateArms(Vector3 playerPos, Boss1Controller.State state) {
+        switch (state) {
+            case Boss1Controller.State.facingOut:
+                foreach(Arm arm in arms) {
+                    float angle = Vector3.Angle(arm.homeDir, this.transform.position - playerPos);
+                    float angleInfluence = Mathf.Clamp(UtilityFunctions.Remap(angle, 0, 180, 0, 1), 0, 1);
+                    RaycastHit hit;
+                    int layermask = 1 << 6;
+                    if (!Physics.Raycast(arm.ikEnd.position + Vector3.up * 100, Vector3.down, out hit, Mathf.Infinity, layermask)) {
+                        throw new System.Exception("Boss arm raycast didn't hit terrain");
+                    }
+                    float height = armHeightOffset + Mathf.Clamp(playerPos.y * angleInfluence, hit.point.y, 100f);
+                    float armDistance = armRadiusMin + (arm.armNumber % 2) * 10f;
+                    Vector3 targetPos = UtilityFunctions.VectorTo2D(this.transform.position) + arm.homeDir * armDistance + Vector3.up * height;
+                    arm.ikTarget.position = Vector3.Lerp(arm.ikTarget.position, targetPos, Time.deltaTime * armMoveSpeed);
+                    if (arm.currentRot < 67) arm.currentRot = Mathf.Min(arm.currentRot + Time.deltaTime * armRotateSpeed, 67);
+                    else if (arm.currentRot > 67) arm.currentRot = Mathf.Max(arm.currentRot - Time.deltaTime * armRotateSpeed, 67);
+                    arm.shield.localRotation = Quaternion.Euler(0, arm.shield.localRotation.eulerAngles.y, arm.currentRot);
+                }
+                break;
+            case Boss1Controller.State.facingDown:
+                foreach(Arm arm in arms) {
+                    Vector3 targetPos = this.transform.position + arm.homeDir * (armRadiusMin);
+                    arm.ikTarget.position = Vector3.Lerp(arm.ikTarget.position, targetPos, Time.deltaTime * armMoveSpeed);
+                    if (arm.currentRot < downRot) arm.currentRot = Mathf.Min(arm.currentRot + Time.deltaTime * armRotateSpeed, downRot);
+                    else if (arm.currentRot > downRot) arm.currentRot = Mathf.Max(arm.currentRot - Time.deltaTime * armRotateSpeed, downRot);
+                    arm.shield.localRotation = Quaternion.Euler(0, arm.shield.localRotation.eulerAngles.y, arm.currentRot);
+                }
+                break;
+            case Boss1Controller.State.facingUp:
+                foreach(Arm arm in arms) {
+                    Vector3 targetPos = this.transform.position + arm.homeDir * (armRadiusMin);
+                    arm.ikTarget.position = Vector3.Lerp(arm.ikTarget.position, targetPos, Time.deltaTime * armMoveSpeed);
+                    if (arm.currentRot < upRot) arm.currentRot = Mathf.Min(arm.currentRot + Time.deltaTime * armRotateSpeed, upRot);
+                    else if (arm.currentRot > upRot) arm.currentRot = Mathf.Max(arm.currentRot - Time.deltaTime * armRotateSpeed, upRot);
+                    arm.shield.localRotation = Quaternion.Euler(0, arm.shield.localRotation.eulerAngles.y, arm.currentRot);
+                }
+                break;
+            default:
+                Debug.LogError("Unhandled boss1 state");
+                break;
         }
     }
 
@@ -66,7 +106,8 @@ public class Boss1Animator : MonoBehaviour {
             throw new System.Exception("Destroyed arm not in arms list");
         }
         Destroy(destroyedArm.ikComponent);
-        MeshCollider meshCollider = destroyedArm.ikEnd.GetChild(1).GetComponent<MeshCollider>();
+        Debug.Log(destroyedArm.ikEnd.GetChild(0).GetChild(0).gameObject.name);
+        MeshCollider meshCollider = destroyedArm.ikEnd.GetChild(0).GetChild(0).GetComponent<MeshCollider>();
         meshCollider.convex = true;
         arms.Remove(destroyedArm);
         jointTransform.SetParent(null, true);
@@ -75,6 +116,7 @@ public class Boss1Animator : MonoBehaviour {
         rb.AddForce((destroyedArm.homeDir).normalized * armDisconnectForce, ForceMode.Force);
 
         if (arms.Count == 0) {
+            EjectArmBits();
             controller.AllArmsDestroyed();
         }
     }
@@ -86,5 +128,9 @@ public class Boss1Animator : MonoBehaviour {
             }
         }
         return null;
+    }
+
+    void EjectArmBits() {
+
     }
 }

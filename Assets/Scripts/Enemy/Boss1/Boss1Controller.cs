@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Boss1Controller : MonoBehaviour {
     [SerializeField] private Boss1Animator animator;
+    [SerializeField] private float stateChangeDistance;
     private Transform player;
     private State state;
     public enum State {
@@ -30,7 +31,14 @@ public class Boss1Controller : MonoBehaviour {
     }
 
     void Update() {
-        animator.UpdateArms(player.position);
+        if (Vector3.Distance(UtilityFunctions.VectorTo2D(this.transform.position), UtilityFunctions.VectorTo2D(player.position)) > stateChangeDistance) {
+            state = State.facingOut;
+        } else if (player.transform.position.y > this.transform.position.y) {
+            state = State.facingUp;
+        } else {
+            state = State.facingDown;
+        }
+        animator.UpdateArms(player.position, state);
     }
 
     public void ArmDestroyed(Transform transform, int armNumber) {

@@ -154,14 +154,13 @@ public class PlayerController : MonoBehaviour {
 
                 RaycastHit hit;
                 int layermask = 1 << 6;
-                Physics.Raycast(player.transform.position, Vector3.down, out hit, Mathf.Infinity, layermask);
+                Physics.Raycast(playerRb.position, Vector3.down, out hit, Mathf.Infinity, layermask);
                 float height = targetHeight - hit.distance;
-                Debug.Log(height);
                 float springForce = (height * springStrength) - (playerRb.velocity.y * springDamper);
                 playerRb.AddForce(Vector3.up * springForce);
 
                 Quaternion goal = Quaternion.LookRotation(walkingCurrentUp);
-                Quaternion diff = UtilityFunctions.ShortestRotation(goal, player.transform.rotation);
+                Quaternion diff = UtilityFunctions.ShortestRotation(goal, playerRb.rotation);
                 Vector3 rotAxis;
                 float rotDegrees;
                 diff.ToAngleAxis(out rotDegrees, out rotAxis);

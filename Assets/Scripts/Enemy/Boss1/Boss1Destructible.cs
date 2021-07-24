@@ -16,6 +16,7 @@ public class Boss1Destructible : MonoBehaviour {
                 jointCount++;
             }
             controller.ArmDestroyed(this.transform.parent, armNumber);
+            Destroy(this.gameObject);
         }
     }
 }

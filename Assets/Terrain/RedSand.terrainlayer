@@ -7,15 +7,15 @@ TerrainLayer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: RedSand
-  m_DiffuseTexture: {fileID: 2800000, guid: 8ef0febabf5e9414bbd5d8cc9ff6da6c, type: 3}
-  m_NormalMapTexture: {fileID: 2800000, guid: 5cc9c5435f83a5e48a2fadc041b1c270, type: 3}
-  m_MaskMapTexture: {fileID: 2800000, guid: cec066edddbd0b64ea27435ecf980ed2, type: 3}
+  m_DiffuseTexture: {fileID: 2800000, guid: 23f74fc736b8b24a6ba4b8077c2c0172, type: 3}
+  m_NormalMapTexture: {fileID: 2800000, guid: f2e8a40437aa3aa14ae9f64bd47cfa6e, type: 3}
+  m_MaskMapTexture: {fileID: 0}
   m_TileSize: {x: 20, y: 20}
   m_TileOffset: {x: 0, y: 0}
   m_Specular: {r: 0, g: 0, b: 0, a: 0}
   m_Metallic: 0
   m_Smoothness: 0
-  m_NormalScale: 1.5
+  m_NormalScale: 0.89
   m_DiffuseRemapMin: {x: 0, y: 0, z: 0, w: 0}
   m_DiffuseRemapMax: {x: 1, y: 1, z: 1, w: 1}
   m_MaskMapRemapMin: {x: 0, y: 0, z: 0, w: 0}

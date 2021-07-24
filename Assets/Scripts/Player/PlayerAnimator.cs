@@ -80,7 +80,7 @@ public class PlayerAnimator : MonoBehaviour {
             ikPole.localPosition = newSection.homeLocation * 2;
             newSection.ikPole = ikPole;
             newSection.ikComponent = newSection.ikEnd.AddComponent<FastIKFabric>();
-            newSection.ikComponent.ChainLength = 4;
+            newSection.ikComponent.ChainLength = 3;
             Destroy(newSection.ikComponent.Target.gameObject); // The ik component script creates it's own target, we destroy that here to avoid excess gameObject creation
             newSection.ikComponent.Target = newSection.transform;
             newSection.ikComponent.Pole = ikPole;
