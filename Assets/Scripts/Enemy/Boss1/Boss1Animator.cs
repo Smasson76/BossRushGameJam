@@ -8,6 +8,7 @@ public class Boss1Animator : MonoBehaviour {
     [SerializeField] private Boss1Controller controller;
     [SerializeField] private Transform[] armEnds;
     [SerializeField] private Transform mid;
+    [SerializeField] private Transform[] footEnds;
 
     [Header("Sheild Movement")]
     [SerializeField] private float armMoveSpeed;
@@ -16,9 +17,15 @@ public class Boss1Animator : MonoBehaviour {
     [SerializeField] private float armRadiusMin;
     [SerializeField] private float armRadiusDelta;
     [SerializeField] private float armDisconnectForce;
+    [SerializeField] private float armBitEjectForce;
     [SerializeField] private float downRot;
     [SerializeField] private float upRot;
 
+    [Header("Walking Movement")]
+    [SerializeField] private float footRadius;
+    [SerializeField] private float footHeightOffset;
+    [SerializeField] private float footMoveDistance;
+    [SerializeField] private float footMoveSpeed;
     private Transform armTargetAndPoleContainer;
     private List<Arm> arms;
     private class Arm {
@@ -31,10 +38,20 @@ public class Boss1Animator : MonoBehaviour {
         public FastIKFabric ikComponent;
         public float currentRot;
     }
+    private List<Foot> feet;
+    private class Foot {
+        public Vector3 homeDir;
+        public Transform ikEnd;
+        public Transform ikTarget;
+        public Transform ikPole;
+        public Vector3 movementGoal;
+        public FastIKFabric ikComponent;
+        public bool isMoving;
+    }
+
 
     void Start() {
         armTargetAndPoleContainer = new GameObject("Arm Target And Pole Container").transform;
-        armTargetAndPoleContainer.SetParent(this.transform);
         arms = new List<Arm>();
         for (int i = 0; i < armEnds.Length; i++) {
             Arm newArm = new Arm();
@@ -94,6 +111,25 @@ public class Boss1Animator : MonoBehaviour {
                     arm.shield.localRotation = Quaternion.Euler(0, arm.shield.localRotation.eulerAngles.y, arm.currentRot);
                 }
                 break;
+            case Boss1Controller.State.walking:
+                foreach (Foot foot in feet) {
+                    if (foot.isMoving) {
+                        foot.ikTarget.transform.position = Vector3.Lerp(foot.ikTarget.transform.position, foot.movementGoal, Time.deltaTime * footMoveSpeed);
+                        if (Vector3.Distance(foot.ikTarget.transform.position, foot.movementGoal) < 0.1) {
+                            foot.isMoving = false;
+                        }
+                    } else {
+                        RaycastHit hit;
+                        int layermask = 1 << 6;
+                        Physics.Raycast(this.transform.position + foot.homeDir.normalized * footRadius + Vector3.up * 50, Vector3.down, out hit, Mathf.Infinity, layermask);
+                        Vector3 goalPos = hit.point + Vector3.up * footHeightOffset;
+                        if (Vector3.Distance(goalPos, foot.ikTarget.position) > footMoveDistance) {
+                            foot.movementGoal = goalPos;
+                            foot.isMoving = true;
+                        }
+                    }
+                }
+                break;
             default:
                 Debug.LogError("Unhandled boss1 state");
                 break;
@@ -105,8 +141,9 @@ public class Boss1Animator : MonoBehaviour {
         if (destroyedArm == null) {
             throw new System.Exception("Destroyed arm not in arms list");
         }
-        Destroy(destroyedArm.ikComponent);
-        Debug.Log(destroyedArm.ikEnd.GetChild(0).GetChild(0).gameObject.name);
+        Destroy(destroyedArm.ikComponent.gameObject);
+        Destroy(destroyedArm.ikPole.gameObject);
+        Destroy(destroyedArm.ikTarget.gameObject);
         MeshCollider meshCollider = destroyedArm.ikEnd.GetChild(0).GetChild(0).GetComponent<MeshCollider>();
         meshCollider.convex = true;
         arms.Remove(destroyedArm);
@@ -115,10 +152,14 @@ public class Boss1Animator : MonoBehaviour {
         rb.mass = 1000;
         rb.AddForce((destroyedArm.homeDir).normalized * armDisconnectForce, ForceMode.Force);
 
-        if (arms.Count == 0) {
+        //if (arms.Count == 0) {
+            foreach (Arm arm in arms) {
+                DestroyArm(arms[0].ikEnd.parent, arms[0].armNumber);
+            }
             EjectArmBits();
             controller.AllArmsDestroyed();
-        }
+            setupFeet();
+        //}
     }
 
     Arm GetArm(int armNumber) {
@@ -131,6 +172,42 @@ public class Boss1Animator : MonoBehaviour {
     }
 
     void EjectArmBits() {
+        for (int i = 0; i < mid.childCount; i++) {
+            if (mid.GetChild(i).childCount > 0) {
+                Transform bit = mid.GetChild(i).GetChild(0);
+                bit.SetParent(null);
+                Rigidbody rb = bit.gameObject.AddComponent<Rigidbody>();
+                rb.mass = 100;
+                rb.AddForce(UtilityFunctions.VectorTo2D(this.transform.position - bit.position).normalized * armBitEjectForce);
+            }
+        }
+        Transform cap = mid.GetChild(mid.childCount - 1);
+        cap.SetParent(null);
+        Rigidbody capRb = cap.gameObject.AddComponent<Rigidbody>();
+        capRb.mass = 100;
+        
+        mid.SetParent(null);
+        Rigidbody midRb = mid.gameObject.AddComponent<Rigidbody>();
+        midRb.mass = 100;
+        midRb.AddForce(Vector3.up * armBitEjectForce);
+    }
 
+    void setupFeet() {
+        feet = new List<Foot>();
+        for (int i = 0; i < footEnds.Length; i++) {
+            Foot newFoot = new Foot();
+            newFoot.ikEnd = footEnds[i];
+            Vector3 localPos = newFoot.ikEnd.position - this.transform.position;
+            newFoot.homeDir = new Vector3(localPos.x, 0, localPos.z).normalized;
+            newFoot.ikComponent = newFoot.ikEnd.gameObject.AddComponent<FastIKFabric>();
+            newFoot.ikTarget = newFoot.ikComponent.Target;
+            newFoot.ikPole = new GameObject("IK Pole " + i).transform;
+            newFoot.ikPole.SetParent(armTargetAndPoleContainer);
+            newFoot.ikComponent.Pole = newFoot.ikPole;
+            newFoot.ikPole.position = this.transform.position + Vector3.up * 50f;
+            newFoot.ikComponent.ChainLength = 2;
+            newFoot.ikComponent.SnapBackStrength = 0;
+            feet.Add(newFoot);
+        }
     }
 }

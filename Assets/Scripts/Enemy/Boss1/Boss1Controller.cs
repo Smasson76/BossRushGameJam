@@ -3,14 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Boss1Controller : MonoBehaviour {
+    [Header("References")]
     [SerializeField] private Boss1Animator animator;
+
+    [Header("Sheild Movement")]
     [SerializeField] private float stateChangeDistance;
+
+    [Header("Walking Movement")]
+    [SerializeField] private float targetHeight;
+    [SerializeField] private float springStrength;
+    [SerializeField] private float springDamper;
+    [SerializeField] private float rotationStrength;
+    [SerializeField] private float rotationDamper;
+    [SerializeField] private float slowdown;
     private Transform player;
-    private State state;
+    private State state = State.facingOut;
+    private Rigidbody bossRb;
     public enum State {
         facingOut,
         facingDown,
         facingUp,
+        walking,
     }
 
 
@@ -31,12 +44,32 @@ public class Boss1Controller : MonoBehaviour {
     }
 
     void Update() {
-        if (Vector3.Distance(UtilityFunctions.VectorTo2D(this.transform.position), UtilityFunctions.VectorTo2D(player.position)) > stateChangeDistance) {
-            state = State.facingOut;
-        } else if (player.transform.position.y > this.transform.position.y) {
-            state = State.facingUp;
+        if (state != State.walking) {
+            if (Vector3.Distance(UtilityFunctions.VectorTo2D(this.transform.position), UtilityFunctions.VectorTo2D(player.position)) > stateChangeDistance) {
+                state = State.facingOut;
+            } else if (player.transform.position.y > this.transform.position.y) {
+                state = State.facingUp;
+            } else {
+                state = State.facingDown;
+            }
         } else {
-            state = State.facingDown;
+            RaycastHit hit;
+            int layermask = 1 << 6;
+            Physics.Raycast(bossRb.position, Vector3.down, out hit, Mathf.Infinity, layermask);
+            float height = targetHeight - hit.distance;
+            float springForce = (height * springStrength) - (bossRb.velocity.y * springDamper);
+            bossRb.AddForce(Vector3.up * springForce);
+
+            Quaternion goal = Quaternion.LookRotation(Vector3.forward);
+            Quaternion diff = UtilityFunctions.ShortestRotation(goal, bossRb.rotation);
+            Vector3 rotAxis;
+            float rotDegrees;
+            diff.ToAngleAxis(out rotDegrees, out rotAxis);
+            rotAxis.Normalize();
+            float rotRadians = rotDegrees * Mathf.Deg2Rad;
+            bossRb.AddTorque((rotAxis * (rotRadians * rotationStrength)) - (bossRb.angularVelocity * rotationDamper));
+            
+            bossRb.velocity = new Vector3(bossRb.velocity.x * slowdown, bossRb.velocity.y, bossRb.velocity.z * slowdown);
         }
         animator.UpdateArms(player.position, state);
     }
@@ -47,6 +80,9 @@ public class Boss1Controller : MonoBehaviour {
     }
 
     public void AllArmsDestroyed() {
+        state = State.walking;
+        bossRb = this.gameObject.AddComponent<Rigidbody>();
+        bossRb.mass = 500;
         Debug.Log("All arms destroyed");
     }
 }
