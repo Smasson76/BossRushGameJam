@@ -125,8 +125,6 @@ public class PlayerAnimator : MonoBehaviour {
                     if (angle > 110) {
                         Vector3 boostDirVectorComponent = boostDir.normalized * Vector3.Dot(localPosNoRot, boostDir);
                         Vector3 perpToBoost = (localPosNoRot - boostDirVectorComponent);
-                        Debug.DrawLine(section.transform.position, section.transform.position + boostDirVectorComponent, Color.blue);
-                        Debug.DrawLine(section.transform.position, section.transform.position + perpToBoost, Color.red);
 
                         Vector3 goalPos = section.homeLocation * UtilityFunctions.Remap(angle, 110, 180, panelDistMin, panelDistMax);
                         section.transform.localPosition = Vector3.Lerp(section.transform.localPosition, goalPos, Time.deltaTime * panelLerpSpeed);

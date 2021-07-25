@@ -153,7 +153,7 @@ public class PlayerController : MonoBehaviour {
                 playerAnimator.isBraking = false;
 
                 RaycastHit hit;
-                int layermask = 1 << 6;
+                int layermask = ~(1 << 2);
                 Physics.Raycast(playerRb.position, Vector3.down, out hit, Mathf.Infinity, layermask);
                 float height = targetHeight - hit.distance;
                 float springForce = (height * springStrength) - (playerRb.velocity.y * springDamper);
@@ -227,7 +227,8 @@ public class PlayerController : MonoBehaviour {
 
     bool isOnGround() {
         RaycastHit hit;
-        if (Physics.Raycast(player.transform.position, Vector3.down, out hit, groundedHeight)) {
+        int layermask = ~(1 << 2);
+        if (Physics.Raycast(player.transform.position, Vector3.down, out hit, groundedHeight, layermask)) {
             return true;
         }
         return false;

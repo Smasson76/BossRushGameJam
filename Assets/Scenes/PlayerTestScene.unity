@@ -1531,6 +1531,10 @@ PrefabInstance:
       propertyPath: armRotateSpeed
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 1923314733114156902, guid: a510121523aeca8569cec56751187e18, type: 3}
+      propertyPath: armBitEjectForce
+      value: 1000000
+      objectReference: {fileID: 0}
     - target: {fileID: 3475535913475327284, guid: a510121523aeca8569cec56751187e18, type: 3}
       propertyPath: m_RootOrder
       value: 1
