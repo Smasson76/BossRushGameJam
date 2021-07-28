@@ -9,6 +9,9 @@ public class Boss2Controller : MonoBehaviour {
     
     [SerializeField] Transform playerTransform;
 
+    Vector3 destination;
+    Vector3 lastPosition;
+
     NavMeshAgent agent;
 
     public enum State {
@@ -31,6 +34,7 @@ public class Boss2Controller : MonoBehaviour {
         anim = GetComponent<Animator>();
         body = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
+        destination = agent.destination;
     }
 
     public void InitalizeFindPlayer() {
@@ -65,6 +69,14 @@ public class Boss2Controller : MonoBehaviour {
     }
 
     void ChaseUpdate() {
-        agent.SetDestination(playerTransform.position);
+        //if (Vector3.Distance(destination, playerTransform.position) > 0.001f) {
+            //destination = playerTransform.position;
+            //agent.destination = destination;
+        //}
+
+       if (playerTransform.position != lastPosition) {
+           agent.SetDestination(playerTransform.position);
+           lastPosition = playerTransform.position;
+       }
     }
 }
