@@ -494,6 +494,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PYLON_CONCRETE_MODULAR_ARM01_DOUBLE (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1913674683488685024, guid: 03f4fe8b9c7456a4b977e20e6c9723a1, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03f4fe8b9c7456a4b977e20e6c9723a1, type: 3}
 --- !u!1 &695454218
@@ -1361,58 +1365,58 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 878f6ebe57148344e99c629ff1a9fdd7, type: 3}
---- !u!1001 &4962811199743736367
+--- !u!1001 &4382684788603225576
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1429967535473512700, guid: 03f4fe8b9c7456a4b977e20e6c9723a1, type: 3}
+    - target: {fileID: 1913674683488685024, guid: 03f4fe8b9c7456a4b977e20e6c9723a1, type: 3}
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 1429967535473512700, guid: 03f4fe8b9c7456a4b977e20e6c9723a1, type: 3}
+    - target: {fileID: 1913674683488685024, guid: 03f4fe8b9c7456a4b977e20e6c9723a1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -55.667
       objectReference: {fileID: 0}
-    - target: {fileID: 1429967535473512700, guid: 03f4fe8b9c7456a4b977e20e6c9723a1, type: 3}
+    - target: {fileID: 1913674683488685024, guid: 03f4fe8b9c7456a4b977e20e6c9723a1, type: 3}
       propertyPath: m_LocalPosition.y
       value: 33.14
       objectReference: {fileID: 0}
-    - target: {fileID: 1429967535473512700, guid: 03f4fe8b9c7456a4b977e20e6c9723a1, type: 3}
+    - target: {fileID: 1913674683488685024, guid: 03f4fe8b9c7456a4b977e20e6c9723a1, type: 3}
       propertyPath: m_LocalPosition.z
       value: 251.095
       objectReference: {fileID: 0}
-    - target: {fileID: 1429967535473512700, guid: 03f4fe8b9c7456a4b977e20e6c9723a1, type: 3}
+    - target: {fileID: 1913674683488685024, guid: 03f4fe8b9c7456a4b977e20e6c9723a1, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1429967535473512700, guid: 03f4fe8b9c7456a4b977e20e6c9723a1, type: 3}
+    - target: {fileID: 1913674683488685024, guid: 03f4fe8b9c7456a4b977e20e6c9723a1, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1429967535473512700, guid: 03f4fe8b9c7456a4b977e20e6c9723a1, type: 3}
+    - target: {fileID: 1913674683488685024, guid: 03f4fe8b9c7456a4b977e20e6c9723a1, type: 3}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 1429967535473512700, guid: 03f4fe8b9c7456a4b977e20e6c9723a1, type: 3}
+    - target: {fileID: 1913674683488685024, guid: 03f4fe8b9c7456a4b977e20e6c9723a1, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 1429967535473512700, guid: 03f4fe8b9c7456a4b977e20e6c9723a1, type: 3}
+    - target: {fileID: 1913674683488685024, guid: 03f4fe8b9c7456a4b977e20e6c9723a1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1429967535473512700, guid: 03f4fe8b9c7456a4b977e20e6c9723a1, type: 3}
+    - target: {fileID: 1913674683488685024, guid: 03f4fe8b9c7456a4b977e20e6c9723a1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1429967535473512700, guid: 03f4fe8b9c7456a4b977e20e6c9723a1, type: 3}
+    - target: {fileID: 1913674683488685024, guid: 03f4fe8b9c7456a4b977e20e6c9723a1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1770921020942518854, guid: 03f4fe8b9c7456a4b977e20e6c9723a1, type: 3}
+    - target: {fileID: 7181055105509183861, guid: 03f4fe8b9c7456a4b977e20e6c9723a1, type: 3}
       propertyPath: m_Name
       value: PYLON_CONCRETE_MODULAR_ARM01_DOUBLE
       objectReference: {fileID: 0}
