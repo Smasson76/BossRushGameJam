@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.42740697, g: 0.2836238, b: 0.18002152, a: 1}
+  m_IndirectSpecularColor: {r: 0.42740554, g: 0.2836235, b: 0.18002151, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1527,14 +1527,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1923314733114156902, guid: a510121523aeca8569cec56751187e18, type: 3}
-      propertyPath: armRotateSpeed
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 1923314733114156902, guid: a510121523aeca8569cec56751187e18, type: 3}
-      propertyPath: armBitEjectForce
-      value: 1000000
-      objectReference: {fileID: 0}
     - target: {fileID: 3475535913475327284, guid: a510121523aeca8569cec56751187e18, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1582,10 +1574,6 @@ PrefabInstance:
     - target: {fileID: 4283000019721592718, guid: a510121523aeca8569cec56751187e18, type: 3}
       propertyPath: m_Name
       value: Boss1SpiderBot
-      objectReference: {fileID: 0}
-    - target: {fileID: 4283000019721592718, guid: a510121523aeca8569cec56751187e18, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a510121523aeca8569cec56751187e18, type: 3}

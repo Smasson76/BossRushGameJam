@@ -16,9 +16,12 @@ public class Boss1Controller : MonoBehaviour {
     [SerializeField] private float rotationStrength;
     [SerializeField] private float rotationDamper;
     [SerializeField] private float slowdown;
+    [SerializeField] private float walkSpeed;
+    [SerializeField] private float walkDirRandomisation;
     private Transform player;
     private State state = State.facingOut;
     private Rigidbody bossRb;
+    private float walkDir;
     public enum State {
         facingOut,
         facingDown,
@@ -70,6 +73,9 @@ public class Boss1Controller : MonoBehaviour {
             bossRb.AddTorque((rotAxis * (rotRadians * rotationStrength)) - (bossRb.angularVelocity * rotationDamper));
             
             bossRb.velocity = new Vector3(bossRb.velocity.x * slowdown, bossRb.velocity.y, bossRb.velocity.z * slowdown);
+
+            walkDir += Random.Range(-walkDirRandomisation, walkDirRandomisation);
+            bossRb.AddForce((Quaternion.Euler(0, walkDir, 0) * Vector3.forward) * walkSpeed);
         }
         animator.UpdateArms(player.position, state);
     }
