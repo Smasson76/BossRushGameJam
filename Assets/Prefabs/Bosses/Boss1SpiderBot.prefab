@@ -2113,6 +2113,8 @@ MonoBehaviour:
   rotationStrength: 5000
   rotationDamper: 10000
   slowdown: 0.95
+  walkSpeed: 10000
+  walkDirRandomisation: 10
 --- !u!114 &1923314733114156902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2142,18 +2144,62 @@ MonoBehaviour:
   - {fileID: 9000426731545076099}
   - {fileID: 4569610060911220586}
   armMoveSpeed: 1
-  armRotateSpeed: 1
+  armRotateSpeed: 50
   armHeightOffset: 18
   armRadiusMin: 56
   armRadiusDelta: 10
   armDisconnectForce: 1000000
-  armBitEjectForce: 100000
+  armBitEjectForce: 1000000
   downRot: -25
   upRot: 140
   footRadius: 18
   footHeightOffset: 10
-  footMoveDistance: 5
-  footMoveSpeed: 5
+  footMoveDistance: 8
+  footMoveSpeed: 3
+  footMoveHeight: 2
+  footMoveHeightCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 5.7744713
+      outSlope: 5.7744713
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.031228464
+    - serializedVersion: 3
+      time: 0.4
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.6
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -6.036967
+      outSlope: -6.036967
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.031228365
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  overstepPercent: 1.8
 --- !u!1 &4609113769241329022
 GameObject:
   m_ObjectHideFlags: 0

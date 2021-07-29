@@ -26,6 +26,9 @@ public class Boss1Animator : MonoBehaviour {
     [SerializeField] private float footHeightOffset;
     [SerializeField] private float footMoveDistance;
     [SerializeField] private float footMoveSpeed;
+    [SerializeField] private float footMoveHeight;
+    [SerializeField] private AnimationCurve footMoveHeightCurve;
+    [SerializeField] private float overstepPercent;
     private Transform armTargetAndPoleContainer;
     private List<Arm> arms;
     private class Arm {
@@ -45,13 +48,17 @@ public class Boss1Animator : MonoBehaviour {
         public Transform ikTarget;
         public Transform ikPole;
         public Vector3 movementGoal;
+        public float movementPercent;
         public FastIKFabric ikComponent;
         public bool isMoving;
     }
 
+    private bool legInAir = false;
+
 
     void Start() {
         armTargetAndPoleContainer = new GameObject("Arm Target And Pole Container").transform;
+        armTargetAndPoleContainer.SetParent(this.transform);
         arms = new List<Arm>();
         for (int i = 0; i < armEnds.Length; i++) {
             Arm newArm = new Arm();
@@ -112,21 +119,38 @@ public class Boss1Animator : MonoBehaviour {
                 }
                 break;
             case Boss1Controller.State.walking:
-                foreach (Foot foot in feet) {
-                    if (foot.isMoving) {
-                        foot.ikTarget.transform.position = Vector3.Lerp(foot.ikTarget.transform.position, foot.movementGoal, Time.deltaTime * footMoveSpeed);
-                        if (Vector3.Distance(foot.ikTarget.transform.position, foot.movementGoal) < 0.1) {
-                            foot.isMoving = false;
+                if (legInAir) {
+                    foreach (Foot foot in feet) {
+                        if (foot.isMoving) {
+                            foot.movementPercent += Time.deltaTime * footMoveSpeed;
+                            foot.ikTarget.transform.position = Vector3.Lerp(foot.ikTarget.transform.position, foot.movementGoal, foot.movementPercent) + Vector3.up * footMoveHeightCurve.Evaluate(foot.movementPercent) * footMoveHeight;
+                            if (foot.movementPercent >= 1) {
+                                foot.isMoving = false;
+                                legInAir = false;
+                            }
                         }
-                    } else {
+                    }
+                } else {
+                    float maxDist = 0;
+                    Foot footToMove = null;
+                    Vector3 goal = Vector3.zero;
+                    foreach (Foot foot in feet) {
                         RaycastHit hit;
                         int layermask = 1 << 6;
                         Physics.Raycast(this.transform.position + foot.homeDir.normalized * footRadius + Vector3.up * 50, Vector3.down, out hit, Mathf.Infinity, layermask);
                         Vector3 goalPos = hit.point + Vector3.up * footHeightOffset;
-                        if (Vector3.Distance(goalPos, foot.ikTarget.position) > footMoveDistance) {
-                            foot.movementGoal = goalPos;
-                            foot.isMoving = true;
+                        float dist = Vector3.Distance(goalPos, foot.ikTarget.position);
+                        if (dist > maxDist) {
+                            maxDist = dist;
+                            footToMove = foot;
+                            goal = goalPos;
                         }
+                    }
+                    if (maxDist > footMoveDistance) {
+                        footToMove.movementGoal = (goal - footToMove.ikTarget.position) * overstepPercent + footToMove.ikTarget.position;
+                        footToMove.isMoving = true;
+                        legInAir = true;
+                        footToMove.movementPercent = 0;
                     }
                 }
                 break;
