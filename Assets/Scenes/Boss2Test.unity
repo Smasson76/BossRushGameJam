@@ -912,10 +912,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1729077829, guid: 97ebb05ffb200b447966b230e8ab785c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 263015193958141598, guid: 97ebb05ffb200b447966b230e8ab785c, type: 3}
       propertyPath: m_Name
       value: Boss2
@@ -962,30 +958,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 643375107919025188, guid: 97ebb05ffb200b447966b230e8ab785c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149624155878, guid: 97ebb05ffb200b447966b230e8ab785c, type: 3}
-      propertyPath: m_Height
-      value: 25.14
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149624155878, guid: 97ebb05ffb200b447966b230e8ab785c, type: 3}
-      propertyPath: m_Radius
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149624155878, guid: 97ebb05ffb200b447966b230e8ab785c, type: 3}
-      propertyPath: m_BaseOffset
-      value: 2.87
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149624155878, guid: 97ebb05ffb200b447966b230e8ab785c, type: 3}
-      propertyPath: m_AngularSpeed
-      value: 360
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149624155878, guid: 97ebb05ffb200b447966b230e8ab785c, type: 3}
-      propertyPath: m_StoppingDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1109859393997791913, guid: 97ebb05ffb200b447966b230e8ab785c, type: 3}
-      propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
