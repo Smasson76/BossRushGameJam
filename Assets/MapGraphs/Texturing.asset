@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9bc43e142692db4e92eef81e1903ca4, type: 3}
   m_Name: Texturing
   m_EditorClassIdentifier: 
-  changeVersion: 30
+  changeVersion: 37
   serializedVersion: 0
   guiShowDependent: 0
   guiShowShared: 0
@@ -144,9 +144,9 @@ MonoBehaviour:
       - t: 11
         v: -694458141173088240
       - t: 9
-        v: 4605974553379956641
+        v: 4600608964783907432
       - t: 9
-        v: 4623302828486208730
+        v: 4618903036830249124
       - t: 255
         v: 4
       - t: 255
@@ -214,9 +214,9 @@ MonoBehaviour:
       - t: 11
         v: -678842877035413487
       - t: 9
-        v: 4605020690978879570
+        v: 4601322334964882919
       - t: 9
-        v: 4621624562085069115
+        v: 4623802052504902749
       - t: 255
         v: 8
       - t: 255
@@ -275,9 +275,9 @@ MonoBehaviour:
       - t: 11
         v: -606918323904446446
       - t: 9
-        v: 4587280111326741712
+        v: 4585363379325332829
       - t: 9
-        v: 4600554921588378986
+        v: 4603845251476135870
       - t: 255
         v: 18
       - t: 255
@@ -483,7 +483,7 @@ MonoBehaviour:
       - guiAdvanced
       values:
       - t: 1
-        v: 1
+        v: 2
       - t: 255
         v: 21
       - t: 255
@@ -493,9 +493,9 @@ MonoBehaviour:
       - t: 11
         v: -539991051121721323
       - t: 9
-        v: 4602116769939151074
+        v: 4597310528416821281
       - t: 9
-        v: 4615401938479931300
+        v: 4616091889942844460
       - t: 255
         v: 33
       - t: 255
@@ -693,7 +693,7 @@ MonoBehaviour:
       fields: []
       values: []
       special: 
-      uniObj: {fileID: 8574412962073106934, guid: ece8b66beed3b67bc90934e92a6e52e1, type: 2}
+      uniObj: {fileID: 8574412962073106934, guid: 2f27e4e47b64e85419bf5215a9235324, type: 2}
     - refId: 32
       type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       altType: 
@@ -752,9 +752,9 @@ MonoBehaviour:
       - t: 11
         v: -347697462539976703
       - t: 9
-        v: 4595970257167715821
+        v: 4594756086708176735
       - t: 9
-        v: 4612398262708456548
+        v: 4612412674227264134
       - t: 255
         v: 47
       - t: 255
@@ -1496,9 +1496,9 @@ MonoBehaviour:
       - t: 11
         v: -7797924480675741695
       - t: 9
-        v: 4585377790844140415
+        v: 4583785318015902207
       - t: 9
-        v: 4616810326673400739
+        v: 4602437426232619853
       - t: 255
         v: 56
       - t: 255
@@ -1665,9 +1665,9 @@ MonoBehaviour:
       - t: 11
         v: -7790992059862614012
       - t: 9
-        v: 4581738882345225054
+        v: 4575412225588694981
       - t: 9
-        v: 4595372179137201019
+        v: 4616917287164550788
       - t: 255
         v: 59
       - t: 255
@@ -1729,9 +1729,9 @@ MonoBehaviour:
       - t: 11
         v: 6160262384242917391
       - t: 9
-        v: 0
+        v: 4551510721646314285
       - t: 9
-        v: 0
+        v: 4557750909289998844
       - t: 255
         v: 63
       - t: 255
@@ -1758,9 +1758,9 @@ MonoBehaviour:
       - y
       values:
       - t: 2
-        v: 1149352892
+        v: 1149353984
       - t: 2
-        v: 1109253598
+        v: 3251109888
       special: 
       uniObj: {fileID: 0}
     - refId: 64
@@ -1800,9 +1800,9 @@ MonoBehaviour:
       - t: 11
         v: 6195242247168983056
       - t: 9
-        v: 0
+        v: 4547007122018943789
       - t: 9
-        v: 0
+        v: 4547007122018943789
       - t: 255
         v: 67
       - t: 255
@@ -1875,9 +1875,9 @@ MonoBehaviour:
       - t: 11
         v: -7294535072131055614
       - t: 9
-        v: 4609468896330833409
+        v: 4612057115036683233
       - t: 9
-        v: 4628095390324670385
+        v: 4631776027488883101
       - t: 255
         v: 71
       - t: 255
@@ -1960,15 +1960,15 @@ MonoBehaviour:
       - t: 2
         v: 0
       - t: 2
-        v: 1077936128
+        v: 1065353216
       - t: 3
         v: 1
       - t: 11
         v: -7196713721631080445
       - t: 9
-        v: 4591740476397689451
+        v: 4591682830322459109
       - t: 9
-        v: 4618132133164033979
+        v: 4609999870726900390
       - t: 255
         v: 74
       - t: 255
@@ -2115,15 +2115,16 @@ MonoBehaviour:
       fields: []
       values: []
       special: "< \"root\", \"Den.Tools.DictionaryOrdered`2[[System.String, mscorlib],[MapMagic.Expose.Override+ObjType,
-        MapMagic]], Den.Tools\", id1,\n  < \"dict\", \"System.Collections.Generic.Dictionary`2[[System.String,
-        mscorlib],[MapMagic.Expose.Override+ObjType, MapMagic]], mscorlib\", id2,\n   
-        < \"buckets\", System.Object, id0, null >,\n    < \"entries\", System.Object,
-        id0, null >,\n    < \"count\", System.Int32, id0, 0 >,\n    < \"comparer\",
+        MapMagic]], Den.Tools\", id1,\r\n  < \"dict\", \"System.Collections.Generic.Dictionary`2[[System.String,
+        mscorlib],[MapMagic.Expose.Override+ObjType, MapMagic]], mscorlib\", id2,\r\n   
+        < \"buckets\", System.Object, id0, null >,\r\n    < \"entries\", System.Object,
+        id0, null >,\r\n    < \"count\", System.Int32, id0, 0 >,\r\n    < \"comparer\",
         \"System.Collections.Generic.GenericEqualityComparer`1[[System.String, mscorlib]],
-        mscorlib\", id3 >,\n    < \"version\", System.Int32, id0, 0 > >,\n  < \"order\",
-        \"System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib\",
-        id4,\n    < \"_items\", \"System.String[], mscorlib\", id5 >,\n    < \"_size\",
-        System.Int32, id0, 0 >,\n    < \"_version\", System.Int32, id0, 0 > > >"
+        mscorlib\", id3 >,\r\n    < \"version\", System.Int32, id0, 0 > >,\r\n  <
+        \"order\", \"System.Collections.Generic.List`1[[System.String, mscorlib]],
+        mscorlib\", id4,\r\n    < \"_items\", \"System.String[], mscorlib\", id5
+        >,\r\n    < \"_size\", System.Int32, id0, 0 >,\r\n    < \"_version\", System.Int32,
+        id0, 0 > > >"
       uniObj: {fileID: 0}
     - refId: 83
       type: UnityEngine.Object[], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
