@@ -23,11 +23,13 @@ public class HomingMissile : MonoBehaviour {
 
     void FixedUpdate() {
         if (shouldFollow) {
-            Vector3 dir = playerTransform.position - body.position;
-            dir.Normalize();
-            Vector3 rotationAmount = Vector3.Cross(transform.forward, dir);
-            body.angularVelocity = rotationAmount * rotationForce;
-            body.velocity = transform.forward * homingForce;
+            if (playerTransform != null) {
+                Vector3 dir = playerTransform.position - body.position;
+                dir.Normalize();
+                Vector3 rotationAmount = Vector3.Cross(transform.forward, dir);
+                body.angularVelocity = rotationAmount * rotationForce;
+                body.velocity = transform.forward * homingForce;
+            }
         }
     }
 

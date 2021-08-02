@@ -52,24 +52,28 @@ public class Boss2Controller : MonoBehaviour {
 
     public void InitalizeFindPlayer() {
         playerTransform = GameObject.Find("Sphere").transform;
-        IdleUpdate();
+        forceField.SetActive(true);
+        count = 1200;
+        ChaseUpdate();
     }
 
     void Update() {
-        switch (state) {
-            case State.Idle:
-                IdleUpdate();
-                break;
-            case State.Chase:
-                ChaseUpdate();
-                break;
-            case State.Shoot:
-                ShootUpdate();
-                break;
-            case State.Death:
-                break;
-            default:
-                break;
+        if (playerTransform != null) {
+            switch (state) {
+                case State.Idle:
+                    IdleUpdate();
+                    break;
+                case State.Chase:
+                    ChaseUpdate();
+                    break;
+                case State.Shoot:
+                    ShootUpdate();
+                    break;
+                case State.Death:
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -83,6 +87,7 @@ public class Boss2Controller : MonoBehaviour {
     }
 
     void ChaseUpdate() {
+        forceField.SetActive(true);
         if (createNewPath) StartCoroutine(ChasePlayer());
 
         if (count > 0) count-=1;
@@ -106,9 +111,13 @@ public class Boss2Controller : MonoBehaviour {
 
     IEnumerator SpawnHomingMissile() {
         shotHomingMissile = true;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         for (int i = 0; i < missilePoints.Length; i++) {
             Rigidbody newMissile = Instantiate(missile, missilePoints[i].transform.position, transform.rotation) as Rigidbody;
         }
+        yield return new WaitForSeconds(2f);
+        shotHomingMissile = false;
+        count = 1200;
+        state = State.Chase;
     }
 }

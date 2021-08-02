@@ -291,7 +291,8 @@ MonoBehaviour:
   - {fileID: 1568155180}
   - {fileID: 1438353255}
   - {fileID: 1430093606}
-  count: 500
+  count: 1200
+  shotHomingMissile: 0
   state: 0
 --- !u!195 &919132149624155878
 NavMeshAgent:
