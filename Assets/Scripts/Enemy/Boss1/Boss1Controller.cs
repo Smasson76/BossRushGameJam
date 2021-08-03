@@ -18,6 +18,8 @@ public class Boss1Controller : MonoBehaviour {
     [SerializeField] private float slowdown;
     [SerializeField] private float walkSpeed;
     [SerializeField] private float walkDirRandomisation;
+    [SerializeField] private float obstacleRaycastLength;
+    [SerializeField] private float obstacleRaycastHeightDelta;
     private Transform player;
     private State state = State.facingOut;
     private Rigidbody bossRb;
@@ -57,7 +59,7 @@ public class Boss1Controller : MonoBehaviour {
             }
         } else {
             RaycastHit hit;
-            int layermask = 1 << 6;
+            int layermask = ~(1 << 7);
             Physics.Raycast(bossRb.position, Vector3.down, out hit, Mathf.Infinity, layermask);
             float height = targetHeight - hit.distance;
             float springForce = (height * springStrength) - (bossRb.velocity.y * springDamper);
@@ -74,10 +76,31 @@ public class Boss1Controller : MonoBehaviour {
             
             bossRb.velocity = new Vector3(bossRb.velocity.x * slowdown, bossRb.velocity.y, bossRb.velocity.z * slowdown);
 
-            walkDir += Random.Range(-walkDirRandomisation, walkDirRandomisation);
+            walkDir = GetMoveDir();
             bossRb.AddForce((Quaternion.Euler(0, walkDir, 0) * Vector3.forward) * walkSpeed);
         }
         animator.UpdateArms(player.position, state);
+    }
+
+    float GetMoveDir() {
+        Vector3 raycastOrigin = bossRb.position + Vector3.up * obstacleRaycastHeightDelta;
+        walkDir += Random.Range(-walkDirRandomisation, walkDirRandomisation);
+        int dir = -1;
+        int testAngle = 0;
+        while (testAngle < 180) {
+            RaycastHit hit;
+            int layermask = ~(1 << 7);
+            float angle = walkDir + testAngle * dir;
+            if (!Physics.Raycast(raycastOrigin, Quaternion.Euler(0, angle, 0) * Vector3.forward, out hit, obstacleRaycastLength, layermask)) {
+                Debug.DrawRay(raycastOrigin, Quaternion.Euler(0, angle, 0) * Vector3.forward * obstacleRaycastLength, Color.blue, 0.1f);
+                return angle;
+            } else {
+                Debug.DrawRay(raycastOrigin, Quaternion.Euler(0, angle, 0) * Vector3.forward * obstacleRaycastLength, Color.red, 0.1f);
+                dir = -dir;
+                testAngle += 1;
+            }
+        }
+        return walkDir;
     }
 
     public void ArmDestroyed(Transform transform, int armNumber) {
