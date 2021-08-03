@@ -28,7 +28,7 @@ public class Boss1Animator : MonoBehaviour {
     [SerializeField] private float footMoveSpeed;
     [SerializeField] private float footMoveHeight;
     [SerializeField] private AnimationCurve footMoveHeightCurve;
-    [SerializeField] private float overstepPercent;
+    [SerializeField] private float overstepDistance;
     private Transform armTargetAndPoleContainer;
     private List<Arm> arms;
     private class Arm {
@@ -136,7 +136,7 @@ public class Boss1Animator : MonoBehaviour {
                     Vector3 goal = Vector3.zero;
                     foreach (Foot foot in feet) {
                         RaycastHit hit;
-                        int layermask = 1 << 6;
+                        int layermask = ~(1 << 7);
                         Physics.Raycast(this.transform.position + foot.homeDir.normalized * footRadius + Vector3.up * 50, Vector3.down, out hit, Mathf.Infinity, layermask);
                         Vector3 goalPos = hit.point + Vector3.up * footHeightOffset;
                         float dist = Vector3.Distance(goalPos, foot.ikTarget.position);
@@ -147,7 +147,8 @@ public class Boss1Animator : MonoBehaviour {
                         }
                     }
                     if (maxDist > footMoveDistance) {
-                        footToMove.movementGoal = (goal - footToMove.ikTarget.position) * overstepPercent + footToMove.ikTarget.position;
+                        Vector3 target = goal - footToMove.ikTarget.position;
+                        footToMove.movementGoal = target + target.normalized * overstepDistance + footToMove.ikTarget.position;
                         footToMove.isMoving = true;
                         legInAir = true;
                         footToMove.movementPercent = 0;
@@ -165,13 +166,14 @@ public class Boss1Animator : MonoBehaviour {
         if (destroyedArm == null) {
             throw new System.Exception("Destroyed arm not in arms list");
         }
-        Destroy(destroyedArm.ikComponent.gameObject);
+        Destroy(destroyedArm.ikComponent);
         Destroy(destroyedArm.ikPole.gameObject);
         Destroy(destroyedArm.ikTarget.gameObject);
         MeshCollider meshCollider = destroyedArm.ikEnd.GetChild(0).GetChild(0).GetComponent<MeshCollider>();
         meshCollider.convex = true;
         arms.Remove(destroyedArm);
         jointTransform.SetParent(null, true);
+        UtilityFunctions.SetLayerRecursively(jointTransform.gameObject, 0);
         Rigidbody rb = jointTransform.gameObject.AddComponent<Rigidbody>();
         rb.mass = 1000;
         rb.AddForce((destroyedArm.homeDir).normalized * armDisconnectForce, ForceMode.Force);
@@ -200,6 +202,7 @@ public class Boss1Animator : MonoBehaviour {
             if (mid.GetChild(i).childCount > 0) {
                 Transform bit = mid.GetChild(i).GetChild(0);
                 bit.SetParent(null);
+                bit.gameObject.layer = 0;
                 Rigidbody rb = bit.gameObject.AddComponent<Rigidbody>();
                 rb.mass = 100;
                 rb.AddForce(UtilityFunctions.VectorTo2D(this.transform.position - bit.position).normalized * armBitEjectForce);
@@ -228,7 +231,7 @@ public class Boss1Animator : MonoBehaviour {
             newFoot.ikPole = new GameObject("IK Pole " + i).transform;
             newFoot.ikPole.SetParent(armTargetAndPoleContainer);
             newFoot.ikComponent.Pole = newFoot.ikPole;
-            newFoot.ikPole.position = this.transform.position + Vector3.up * 50f;
+            newFoot.ikPole.position = this.transform.position + newFoot.homeDir * 20f + Vector3.up * 20f;
             newFoot.ikComponent.ChainLength = 2;
             newFoot.ikComponent.SnapBackStrength = 0;
             feet.Add(newFoot);
