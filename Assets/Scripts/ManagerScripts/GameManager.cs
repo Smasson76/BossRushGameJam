@@ -106,7 +106,6 @@ public class GameManager : MonoBehaviour {
                     playerController = currentPlayer.GetComponent<PlayerController>();
                     playerController.playerInput = playerInput;
                     if (OnPlayerSpawn != null) OnPlayerSpawn(playerController);
-                    Boss2Controller.instance.InitalizeFindPlayer();
                 }
             }
         }

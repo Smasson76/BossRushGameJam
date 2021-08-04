@@ -7,7 +7,7 @@ public class Boss2Controller : MonoBehaviour {
 
     public static Boss2Controller instance; //Creating a singleton
     
-    [SerializeField] Transform playerTransform; //Player transform
+    public Transform playerTransform; //Player transform
 
     //For Nav Mesh
     Vector3 destination;
