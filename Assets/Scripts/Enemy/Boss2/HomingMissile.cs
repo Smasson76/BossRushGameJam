@@ -7,6 +7,8 @@ public class HomingMissile : MonoBehaviour {
 
     public Transform playerTransform; //Player Transform
 
+    public GameObject missileExplosion;
+
     //Public Variables
     public float homingForce;
     public float rotationForce;   
@@ -40,6 +42,7 @@ public class HomingMissile : MonoBehaviour {
     }
 
     void OnCollisionEnter(Collision c) {
+        Instantiate(missileExplosion, transform.position, transform.rotation);
         Destroy(this.gameObject);
     }
 }

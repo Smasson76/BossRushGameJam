@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 0}
+  missileExplosion: {fileID: 100016, guid: c9afa2a2ad89ebc41897c1247ceddadd, type: 3}
   homingForce: 120
   rotationForce: 500
   launchForce: 40
