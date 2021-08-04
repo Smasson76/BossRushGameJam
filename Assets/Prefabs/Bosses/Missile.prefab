@@ -128,6 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 0}
   missileExplosion: {fileID: 100016, guid: c9afa2a2ad89ebc41897c1247ceddadd, type: 3}
+  missileSmokeEffect: {fileID: 109828, guid: 44441c13dee4ad04d9a68987918b669c, type: 3}
   homingForce: 120
   rotationForce: 500
   launchForce: 40

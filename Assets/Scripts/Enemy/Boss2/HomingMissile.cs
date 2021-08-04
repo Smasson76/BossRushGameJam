@@ -8,6 +8,7 @@ public class HomingMissile : MonoBehaviour {
     public Transform playerTransform; //Player Transform
 
     public GameObject missileExplosion;
+    public GameObject missileSmokeEffect;
 
     //Public Variables
     public float homingForce;
@@ -31,6 +32,8 @@ public class HomingMissile : MonoBehaviour {
                 Vector3 rotationAmount = Vector3.Cross(transform.forward, dir);
                 body.angularVelocity = rotationAmount * rotationForce;
                 body.velocity = transform.forward * homingForce;
+                GameObject newSmokeEffect = Instantiate(missileSmokeEffect, transform.position, transform.rotation);
+                Destroy(newSmokeEffect, 2.5f);
             }
         }
     }
