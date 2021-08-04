@@ -10,7 +10,6 @@ public class MeshAlongSplineEditor : Editor {
         meshAlongSpline = target as MeshAlongSpline;
         DrawDefaultInspector();
 		if (GUILayout.Button("Build Mesh")) {
-            Debug.Log("Building Mesh");
             meshAlongSpline.BuildMesh();
 		}
     }

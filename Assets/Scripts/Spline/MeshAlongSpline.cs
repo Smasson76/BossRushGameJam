@@ -9,35 +9,34 @@ public class MeshAlongSpline : MonoBehaviour {
     private Mesh mesh;
     private GameObject meshHolder;
 
-    Vector3[] verts;
-
     public void BuildMesh() {
         OrientedPoint[] points = spline.GetOrientedPoints(resolution);
         
         Vector3[] crossSectionVerts = crossSection.vertices;
+        Vector3[] crossSectionNormals = crossSection.normals;
         int[] crossSectionTris = crossSection.triangles;
 
         int vertCount = crossSectionVerts.Length * resolution;
-        verts = new Vector3[vertCount];
+        Vector3[] verts = new Vector3[vertCount];
+        Vector3[] normals = new Vector3[vertCount];
         int triCount = crossSectionTris.Length * resolution;
         int[] tris = new int[triCount];
-        Debug.Log("Verts Count = " + vertCount);
 
         for (int i = 0; i < resolution; i++) {
             for (int j = 0; j < crossSectionVerts.Length; j++) {
                 verts[i * crossSectionVerts.Length + j] = points[i].LocalToWorld(crossSectionVerts[j]);
-                tris[i * crossSectionTris.Length + j] = crossSectionTris[j];
+                normals[i * crossSectionNormals.Length + j] = points[i].LocalToWorldDirection(crossSectionNormals[j]);
             }
 
             for (int j = 0; j < crossSectionTris.Length; j++) {
                 int triIndex = crossSectionTris[j] + i * (crossSectionTris.Length - 2);
-                Debug.Log("I = " + i + ", J = " + j + ", tri index = " + triIndex);
                 tris[i * crossSectionTris.Length + j] = triIndex;
             }
         }
 
         mesh = new Mesh();
         mesh.vertices = verts;
+        mesh.normals = normals;
         mesh.triangles = tris;
 
 
@@ -55,10 +54,5 @@ public class MeshAlongSpline : MonoBehaviour {
         meshRenderer.material = new Material(Shader.Find("Diffuse"));
         
         meshFilter.mesh = mesh;
-    }
-    void OnDrawGizmosSelected() {
-        for (int i = 0; i < verts.Length; i++) {
-            Gizmos.DrawSphere(verts[i], 0.03f);
-        }
     }
 }
