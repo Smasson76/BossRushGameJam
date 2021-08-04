@@ -32,7 +32,7 @@ public class HomingMissile : MonoBehaviour {
                 Vector3 rotationAmount = Vector3.Cross(transform.forward, dir);
                 body.angularVelocity = rotationAmount * rotationForce;
                 body.velocity = transform.forward * homingForce;
-                GameObject newSmokeEffect = Instantiate(missileSmokeEffect, transform.position, transform.rotation);
+                GameObject newSmokeEffect = Instantiate(missileSmokeEffect, transform.position, Quaternion.identity);
                 Destroy(newSmokeEffect, 2.5f);
             }
         }

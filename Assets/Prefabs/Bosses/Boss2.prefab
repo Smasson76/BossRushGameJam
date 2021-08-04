@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 311520540}
   - component: {fileID: 311520541}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TeslaBombSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1430093607}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Shooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1430093606}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0003, y: 0.0032, z: -0.0003}
+  m_LocalPosition: {x: -0.0078, y: 0.0086, z: 0.0004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6660239574186424695}
@@ -83,7 +83,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1438353256}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Shooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1438353255}
   m_LocalRotation: {x: 0.0017088797, y: 0.07208153, z: -0.9917427, w: -0.10605541}
-  m_LocalPosition: {x: -0.0121, y: -0.1113, z: 0.1191}
+  m_LocalPosition: {x: -0.0019, y: -0.1171, z: 0.141}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3835788919620046668}
@@ -113,7 +113,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1568155181}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Shooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1568155180}
   m_LocalRotation: {x: -0.6693778, y: -0.055566408, z: 0.0000003315508, w: 0.7408413}
-  m_LocalPosition: {x: -0.0009, y: 0.0108, z: -0.0002}
+  m_LocalPosition: {x: -0.0084, y: 0.0131, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 917185103425698868}
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 1729077833}
   - component: {fileID: 1729077832}
   - component: {fileID: 1729077831}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ForceField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +238,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2027627267}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Shooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2027627266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0015, y: 0.0099, z: 0.0024}
+  m_LocalPosition: {x: 0.0096, y: 0.0144, z: 0.0038}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6962008534983637427}
@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 919132149624155877}
   - component: {fileID: 919132149624155878}
   - component: {fileID: 3324400559440250313}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boss2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,7 +329,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 0}
   missile: {fileID: 8428681104037001658, guid: 488d732b832c8714b9356a76875e029f, type: 3}
-  missileSmokeEffect: {fileID: 109828, guid: 44441c13dee4ad04d9a68987918b669c, type: 3}
   forceField: {fileID: 1729077829}
   missilePoints:
   - {fileID: 2027627266}
@@ -388,7 +387,7 @@ GameObject:
   - component: {fileID: 1109859394908885626}
   - component: {fileID: 1109859394908885627}
   - component: {fileID: 1370911234}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TeslaLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -492,7 +491,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5213554404884475339}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: array.TL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -523,7 +522,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4759001857134194874}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: arm3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -554,7 +553,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4802374476126051575}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Base 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -585,7 +584,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1076892125728531967}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Base_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -615,7 +614,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4693569921346461781}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: coil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -646,7 +645,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6660239574186424695}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: array.TR_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -677,7 +676,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1998159208668202220}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: arm2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -708,7 +707,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 432924884205024930}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: array.TR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -739,7 +738,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4856727844454998695}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: arm4_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -769,7 +768,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5799200108069626596}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: arm1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -800,7 +799,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1667601828332909654}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: arm4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -831,7 +830,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3091201170640010933}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: array.BL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -862,7 +861,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8152774126008428879}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tankbot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -897,7 +896,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5290255711367926325}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: array.BR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -929,7 +928,7 @@ GameObject:
   m_Component:
   - component: {fileID: 576825222182433226}
   - component: {fileID: 5307590252579369338}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1022,7 +1021,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5244352470135787399}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: arm5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1057,7 +1056,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6962008534983637427}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: array.BL_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1088,7 +1087,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3835788919620046668}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: array.TL_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1119,7 +1118,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2462927553069141496}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: coil_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1149,7 +1148,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 917185103425698868}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: array.BR_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
