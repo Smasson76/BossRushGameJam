@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MeshAlongSpline : MonoBehaviour {
     public Spline spline;
-    public Mesh crossSection;
+    public Mesh2D crossSection;
     public int resolution;
     private Mesh mesh;
     private GameObject meshHolder;
@@ -12,36 +12,56 @@ public class MeshAlongSpline : MonoBehaviour {
     public void BuildMesh() {
         OrientedPoint[] points = spline.GetOrientedPoints(resolution);
         
-        Vector3[] crossSectionVerts = crossSection.vertices;
-        Vector3[] crossSectionNormals = crossSection.normals;
-        int[] crossSectionTris = crossSection.triangles;
+        int segments = resolution - 1;
+        int sectionVertCount = crossSection.verts.Length;
+        int vertCount = resolution * sectionVertCount;
+        int tricount = resolution * crossSection.lines.Length;
 
-        int vertCount = crossSectionVerts.Length * resolution;
         Vector3[] verts = new Vector3[vertCount];
         Vector3[] normals = new Vector3[vertCount];
-        int triCount = crossSectionTris.Length * resolution;
-        int[] tris = new int[triCount];
+        Vector2[] uvs = new Vector2[vertCount];
+        int[] tris = new int[tricount * 3];
 
         for (int i = 0; i < resolution; i++) {
-            for (int j = 0; j < crossSectionVerts.Length; j++) {
-                verts[i * crossSectionVerts.Length + j] = points[i].LocalToWorld(crossSectionVerts[j]);
-                normals[i * crossSectionNormals.Length + j] = points[i].LocalToWorldDirection(crossSectionNormals[j]);
+            int offset = i * sectionVertCount;
+            for (int j = 0; j < sectionVertCount; j++) {
+                int id = offset + j;
+                verts[id] = points[i].LocalToWorld(new Vector3(crossSection.verts[j].x, crossSection.verts[j].y, 0));
+                normals[id] = points[i].LocalToWorldDirection(new Vector3(crossSection.normals[j].x, crossSection.normals[j].y, 0));
+                uvs[id] = new Vector2(crossSection.us[j], i / (float)resolution);
             }
-
-            for (int j = 0; j < crossSectionTris.Length; j++) {
-                int triIndex = crossSectionTris[j] + i * (crossSectionTris.Length - 2);
-                tris[i * crossSectionTris.Length + j] = triIndex;
-            }
+        }
+        int triIndex = 0;
+        for (int i = 0; i < segments; i++) {
+            int offset = i * sectionVertCount;
+            for (int j = 0; j < crossSection.lines.Length; j += 2) {
+                int a = offset + crossSection.lines[j] + sectionVertCount;
+                int b = offset + crossSection.lines[j];
+                int c = offset + crossSection.lines[j + 1];
+                int d = offset + crossSection.lines[j + 1] + sectionVertCount;
+                tris[triIndex] = a; triIndex++;
+                tris[triIndex] = b; triIndex++;
+                tris[triIndex] = c; triIndex++;
+                tris[triIndex] = c; triIndex++;
+                tris[triIndex] = d; triIndex++;
+                tris[triIndex] = a; triIndex++;
+            } 
         }
 
         mesh = new Mesh();
         mesh.vertices = verts;
         mesh.normals = normals;
+        mesh.uv = uvs;
         mesh.triangles = tris;
 
 
         if (meshHolder == null) {
-            meshHolder = new GameObject("Mesh Holder");
+            if (transform.Find("Mesh") == null) {
+                meshHolder = new GameObject("Mesh");
+                meshHolder.transform.SetParent(this.transform);
+            } else {
+                meshHolder = transform.Find("Mesh").gameObject;
+            }
         }
         MeshFilter meshFilter = meshHolder.GetComponent<MeshFilter>();
         if (meshFilter == null) {

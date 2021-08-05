@@ -137,7 +137,7 @@ public class Spline : MonoBehaviour {
     public OrientedPoint[] GetOrientedPoints(int count) {
         OrientedPoint[] arr = new OrientedPoint[count];
         for (int i = 0; i < count; i++) {
-            float t = i / (float)count;
+            float t = i / (float)(count - 1);
             Vector3 pos = GetPoint(t);
             Quaternion rot = GetOrientation(t);
             arr[i] = new OrientedPoint(pos, rot);
