@@ -2,11 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mesh2D : MonoBehaviour {
+
+[CreateAssetMenu(fileName = "New Mesh2D", menuName = "mesh2D")]
+public class Mesh2D : ScriptableObject {
     public Vector2[] verts;
     public Vector2[] normals;
     public float[] us;
     public int[] lines;
+
+    public Vector2[] metaVerts;
+    public int[] metaLines;
+    public Mesh2DVertMode[] metaVertModes;
 
     public void Reset () {
         verts = new Vector2[] {
@@ -46,10 +52,24 @@ public class Mesh2D : MonoBehaviour {
             5, 4,
             7, 6,
         };
-    }
-}
 
-public enum Mesh2DVertMode {
-    smooth,
-    hard
+        metaVerts = new Vector2[] {
+            new Vector2(-1,-1),
+            new Vector2(-1,1),
+            new Vector2(1,1),
+            new Vector2(1,-1)
+        };
+        metaVertModes = new Mesh2DVertMode[] {
+            Mesh2DVertMode.hard,
+            Mesh2DVertMode.hard,
+            Mesh2DVertMode.hard,
+            Mesh2DVertMode.hard,
+        };
+        metaLines = new int[] {
+            1, 0,
+            2, 1,
+            3, 2,
+            0, 3,
+        };
+    }
 }
