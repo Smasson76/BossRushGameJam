@@ -9,8 +9,8 @@ public class SplineEditor : Editor {
     private const int stepsPerCurve = 10;
     private Transform handleTransform;
     private Quaternion handleRotation;
-    private const float handleSize = 0.04f;
-	private const float pickSize = 0.06f;
+    private const float handleSize = 1f;
+	private const float pickSize = 1f;
 	private int selectedIndex = -1;
     public bool showDirections;
     private static Color[] modeColors = {
