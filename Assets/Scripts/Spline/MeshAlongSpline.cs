@@ -5,6 +5,7 @@ using UnityEngine;
 public class MeshAlongSpline : MonoBehaviour {
     public Spline spline;
     public Mesh2D crossSection;
+    public Material materialToApply;
     public int resolution;
     private Mesh mesh;
     private GameObject meshHolder;
@@ -28,7 +29,7 @@ public class MeshAlongSpline : MonoBehaviour {
                 int id = offset + j;
                 verts[id] = points[i].LocalToWorld(new Vector3(crossSection.verts[j].x, crossSection.verts[j].y, 0));
                 normals[id] = points[i].LocalToWorldDirection(new Vector3(crossSection.normals[j].x, crossSection.normals[j].y, 0));
-                uvs[id] = new Vector2(crossSection.us[j], i / (float)resolution);
+                uvs[id] = new Vector2(i / (float)resolution, crossSection.us[j]);
             }
         }
         int triIndex = 0;
@@ -71,8 +72,11 @@ public class MeshAlongSpline : MonoBehaviour {
         if (meshRenderer == null) {
             meshRenderer = meshHolder.AddComponent<MeshRenderer>();
         }
-        meshRenderer.material = new Material(Shader.Find("Diffuse"));
-        
+        if (materialToApply != null) {
+            meshRenderer.material = materialToApply;
+        } else {
+            meshRenderer.material = new Material(Shader.Find("Diffuse"));
+        }
         meshFilter.mesh = mesh;
     }
 }

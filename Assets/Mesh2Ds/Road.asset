@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee88fa60e4056c7a389848b2b6533b35, type: 3}
-  m_Name: New Mesh2D
+  m_Name: Road
   m_EditorClassIdentifier: 
   verts:
   - {x: -1, y: -1}
@@ -45,5 +45,10 @@ MonoBehaviour:
   - {x: -1, y: 1}
   - {x: 1, y: 1}
   - {x: 1, y: -1}
+  metaUs:
+  - 0
+  - 0.25
+  - 0.5
+  - 0.75
   metaLines: 0100000000000000020000000100000003000000020000000000000003000000
   metaVertModes: 01000000010000000100000001000000

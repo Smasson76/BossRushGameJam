@@ -41,12 +41,12 @@ public class Spline : MonoBehaviour {
 
     public Vector3 GetTangent (float t) {
         int i = SplineToCurveT(ref t);
-		return (Bezier.GetTangent(points[i], points[i + 1], points[i + 2], points[i + 3], t));
+		return Bezier.GetTangent(points[i], points[i + 1], points[i + 2], points[i + 3], t);
 	}
 
     public Vector3 GetNormal (float t) {
         int i = SplineToCurveT(ref t);
-		return transform.TransformPoint(Bezier.GetNormal(points[i], points[i + 1], points[i + 2], points[i + 3], t));
+		return Bezier.GetNormal(points[i], points[i + 1], points[i + 2], points[i + 3], t);
 	}
 
     public Quaternion GetOrientation (float t) {
@@ -138,7 +138,7 @@ public class Spline : MonoBehaviour {
         OrientedPoint[] arr = new OrientedPoint[count];
         for (int i = 0; i < count; i++) {
             float t = i / (float)(count - 1);
-            Vector3 pos = GetPoint(t);
+            Vector3 pos = this.transform.InverseTransformPoint(GetPoint(t));
             Quaternion rot = GetOrientation(t);
             arr[i] = new OrientedPoint(pos, rot);
         }

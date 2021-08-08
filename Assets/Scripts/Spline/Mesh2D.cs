@@ -11,6 +11,7 @@ public class Mesh2D : ScriptableObject {
     public int[] lines;
 
     public Vector2[] metaVerts;
+    public float[] metaUs;
     public int[] metaLines;
     public Mesh2DVertMode[] metaVertModes;
 
@@ -64,6 +65,12 @@ public class Mesh2D : ScriptableObject {
             Mesh2DVertMode.hard,
             Mesh2DVertMode.hard,
             Mesh2DVertMode.hard,
+        };
+        metaUs = new float[] {
+            0,
+            0.25f,
+            0.5f,
+            0.75f,
         };
         metaLines = new int[] {
             1, 0,
