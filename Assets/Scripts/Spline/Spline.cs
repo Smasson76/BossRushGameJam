@@ -10,9 +10,9 @@ public class Spline : MonoBehaviour {
     public void Reset () {
         points = new Vector3[] {
             new Vector3(0, 0, 0),
-            new Vector3(1, 0, 0),
-            new Vector3(0, 0, 1),
-            new Vector3(1, 0, 1),
+            new Vector3(10, 0, 0),
+            new Vector3(0, 0, 10),
+            new Vector3(10, 0, 10),
         };
         modes = new BezierControlPointMode[] {
 			BezierControlPointMode.Free,
