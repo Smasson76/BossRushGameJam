@@ -202,7 +202,7 @@ MonoBehaviour:
   megaboostForce: 1000
   slowForce: 1
   rotationSlowAmount: 0.1
-  minForceToExplode: 40
+  minForceToExplode: 150
   boostDescreaseAmount: 0.1
   megaboostDescreaseAmount: 20
   boostIncreaseAmount: 0.1
